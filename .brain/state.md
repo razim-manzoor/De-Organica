@@ -75,7 +75,16 @@
       - *Private Tour Coach* (Large group travel, 17+ Guests)
     - **Operational Flexibility & Realistic Dispatch:** Eliminates legal/operational mismatch when clients are assigned top-tier comfort sedans (like Toyota Camry or Lexus) or luxury executive MPVs (like Toyota Alphard, the premier Caucasian VIP vehicle), while making budget and standard travelers feel welcome.
 
-11. **Verification Protocol:**
+11. **Comprehensive Manpower & Recruitment Division Overhaul (`/manpower`):**
+    - **Manpower Compliance & Telemetry Banner ([`src/components/ManpowerComplianceBanner.tsx`](file:///R:/Projects/De%20Organica/src/components/ManpowerComplianceBanner.tsx)):** Introduced a full-bleed Heritage Forest Green (`#233D20`) institutional compliance band featuring authoritative legal statements and 3 real-time metrics (`0.00 AMD Upfront Fee Guarantee`, `100% Legal RA Ministry Permits & Residence Cards`, and `30-Day Employer Replacement Warranty`).
+    - **Eradicated SaaS Blobs & Pill Fatigue:** Removed neon blur blobs and generic pill badges from [`src/components/ManpowerHero.tsx`](file:///R:/Projects/De%20Organica/src/components/ManpowerHero.tsx) and [`src/components/PipelineStageShow.tsx`](file:///R:/Projects/De%20Organica/src/components/PipelineStageShow.tsx), upgrading to tracked uppercase typography (`text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive`) with institutional status indicators.
+    - **Interactive Blueprint Specification Card ([`src/components/ManpowerHero.tsx`](file:///R:/Projects/De%20Organica/src/components/ManpowerHero.tsx)):** Provided 100% bilingual Armenian parity for both Job Seeker (*«Թեկնածուի Երաշխիք»*) and Enterprise Employer (*«Գործատուի Կանոններ»*) protocol stages, SLAs, and technical title blocks.
+    - **Expanded High-Demand Vacancy Catalog:** Added high-demand sector openings in [`src/data/deorganica-content.ts`](file:///R:/Projects/De%20Organica/src/data/deorganica-content.ts), including *Construction Finishing Craftsmen (Tile, Plaster & MEP)* and *Modern Greenhouse & Hydroponic Specialists*, supporting multi-sector Armenian economic corridors.
+    - **Target Position Context Card in Drawer:** Implemented context-aware vacancy preservation in [`src/components/ConciergeDrawer.tsx`](file:///R:/Projects/De%20Organica/src/components/ConciergeDrawer.tsx). Clicking "Apply for Position" on any vacancy card locks the role with an authentic context card and 1-click change capability.
+    - **Manpower-Exclusive Ground Desks:** Configured `<ContactSection variant="manpower" />` on [`src/app/manpower/page.tsx`](file:///R:/Projects/De%20Organica/src/app/manpower/page.tsx), isolating the page to only the 3 recruitment desks (*Candidate CV Drop*, *B2B Corporate Staffing*, and *Work Permit & Visa Advisory*).
+    - **Polished Candidate & Employer WhatsApp Dispatch:** Refactored [`src/lib/whatsapp.ts`](file:///R:/Projects/De%20Organica/src/lib/whatsapp.ts) to eliminate awkward placeholder names (*"Job Applicant"* / *"Prospective Employer"*) during direct card clicks, producing human, culturally fluent Armenian and English greetings.
+
+12. **Verification Protocol:**
    - Production build verified with `npm run build` (exit code `0`, 11/11 static pages prerendered).
    - Playwright automated browser tests executed for desktop and mobile viewports with zero console warnings or errors.
 
