@@ -26,7 +26,7 @@
    - Local HTTP Endpoint Testing: Verified HTTP 200 on all routes.
    - API Multipart Testing: Verified `POST /api/inquiry` handles travel and candidate CV submissions with file buffering and returns `{ success: true }`.
    - Browser & Accessibility Verification (Playwright): Verified visual layout, backdrop light-dismiss, keyboard Escape dismissal, and instant `EN | ՀԱՅ` font switching.
-   - Git State: Initialized, `.gitignore` hardened, clean working tree on `master` (`5c5a8d5`).
+   - Git State: Clean working tree on `master` (`4674715`) with full multi-page divisional separation.
 
 ## Outstanding / Client Configuration Points
 - Provide official Armenian/international WhatsApp number in `src/data/deorganica-content.ts` (currently configured with placeholder `+374 99 000000`).
