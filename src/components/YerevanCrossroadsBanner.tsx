@@ -72,7 +72,7 @@ export function YerevanCrossroadsBanner() {
                 <p className="text-xs text-stone-300 leading-relaxed font-sans">
                   {isHy
                     ? "Զրո միջնորդ: Տրանսպորտի, էքսկուրսավարների և պայմանագրերի անմիջական վերահսկողություն Երևանի թիմի կողմից:"
-                    : "Zero outsourced middlemen. Complete operational control over Mercedes fleet, guide licensing, and legal contracts."}
+                    : "Zero outsourced middlemen. Complete operational control over private fleet, guide licensing, and legal contracts."}
                 </p>
               </div>
             </div>
@@ -87,7 +87,7 @@ export function YerevanCrossroadsBanner() {
                 </h3>
                 <p className="text-xs text-stone-300 leading-relaxed font-sans">
                   {isHy
-                    ? "Մասնավոր Mercedes E-Class և V-Class դիմավորում օդանավակայանում ժամանման ցանկացած ժամի:"
+                    ? "Մասնավոր Executive ավտոպարկի դիմավորում օդանավակայանում ժամանման ցանկացած ժամի:"
                     : "Dedicated airport meet-and-greet, live flight tracking, and executive VIP transfers across Armenia."}
                 </p>
               </div>

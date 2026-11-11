@@ -99,8 +99,8 @@ export function ItineraryStageShow() {
       vehicle === "economy"
         ? "Comfort Economy Chauffeur (Value / Budget)"
         : vehicle === "sedan"
-        ? "Executive Mercedes Sedan"
-        : "VIP Sprinter (16 Seats)";
+        ? "Executive Chauffeur Sedan"
+        : "VIP Passenger Van (16 Seats)";
 
     const summary = `Custom Armenia Itinerary (Day ${activeDay}: ${selectedDayData.title_en}, Vehicle: ${vehicleName}, Guide: ${includeGuide ? "Yes" : "No"}, Wine Class: ${
       includeWineMasterclass ? "Yes" : "No"
@@ -132,7 +132,7 @@ export function ItineraryStageShow() {
 
             <p className="text-sm sm:text-base text-brand-ink-muted leading-relaxed">
               {isHy
-                ? "Ընտրեք ցանկալի օրը, տրանսպորտի դասը (Mercedes Sedan կամ VIP Sprinter) և հատուկ ներառումները՝ Երևանի գրասենյակից անհատական սակագին ստանալու համար:"
+                ? "Ընտրեք ցանկալի օրը, տրանսպորտի դասը (Economy, Executive Sedan կամ VIP Minivan) և հատուկ ներառումները՝ Երևանի գրասենյակից անհատական սակագին ստանալու համար:"
                 : "Select your expedition day leg, choose your private chauffeur fleet tier, and toggle bespoke inclusions to generate an immediate custom tariff from our Yerevan desk."}
             </p>
           </div>
@@ -225,7 +225,7 @@ export function ItineraryStageShow() {
                   >
                     <Car className="w-4 h-4 text-brand-olive shrink-0" />
                     <div className="text-left">
-                      <span className="block leading-none text-[11px] font-bold">Mercedes</span>
+                      <span className="block leading-none text-[11px] font-bold">Executive</span>
                       <span className="text-[9px] font-normal text-brand-ink-muted">Exec · 1–3</span>
                     </div>
                   </button>
@@ -358,7 +358,7 @@ export function ItineraryStageShow() {
               {/* Dynamic Live Configuration Pill Strip */}
               <div className="pt-4 border-t border-white/10 flex flex-wrap items-center gap-2 text-[11px]">
                 <span className="px-3 py-1 rounded-full bg-white/10 text-brand-stone-200 border border-white/10">
-                  Fleet: {vehicle === "economy" ? "Economy Sedan (Comfort/Value)" : vehicle === "sedan" ? "Mercedes E-Class (Executive)" : "VIP Sprinter (Chauffeur)"}
+                  Fleet: {vehicle === "economy" ? "Comfort Economy Sedan" : vehicle === "sedan" ? "Executive Sedan" : "VIP Passenger Van"}
                 </span>
                 {includeGuide && (
                   <span className="px-3 py-1 rounded-full bg-emerald-900/60 text-emerald-200 border border-emerald-500/30">

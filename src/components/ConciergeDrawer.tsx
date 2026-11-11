@@ -57,7 +57,7 @@ export function ConciergeDrawer() {
   const [agencyName, setAgencyName] = useState("");
   const [agencyCountry, setAgencyCountry] = useState("");
   const [accommodationTier, setAccommodationTier] = useState("Boutique Wine & Heritage Resorts");
-  const [fleetTier, setFleetTier] = useState("Mercedes Sedan");
+  const [fleetTier, setFleetTier] = useState("Executive Sedan");
   const [isChangingService, setIsChangingService] = useState(false);
 
   const [nationality, setNationality] = useState("");
@@ -683,7 +683,7 @@ export function ConciergeDrawer() {
                                 sub_en: "4★ Hotels, Chauffeur",
                                 sub_hy: "4★, chauffeur",
                                 lodging: "4-Star City Comfort",
-                                fleet: "Mercedes Sedan",
+                                fleet: "Executive Sedan",
                               },
                               {
                                 id: "Boutique & Luxury",
@@ -692,7 +692,7 @@ export function ConciergeDrawer() {
                                 sub_en: "Wine Resorts, 5★",
                                 sub_hy: "5★, բուտիկ",
                                 lodging: "Boutique Wine & Heritage Resorts",
-                                fleet: "Mercedes Sedan",
+                                fleet: "Executive Sedan",
                               },
                             ].map((b) => (
                               <button
@@ -808,8 +808,8 @@ export function ConciergeDrawer() {
                           <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[11px]">
                             {[
                               { label: "Economy Sedan", sub: "Value · 1–3" },
-                              { label: "Mercedes Sedan", sub: "Exec · 1–3" },
-                              { label: "VIP Sprinter", sub: "Group · 4–16" },
+                              { label: "Executive Sedan", sub: "Business · 1–3" },
+                              { label: "VIP Minivan / Van", sub: "Group · 4–16" },
                               { label: "Tour Coach", sub: "Large · 17+" },
                             ].map((f) => (
                               <button

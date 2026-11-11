@@ -23,8 +23,8 @@ export function DmcPartnerSection() {
       icon: <Bus className="w-5 h-5 text-brand-olive" />,
       title_en: "Dedicated Fleet & Chauffeurs",
       title_hy: "Սեփական տրանսպորտային պարկ",
-      desc_en: "Modern Mercedes-Benz sedans, VIP Sprinters (16-19 seats), and luxury coaches with experienced English-speaking drivers.",
-      desc_hy: "Ժամանակակից Mercedes մարդատար մեքենաներ, Sprinter միկրոավտոբուսներ և տուրիստական ավտոբուսներ:",
+      desc_en: "Modern executive sedans, VIP passenger vans (16-19 seats), and coaches with experienced English-speaking drivers.",
+      desc_hy: "Ժամանակակից մարդատար ավտոմեքենաներ, VIP միկրոավտոբուսներ և տուրիստական ավտոբուսներ:",
     },
     {
       icon: <Handshake className="w-5 h-5 text-brand-olive" />,

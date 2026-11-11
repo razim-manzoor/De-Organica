@@ -126,8 +126,8 @@ export function TravelHero() {
 
             <p className="text-base sm:text-lg text-brand-ink-muted leading-relaxed mb-8 max-w-2xl font-sans">
               {isHy
-                ? "Երևանի սրտից մինչև Արենիի 6,100-ամյա գինու քարանձավները, բարձրադիր Սևանա լիճ և Տաթևի վեհաշուք կիրճեր: Անհատական Mercedes տրանսպորտ, արտոնագրված էքսկուրսավարներ և B2B DMC մեծածախ սպասարկում արտասահմանյան գործակալություններին:"
-                : "From the 6,100-year wine caves of Areni and UNESCO cliff sanctuaries to private Mercedes chauffeurs across alpine Lake Sevan. De Organica delivers end-to-end ground handling and bespoke itineraries from our Yerevan operations desk."}
+                ? "Երևանի սրտից մինչև Արենիի 6,100-ամյա գինու քարանձավները, բարձրադիր Սևանա լիճ և Տաթևի վեհաշուք կիրճեր: Անհատական տրանսպորտ, արտոնագրված էքսկուրսավարներ և B2B DMC մեծածախ սպասարկում արտասահմանյան գործակալություններին:"
+                : "From the 6,100-year wine caves of Areni and UNESCO cliff sanctuaries to private chauffeur transport across alpine Lake Sevan. De Organica delivers end-to-end ground handling and bespoke itineraries from our Yerevan operations desk."}
             </p>
 
             <div className="flex flex-wrap items-center gap-3 mb-8">
@@ -157,8 +157,8 @@ export function TravelHero() {
             <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-brand-stone-200">
               {[
                 {
-                  label_en: "Mercedes Chauffeur Fleet",
-                  label_hy: "Mercedes անհատական պարկ",
+                  label_en: "Private Chauffeur Fleet",
+                  label_hy: "Անհատական տրանսպորտային պարկ",
                   icon: Car,
                 },
                 {

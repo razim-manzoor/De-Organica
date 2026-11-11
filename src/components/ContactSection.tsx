@@ -114,7 +114,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
               <p className="text-sm text-brand-ink-muted leading-relaxed">
                 {isHy
                   ? "Գտնվելով Երևանի կենտրոնում՝ մեր թիմը համակարգում է ինչպես Հայաստանի բացառիկ տուրիստական երթուղիները, այնպես էլ միջազգային աշխատուժի օրինական ներգրավումը:"
-                  : "Headquartered in Yerevan, Republic of Armenia, De Organica LLC provides direct advisory for destination travel, private Mercedes tours, consular visa filings, and certified overseas talent placement."}
+                  : "Headquartered in Yerevan, Republic of Armenia, De Organica LLC provides direct advisory for destination travel, private chauffeur tours, consular visa filings, and certified overseas talent placement."}
               </p>
             </div>
 
@@ -314,12 +314,12 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                         <span className="px-1.5 py-0.2 rounded bg-slate-200 text-slate-800 text-[9px]">24/7 LIVE</span>
                       </div>
                       <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
-                        {isHy ? "Executive Chauffeur և EVN Տրանսֆեր" : "Executive Mercedes Fleet & Airport Transfers"}
+                        {isHy ? "Executive Chauffeur և EVN Տրանսֆեր" : "Executive Chauffeur Fleet & Airport Transfers"}
                       </h4>
                       <p className="text-xs text-brand-ink-muted mt-0.5">
                         {isHy
-                          ? "Թռիչքների առցանց հետևում, Mercedes E-Class և VIP Sprinter մեքենաներ, պրոֆեսիոնալ վարորդներ:"
-                          : "Real-time flight monitoring, Mercedes E-Class and VIP Sprinter chauffeur dispatch, and intercity transfers."}
+                          ? "Թռիչքների առցանց հետևում, executive մարդատար մեքենաներ և VIP մինիվեններ, պրոֆեսիոնալ վարորդներ:"
+                          : "Real-time flight monitoring, executive sedans and VIP passenger vans, and reliable intercity chauffeur dispatch."}
                       </p>
                     </div>
                   </div>

@@ -83,15 +83,15 @@ export function HeroDualGateway() {
 
               <p className="text-sm text-brand-ink-muted leading-relaxed mb-6 font-sans">
                 {isHy
-                  ? "Հեղինակային էքսկուրսիաներ Հայաստանում (Գառնի, Սևան, Տաթև), Mercedes VIP տրանսֆեր, վիզաների աջակցություն և B2B DMC տեղական սպասարկում արտասահմանյան գործընկերների համար:"
-                  : "Curated Armenian monastic journeys, private Mercedes chauffeur transport, consular visa advisory, and white-label DMC ground handling in Yerevan for global agency partners."}
+                  ? "Հեղինակային էքսկուրսիաներ Հայաստանում (Գառնի, Սևան, Տաթև), անհատական տրանսֆեր, վիզաների աջակցություն և B2B DMC տեղական սպասարկում արտասահմանյան գործընկերների համար:"
+                  : "Curated Armenian monastic journeys, private chauffeur transport, consular visa advisory, and white-label DMC ground handling in Yerevan for global agency partners."}
               </p>
 
               {/* 3 Core Value Signals */}
               <div className="space-y-2.5 mb-8">
                 <div className="flex items-center gap-2.5 text-xs text-stone-700 font-medium">
                   <Car className="w-4 h-4 text-brand-olive shrink-0" />
-                  <span>{isHy ? "Mercedes պարկ և 24/7 Զվարթնոց օդանավակայանի դիմավորում" : "Private Mercedes Fleet & 24/7 Zvartnots EVN Meet"}</span>
+                  <span>{isHy ? "Անհատական ավտոպարկ և 24/7 Զվարթնոց օդանավակայանի դիմավորում" : "Private Chauffeur Fleet & 24/7 Zvartnots EVN Meet"}</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-stone-700 font-medium">
                   <Compass className="w-4 h-4 text-brand-olive shrink-0" />
