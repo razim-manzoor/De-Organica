@@ -95,12 +95,12 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/manpower#employers" className="hover:text-white transition-colors">
+                <Link href="/manpower#manpower-employers" className="hover:text-white transition-colors">
                   {isHy ? "Գործատուներին (B2B Staffing)" : "For Hiring Employers"}
                 </Link>
               </li>
               <li>
-                <Link href="/manpower#employers" className="hover:text-white transition-colors">
+                <Link href="/manpower#manpower-employers" className="hover:text-white transition-colors">
                   {isHy ? "Աշխատանքի թույլտվություններ" : "Work Permit Compliance"}
                 </Link>
               </li>
@@ -118,7 +118,7 @@ export function Footer() {
               <span className="font-semibold text-white block mb-1">
                 {isHy ? "ՀՀ Իրավական Գրանցում" : "Republic of Armenia"}
               </span>
-              <span>{deorganicaConfig.company.registrationStatus_en}</span>
+              <span>{isHy ? deorganicaConfig.company.registrationStatus_hy : deorganicaConfig.company.registrationStatus_en}</span>
             </div>
           </div>
         </div>

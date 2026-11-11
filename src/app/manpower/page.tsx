@@ -34,9 +34,7 @@ export default function ManpowerPage() {
         <ManpowerComplianceBanner />
 
         {/* Corporate Employers: Sourcing, Screening, and Deployment */}
-        <div id="employers">
-          <ManpowerEmployerSection />
-        </div>
+        <ManpowerEmployerSection />
 
         {/* Regulatory Compliance & Labor Standards FAQ */}
         <ManpowerFaqSection />

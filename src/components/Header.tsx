@@ -16,13 +16,7 @@ export function Header() {
   const { openTravelDrawer } = useDrawer();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isHy = locale === "hy";
-
-  const navLinks = [
-    { href: "/", label_en: "Overview", label_hy: "Գլխավոր" },
-    { href: "/travel", label_en: "Travel & Tours", label_hy: "Զբոսաշրջություն" },
-    { href: "/manpower", label_en: "Manpower & Careers", label_hy: "Աշխատուժ և Կարիերա" },
-    { href: "/contact", label_en: "Contact Desk", label_hy: "Կապ" },
-  ];
+  const navLinks = deorganicaConfig.nav;
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";

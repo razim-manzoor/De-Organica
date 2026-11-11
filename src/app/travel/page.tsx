@@ -28,10 +28,8 @@ export default function TravelPage() {
         {/* StageShow Interactive Itinerary Explorer */}
         <ItineraryStageShow />
 
-        {/* 6-Service Hospitality Matrix */}
-        <div id="tours-matrix">
-          <TravelServicesMatrix />
-        </div>
+        {/* 6-Service Ground Operations Matrix */}
+        <TravelServicesMatrix />
 
         {/* Signature Inbound Tour Packages */}
         <FeaturedToursGrid />

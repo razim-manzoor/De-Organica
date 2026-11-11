@@ -30,13 +30,10 @@ export const deorganicaConfig = {
   } as CompanyInfo,
 
   nav: [
-    { href: "/#about", label_en: "About Us", label_hy: "Մեր մասին" },
-    { href: "/#travel", label_en: "Travel & Tours", label_hy: "Զբոսաշրջություն" },
-    { href: "/#visa-transfers", label_en: "Visa & Transfers", label_hy: "Վիզա և Տրանսֆեր" },
-    { href: "/#dmc", label_en: "B2B Partners (DMC)", label_hy: "B2B Գործընկերներ" },
-    { href: "/#manpower-candidates", label_en: "Careers & Jobs", label_hy: "Աշխատանք" },
-    { href: "/#manpower-employers", label_en: "For Employers", label_hy: "Գործատուներին" },
-    { href: "/#contact", label_en: "Contact", label_hy: "Կապ" },
+    { href: "/", label_en: "Overview", label_hy: "Գլխավոր" },
+    { href: "/travel", label_en: "Travel & Tours", label_hy: "Զբոսաշրջություն" },
+    { href: "/manpower", label_en: "Manpower & Careers", label_hy: "Աշխատուժ և Կարիերա" },
+    { href: "/contact", label_en: "Contact Desk", label_hy: "Կապ" },
   ],
 
   hero: {
