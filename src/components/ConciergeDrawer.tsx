@@ -27,6 +27,10 @@ import {
   ShieldCheck,
   Check,
   Trash2,
+  Car,
+  Wine,
+  Building2,
+  Globe,
 } from "lucide-react";
 import { PhoneCountryInput } from "@/components/PhoneCountryInput";
 
@@ -45,6 +49,15 @@ export function ConciergeDrawer() {
   const [selectedService, setSelectedService] = useState("");
   const [travelDates, setTravelDates] = useState("");
   const [guestsCount, setGuestsCount] = useState("2");
+
+  // Advanced Travel Fields
+  const [travelerType, setTravelerType] = useState<"individual" | "b2b">("individual");
+  const [agencyName, setAgencyName] = useState("");
+  const [agencyCountry, setAgencyCountry] = useState("");
+  const [accommodationTier, setAccommodationTier] = useState("Boutique Wine & Heritage Resorts");
+  const [fleetTier, setFleetTier] = useState("Mercedes Sedan");
+  const [isChangingService, setIsChangingService] = useState(false);
+
   const [nationality, setNationality] = useState("");
   const [currentCountry, setCurrentCountry] = useState("");
   const [targetRole, setTargetRole] = useState("");
@@ -69,6 +82,15 @@ export function ConciergeDrawer() {
       setActiveTab(state.mode);
       if (state.presetServiceOrTour) {
         setSelectedService(state.presetServiceOrTour);
+        const lower = state.presetServiceOrTour.toLowerCase();
+        if (lower.includes("dmc") || lower.includes("b2b") || lower.includes("partner") || lower.includes("agreement")) {
+          setTravelerType("b2b");
+        } else {
+          setTravelerType("individual");
+        }
+        setIsChangingService(false);
+      } else {
+        setIsChangingService(false);
       }
       if (state.presetJobTitle) {
         setTargetRole(state.presetJobTitle);
@@ -114,6 +136,9 @@ export function ConciergeDrawer() {
       // Validate mandatory fields
       if (activeTab === "travel") {
         if (!fullName.trim()) throw new Error(isHy ? "Խնդրում ենք լրացնել անունը" : "Please enter your name");
+        if (travelerType === "b2b" && !agencyName.trim()) {
+          throw new Error(isHy ? "Խնդրում ենք նշել գործակալության անվանումը" : "Please provide your travel agency or company name");
+        }
         if (!phoneNumber.trim() && !email.trim()) {
           throw new Error(isHy ? "Խնդրում ենք նշել հեռախոսահամար կամ էլ. փոստ" : "Please provide either a phone number or email");
         }
@@ -140,8 +165,16 @@ export function ConciergeDrawer() {
 
       if (activeTab === "travel") {
         formData.append("serviceOrTour", selectedService || "General Travel Inquiry");
-        formData.append("travelDates", travelDates);
-        formData.append("guestsCount", guestsCount);
+        formData.append("travelerType", travelerType);
+        if (travelerType === "b2b") {
+          formData.append("agencyName", agencyName);
+          formData.append("agencyCountry", agencyCountry);
+        } else {
+          formData.append("travelDates", travelDates);
+          formData.append("guestsCount", guestsCount);
+          formData.append("accommodationTier", accommodationTier);
+          formData.append("fleetTier", fleetTier);
+        }
       } else if (activeTab === "candidate") {
         formData.append("nationality", nationality);
         formData.append("currentCountry", currentCountry);
@@ -176,9 +209,14 @@ export function ConciergeDrawer() {
         if (activeTab === "travel") {
           msg = buildTravelWhatsAppMessage({
             name: fullName,
+            travelerType,
+            agencyName: travelerType === "b2b" ? agencyName : undefined,
+            agencyCountry: travelerType === "b2b" ? agencyCountry : undefined,
             serviceOrTour: selectedService || "Travel & Tours Inquiry",
             dates: travelDates,
             guests: guestsCount,
+            accommodation: travelerType === "individual" ? accommodationTier : undefined,
+            fleet: travelerType === "individual" ? fleetTier : undefined,
             phone: fullPhone,
             email,
             notes,
@@ -460,58 +498,267 @@ export function ConciergeDrawer() {
                 {/* Mode-Specific Fields: Travel */}
                 {activeTab === "travel" && (
                   <>
-                    <div>
-                      <label className="block text-xs font-semibold text-brand-forest mb-1.5">
-                        {isHy ? "Հետաքրքրող ծառայությունը կամ տուրը" : "Selected Tour or Travel Service"}
-                      </label>
-                      <select
-                        value={selectedService}
-                        onChange={(e) => setSelectedService(e.target.value)}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs font-medium text-brand-ink focus:outline-hidden focus:ring-2 focus:ring-brand-olive shadow-2xs"
+                    {/* Expedition Context Card or Selector */}
+                    {selectedService && !isChangingService ? (
+                      <div className="p-3.5 rounded-2xl bg-brand-stone-100 border border-brand-stone-200/90 flex items-center justify-between shadow-2xs">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-xl bg-brand-forest text-brand-olive-light flex items-center justify-center shrink-0 shadow-2xs">
+                            <Compass className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-brand-olive block">
+                              {isHy ? "Ընտրված Ուղղություն / Ծրագիր" : "Selected Expedition Context"}
+                            </span>
+                            <span className="text-xs sm:text-sm font-serif font-bold text-brand-forest block leading-snug">
+                              {selectedService}
+                            </span>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setIsChangingService(true)}
+                          className="text-[11px] font-semibold text-brand-olive hover:text-brand-forest transition-colors underline cursor-pointer shrink-0 ml-2"
+                        >
+                          {isHy ? "Փոխել" : "Change"}
+                        </button>
+                      </div>
+                    ) : (
+                      <div>
+                        <div className="flex items-center justify-between mb-1.5">
+                          <label className="text-xs font-semibold text-brand-forest">
+                            {isHy ? "Ընտրեք տուրը կամ ծառայությունը" : "Choose Itinerary or Ground Service"}
+                          </label>
+                          {selectedService && (
+                            <button
+                              type="button"
+                              onClick={() => setIsChangingService(false)}
+                              className="text-[11px] text-brand-olive font-semibold underline cursor-pointer"
+                            >
+                              {isHy ? "Պահպանել" : "Keep Current"}
+                            </button>
+                          )}
+                        </div>
+                        <select
+                          value={selectedService}
+                          onChange={(e) => {
+                            setSelectedService(e.target.value);
+                            setIsChangingService(false);
+                          }}
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs font-medium text-brand-ink focus:outline-hidden focus:ring-2 focus:ring-brand-olive shadow-2xs"
+                        >
+                          <option value="">{isHy ? "Ընտրեք ցանկից կամ նշեք ստորև" : "Select from list or describe below"}</option>
+                          <optgroup label={isHy ? "Հեղինակային Երթուղիներ" : "Signature Tour Packages"}>
+                            {deorganicaConfig.starterTours.map((t) => (
+                              <option key={t.id} value={t.title_en}>
+                                {isHy ? t.title_hy : t.title_en} ({t.duration_en})
+                              </option>
+                            ))}
+                          </optgroup>
+                          <optgroup label={isHy ? "Տեղական Լոգիստիկա և Սպասարկում" : "Ground Operations & Fleet"}>
+                            {deorganicaConfig.travelServices.map((s) => (
+                              <option key={s.id} value={s.title_en}>
+                                {isHy ? s.title_hy : s.title_en}
+                              </option>
+                            ))}
+                          </optgroup>
+                        </select>
+                      </div>
+                    )}
+
+                    {/* Inquiry Persona Toggle: Private Traveler vs B2B DMC Partner */}
+                    <div className="flex p-1 rounded-xl bg-brand-stone-100 border border-brand-stone-200 text-xs font-semibold">
+                      <button
+                        type="button"
+                        onClick={() => setTravelerType("individual")}
+                        className={`flex-1 py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                          travelerType === "individual"
+                            ? "bg-white text-brand-forest shadow-2xs font-bold"
+                            : "text-brand-ink-muted hover:text-brand-forest"
+                        }`}
                       >
-                        <option value="">{isHy ? "Ընտրեք ցանկից կամ նշեք ստորև" : "Select from list or describe below"}</option>
-                        {deorganicaConfig.travelServices.map((s) => (
-                          <option key={s.id} value={s.title_en}>
-                            {isHy ? s.title_hy : s.title_en}
-                          </option>
-                        ))}
-                        {deorganicaConfig.starterTours.map((t) => (
-                          <option key={t.id} value={t.title_en}>
-                            Tour: {isHy ? t.title_hy : t.title_en}
-                          </option>
-                        ))}
-                      </select>
+                        <Users className="w-3.5 h-3.5 text-brand-olive" />
+                        <span>{isHy ? "Մասնավոր / Ընտանեկան" : "Private Traveler / Family"}</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setTravelerType("b2b")}
+                        className={`flex-1 py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                          travelerType === "b2b"
+                            ? "bg-white text-brand-forest shadow-2xs font-bold"
+                            : "text-brand-ink-muted hover:text-brand-forest"
+                        }`}
+                      >
+                        <Building2 className="w-3.5 h-3.5 text-brand-olive" />
+                        <span>{isHy ? "B2B Տուրօպերատոր / DMC" : "B2B Travel Agent / DMC"}</span>
+                      </button>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div>
-                        <label className="block text-xs font-semibold text-brand-forest mb-1.5 flex items-center gap-1.5">
-                          <Calendar className="w-3.5 h-3.5 text-brand-olive" />
-                          <span>{isHy ? "Նախատեսվող ամսաթիվ" : "Estimated Travel Dates"}</span>
-                        </label>
-                        <input
-                          type="text"
-                          value={travelDates}
-                          onChange={(e) => setTravelDates(e.target.value)}
-                          placeholder={isHy ? "օրինակ՝ Հունիս 2026" : "e.g. Next month / Oct 15-22"}
-                          className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs"
-                        />
+                    {/* B2B Agency Specific Fields */}
+                    {travelerType === "b2b" ? (
+                      <div className="space-y-3.5 pt-1">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <div>
+                            <label className="block text-xs font-semibold text-brand-forest mb-1.5">
+                              {isHy ? "Գործակալության անվանումը *" : "Travel Agency / Company *"}
+                            </label>
+                            <input
+                              type="text"
+                              required
+                              value={agencyName}
+                              onChange={(e) => setAgencyName(e.target.value)}
+                              placeholder={isHy ? "օրինակ՝ Dubai Travel LLC" : "e.g. Odyssey Holidays India / GCC DMC"}
+                              className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-xs font-semibold text-brand-forest mb-1.5">
+                              {isHy ? "Գործունեության երկիրը" : "Agency Country of Origin"}
+                            </label>
+                            <input
+                              type="text"
+                              value={agencyCountry}
+                              onChange={(e) => setAgencyCountry(e.target.value)}
+                              placeholder={isHy ? "օրինակ՝ ԱՄԷ, Հնդկաստան, ՌԴ" : "e.g. UAE / India / Germany / USA"}
+                              className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-semibold text-brand-forest mb-1.5">
+                            {isHy ? "Նախատեսվող ներգնա ծավալը" : "Expected Inbound Group Scope"}
+                          </label>
+                          <div className="grid grid-cols-3 gap-2 text-[11px]">
+                            {["FITs & Private VIPs", "Leisure Groups (15–40)", "MICE Delegations"].map((scope) => (
+                              <button
+                                key={scope}
+                                type="button"
+                                onClick={() => setTravelDates(scope)}
+                                className={`p-2 rounded-lg border text-center transition-all cursor-pointer ${
+                                  travelDates === scope
+                                    ? "bg-brand-forest text-white border-brand-forest font-semibold shadow-2xs"
+                                    : "bg-white border-brand-stone-200 text-brand-ink-muted hover:border-brand-olive/50"
+                                }`}
+                              >
+                                {scope}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <label className="block text-xs font-semibold text-brand-forest mb-1.5 flex items-center gap-1.5">
-                          <Users className="w-3.5 h-3.5 text-brand-olive" />
-                          <span>{isHy ? "Անձանց թիվը" : "Number of Guests"}</span>
-                        </label>
-                        <input
-                          type="number"
-                          min="1"
-                          max="100"
-                          value={guestsCount}
-                          onChange={(e) => setGuestsCount(e.target.value)}
-                          className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs"
-                        />
+                    ) : (
+                      /* Individual / Family Fields */
+                      <div className="space-y-3.5 pt-1">
+                        {/* Group Size with Quick Chips */}
+                        <div>
+                          <div className="flex items-center justify-between mb-1.5">
+                            <label className="text-xs font-semibold text-brand-forest flex items-center gap-1.5">
+                              <Users className="w-3.5 h-3.5 text-brand-olive" />
+                              <span>{isHy ? "Հյուրերի թիվը" : "Group Size / Guests"}</span>
+                            </label>
+                            <span className="text-[11px] font-mono text-brand-olive font-bold">
+                              {guestsCount} {parseInt(guestsCount, 10) === 1 ? "Guest" : "Guests"}
+                            </span>
+                          </div>
+
+                          <div className="grid grid-cols-4 gap-1.5">
+                            {[
+                              { label: "1–2", val: "2", sub: "Sedan" },
+                              { label: "3–5", val: "4", sub: "Family" },
+                              { label: "6–10", val: "8", sub: "Sprinter" },
+                              { label: "10+", val: "16", sub: "Coach" },
+                            ].map((g) => (
+                              <button
+                                key={g.label}
+                                type="button"
+                                onClick={() => setGuestsCount(g.val)}
+                                className={`py-1.5 px-2 rounded-lg border text-center transition-all cursor-pointer ${
+                                  guestsCount === g.val
+                                    ? "bg-brand-forest text-white border-brand-forest font-semibold shadow-2xs"
+                                    : "bg-white border-brand-stone-200 text-brand-forest hover:bg-brand-stone-50"
+                                }`}
+                              >
+                                <span className="block text-xs font-bold leading-tight">{g.label}</span>
+                                <span className={`text-[9px] block leading-none ${guestsCount === g.val ? "text-brand-olive-light" : "text-brand-ink-subtle"}`}>{g.sub}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Travel Dates */}
+                        <div>
+                          <label className="block text-xs font-semibold text-brand-forest mb-1.5 flex items-center gap-1.5">
+                            <Calendar className="w-3.5 h-3.5 text-brand-olive" />
+                            <span>{isHy ? "Նախատեսվող ամսաթիվ կամ սեզոն" : "Estimated Travel Dates or Season"}</span>
+                          </label>
+                          <input
+                            type="text"
+                            value={travelDates}
+                            onChange={(e) => setTravelDates(e.target.value)}
+                            placeholder={isHy ? "օրինակ՝ Հոկտեմբեր 15-22 / Աշուն 2026" : "e.g. Oct 15–22 / Autumn Wine Season / Next Month"}
+                            className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs"
+                          />
+                        </div>
+
+                        {/* Accommodation Style Preference */}
+                        <div>
+                          <label className="block text-xs font-semibold text-brand-forest mb-1.5 flex items-center gap-1.5">
+                            <Wine className="w-3.5 h-3.5 text-brand-olive" />
+                            <span>{isHy ? "Հյուրանոցի / Տեղավորման նախասիրություն" : "Lodging & Experience Preference"}</span>
+                          </label>
+                          <div className="grid grid-cols-2 gap-2 text-[11px]">
+                            {[
+                              "Boutique Wine & Heritage Resorts",
+                              "5-Star Luxury Hotels",
+                              "4-Star City Comfort",
+                              "Tours & Chauffeur Only",
+                            ].map((tier) => (
+                              <button
+                                key={tier}
+                                type="button"
+                                onClick={() => setAccommodationTier(tier)}
+                                className={`p-2 rounded-lg border text-left transition-all cursor-pointer ${
+                                  accommodationTier === tier
+                                    ? "bg-brand-forest text-white border-brand-forest font-semibold shadow-2xs"
+                                    : "bg-white border-brand-stone-200 text-brand-ink-muted hover:border-brand-olive/50"
+                                }`}
+                              >
+                                <span className="block leading-tight">{tier}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Chauffeur Fleet Tier */}
+                        <div>
+                          <label className="block text-xs font-semibold text-brand-forest mb-1.5 flex items-center gap-1.5">
+                            <Car className="w-3.5 h-3.5 text-brand-olive" />
+                            <span>{isHy ? "Տրանսպորտային դաս" : "Chauffeur Fleet Preference"}</span>
+                          </label>
+                          <div className="grid grid-cols-3 gap-2 text-[11px]">
+                            {[
+                              { label: "Mercedes Sedan", sub: "1–3 Guests" },
+                              { label: "VIP Sprinter", sub: "4–16 Guests" },
+                              { label: "Tour Coach", sub: "17+ Guests" },
+                            ].map((f) => (
+                              <button
+                                key={f.label}
+                                type="button"
+                                onClick={() => setFleetTier(f.label)}
+                                className={`p-2 rounded-lg border text-center transition-all cursor-pointer ${
+                                  fleetTier === f.label
+                                    ? "bg-brand-forest text-white border-brand-forest font-semibold shadow-2xs"
+                                    : "bg-white border-brand-stone-200 text-brand-ink-muted hover:border-brand-olive/50"
+                                }`}
+                              >
+                                <span className="block font-semibold leading-tight">{f.label}</span>
+                                <span className={`text-[9px] block ${fleetTier === f.label ? "text-brand-olive-light" : "text-brand-ink-subtle"}`}>{f.sub}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </>
                 )}
 

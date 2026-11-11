@@ -5,8 +5,13 @@ export interface TravelWhatsAppParams {
   email?: string;
   phone?: string;
   serviceOrTour: string;
+  travelerType?: string;
+  agencyName?: string;
+  agencyCountry?: string;
   dates?: string;
   guests?: string;
+  accommodation?: string;
+  fleet?: string;
   notes?: string;
 }
 
@@ -40,18 +45,24 @@ export function buildWhatsAppUrl(message: string, targetDigits?: string): string
 }
 
 export function buildTravelWhatsAppMessage(params: TravelWhatsAppParams): string {
+  const isB2B = params.travelerType === "b2b" || Boolean(params.agencyName);
   const lines = [
     `*DE ORGANICA TRAVEL & TOURS — DESK INQUIRY*`,
     `----------------------------------------`,
     `*Client Name:* ${params.name}`,
+    params.agencyName ? `*Travel Agency / Tour Operator:* ${params.agencyName}` : null,
+    params.agencyCountry ? `*Agency Country of Origin:* ${params.agencyCountry}` : null,
+    params.travelerType ? `*Inquiry Category:* ${isB2B ? "B2B DMC Wholesale Contract" : "Private Leisure / Family Expedition"}` : null,
     params.email ? `*Email:* ${params.email}` : null,
     params.phone ? `*Phone/WhatsApp:* ${params.phone}` : null,
     `*Selected Tour/Service:* ${params.serviceOrTour}`,
     params.dates ? `*Estimated Travel Dates:* ${params.dates}` : null,
     params.guests ? `*Group Size / Guests:* ${params.guests}` : null,
+    params.accommodation ? `*Accommodation Preference:* ${params.accommodation}` : null,
+    params.fleet ? `*Chauffeur Fleet Tier:* ${params.fleet}` : null,
     params.notes ? `*Custom Requirements:* ${params.notes}` : null,
     `----------------------------------------`,
-    `_Sent via deorganica.am Corporate Portal_`,
+    `_Sent via deorganica.am Inbound Desk_`,
   ].filter(Boolean);
 
   return lines.join("\n");

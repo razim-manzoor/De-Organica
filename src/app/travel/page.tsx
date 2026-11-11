@@ -38,7 +38,7 @@ export default function TravelPage() {
         <DmcPartnerSection />
 
         {/* Contact & Desk Inquiries */}
-        <ContactSection />
+        <ContactSection variant="travel" />
       </main>
       <Footer />
     </div>

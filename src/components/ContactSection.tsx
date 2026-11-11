@@ -21,9 +21,14 @@ import {
   Building2,
   Navigation,
   Globe,
+  Car,
 } from "lucide-react";
 
-export function ContactSection() {
+interface ContactSectionProps {
+  variant?: "all" | "travel" | "manpower";
+}
+
+export function ContactSection({ variant = "all" }: ContactSectionProps) {
   const { locale } = useLanguage();
   const { openTravelDrawer, openCandidateDrawer, openEmployerDrawer } = useDrawer();
   const isHy = locale === "hy";
@@ -213,121 +218,253 @@ export function ContactSection() {
               </p>
             </div>
 
-            {/* Channel 1: Travel & Tour Desk */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
-              <div className="flex items-start gap-3.5">
-                <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200/80 flex items-center justify-center text-amber-800 shrink-0">
-                  <Compass className="w-6 h-6" />
-                </div>
-                <div>
-                  <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-800">
-                    <span>Division I · Travel Desk</span>
+            {/* Travel-Specific Channels */}
+            {variant === "travel" && (
+              <>
+                {/* Channel 1: Bespoke Leisure & Private Expeditions */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200/80 flex items-center justify-center text-amber-800 shrink-0">
+                      <Compass className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-800">
+                        <span>{isHy ? "Մասնավոր Երթուղիներ" : "Bespoke Leisure & Private Expeditions"}</span>
+                      </div>
+                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                        {isHy ? "Անհատական Տուրեր և Գինու Ճանապարհ" : "Bespoke Cultural & Wine Expeditions"}
+                      </h4>
+                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                        {isHy
+                          ? "Հատուկ կազմված երթուղիներ, Արենիի գինու համտեսներ, ընտանեկան հանգիստ և անհատական էքսկուրսավարներ:"
+                          : "Curated itineraries, Areni-1 wine tastings, luxury resort lodging, and private multi-day itineraries across Armenia."}
+                      </p>
+                    </div>
                   </div>
-                  <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
-                    {isHy ? "Տուրեր, Երթուղիներ և VIP Տրանսֆեր" : "Armenia Itineraries & Chauffeur Fleet"}
-                  </h4>
-                  <p className="text-xs text-brand-ink-muted mt-0.5">
-                    Custom holiday planning, Garni/Sevan/Tatev tours, or B2B DMC group tariffs.
-                  </p>
-                </div>
-              </div>
 
-              <div className="flex items-center gap-2 shrink-0">
-                <button
-                  type="button"
-                  onClick={handleTravelWhatsApp}
-                  className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
-                >
-                  <MessageCircle className="w-3.5 h-3.5" />
-                  <span>WhatsApp</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => openTravelDrawer("General Travel Inquiry")}
-                  className="px-3.5 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-colors cursor-pointer"
-                >
-                  {isHy ? "Հայտ" : "Form"}
-                </button>
-              </div>
-            </div>
-
-            {/* Channel 2: Candidate CV Drop Desk */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
-              <div className="flex items-start gap-3.5">
-                <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-emerald-800 shrink-0">
-                  <Briefcase className="w-6 h-6" />
-                </div>
-                <div>
-                  <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-800">
-                    <span>Division II · Job Seekers</span>
-                    <span className="px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-900 text-[9px]">ZERO FEE</span>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={handleTravelWhatsApp}
+                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      <span>WhatsApp</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => openTravelDrawer("Bespoke Private Itinerary")}
+                      className="px-3.5 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-colors cursor-pointer"
+                    >
+                      {isHy ? "Հայտ" : "Inquire"}
+                    </button>
                   </div>
-                  <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
-                    {isHy ? "Թեկնածուների Դիմումներ և Ռեզյումե" : "Candidate CV Submission & Job Advisory"}
-                  </h4>
-                  <p className="text-xs text-brand-ink-muted mt-0.5">
-                    100% free resume submission with pay-after-job guarantee and official visa support.
-                  </p>
                 </div>
-              </div>
 
-              <div className="flex items-center gap-2 shrink-0">
-                <button
-                  type="button"
-                  onClick={handleCandidateWhatsApp}
-                  className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
-                >
-                  <MessageCircle className="w-3.5 h-3.5" />
-                  <span>WhatsApp</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => openCandidateDrawer()}
-                  className="px-3.5 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors cursor-pointer"
-                >
-                  {isHy ? "Ուղարկել CV" : "Drop CV"}
-                </button>
-              </div>
-            </div>
-
-            {/* Channel 3: Corporate Staffing & B2B Quota Requisition */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
-              <div className="flex items-start gap-3.5">
-                <div className="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-800 shrink-0">
-                  <Building2 className="w-6 h-6" />
-                </div>
-                <div>
-                  <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-700">
-                    <span>Enterprise · B2B Staffing</span>
-                    <span className="px-1.5 py-0.2 rounded bg-slate-200 text-slate-800 text-[9px]">72H SLA</span>
+                {/* Channel 2: B2B Destination Management (DMC) */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-emerald-800 shrink-0">
+                      <Building2 className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-800">
+                        <span>{isHy ? "B2B Գործընկերություն" : "B2B Destination Management (DMC)"}</span>
+                        <span className="px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-900 text-[9px]">NET TARIFFS</span>
+                      </div>
+                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                        {isHy ? "Մեծածախ DMC Սպասարկում Գործակալություններին" : "Wholesale Ground Handling & Allotments"}
+                      </h4>
+                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                        {isHy
+                          ? "Հատուկ գներ արտերկրի տուրօպերատորների համար, սպիտակ բրենդավորմամբ դիմավորում և MICE միջոցառումներ:"
+                          : "Exclusive contract rates for overseas tour operators, white-label EVN airport reception, and group allotments."}
+                      </p>
+                    </div>
                   </div>
-                  <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
-                    {isHy ? "Կորպորատիվ Գործատուների Պատվերներ" : "Corporate Employer Talent Requisitions"}
-                  </h4>
-                  <p className="text-xs text-brand-ink-muted mt-0.5">
-                    Ministry labor quota handling, candidate vetting, and complete relocation compliance.
-                  </p>
-                </div>
-              </div>
 
-              <div className="flex items-center gap-2 shrink-0">
-                <button
-                  type="button"
-                  onClick={handleEmployerWhatsApp}
-                  className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
-                >
-                  <MessageCircle className="w-3.5 h-3.5" />
-                  <span>WhatsApp</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => openEmployerDrawer()}
-                  className="px-3.5 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-colors cursor-pointer"
-                >
-                  {isHy ? "Պատվիրել" : "Requisition"}
-                </button>
-              </div>
-            </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={handleTravelWhatsApp}
+                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      <span>WhatsApp</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => openTravelDrawer("B2B Travel Partner DMC Agreement")}
+                      className="px-3.5 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors cursor-pointer"
+                    >
+                      {isHy ? "Պայմանագիր" : "B2B Desk"}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Channel 3: Zvartnots EVN VIP Chauffeur Fleet */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-800 shrink-0">
+                      <Car className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-700">
+                        <span>{isHy ? "24/7 Օդանավակայանի Լոգիստիկա" : "Zvartnots (EVN) Airport & Fleet"}</span>
+                        <span className="px-1.5 py-0.2 rounded bg-slate-200 text-slate-800 text-[9px]">24/7 LIVE</span>
+                      </div>
+                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                        {isHy ? "Executive Chauffeur և EVN Տրանսֆեր" : "Executive Mercedes Fleet & Airport Transfers"}
+                      </h4>
+                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                        {isHy
+                          ? "Թռիչքների առցանց հետևում, Mercedes E-Class և VIP Sprinter մեքենաներ, պրոֆեսիոնալ վարորդներ:"
+                          : "Real-time flight monitoring, Mercedes E-Class and VIP Sprinter chauffeur dispatch, and intercity transfers."}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={handleTravelWhatsApp}
+                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      <span>WhatsApp</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => openTravelDrawer("Hotels & Airport Transfers")}
+                      className="px-3.5 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-colors cursor-pointer"
+                    >
+                      {isHy ? "Ամրագրել" : "Book Fleet"}
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* Standard Multi-Division Channels (Overview / General Contact) */}
+            {variant !== "travel" && (
+              <>
+                {/* Channel 1: Travel & Tour Desk */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200/80 flex items-center justify-center text-amber-800 shrink-0">
+                      <Compass className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-800">
+                        <span>Division I · Travel Desk</span>
+                      </div>
+                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                        {isHy ? "Տուրեր, Երթուղիներ և VIP Տրանսֆեր" : "Armenia Itineraries & Chauffeur Fleet"}
+                      </h4>
+                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                        Custom holiday planning, Garni/Sevan/Tatev tours, or B2B DMC group tariffs.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={handleTravelWhatsApp}
+                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      <span>WhatsApp</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => openTravelDrawer("General Travel Inquiry")}
+                      className="px-3.5 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-colors cursor-pointer"
+                    >
+                      {isHy ? "Հայտ" : "Form"}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Channel 2: Candidate CV Drop Desk */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-emerald-800 shrink-0">
+                      <Briefcase className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-800">
+                        <span>Division II · Job Seekers</span>
+                        <span className="px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-900 text-[9px]">ZERO FEE</span>
+                      </div>
+                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                        {isHy ? "Թեկնածուների Դիմումներ և Ռեզյումե" : "Candidate CV Submission & Job Advisory"}
+                      </h4>
+                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                        100% free resume submission with pay-after-job guarantee and official visa support.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={handleCandidateWhatsApp}
+                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      <span>WhatsApp</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => openCandidateDrawer()}
+                      className="px-3.5 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors cursor-pointer"
+                    >
+                      {isHy ? "Ուղարկել CV" : "Drop CV"}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Channel 3: Corporate Staffing & B2B Quota Requisition */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-800 shrink-0">
+                      <Building2 className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-700">
+                        <span>Enterprise · B2B Staffing</span>
+                        <span className="px-1.5 py-0.2 rounded bg-slate-200 text-slate-800 text-[9px]">72H SLA</span>
+                      </div>
+                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                        {isHy ? "Կորպորատիվ Գործատուների Պատվերներ" : "Corporate Employer Talent Requisitions"}
+                      </h4>
+                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                        Ministry labor quota handling, candidate vetting, and complete relocation compliance.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={handleEmployerWhatsApp}
+                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      <span>WhatsApp</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => openEmployerDrawer()}
+                      className="px-3.5 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-colors cursor-pointer"
+                    >
+                      {isHy ? "Պատվիրել" : "Requisition"}
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
 
             {/* General Email & Legal Guarantee Note */}
             <div className="p-4 rounded-2xl bg-brand-stone-100/80 border border-brand-stone-200 text-xs text-brand-ink-muted flex flex-col sm:flex-row items-center justify-between gap-3">

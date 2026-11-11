@@ -13,10 +13,15 @@ export async function POST(req: NextRequest) {
     const notes = (formData.get("notes") as string) || "";
     const locale = (formData.get("locale") as string) || "en";
 
-    // Mode-specific
+    // Mode-specific: Travel
     const serviceOrTour = (formData.get("serviceOrTour") as string) || "";
+    const travelerType = (formData.get("travelerType") as string) || "";
+    const agencyName = (formData.get("agencyName") as string) || "";
+    const agencyCountry = (formData.get("agencyCountry") as string) || "";
     const travelDates = (formData.get("travelDates") as string) || "";
     const guestsCount = (formData.get("guestsCount") as string) || "";
+    const accommodationTier = (formData.get("accommodationTier") as string) || "";
+    const fleetTier = (formData.get("fleetTier") as string) || "";
 
     const nationality = (formData.get("nationality") as string) || "";
     const currentCountry = (formData.get("currentCountry") as string) || "";
@@ -66,8 +71,12 @@ export async function POST(req: NextRequest) {
             <td style="padding: 8px 0;">${email ? `<a href="mailto:${email}" style="color: #233D20;">${email}</a>` : "Not provided"}</td>
           </tr>
           ${serviceOrTour ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Service / Tour:</td><td style="padding: 8px 0;">${serviceOrTour}</td></tr>` : ""}
+          ${travelerType ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Traveler Type:</td><td style="padding: 8px 0;">${travelerType === "b2b" ? "B2B Travel Agency / DMC" : "Private Leisure / Family"}</td></tr>` : ""}
+          ${agencyName ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Agency Name:</td><td style="padding: 8px 0;">${agencyName} (${agencyCountry || "N/A"})</td></tr>` : ""}
           ${travelDates ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Travel Dates:</td><td style="padding: 8px 0;">${travelDates}</td></tr>` : ""}
           ${guestsCount ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Guests Count:</td><td style="padding: 8px 0;">${guestsCount}</td></tr>` : ""}
+          ${accommodationTier ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Accommodation:</td><td style="padding: 8px 0;">${accommodationTier}</td></tr>` : ""}
+          ${fleetTier ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Chauffeur Fleet:</td><td style="padding: 8px 0;">${fleetTier}</td></tr>` : ""}
           ${targetRole ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Target Role:</td><td style="padding: 8px 0;"><strong>${targetRole}</strong></td></tr>` : ""}
           ${nationality ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Nationality:</td><td style="padding: 8px 0;">${nationality}</td></tr>` : ""}
           ${currentCountry ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Current Location:</td><td style="padding: 8px 0;">${currentCountry}</td></tr>` : ""}
