@@ -36,7 +36,7 @@ export function CorporateFoundation() {
         <div className="max-w-3xl mb-14 lg:mb-16">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-olive" />
-            <span>{isHy ? "Ինստիտուցիոնալ Հիմք" : "Institutional Trust & Foundation"}</span>
+            <span>{isHy ? "Ինստիտուցիոնալ Հիմք · Երևան" : "Institutional Foundation · Yerevan"}</span>
           </div>
 
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4 leading-[1.15]">

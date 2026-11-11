@@ -68,7 +68,7 @@ export function HeroDualGateway() {
                 </div>
 
                 <div className="absolute bottom-3.5 left-3.5 right-3.5 text-white">
-                  <p className="text-xs font-medium text-amber-200/90 uppercase tracking-wider">
+                  <p className="text-xs font-medium text-brand-stone-200 uppercase tracking-wider">
                     {isHy ? "Հայաստանի Բացառիկ Երթուղիներ" : "Inbound Armenia DMC & World Holidays"}
                   </p>
                   <p className="font-serif text-lg font-bold">
