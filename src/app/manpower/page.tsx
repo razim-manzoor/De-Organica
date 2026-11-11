@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { ManpowerHero } from "@/components/ManpowerHero";
+import { PipelineStageShow } from "@/components/PipelineStageShow";
 import { ManpowerCandidateHub } from "@/components/ManpowerCandidateHub";
 import { ManpowerEmployerSection } from "@/components/ManpowerEmployerSection";
 import { CorporateFoundation } from "@/components/CorporateFoundation";
@@ -21,6 +22,9 @@ export default function ManpowerPage() {
       <main className="flex-grow">
         {/* Dedicated Manpower & Careers Hero */}
         <ManpowerHero />
+
+        {/* StageShow Interactive Ethical Relocation Pipeline */}
+        <PipelineStageShow />
 
         {/* Candidate Hub: Ethical Charter, 4-Step Pathway, Vacancies & CV Drop */}
         <ManpowerCandidateHub />

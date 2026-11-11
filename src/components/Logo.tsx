@@ -2,11 +2,12 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
   className?: string;
-  variant?: "full" | "horizontal" | "mark";
+  variant?: "full" | "horizontal" | "mark" | "official";
   inverted?: boolean;
 }
 
@@ -19,93 +20,91 @@ export function Logo({
   const olive = inverted ? "#A3C966" : "#668B2E";
   const subtext = inverted ? "#DCD9CE" : "#4A5448";
 
-  // The Monogram Mark: Interlocking D and O with Botanical Olive Leaf
+  // Official Monogram Vector Art: Classical Didone Serif 'D' interlocking with Botanical Olive 'O' and dual sprout
   const MonogramMark = (
     <svg
-      width="44"
-      height="44"
-      viewBox="0 0 100 100"
+      width="46"
+      height="46"
+      viewBox="0 0 120 120"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="flex-shrink-0 transition-transform duration-300 group-hover:scale-105"
+      className="shrink-0 transition-transform duration-300 group-hover:scale-105"
       aria-label="De Organica Monogram"
     >
-      {/* Outer subtle shield/ring boundary */}
-      <circle
-        cx="50"
-        cy="50"
-        r="47"
-        stroke={olive}
-        strokeWidth="1.5"
-        strokeOpacity="0.35"
-        strokeDasharray="2 2"
-      />
-      <circle
-        cx="50"
-        cy="50"
-        r="44"
-        stroke={forest}
-        strokeWidth="1.2"
-        strokeOpacity="0.8"
-      />
-
-      {/* Classical Serif 'D' */}
+      {/* --- Letter 'D' in Heritage Forest Green --- */}
+      {/* Top Left Bracketed Serif */}
       <path
-        d="M 28 26 L 46 26 C 58 26 66 35 66 50 C 66 65 58 74 46 74 L 28 74 Z"
+        d="M 16 22 L 40 22 M 28 22 L 28 98 M 16 98 L 40 98"
         stroke={forest}
-        strokeWidth="3.2"
+        strokeWidth="4.5"
+        strokeLinecap="square"
+      />
+      {/* 'D' Thick Vertical Stem */}
+      <rect x="25.5" y="22" width="6" height="76" fill={forest} />
+
+      {/* 'D' Curved Outer Bowl */}
+      <path
+        d="M 31 24.5 H 52 C 72 24.5 82 38 82 58 C 82 76 70 95.5 48 95.5 H 31"
+        stroke={forest}
+        strokeWidth="4.8"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
       />
-      {/* 'D' Stem serif flourishes */}
-      <path
-        d="M 24 26 L 34 26 M 24 74 L 34 74 M 30 26 L 30 74"
-        stroke={forest}
-        strokeWidth="3.2"
-        strokeLinecap="round"
-      />
 
-      {/* Interlocking 'O' */}
-      <ellipse
-        cx="58"
-        cy="50"
-        rx="22"
-        ry="24"
+      {/* 'D' Bottom Sweeping Ligature Under 'O' */}
+      <path
+        d="M 48 95.5 C 62 95.5 74 88 84 80"
         stroke={forest}
-        strokeWidth="3.2"
+        strokeWidth="4"
+        strokeLinecap="round"
         fill="none"
       />
 
-      {/* Botanical Olive Branch & Leaf inside 'O' */}
-      <g transform="translate(58, 50) rotate(-18)">
-        {/* Branch stem */}
+      {/* --- Letter 'O' in Botanical Olive Green --- */}
+      <ellipse
+        cx="74"
+        cy="58"
+        rx="26"
+        ry="28"
+        stroke={olive}
+        strokeWidth="4.8"
+        fill="none"
+      />
+
+      {/* Botanical Olive Sprout inside 'O' */}
+      <g id="botanical-leaves">
+        {/* Main curved leaf stem */}
         <path
-          d="M -1 -12 Q 2 0 5 12"
+          d="M 64 85 C 67 78 72 70 76 60"
           stroke={olive}
-          strokeWidth="1.6"
+          strokeWidth="2.4"
           strokeLinecap="round"
           fill="none"
         />
-        {/* Top Olive Leaf */}
+        {/* Primary Upright Pointed Leaf */}
         <path
-          d="M 0 -8 C 6 -13 11 -8 8 -2 C 5 2 1 -3 0 -8 Z"
+          d="M 72 72 C 73 60 84 50 86 46 C 85 55 80 67 74 74 Z"
           fill={olive}
         />
-        {/* Middle Olive Leaf */}
+        {/* Secondary Left Branching Leaf */}
         <path
-          d="M 2 1 C 8 -3 13 3 9 8 C 6 12 1 6 2 1 Z"
+          d="M 69 76 C 63 71 58 72 56 74 C 61 78 66 80 70 78 Z"
           fill={olive}
         />
-        {/* Small olive fruit bud */}
-        <circle cx="-3" cy="-1" r="2.2" fill={forest} />
       </g>
     </svg>
   );
 
   if (variant === "mark") {
     return (
-      <Link href="/" className={cn("inline-flex items-center group", className)}>
+      <Link
+        href="/"
+        className={cn(
+          "inline-flex items-center group select-none transition-opacity hover:opacity-95",
+          className
+        )}
+      >
         {MonogramMark}
       </Link>
     );
@@ -122,25 +121,28 @@ export function Logo({
       {MonogramMark}
 
       <div className="flex flex-col justify-center leading-none">
-        <span
-          className="font-serif text-[22px] tracking-[0.04em] font-semibold transition-colors"
-          style={{ color: forest }}
-        >
-          DE ORGANICA
-        </span>
-        <div className="flex items-center gap-1.5 mt-1">
+        {/* Wordmark: De Organica */}
+        <div className="flex items-baseline gap-1.5 font-serif text-[22px] tracking-[0.03em] font-semibold">
+          <span style={{ color: forest }}>De</span>
+          <span style={{ color: olive }}>Organica</span>
+        </div>
+
+        {/* Sub-mark: — LLC — */}
+        <div className="flex items-center gap-2 mt-1.5">
           <span
-            className="text-[9.5px] font-sans font-bold uppercase tracking-[0.24em]"
-            style={{ color: olive }}
+            className="h-px w-4 transition-colors"
+            style={{ backgroundColor: olive, opacity: 0.6 }}
+          />
+          <span
+            className="text-[9.5px] font-sans font-bold uppercase tracking-[0.28em]"
+            style={{ color: subtext }}
           >
             LLC
           </span>
           <span
-            className="text-[9px] font-sans uppercase tracking-[0.16em] opacity-80"
-            style={{ color: subtext }}
-          >
-            · Yerevan, Armenia
-          </span>
+            className="h-px w-4 transition-colors"
+            style={{ backgroundColor: olive, opacity: 0.6 }}
+          />
         </div>
       </div>
     </Link>

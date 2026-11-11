@@ -1,32 +1,35 @@
 # Project State: De Organica LLC (`deorganica.am`)
 
 **Updated:** 2026-11-11  
-**Status:** V1 Foundation & Architecture Shipped & Verified  
+**Status:** Studio-Grade UI/UX & StageShow Architecture Shipped & Verified  
 
 ## Completed Work
-1. **Design & Taste Blueprint:**
-   - Authored and approved design blueprint adhering to `taste-skill` and `modern-web-guidance`.
-   - Defined Heritage Forest Green (`#233D20`), Botanical Olive Leaf (`#668B2E`), and warm stone neutral tokens.
-   - Built mathematical SVG Monogram & Wordmark honoring the interlocking D-O with botanical olive leaf mark.
-2. **Grow-As-You-Go Content Architecture:**
-   - `src/types/content.ts` & `src/data/deorganica-content.ts` authored with complete bilingual (`en` and `hy`) copy for all 6 travel services, starter tour itineraries, active job vacancies, and B2B employer staffing.
-   - Translation fallback helper `tField` automatically defaults missing Armenian fields to English.
-3. **Slide-Over Concierge Drawer & WhatsApp Engine:**
+1. **Authentic Brand Identity & Vector Lockup:**
+   - Grounded in official brand asset (`de-organica-logo.jpg`) provided by client.
+   - Re-engineered [`src/components/Logo.tsx`](file:///R:/Projects/De%20Organica/src/components/Logo.tsx) with classical Didone serif `D`, bottom sweeping ligature, botanical olive `O`, dual-leaf sprout, serif wordmark, and tracked `— LLC —` sub-mark.
+   - Synchronized [`src/app/icon.svg`](file:///R:/Projects/De%20Organica/src/app/icon.svg) with the identical vector mark.
+2. **Interactive StageShow Bento Modules:**
+   - Authored [`src/components/ItineraryStageShow.tsx`](file:///R:/Projects/De%20Organica/src/components/ItineraryStageShow.tsx): 4-day Armenia tour explorer (Yerevan/Garni/Geghard, Lake Sevan/Dilijan, Khor Virap/Areni/Noravank, Wings of Tatev) with Mercedes Sedan vs VIP Sprinter selector, guide/wine/EVN toggles, and direct WhatsApp/drawer dispatch.
+   - Authored [`src/components/PipelineStageShow.tsx`](file:///R:/Projects/De%20Organica/src/components/PipelineStageShow.tsx): 4-stage transparency tracker (*01: Employer Requisition → 02: Zero-Fee Sourcing → 03: Ministry Work Permits → 04: EVN Airport Reception & Deployment*), highlighting the "Pay-After-Job Placement" guarantee.
+   - Integrated into [`src/app/travel/page.tsx`](file:///R:/Projects/De%20Organica/src/app/travel/page.tsx) and [`src/app/manpower/page.tsx`](file:///R:/Projects/De%20Organica/src/app/manpower/page.tsx).
+3. **Multi-Route & Subdomain Synergy:**
+   - Shipped `/`, `/travel`, `/manpower`, and `/contact` canonical routes.
+   - Built Next.js [`src/middleware.ts`](file:///R:/Projects/De%20Organica/src/middleware.ts) supporting **Dual-Mode Subdomain & Path Routing**: automatically rewrites `travel.deorganica.am` to `/travel` and `manpower.deorganica.am` to `/manpower` without code modification, while retaining canonical path access on `deorganica.am`.
+4. **Slide-Over Concierge Drawer & WhatsApp Engine:**
    - Accessible `<dialog>` slide-over drawer (`src/components/ConciergeDrawer.tsx`) supporting light-dismiss, keyboard Escape handling, and international dial codes.
    - 3 context-aware operational modes: Travel Booking, Candidate CV Submission, Employer Staffing.
    - `src/lib/whatsapp.ts` structured message formatter.
-4. **Backend Route Handler:**
+5. **Backend Route Handler:**
    - `src/app/api/inquiry/route.ts` for multipart form parsing, CV file buffering, and Resend email notifications.
-5. **Multi-Route & Subdomain Synergy:**
-   - Shipped `/`, `/travel`, `/manpower`, and `/contact` canonical routes.
-   - Built Next.js [`src/middleware.ts`](file:///R:/Projects/De%20Organica/src/middleware.ts) supporting **Dual-Mode Subdomain & Path Routing**: automatically rewrites `travel.deorganica.am` to `/travel` and `manpower.deorganica.am` to `/manpower` without code modification, while retaining canonical path access on `deorganica.am`.
-6. **Verification & Local Testing:**
+6. **Production Compilation & Performance Telemetry:**
    - `npm run build`: Compiled 100% cleanly with zero errors across all static routes (`/`, `/travel`, `/manpower`, `/contact`), dynamic route (`/api/inquiry`), and Edge Middleware.
-   - Subdomain Verification: Verified `travel.localhost` and `manpower.localhost` rewrites return the respective divisional portals.
-   - Local HTTP Endpoint Testing: Verified HTTP 200 on all routes.
-   - API Multipart Testing: Verified `POST /api/inquiry` handles travel and candidate CV submissions with file buffering and returns `{ success: true }`.
-   - Browser & Accessibility Verification (Playwright): Verified visual layout, backdrop light-dismiss, keyboard Escape dismissal, and instant `EN | ՀԱՅ` font switching.
-   - Git State: Clean working tree on `master` (`71a45af`) with studio-grade UI/UX elevations, tactile micro-interactions, and Awwwards-audited layout.
+   - Awwwards CDP Telemetry (`awwwards audit_url`):
+     - `layoutThrashCount: 0`
+     - `measureBeforeCompositeCount: 0`
+     - `layoutReads: 0`
+     - `high: 0` (zero high-severity anti-patterns)
+     - Prefers-reduced-motion safety guaranteed across all animations.
+   - Live tunnel serving production build at `https://long-paths-take.loca.lt`.
 
 ## Outstanding / Client Configuration Points
 - Provide official Armenian/international WhatsApp number in `src/data/deorganica-content.ts` (currently configured with placeholder `+374 99 000000`).

@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { TravelHero } from "@/components/TravelHero";
+import { ItineraryStageShow } from "@/components/ItineraryStageShow";
 import { TravelServicesMatrix } from "@/components/TravelServicesMatrix";
 import { FeaturedToursGrid } from "@/components/FeaturedToursGrid";
 import { DmcPartnerSection } from "@/components/DmcPartnerSection";
@@ -21,6 +22,9 @@ export default function TravelPage() {
       <main className="flex-grow">
         {/* Dedicated Travel Division Hero */}
         <TravelHero />
+
+        {/* StageShow Interactive Itinerary Explorer */}
+        <ItineraryStageShow />
 
         {/* 6-Service Hospitality Matrix */}
         <div id="tours-matrix">
