@@ -23,9 +23,10 @@ export function FeaturedToursGrid() {
 
   const handleWhatsAppBooking = (tourTitle: string) => {
     const msg = buildTravelWhatsAppMessage({
-      name: "Traveler",
-      serviceOrTour: `Tour Booking: ${tourTitle}`,
-      notes: "Hello De Organica team, I would like to check availability and get a quote for this tour package.",
+      serviceOrTour: tourTitle,
+      notes: isHy
+        ? "Բարև Ձեզ, ցանկանում եմ իմանալ այս տուրի հասանելիությունը և ստանալ գնառաջարկ:"
+        : "Hello De Organica team, I would like to check availability and receive a tailored quote for this expedition.",
     });
     window.open(buildWhatsAppUrl(msg), "_blank", "noopener,noreferrer");
   };

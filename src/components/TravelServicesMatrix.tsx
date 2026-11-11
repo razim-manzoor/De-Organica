@@ -34,9 +34,10 @@ export function TravelServicesMatrix() {
 
   const handleWhatsAppClick = (serviceTitle: string) => {
     const msg = buildTravelWhatsAppMessage({
-      name: "Prospective Traveler / Partner",
       serviceOrTour: serviceTitle,
-      notes: "Hello De Organica team, I would like to inquire about this travel service.",
+      notes: isHy
+        ? "Բարև Ձեզ, ցանկանում եմ ստանալ մանրամասն տեղեկատվություն այս տուրիստական ծառայության վերաբերյալ:"
+        : "Hello De Organica team, I would like to inquire about this ground service tariff and availability.",
     });
     window.open(buildWhatsAppUrl(msg), "_blank", "noopener,noreferrer");
   };

@@ -149,7 +149,7 @@ export function ItineraryStageShow() {
           <div className="lg:col-span-5 p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-brand-stone-200 flex flex-col justify-between bg-brand-stone-50/50">
             <div>
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-olive block mb-3">
-                01 · Select Route Leg
+                {isHy ? "01 · Ընտրեք երթուղու օրը" : "01 · Select Route Leg"}
               </span>
 
               {/* Day Selector Buttons */}
@@ -194,7 +194,7 @@ export function ItineraryStageShow() {
               {/* Vehicle Fleet Selector */}
               <div className="mb-6">
                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-olive block mb-2.5">
-                  02 · Chauffeur Fleet Tier
+                  {isHy ? "02 · Տրանսպորտային դաս" : "02 · Chauffeur Fleet Tier"}
                 </span>
 
                 <div className="grid grid-cols-3 gap-1.5">
@@ -209,8 +209,8 @@ export function ItineraryStageShow() {
                   >
                     <Car className="w-4 h-4 text-brand-olive shrink-0" />
                     <div className="text-left">
-                      <span className="block leading-none text-[11px] font-bold">Economy</span>
-                      <span className="text-[9px] font-normal text-brand-ink-muted">Value · 1–3</span>
+                      <span className="block leading-none text-[11px] font-bold">{isHy ? "Էկոնոմ" : "Economy"}</span>
+                      <span className="text-[9px] font-normal text-brand-ink-muted">{isHy ? "Մատչելի · 1–3" : "Value · 1–3"}</span>
                     </div>
                   </button>
 
@@ -225,8 +225,8 @@ export function ItineraryStageShow() {
                   >
                     <Car className="w-4 h-4 text-brand-olive shrink-0" />
                     <div className="text-left">
-                      <span className="block leading-none text-[11px] font-bold">Executive</span>
-                      <span className="text-[9px] font-normal text-brand-ink-muted">Exec · 1–3</span>
+                      <span className="block leading-none text-[11px] font-bold">{isHy ? "Executive" : "Executive"}</span>
+                      <span className="text-[9px] font-normal text-brand-ink-muted">{isHy ? "Բիզնես · 1–3" : "Exec · 1–3"}</span>
                     </div>
                   </button>
 
@@ -241,8 +241,8 @@ export function ItineraryStageShow() {
                   >
                     <Users className="w-4 h-4 text-brand-olive shrink-0" />
                     <div className="text-left">
-                      <span className="block leading-none text-[11px] font-bold">Sprinter</span>
-                      <span className="text-[9px] font-normal text-brand-ink-muted">Group · 4–16</span>
+                      <span className="block leading-none text-[11px] font-bold">{isHy ? "Միկրոավտոբուս" : "Sprinter"}</span>
+                      <span className="text-[9px] font-normal text-brand-ink-muted">{isHy ? "Խումբ · 4–16" : "Group · 4–16"}</span>
                     </div>
                   </button>
                 </div>
@@ -251,12 +251,14 @@ export function ItineraryStageShow() {
               {/* Luxury Inclusions Toggles */}
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-olive block mb-2.5">
-                  03 · Curated Inclusions
+                  {isHy ? "03 · Լրացուցիչ ծառայություններ" : "03 · Curated Inclusions"}
                 </span>
 
                 <div className="space-y-2 text-xs">
                   <label className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-brand-stone-200/80 cursor-pointer hover:border-brand-olive/30 transition-colors">
-                    <span className="text-brand-forest font-medium">Licensed Multilingual Guide</span>
+                    <span className="text-brand-forest font-medium">
+                      {isHy ? "Արտոնագրված բազմալեզու էքսկուրսավար" : "Licensed Multilingual Guide"}
+                    </span>
                     <input
                       type="checkbox"
                       checked={includeGuide}
@@ -266,7 +268,9 @@ export function ItineraryStageShow() {
                   </label>
 
                   <label className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-brand-stone-200/80 cursor-pointer hover:border-brand-olive/30 transition-colors">
-                    <span className="text-brand-forest font-medium">Areni Wine Tasting & Lavash Class</span>
+                    <span className="text-brand-forest font-medium">
+                      {isHy ? "Արենիի գինու համտես և լավաշի թխում" : "Areni Wine Tasting & Lavash Class"}
+                    </span>
                     <input
                       type="checkbox"
                       checked={includeWineMasterclass}
@@ -276,7 +280,9 @@ export function ItineraryStageShow() {
                   </label>
 
                   <label className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-brand-stone-200/80 cursor-pointer hover:border-brand-olive/30 transition-colors">
-                    <span className="text-brand-forest font-medium">EVN Airport Meet & Greet Transfer</span>
+                    <span className="text-brand-forest font-medium">
+                      {isHy ? "Զվարթնոց (EVN) օդանավակայանի դիմավորում" : "EVN Airport Meet & Greet Transfer"}
+                    </span>
                     <input
                       type="checkbox"
                       checked={includeEvnFastTrack}

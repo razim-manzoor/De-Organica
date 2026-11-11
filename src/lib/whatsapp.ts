@@ -1,7 +1,7 @@
 import { deorganicaConfig } from "@/data/deorganica-content";
 
 export interface TravelWhatsAppParams {
-  name: string;
+  name?: string;
   email?: string;
   phone?: string;
   serviceOrTour: string;
@@ -9,6 +9,7 @@ export interface TravelWhatsAppParams {
   budgetTier?: string;
   agencyName?: string;
   agencyCountry?: string;
+  b2bScope?: string;
   dates?: string;
   guests?: string;
   accommodation?: string;
@@ -47,18 +48,30 @@ export function buildWhatsAppUrl(message: string, targetDigits?: string): string
 
 export function buildTravelWhatsAppMessage(params: TravelWhatsAppParams): string {
   const isB2B = params.travelerType === "b2b" || Boolean(params.agencyName);
+  const clientName = params.name && params.name !== "Traveler" && params.name !== "Prospective Traveler / Partner"
+    ? params.name
+    : null;
+
   const lines = [
     `*DE ORGANICA TRAVEL & TOURS — DESK INQUIRY*`,
     `----------------------------------------`,
-    `*Client Name:* ${params.name}`,
-    params.agencyName ? `*Travel Agency / Tour Operator:* ${params.agencyName}` : null,
-    params.agencyCountry ? `*Agency Country of Origin:* ${params.agencyCountry}` : null,
-    params.travelerType ? `*Inquiry Category:* ${isB2B ? "B2B DMC Wholesale Contract" : "Private Leisure / Family Expedition"}` : null,
+    isB2B && params.agencyName
+      ? `*Travel Agency / DMC:* ${params.agencyName}${params.agencyCountry ? ` (${params.agencyCountry})` : ""}`
+      : null,
+    clientName
+      ? isB2B
+        ? `*Contact Person / Agent:* ${clientName}`
+        : `*Client Name:* ${clientName}`
+      : null,
+    params.travelerType
+      ? `*Inquiry Category:* ${isB2B ? "B2B DMC Wholesale Contract" : "Private Leisure / Family Expedition"}`
+      : null,
+    params.b2bScope ? `*B2B Group Scope:* ${params.b2bScope}` : null,
     params.budgetTier ? `*Budget / Trip Style:* ${params.budgetTier}` : null,
     params.email ? `*Email:* ${params.email}` : null,
     params.phone ? `*Phone/WhatsApp:* ${params.phone}` : null,
     `*Selected Tour/Service:* ${params.serviceOrTour}`,
-    params.dates ? `*Estimated Travel Dates:* ${params.dates}` : null,
+    params.dates ? `*Estimated Travel Dates / Season:* ${params.dates}` : null,
     params.guests ? `*Group Size / Guests:* ${params.guests}` : null,
     params.accommodation ? `*Accommodation Preference:* ${params.accommodation}` : null,
     params.fleet ? `*Chauffeur Fleet Tier:* ${params.fleet}` : null,

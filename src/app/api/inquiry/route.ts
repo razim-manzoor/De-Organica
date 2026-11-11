@@ -19,6 +19,7 @@ export async function POST(req: NextRequest) {
     const budgetTier = (formData.get("budgetTier") as string) || "";
     const agencyName = (formData.get("agencyName") as string) || "";
     const agencyCountry = (formData.get("agencyCountry") as string) || "";
+    const b2bScope = (formData.get("b2bScope") as string) || "";
     const travelDates = (formData.get("travelDates") as string) || "";
     const guestsCount = (formData.get("guestsCount") as string) || "";
     const accommodationTier = (formData.get("accommodationTier") as string) || "";
@@ -75,6 +76,7 @@ export async function POST(req: NextRequest) {
           ${travelerType ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Traveler Type:</td><td style="padding: 8px 0;">${travelerType === "b2b" ? "B2B Travel Agency / DMC" : "Private Leisure / Family"}</td></tr>` : ""}
           ${budgetTier ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Budget Tier:</td><td style="padding: 8px 0;"><strong>${budgetTier}</strong></td></tr>` : ""}
           ${agencyName ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Agency Name:</td><td style="padding: 8px 0;">${agencyName} (${agencyCountry || "N/A"})</td></tr>` : ""}
+          ${b2bScope ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">B2B Group Scope:</td><td style="padding: 8px 0;"><strong>${b2bScope}</strong></td></tr>` : ""}
           ${travelDates ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Travel Dates:</td><td style="padding: 8px 0;">${travelDates}</td></tr>` : ""}
           ${guestsCount ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Guests Count:</td><td style="padding: 8px 0;">${guestsCount}</td></tr>` : ""}
           ${accommodationTier ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Accommodation:</td><td style="padding: 8px 0;">${accommodationTier}</td></tr>` : ""}
