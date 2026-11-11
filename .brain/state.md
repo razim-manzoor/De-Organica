@@ -63,7 +63,15 @@
    - **Tours & Chauffeur Only Option:** Allows budget travelers and diaspora visitors who already booked an apartment, central hostel, or Airbnb to opt out of hotel charges and pay exclusively for local ground itineraries and airport EVN pickups.
    - **Catalog Copy Inclusion:** Clarified across `FeaturedToursGrid.tsx` and `src/data/deorganica-content.ts` that all signature tours are completely customizable across all budget tiers — from cost-conscious 3★ stays to luxury wine estates.
 
-10. **Verification Protocol:**
+10. **Generalization of Chauffeur Vehicle Fleet Architecture:**
+    - **Replaced Rigid "Mercedes-Only" Branding:** Refactored all user-facing copy and form options from single-brand "Mercedes" to professional vehicle class categories:
+      - *Comfort Economy Sedan* (Clean, modern AC vehicles like Toyota Camry/Corolla, 1–3 Guests)
+      - *Executive Sedan* (Premium business/luxury comfort, 1–3 Guests)
+      - *VIP Minivan & Passenger Van* (Spacious MPVs and vans like Toyota Alphard / Sprinter / V-Class, 4–16 Guests)
+      - *Private Tour Coach* (Large group travel, 17+ Guests)
+    - **Operational Flexibility & Realistic Dispatch:** Eliminates legal/operational mismatch when clients are assigned top-tier comfort sedans (like Toyota Camry or Lexus) or luxury executive MPVs (like Toyota Alphard, the premier Caucasian VIP vehicle), while making budget and standard travelers feel welcome.
+
+11. **Verification Protocol:**
    - Production build verified with `npm run build` (exit code `0`, 11/11 static pages prerendered).
    - Playwright automated browser tests executed for desktop and mobile viewports with zero console warnings or errors.
 
