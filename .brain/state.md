@@ -1,7 +1,7 @@
 # Project State: De Organica LLC (`deorganica.am`)
 
 **Updated:** 2026-11-11  
-**Status:** Studio-Grade Flagship Verified & Shipped (Accessible SVG Country Picker, Logo Auto-Trim, Overview Editorial Overhaul, Travel Division Elevation, Zero 404 Assets)
+**Status:** Studio-Grade Flagship Verified & Shipped (Accessible SVG Country Picker, Logo Auto-Trim, Overview Editorial Overhaul, Travel Division & Smart Form Architecture Elevation, Zero 404 Assets)
 
 ## Completed Work
 1. **Accessible Multi-Region Phone Country Picker with Authentic Vector SVG Flags:**
@@ -49,7 +49,15 @@
      - B2B DMC Desk: *"Armenia's Institutional Ground Handling Partner"* (Armenian: *«Հայաստանի Վստահելի DMC Գործընկեր»*).
    - **Bilingual Armenian Parity:** Verified that all distance markers (`կմ Երևանից`, `մ ASL`), chauffeur pillar badges (`Mercedes անհատական պարկ`, `Զվարթնոցի (EVN) 24/7 դիմավորում`), and CTA buttons (`Հարցում Desk-ին`, `Ստանալ գնառաջարկ WhatsApp-ով`) render seamlessly in Armenian without fallback leaks.
 
-8. **Verification Protocol:**
+8. **State-of-the-Art Travel Form Architecture:**
+   - **Executive Expedition Context Card:** Solved the broken `<select>` preset issue. When clicking any tour or itinerary button, the drawer displays an authentic context card (*"Selected Expedition Context: Areni Ancient Wine Terroir & Southern Canyons"*) with 1-click change capability.
+   - **Intelligent Persona Segmentation (`Private Traveler / Family` vs `B2B Travel Agent / DMC`):**
+     - Private Traveler: Quick interactive chips for Group Size (`1–2 Guests Sedan`, `3–5 Guests Family`, `6–10 Guests Sprinter`, `10+ Coach`), Lodging Style (`Boutique Wine & Heritage Resorts`, `5-Star Luxury`, `4-Star City Comfort`, `Tours & Chauffeur Only`), and Fleet Tier (`Mercedes Sedan`, `VIP Sprinter`, `Tour Coach`).
+     - B2B Travel Agent / DMC: Specialized fields for Agency Name, Agency Country of Origin, and Inbound Group Scope (`FITs & VIPs`, `Leisure Groups 15-40`, `MICE Delegations`).
+   - **Travel-Exclusive Ground Desks on `/travel`:** Configured `ContactSection variant="travel"` to eliminate unrelated candidate/recruitment cards from the travel page, replacing them with 3 specialized travel desks: *Bespoke Leisure & Private Expeditions*, *B2B Destination Management (DMC)*, and *24/7 Zvartnots (EVN) VIP Chauffeur Fleet*.
+   - **Dual Dispatch Synchronization:** Integrated all rich travel attributes (`travelerType`, `agencyName`, `accommodationTier`, `fleetTier`) into both `/api/inquiry` and WhatsApp message generators.
+
+9. **Verification Protocol:**
    - Production build verified with `npm run build` (exit code `0`, 11/11 static pages prerendered).
    - Playwright automated browser tests executed for desktop and mobile viewports with zero console warnings or errors.
 
