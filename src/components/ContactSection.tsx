@@ -27,9 +27,6 @@ export function ContactSection() {
           {/* Left Column: Corporate Information & Live Desk */}
           <div className="space-y-8">
             <div>
-              <span className="text-xs font-bold uppercase tracking-[0.22em] text-brand-olive block mb-3">
-                {isHy ? "Կապ Երևանի Գլխամասի Հետ" : "Corporate Headquarters & Desk"}
-              </span>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
                 {isHy ? "Ինչպե՞ս կապվել «Դե Օրգանիկա»-ի հետ" : "Direct Access to our Yerevan Executive Desk"}
               </h2>

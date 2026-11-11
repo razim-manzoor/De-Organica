@@ -37,11 +37,6 @@ export function ManpowerEmployerSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-stone-200 text-brand-forest text-xs font-semibold uppercase tracking-wider mb-4 border border-brand-stone-300">
-            <Building2 className="w-3.5 h-3.5 text-brand-olive" />
-            <span>{isHy ? "B2B Կորպորատիվ Համալրում" : "For Corporate Employers & Enterprises"}</span>
-          </div>
-
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
             {isHy ? "Վստահելի Միջազգային Աշխատուժ Ձեր Ընկերության Համար" : "End-to-End International Manpower & Staffing"}
           </h2>

@@ -50,11 +50,6 @@ export function DmcPartnerSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-xs text-brand-olive-light text-xs font-semibold uppercase tracking-wider mb-4 border border-white/10">
-            <Users2 className="w-3.5 h-3.5" />
-            <span>{isHy ? "B2B Գործընկերության Պորտալ" : "B2B Travel Partner Portal (DMC)"}</span>
-          </div>
-
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
             {isHy ? "Հայաստանի Վստահելի DMC Գործընկեր" : "Armenia's Institutional Ground Handling Partner"}
           </h2>

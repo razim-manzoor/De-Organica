@@ -20,11 +20,6 @@ export function CorporateFoundation() {
     <section className="py-20 lg:py-28 bg-white border-t border-brand-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-stone-100 text-brand-forest text-xs font-semibold uppercase tracking-wider mb-4 border border-brand-stone-300">
-            <MapPin className="w-3.5 h-3.5 text-brand-olive" />
-            <span>{isHy ? "Երևան, Հայաստան" : "Institutional Provenance"}</span>
-          </div>
-
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
             {isHy ? deorganicaConfig.corporateFoundation.title_hy : deorganicaConfig.corporateFoundation.title_en}
           </h2>

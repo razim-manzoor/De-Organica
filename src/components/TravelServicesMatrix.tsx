@@ -46,9 +46,6 @@ export function TravelServicesMatrix() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <span className="text-xs font-bold uppercase tracking-[0.22em] text-brand-olive block mb-3">
-            {isHy ? "Բաժին I · Զբոսաշրջություն և Հյուրընկալություն" : "Division I · Travel & Tours Matrix"}
-          </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
             {isHy ? "Ամբողջական Տուրիստական Ծառայություններ" : "Comprehensive Travel & Destination Services"}
           </h2>
