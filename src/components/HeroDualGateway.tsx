@@ -80,7 +80,7 @@ export function HeroDualGateway() {
               </div>
 
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-brand-forest mb-2.5">
-                {isHy ? "Դե Օրգանիկա Տուրեր և Ճանապարհորդություն" : "De Organica Travel & Tours"}
+                {isHy ? "Զբոսաշրջություն և Տուրեր" : "Travel & Tours"}
               </h2>
 
               <p className="text-sm text-brand-ink-muted leading-relaxed mb-6 font-sans">
@@ -156,7 +156,7 @@ export function HeroDualGateway() {
               </div>
 
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-brand-forest mb-2.5">
-                {isHy ? "Դե Օրգանիկա Միջազգային Աշխատուժ" : "De Organica Manpower & Careers"}
+                {isHy ? "Միջազգային Աշխատուժ և Կարիերա" : "Manpower & Careers"}
               </h2>
 
               <p className="text-sm text-brand-ink-muted leading-relaxed mb-6 font-sans">

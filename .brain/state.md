@@ -27,6 +27,8 @@
    - All images across the site verified with 200 OK status codes and 0 browser console errors.
 
 5. **Institutional Commercial Architecture (Positioned for Expansion):**
+   - Implemented Option 2 flagship master headline: *"Rooted in Armenia. Built for the World."* (Armenian: *«Արմատներով Հայաստանում: Բաց աշխարհի համար:»*).
+   - Removed redundant brand prefix "De Organica" from the overview gateway cards, establishing clean, bold card titles: **Travel & Tours** and **Manpower & Careers** (Armenian: **«Զբոսաշրջություն և Տուրեր»** and **«Միջազգային Աշխատուժ և Կարիերա»**).
    - Homepage architecture structured as a sovereign Armenian commercial house / holding company (`De Organica LLC · Republic of Armenia`), seamlessly accommodating future enterprise verticals (such as Armenian wine/spirits export, wholesale & retail trade) without re-architecting the brand.
 
 6. **Verification Protocol:**
