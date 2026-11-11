@@ -18,7 +18,7 @@ export interface TravelWhatsAppParams {
 }
 
 export interface CandidateWhatsAppParams {
-  name: string;
+  name?: string;
   nationality?: string;
   currentLocation?: string;
   role: string;
@@ -28,8 +28,8 @@ export interface CandidateWhatsAppParams {
 }
 
 export interface EmployerWhatsAppParams {
-  companyName: string;
-  contactPerson: string;
+  companyName?: string;
+  contactPerson?: string;
   email?: string;
   phone?: string;
   industry: string;
@@ -84,10 +84,12 @@ export function buildTravelWhatsAppMessage(params: TravelWhatsAppParams): string
 }
 
 export function buildCandidateWhatsAppMessage(params: CandidateWhatsAppParams): string {
+  const candidateName = params.name && params.name !== "Job Applicant" ? params.name : null;
+
   const lines = [
     `*DE ORGANICA MANPOWER — CANDIDATE APPLICATION*`,
     `----------------------------------------`,
-    `*Candidate Name:* ${params.name}`,
+    candidateName ? `*Candidate Name:* ${candidateName}` : null,
     params.nationality ? `*Nationality:* ${params.nationality}` : null,
     params.currentLocation ? `*Current Country:* ${params.currentLocation}` : null,
     `*Target Role / Sector:* ${params.role}`,
@@ -102,11 +104,16 @@ export function buildCandidateWhatsAppMessage(params: CandidateWhatsAppParams): 
 }
 
 export function buildEmployerWhatsAppMessage(params: EmployerWhatsAppParams): string {
+  const company = params.companyName && params.companyName !== "Prospective Employer" && params.companyName !== "Enterprise Client"
+    ? params.companyName
+    : null;
+  const contact = params.contactPerson && params.contactPerson !== "Hiring Manager" ? params.contactPerson : null;
+
   const lines = [
     `*DE ORGANICA MANPOWER — B2B EMPLOYER INQUIRY*`,
     `----------------------------------------`,
-    `*Company Name:* ${params.companyName}`,
-    `*Contact Person:* ${params.contactPerson}`,
+    company ? `*Company Name:* ${company}` : null,
+    contact ? `*Contact Person:* ${contact}` : null,
     params.email ? `*Business Email:* ${params.email}` : null,
     params.phone ? `*Phone/WhatsApp:* ${params.phone}` : null,
     `*Industry Sector:* ${params.industry}`,

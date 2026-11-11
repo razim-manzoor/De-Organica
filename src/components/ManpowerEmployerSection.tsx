@@ -24,19 +24,24 @@ export function ManpowerEmployerSection() {
 
   const handleWhatsAppEmployer = () => {
     const msg = buildEmployerWhatsAppMessage({
-      companyName: "Prospective Employer",
-      contactPerson: "Hiring Manager",
-      industry: "Corporate Staffing",
-      notes: "Hello De Organica team, we would like to discuss our company's manpower and staffing requirements.",
+      industry: "Corporate Staffing & Quotas",
+      notes: isHy
+        ? "Բարև Ձեզ, ցանկանում ենք քննարկել մեր ընկերության աշխատուժի և քվոտաների պահանջարկը:"
+        : "Hello De Organica corporate team, we would like to discuss our enterprise manpower and staffing requirements in Armenia.",
     });
     window.open(buildWhatsAppUrl(msg), "_blank", "noopener,noreferrer");
   };
 
   return (
-    <section id="manpower-employers" className="py-20 lg:py-28 bg-brand-stone-100/60 border-t border-brand-stone-200">
+    <section id="manpower-employers" className="py-20 lg:py-28 bg-brand-stone-100/70 border-t border-brand-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
+            <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
+            <span>{isHy ? "B2B Կորպորատիվ Հավաքագրում և Քվոտաներ" : "B2B Enterprise Staffing · Corporate Quotas"}</span>
+          </div>
+
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
             {isHy ? "Վստահելի Միջազգային Աշխատուժ Ձեր Ընկերության Համար" : "End-to-End International Manpower & Staffing"}
           </h2>
@@ -53,7 +58,7 @@ export function ManpowerEmployerSection() {
           {deorganicaConfig.manpower.employerSteps.map((step) => (
             <div
               key={step.step}
-              className="rounded-2xl bg-white border border-brand-stone-200 p-8 shadow-xs hover:shadow-xl hover:border-brand-olive/50 transition-all flex flex-col justify-between"
+              className="rounded-3xl bg-white border border-brand-stone-200/90 p-8 shadow-xs hover:shadow-xl hover:border-brand-olive/50 transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-6">

@@ -158,6 +158,7 @@ export function ConciergeDrawer() {
   const [nationality, setNationality] = useState("");
   const [currentCountry, setCurrentCountry] = useState("");
   const [targetRole, setTargetRole] = useState("");
+  const [isChangingRole, setIsChangingRole] = useState(false);
   const [companyName, setCompanyName] = useState("");
   const [contactPerson, setContactPerson] = useState("");
   const [industrySector, setIndustrySector] = useState("");
@@ -192,6 +193,9 @@ export function ConciergeDrawer() {
       }
       if (state.presetJobTitle) {
         setTargetRole(state.presetJobTitle);
+        setIsChangingRole(false);
+      } else {
+        setIsChangingRole(false);
       }
       setSubmitSuccess(false);
       setErrorMessage("");
@@ -1057,20 +1061,57 @@ export function ConciergeDrawer() {
                       </div>
                     </div>
 
-                    <div>
-                      <label htmlFor="candidateTargetRoleInput" className="block text-xs font-semibold text-brand-forest mb-1.5">
-                        {isHy ? "Ցանկալի պաշտոնը կամ ոլորտը *" : "Target Role / Industry Sector *"}
-                      </label>
-                      <input
-                        id="candidateTargetRoleInput"
-                        type="text"
-                        required
-                        value={targetRole}
-                        onChange={(e) => setTargetRole(e.target.value)}
-                        placeholder="e.g. Chef / Line Cook / Crane Operator / Driver"
-                        className="w-full px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-sm text-brand-ink shadow-2xs"
-                      />
-                    </div>
+                    {/* Position Context Card or Input */}
+                    {targetRole && !isChangingRole ? (
+                      <div className="p-3.5 rounded-2xl bg-brand-stone-100 border border-brand-stone-200/90 flex items-center justify-between shadow-2xs">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-xl bg-brand-forest text-brand-olive-light flex items-center justify-center shrink-0 shadow-2xs">
+                            <Briefcase className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-brand-olive block">
+                              {isHy ? "Ընտրված Թափուր Հաստիք" : "Target Position Context"}
+                            </span>
+                            <span className="text-xs sm:text-sm font-serif font-bold text-brand-forest block leading-snug">
+                              {targetRole}
+                            </span>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setIsChangingRole(true)}
+                          className="text-[11px] font-semibold text-brand-olive hover:text-brand-forest transition-colors underline cursor-pointer shrink-0 ml-2"
+                        >
+                          {isHy ? "Փոխել" : "Change"}
+                        </button>
+                      </div>
+                    ) : (
+                      <div>
+                        <div className="flex items-center justify-between mb-1.5">
+                          <label htmlFor="candidateTargetRoleInput" className="text-xs font-semibold text-brand-forest">
+                            {isHy ? "Ցանկալի պաշտոնը կամ ոլորտը *" : "Target Role / Industry Sector *"}
+                          </label>
+                          {targetRole && (
+                            <button
+                              type="button"
+                              onClick={() => setIsChangingRole(false)}
+                              className="text-[11px] text-brand-olive font-semibold underline cursor-pointer"
+                            >
+                              {isHy ? "Պահպանել" : "Keep Current"}
+                            </button>
+                          )}
+                        </div>
+                        <input
+                          id="candidateTargetRoleInput"
+                          type="text"
+                          required
+                          value={targetRole}
+                          onChange={(e) => setTargetRole(e.target.value)}
+                          placeholder="e.g. Specialty Line Cook / Heavy Machinery Operator / Driver"
+                          className="w-full px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-sm text-brand-ink shadow-2xs focus:ring-2 focus:ring-brand-olive focus:border-transparent outline-hidden"
+                        />
+                      </div>
+                    )}
 
                     {/* CV File Upload */}
                     <div>

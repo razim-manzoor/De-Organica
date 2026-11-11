@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { ManpowerHero } from "@/components/ManpowerHero";
 import { PipelineStageShow } from "@/components/PipelineStageShow";
 import { ManpowerCandidateHub } from "@/components/ManpowerCandidateHub";
+import { ManpowerComplianceBanner } from "@/components/ManpowerComplianceBanner";
 import { ManpowerEmployerSection } from "@/components/ManpowerEmployerSection";
 import { CorporateFoundation } from "@/components/CorporateFoundation";
 import { ContactSection } from "@/components/ContactSection";
@@ -29,6 +30,9 @@ export default function ManpowerPage() {
         {/* Candidate Hub: Ethical Charter, 4-Step Pathway, Vacancies & CV Drop */}
         <ManpowerCandidateHub />
 
+        {/* High-Contrast Institutional Compliance & Telemetry Band */}
+        <ManpowerComplianceBanner />
+
         {/* Corporate Employers: Sourcing, Screening, and Deployment */}
         <div id="employers">
           <ManpowerEmployerSection />
@@ -37,8 +41,8 @@ export default function ManpowerPage() {
         {/* Institutional Foundation */}
         <CorporateFoundation />
 
-        {/* Direct Contact Desk */}
-        <ContactSection />
+        {/* Direct Contact Desk (Manpower Specific) */}
+        <ContactSection variant="manpower" />
       </main>
       <Footer />
     </div>

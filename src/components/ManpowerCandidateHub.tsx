@@ -34,9 +34,10 @@ export function ManpowerCandidateHub() {
 
   const handleWhatsAppApply = (jobTitle: string) => {
     const msg = buildCandidateWhatsAppMessage({
-      name: "Job Applicant",
       role: jobTitle,
-      notes: "Hello De Organica HR team, I am interested in applying for this position.",
+      notes: isHy
+        ? "Բարև Ձեզ, ցանկանում եմ դիմել այս հաստիքին և ճշտել մանրամասները:"
+        : "Hello De Organica HR team, I am interested in applying for this position.",
     });
     window.open(buildWhatsAppUrl(msg), "_blank", "noopener,noreferrer");
   };
@@ -46,9 +47,9 @@ export function ManpowerCandidateHub() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-stone-100 border border-brand-stone-300 text-brand-forest text-xs font-semibold uppercase tracking-wider mb-3 shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5 text-brand-olive" />
-            <span>{isHy ? "Թեկնածուների Կենտրոն" : "Candidate Portal & Talent Pool"}</span>
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
+            <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
+            <span>{isHy ? "Թեկնածուների Կենտրոն · 0 ՀՀ Դրամ Կանխավճար" : "Candidate Portal · Zero Upfront Fee Charter"}</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
             {isHy ? "Աշխատանք Հայաստանում և Արտերկրում" : "Opportunities in Armenia & Global Corridors"}

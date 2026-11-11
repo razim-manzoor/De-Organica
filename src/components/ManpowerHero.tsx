@@ -15,6 +15,7 @@ import {
   Sparkles,
   PlaneTakeoff,
   Award,
+  Check,
 } from "lucide-react";
 
 export function ManpowerHero() {
@@ -25,20 +26,93 @@ export function ManpowerHero() {
   );
   const isHy = locale === "hy";
 
+  const candidateStages = [
+    {
+      stage: isHy ? "ՓՈՒԼ 01 · ԳՐԱՆՑՈՒՄ" : "STAGE 01 · REGISTRATION",
+      badge: isHy ? "ՎՃԱՐԸ = 0.00 AMD" : "FEE = 0.00 AMD",
+      badgeColor: "text-emerald-700",
+      desc_en: "Free CV drop. Zero application, resume review, or registration fees.",
+      desc_hy: "Ռեզյումեի անվճար հանձնում: Զրո դրամ գրանցման կամ դիմումի համար:",
+      isHighlight: false,
+    },
+    {
+      stage: isHy ? "ՓՈՒԼ 02 · ՈՐԱԿԱՎՈՐՈՒՄ" : "STAGE 02 · SKILL VETTING",
+      badge: isHy ? "ՕՆԼԱՅՆ / ՏԵՍԱԶԱՆԳ" : "REMOTE / HYBRID",
+      badgeColor: "text-stone-500",
+      desc_en: "Document verification, trade skill check, and employer interview.",
+      desc_hy: "Փաստաթղթերի ստուգում, հմտությունների թեստավորում և հարցազրույց:",
+      isHighlight: false,
+    },
+    {
+      stage: isHy ? "ՓՈՒԼ 03 · ԹՈՒՅԼՏՎՈՒԹՅՈՒՆ" : "STAGE 03 · WORK PERMIT",
+      badge: isHy ? "100% ՕՐԻՆԱԿԱՆ ԳՐԱՆՑՈՒՄ" : "100% MINISTRY LEGAL",
+      badgeColor: "text-emerald-700",
+      desc_en: "Official work permit & residence card via Unified Migration Service.",
+      desc_hy: "ՀՀ աշխատանքի օրինական թույլտվություն և կացության քարտ:",
+      isHighlight: true,
+    },
+    {
+      stage: isHy ? "ՓՈՒԼ 04 · ԺԱՄԱՆՈՒՄ" : "STAGE 04 · ARRIVAL & PAY",
+      badge: isHy ? "ՎՃԱՐՈՒՄԸ ՄԻԱՅՆ ԱՇԽԱՏԵԼԻՍ" : "PAY-AFTER-JOB",
+      badgeColor: "text-brand-forest",
+      desc_en: "Zvartnots airport reception, housing orientation, and contract start.",
+      desc_hy: "Դիմավորում Զվարթնոցում, կացության ապահովում և աշխատանքի սկիզբ:",
+      isHighlight: false,
+    },
+  ];
+
+  const employerStages = [
+    {
+      stage: isHy ? "ՓՈՒԼ 01 · ՔՎՈՏԱՅԻ ՀԱՅՏ" : "STAGE 01 · QUOTA REQUISITION",
+      badge: isHy ? "ԱՐՁԱԳԱՆՔ՝ 48 ԺԱՄ" : "SLA: 48 HOURS",
+      badgeColor: "text-stone-500",
+      desc_en: "Employer submits headcount requirements & ministry quota parameters.",
+      desc_hy: "Գործատուն ներկայացնում է հաստիքների պահանջարկը և նախարարության քվոտաները:",
+      isHighlight: false,
+    },
+    {
+      stage: isHy ? "ՓՈՒԼ 02 · ԹԵԿՆԱԾՈՒՆԵՐԻ ՑԱՆԿ" : "STAGE 02 · CANDIDATE DOSSIERS",
+      badge: isHy ? "ՆԱԽՆԱԿԱՆ ԶՏՎԱԾ" : "PRE-SCREENED",
+      badgeColor: "text-brand-forest",
+      desc_en: "Shortlist of pre-screened talent across construction, hospitality, and trades.",
+      desc_hy: "Որակավորված թեկնածուների նախնական ցանկ շինարարության և սպասարկման ոլորտում:",
+      isHighlight: false,
+    },
+    {
+      stage: isHy ? "ՓՈՒԼ 03 · ՕՐԻՆԱԿԱՆ ՁԵՎԱԿԵՐՊՈՒՄ" : "STAGE 03 · PERMIT SPONSORSHIP",
+      badge: isHy ? "ԼԻԱՐԺԵՔ ՀԱՄԱՊԱՏԱՍԽԱՆՈՒԹՅՈՒՆ" : "FULL COMPLIANCE",
+      badgeColor: "text-emerald-700",
+      desc_en: "De Organica handles work permit filing and state migration paperwork.",
+      desc_hy: "«Դե Օրգանիկա»-ն ապահովում է աշխատանքի թույլտվության պետական գրանցումը:",
+      isHighlight: true,
+    },
+    {
+      stage: isHy ? "ՓՈՒԼ 04 · ԻՆՏԵԳՐՈՒՄ ԵՎ ԵՐԱՇԽԻՔ" : "STAGE 04 · ONBOARDING & SLA",
+      badge: isHy ? "30 ՕՐՎԱ ԵՐԱՇԽԻՔ" : "30-DAY GUARANTEE",
+      badgeColor: "text-brand-forest",
+      desc_en: "Direct employee deployment with a 30-day candidate replacement warranty.",
+      desc_hy: "Աշխատակցի տեղավորում՝ թեկնածուի փոխարինման 30-օրյա երաշխիքով:",
+      isHighlight: false,
+    },
+  ];
+
   return (
-    <section className="relative pt-12 pb-16 lg:pt-16 lg:pb-24 bg-gradient-to-b from-slate-50 via-brand-stone-50 to-slate-100/70 overflow-hidden border-b border-brand-stone-200">
+    <section className="relative pt-12 pb-16 lg:pt-16 lg:pb-24 bg-brand-stone-50 overflow-hidden border-b border-brand-stone-200">
       {/* Precision Blueprint Architectural Grid */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-architectural-grid" />
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-architectural-grid" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Institutional Legal Mobility Narrative */}
           <div className="lg:col-span-7">
-            {/* Regulatory Compliance Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/90 text-emerald-900 text-xs font-medium shadow-2xs mb-4">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
-              <span>{isHy ? "Օրինական Աշխատանքային Շարժունություն · 0 ՀՀ դրամ կանխավճար" : "Ethical Workforce Mobility · Zero Upfront Candidate Fees"}</span>
+            {/* Regulatory Compliance Accents */}
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-4">
+              <ShieldCheck className="w-4 h-4 text-brand-olive shrink-0" />
+              <span>
+                {isHy
+                  ? "Օրինական Աշխատանքային Շարժունություն · 0 ՀՀ դրամ կանխավճար"
+                  : "Ethical Workforce Mobility · Zero Upfront Candidate Fees"}
+              </span>
             </div>
 
             <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-forest leading-[1.12] mb-6">
@@ -47,7 +121,7 @@ export function ManpowerHero() {
                 : "Ethical Workforce Mobility & Verified International Recruitment"}
             </h1>
 
-            <p className="text-base sm:text-lg text-brand-ink-muted leading-relaxed mb-8 max-w-2xl">
+            <p className="text-base sm:text-lg text-brand-ink-muted leading-relaxed mb-8 max-w-2xl font-sans">
               {isHy
                 ? "Մենք կապում ենք որակավորված միջազգային մասնագետներին Հայաստանի առաջատար գործատուների հետ: Թեկնածուներից որևէ նախնական վճար չի գանձվում, իսկ գործատուների համար երաշխավորվում է աշխատանքի և կացության պաշտոնական թույլտվությունների 100% օրինականություն:"
                 : "Bridging vetted international talent with enterprise employers in Armenia. Operating on an uncompromising candidate-first charter: absolute zero upfront fees, legitimate Ministry work permits, and legally binding employment contracts."}
@@ -76,28 +150,28 @@ export function ManpowerHero() {
 
             {/* Key Dimensional Metrics */}
             <div className="grid grid-cols-3 gap-3 pt-6 border-t border-brand-stone-200">
-              <div className="p-3 rounded-xl bg-white border border-brand-stone-200 shadow-2xs">
+              <div className="p-3.5 rounded-2xl bg-white border border-brand-stone-200/90 shadow-2xs">
                 <div className="font-mono text-lg sm:text-xl font-bold text-emerald-800">
                   0.00 AMD
                 </div>
-                <div className="text-[10px] text-brand-ink-muted uppercase tracking-wider mt-0.5">
-                  Upfront Candidate Fee
+                <div className="text-[10px] text-brand-ink-muted uppercase tracking-wider mt-0.5 font-semibold">
+                  {isHy ? "0 Դրամ Կանխավճար" : "Upfront Candidate Fee"}
                 </div>
               </div>
-              <div className="p-3 rounded-xl bg-white border border-brand-stone-200 shadow-2xs">
+              <div className="p-3.5 rounded-2xl bg-white border border-brand-stone-200/90 shadow-2xs">
                 <div className="font-mono text-lg sm:text-xl font-bold text-brand-forest">
                   15–25 Days
                 </div>
-                <div className="text-[10px] text-brand-ink-muted uppercase tracking-wider mt-0.5">
-                  Ministry Permit SLA
+                <div className="text-[10px] text-brand-ink-muted uppercase tracking-wider mt-0.5 font-semibold">
+                  {isHy ? "ՀՀ Թույլտվության Ժամկետ" : "Ministry Permit SLA"}
                 </div>
               </div>
-              <div className="p-3 rounded-xl bg-white border border-brand-stone-200 shadow-2xs">
+              <div className="p-3.5 rounded-2xl bg-white border border-brand-stone-200/90 shadow-2xs">
                 <div className="font-mono text-lg sm:text-xl font-bold text-brand-forest">
                   100% Legal
                 </div>
-                <div className="text-[10px] text-brand-ink-muted uppercase tracking-wider mt-0.5">
-                  Residence Card Issuance
+                <div className="text-[10px] text-brand-ink-muted uppercase tracking-wider mt-0.5 font-semibold">
+                  {isHy ? "Օրինական Կացության Քարտ" : "Residence Card Issuance"}
                 </div>
               </div>
             </div>
@@ -105,34 +179,38 @@ export function ManpowerHero() {
 
           {/* Right Column: Dimensional Drawing Specification Sheet */}
           <div className="lg:col-span-5">
-            <div className="rounded-3xl bg-white border-2 border-slate-300 p-5 shadow-xl relative font-sans">
+            <div className="rounded-3xl bg-white border border-brand-stone-300 p-6 shadow-xl relative font-sans">
               {/* Technical Spec Title Block */}
-              <div className="border-b border-slate-200 pb-3 mb-4">
-                <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-slate-500">
+              <div className="border-b border-brand-stone-200 pb-3 mb-4">
+                <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-brand-ink-subtle">
                   <span>DWG NO: ARM-REC-2026</span>
-                  <span>REV: 2.4 · STABLE</span>
+                  <span>{isHy ? "ՏԱՐԲԵՐԱԿ՝ 2.4 · ՀԱՍՏԱՏՎԱԾ" : "REV: 2.4 · STABLE"}</span>
                 </div>
-                <div className="flex items-center justify-between mt-1">
-                  <h3 className="font-serif text-lg font-bold text-brand-forest">
+                <div className="flex items-center justify-between mt-1.5">
+                  <h3 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
                     {activeSpecTab === "candidate"
-                      ? "Candidate Protection Protocol"
+                      ? isHy
+                        ? "Թեկնածուների Պաշտպանության Կանոնակարգ"
+                        : "Candidate Protection Protocol"
+                      : isHy
+                      ? "Կորպորատիվ Հավաքագրման Կանոնակարգ"
                       : "Enterprise Placement Protocol"}
                   </h3>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">
-                    STATUS: AUDITED
+                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-brand-stone-100 text-brand-forest border border-brand-stone-200">
+                    {isHy ? "ՍՏՈՒԳՎԱԾ" : "AUDITED"}
                   </span>
                 </div>
               </div>
 
               {/* Segmented Mode Switcher */}
-              <div className="grid grid-cols-2 gap-1 p-1 bg-slate-100 rounded-xl mb-4 text-xs font-semibold">
+              <div className="grid grid-cols-2 gap-1 p-1 bg-brand-stone-100 rounded-xl mb-4 text-xs font-semibold">
                 <button
                   type="button"
                   onClick={() => setActiveSpecTab("candidate")}
                   className={`py-2 rounded-lg transition-all cursor-pointer text-center ${
                     activeSpecTab === "candidate"
                       ? "bg-white text-brand-forest shadow-xs font-bold"
-                      : "text-slate-600 hover:text-brand-forest"
+                      : "text-brand-ink-muted hover:text-brand-forest"
                   }`}
                 >
                   {isHy ? "Թեկնածուի Երաշխիք" : "Job Seeker View"}
@@ -143,100 +221,33 @@ export function ManpowerHero() {
                   className={`py-2 rounded-lg transition-all cursor-pointer text-center ${
                     activeSpecTab === "employer"
                       ? "bg-white text-brand-forest shadow-xs font-bold"
-                      : "text-slate-600 hover:text-brand-forest"
+                      : "text-brand-ink-muted hover:text-brand-forest"
                   }`}
                 >
                   {isHy ? "Գործատուի Կանոններ" : "Enterprise Employer"}
                 </button>
               </div>
 
-              {/* Dimensional Flow Steps (Apple Spec Sheet Style) */}
-              <div className="space-y-3 font-mono text-xs mb-5">
-                {activeSpecTab === "candidate" ? (
-                  <>
-                    <div className="p-3 rounded-xl bg-slate-50 border border-dashed border-slate-300">
-                      <div className="flex items-center justify-between text-[11px] font-bold text-brand-forest">
-                        <span>STAGE 01 · REGISTRATION</span>
-                        <span className="text-emerald-700">FEE = 0.00 AMD</span>
-                      </div>
-                      <p className="text-[11px] text-slate-600 font-sans mt-1">
-                        Free CV drop. Zero application, resume review, or registration fees.
-                      </p>
+              {/* Dimensional Flow Steps */}
+              <div className="space-y-2.5 text-xs mb-5">
+                {(activeSpecTab === "candidate" ? candidateStages : employerStages).map((item, idx) => (
+                  <div
+                    key={idx}
+                    className={`p-3 rounded-xl transition-all ${
+                      item.isHighlight
+                        ? "bg-emerald-50/70 border border-emerald-200"
+                        : "bg-brand-stone-50 border border-brand-stone-200/80"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between text-[11px] font-bold text-brand-forest font-mono">
+                      <span>{item.stage}</span>
+                      <span className={item.badgeColor}>{item.badge}</span>
                     </div>
-
-                    <div className="p-3 rounded-xl bg-slate-50 border border-dashed border-slate-300">
-                      <div className="flex items-center justify-between text-[11px] font-bold text-brand-forest">
-                        <span>STAGE 02 · SKILL VETTING</span>
-                        <span className="text-slate-500">REMOTE / HYBRID</span>
-                      </div>
-                      <p className="text-[11px] text-slate-600 font-sans mt-1">
-                        Document verification, trade skill check, and employer interview.
-                      </p>
-                    </div>
-
-                    <div className="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200">
-                      <div className="flex items-center justify-between text-[11px] font-bold text-emerald-900">
-                        <span>STAGE 03 · WORK PERMIT</span>
-                        <span className="text-emerald-700">100% MINISTRY LEGAL</span>
-                      </div>
-                      <p className="text-[11px] text-emerald-800 font-sans mt-1">
-                        Official work permit & residence card via Unified Migration Service.
-                      </p>
-                    </div>
-
-                    <div className="p-3 rounded-xl bg-slate-50 border border-dashed border-slate-300">
-                      <div className="flex items-center justify-between text-[11px] font-bold text-brand-forest">
-                        <span>STAGE 04 · ARRIVAL & PAY</span>
-                        <span className="text-brand-forest">PAY-AFTER-JOB</span>
-                      </div>
-                      <p className="text-[11px] text-slate-600 font-sans mt-1">
-                        Zvartnots airport reception, housing orientation, and contract start.
-                      </p>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="p-3 rounded-xl bg-slate-50 border border-dashed border-slate-300">
-                      <div className="flex items-center justify-between text-[11px] font-bold text-brand-forest">
-                        <span>STAGE 01 · QUOTA REQUISITION</span>
-                        <span className="text-slate-500">SLA: 48 HOURS</span>
-                      </div>
-                      <p className="text-[11px] text-slate-600 font-sans mt-1">
-                        Employer submits headcount requirements & ministry quota parameters.
-                      </p>
-                    </div>
-
-                    <div className="p-3 rounded-xl bg-slate-50 border border-dashed border-slate-300">
-                      <div className="flex items-center justify-between text-[11px] font-bold text-brand-forest">
-                        <span>STAGE 02 · CANDIDATE DOSSIERS</span>
-                        <span className="text-brand-forest">PRE-SCREENED</span>
-                      </div>
-                      <p className="text-[11px] text-slate-600 font-sans mt-1">
-                        Shortlist of pre-screened talent across construction, hospitality, and trades.
-                      </p>
-                    </div>
-
-                    <div className="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200">
-                      <div className="flex items-center justify-between text-[11px] font-bold text-emerald-900">
-                        <span>STAGE 03 · PERMIT SPONSORSHIP</span>
-                        <span className="text-emerald-700">FULL COMPLIANCE</span>
-                      </div>
-                      <p className="text-[11px] text-emerald-800 font-sans mt-1">
-                        De Organica handles work permit filing and state migration paperwork.
-                      </p>
-                    </div>
-
-                    <div className="p-3 rounded-xl bg-slate-50 border border-dashed border-slate-300">
-                      <div className="flex items-center justify-between text-[11px] font-bold text-brand-forest">
-                        <span>STAGE 04 · ONBOARDING & SLA</span>
-                        <span className="text-brand-forest">30-DAY GUARANTEE</span>
-                      </div>
-                      <p className="text-[11px] text-slate-600 font-sans mt-1">
-                        Direct employee deployment with a 30-day candidate replacement warranty.
-                      </p>
-                    </div>
-                  </>
-                )}
+                    <p className="text-[11px] text-brand-ink-muted font-sans mt-1 leading-snug">
+                      {isHy ? item.desc_hy : item.desc_en}
+                    </p>
+                  </div>
+                ))}
               </div>
 
               {/* Action Button */}
@@ -244,7 +255,7 @@ export function ManpowerHero() {
                 <button
                   type="button"
                   onClick={() => openCandidateDrawer()}
-                  className="w-full py-2.5 px-4 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-xs cursor-pointer group/cta"
+                  className="w-full py-3 px-4 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-xs cursor-pointer group/cta"
                 >
                   <Briefcase className="w-3.5 h-3.5 text-brand-olive-light" />
                   <span>{isHy ? "Ներկայացնել Ռեզյումե (Անվճար)" : "Drop CV for Placement (Zero Fee)"}</span>
@@ -254,7 +265,7 @@ export function ManpowerHero() {
                 <button
                   type="button"
                   onClick={() => openEmployerDrawer()}
-                  className="w-full py-2.5 px-4 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-xs cursor-pointer group/cta"
+                  className="w-full py-3 px-4 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-xs cursor-pointer group/cta"
                 >
                   <Building2 className="w-3.5 h-3.5 text-brand-olive-light" />
                   <span>{isHy ? "Պատվիրել Աշխատուժի Քվոտա" : "Initiate Staffing Requisition"}</span>

@@ -156,9 +156,9 @@ export function PipelineStageShow() {
         {/* StageShow Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-950 text-xs font-semibold uppercase tracking-wider mb-3 shadow-2xs">
-              <BadgeCheck className="w-3.5 h-3.5 text-emerald-700" />
-              <span>{isHy ? "Թափանցիկության Ինտերակտիվ Շղթա" : "Transparency & Compliance Engine"}</span>
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
+              <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
+              <span>{isHy ? "Թափանցիկության Ինտերակտիվ Շղթա · ՀՀ Օրինական Ուղի" : "Transparency & Compliance Engine · 4-Stage Legal Route"}</span>
             </div>
 
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
@@ -194,8 +194,8 @@ export function PipelineStageShow() {
         <div className="rounded-3xl bg-white border border-brand-stone-200/90 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
           {/* Step Selector Ribbon (4 Cols) */}
           <div className="lg:col-span-4 p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-brand-stone-200 bg-brand-stone-50/50 space-y-3">
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-800 block mb-2">
-              Select Pipeline Stage
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-olive block mb-2">
+              {isHy ? "01 · Ընտրեք աշխատանքային փուլը" : "01 · Select Pipeline Stage"}
             </span>
 
             {PIPELINE_STAGES.map((s) => {
@@ -207,14 +207,14 @@ export function PipelineStageShow() {
                   onClick={() => setActiveStageId(s.id)}
                   className={`w-full text-left p-4 rounded-2xl transition-all duration-200 cursor-pointer flex items-center justify-between ${
                     isSelected
-                      ? "bg-emerald-950 text-white shadow-md ring-1 ring-emerald-800"
-                      : "bg-white text-brand-forest border border-brand-stone-200/80 hover:bg-white hover:border-emerald-600/40 active:scale-98"
+                      ? "bg-brand-forest text-white shadow-md ring-1 ring-brand-forest/30"
+                      : "bg-white text-brand-forest border border-brand-stone-200/80 hover:bg-white hover:border-brand-olive/40 active:scale-98"
                   }`}
                 >
                   <div className="flex items-center gap-3">
                     <span
                       className={`w-8 h-8 rounded-xl flex items-center justify-center font-serif text-xs font-bold ${
-                        isSelected ? "bg-emerald-600 text-white" : "bg-emerald-50 text-emerald-900 border border-emerald-200"
+                        isSelected ? "bg-brand-olive text-white" : "bg-brand-stone-100 text-brand-forest border border-brand-stone-200"
                       }`}
                     >
                       {s.step}
@@ -225,7 +225,7 @@ export function PipelineStageShow() {
                       </h4>
                       <span
                         className={`text-[10px] block mt-0.5 ${
-                          isSelected ? "text-emerald-300" : "text-brand-ink-muted"
+                          isSelected ? "text-brand-olive-light" : "text-brand-ink-muted"
                         }`}
                       >
                         {isHy ? s.role_hy : s.role_en}
@@ -235,7 +235,7 @@ export function PipelineStageShow() {
 
                   <ArrowRight
                     className={`w-4 h-4 transition-transform ${
-                      isSelected ? "text-emerald-400 translate-x-0.5" : "text-brand-stone-400 opacity-50"
+                      isSelected ? "text-brand-olive-light translate-x-0.5" : "text-brand-stone-400 opacity-50"
                     }`}
                   />
                 </button>
@@ -250,7 +250,7 @@ export function PipelineStageShow() {
               <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-6 border-b border-brand-stone-100">
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-emerald-50 text-emerald-900 border border-emerald-200">
-                    Stage {activeStage.step} · {isHy ? activeStage.badge_hy : activeStage.badge_en}
+                    {isHy ? `Փուլ ${activeStage.step}` : `Stage ${activeStage.step}`} · {isHy ? activeStage.badge_hy : activeStage.badge_en}
                   </span>
                 </div>
 
@@ -288,7 +288,11 @@ export function PipelineStageShow() {
             <div className="pt-6 border-t border-brand-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-2 text-xs text-brand-ink-muted">
                 <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" />
-                <span>Zero Upfront Placement Fees · Republic of Armenia Work Permits</span>
+                <span>
+                  {isHy
+                    ? "0 ՀՀ դրամ կանխավճար · ՀՀ պաշտոնական աշխատանքի թույլտվություններ"
+                    : "Zero Upfront Placement Fees · Republic of Armenia Work Permits"}
+                </span>
               </div>
 
               <div className="flex items-center gap-2 w-full sm:w-auto">
