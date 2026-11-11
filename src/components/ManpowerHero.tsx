@@ -30,7 +30,7 @@ export function ManpowerHero() {
     {
       stage: isHy ? "ՓՈՒԼ 01 · ԳՐԱՆՑՈՒՄ" : "STAGE 01 · REGISTRATION",
       badge: isHy ? "ՎՃԱՐԸ = 0.00 AMD" : "FEE = 0.00 AMD",
-      badgeColor: "text-emerald-700",
+      badgeColor: "text-brand-olive",
       desc_en: "Free CV drop. Zero application, resume review, or registration fees.",
       desc_hy: "Ռեզյումեի անվճար հանձնում: Զրո դրամ գրանցման կամ դիմումի համար:",
       isHighlight: false,
@@ -46,7 +46,7 @@ export function ManpowerHero() {
     {
       stage: isHy ? "ՓՈՒԼ 03 · ԹՈՒՅԼՏՎՈՒԹՅՈՒՆ" : "STAGE 03 · WORK PERMIT",
       badge: isHy ? "100% ՕՐԻՆԱԿԱՆ ԳՐԱՆՑՈՒՄ" : "100% MINISTRY LEGAL",
-      badgeColor: "text-emerald-700",
+      badgeColor: "text-brand-olive",
       desc_en: "Official work permit & residence card via Unified Migration Service.",
       desc_hy: "ՀՀ աշխատանքի օրինական թույլտվություն և կացության քարտ:",
       isHighlight: true,
@@ -235,7 +235,7 @@ export function ManpowerHero() {
                     key={idx}
                     className={`p-3 rounded-xl transition-all ${
                       item.isHighlight
-                        ? "bg-emerald-50/70 border border-emerald-200"
+                        ? "bg-brand-olive-subtle border border-brand-olive/40 shadow-2xs"
                         : "bg-brand-stone-50 border border-brand-stone-200/80"
                     }`}
                   >

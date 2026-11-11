@@ -60,17 +60,17 @@ export function ManpowerCandidateHub() {
         </div>
 
         {/* Ethical Contingency Charter Box */}
-        <div className="rounded-3xl bg-emerald-50/60 border border-emerald-200/90 p-7 sm:p-10 mb-16 shadow-xs">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-emerald-200/60">
+        <div className="rounded-3xl bg-brand-olive-subtle/70 border border-brand-olive/30 p-7 sm:p-10 mb-16 shadow-xs">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-brand-olive/20">
             <div className="flex items-start gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-white border border-emerald-200 flex items-center justify-center text-emerald-800 shrink-0 shadow-2xs">
-                <ShieldCheck className="w-7 h-7" />
+              <div className="w-14 h-14 rounded-2xl bg-white border border-brand-olive/30 flex items-center justify-center text-brand-forest shrink-0 shadow-2xs">
+                <ShieldCheck className="w-7 h-7 text-brand-olive" />
               </div>
               <div>
-                <h3 className="font-serif text-lg sm:text-2xl font-bold text-emerald-950">
+                <h3 className="font-serif text-lg sm:text-2xl font-bold text-brand-forest">
                   {isHy ? "Էթիկական Հավաքագրման և Զրոյական Նախնական Վճարի Քարտիա" : "Ethical Recruitment & Zero Upfront Fee Charter"}
                 </h3>
-                <p className="text-xs sm:text-sm text-emerald-800 mt-1 max-w-2xl leading-relaxed">
+                <p className="text-xs sm:text-sm text-brand-ink-muted mt-1 max-w-2xl leading-relaxed">
                   {isHy
                     ? "«Դե Օրգանիկա»-ն առաջնորդվում է թեկնածուների պաշտպանության միջազգային սկզբունքներով: Գրանցման, ռեզյումեի ընդունման կամ հարցազրույցի համար որևէ վճար չի գանձվում:"
                     : "De Organica LLC operates on a strict candidate-first model. Candidates never pay upfront registration, application, or interview fees. Placement terms apply strictly upon verified job offer."}
@@ -92,11 +92,11 @@ export function ManpowerCandidateHub() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
             {deorganicaConfig.manpower.trustPillars.map((p, i) => (
               <div key={i} className="space-y-1.5">
-                <div className="flex items-center gap-2 text-xs font-bold text-emerald-950">
-                  <Check className="w-4 h-4 text-emerald-700 shrink-0" />
+                <div className="flex items-center gap-2 text-xs font-bold text-brand-forest">
+                  <Check className="w-4 h-4 text-brand-olive shrink-0" />
                   <span>{isHy ? p.title_hy : p.title_en}</span>
                 </div>
-                <p className="text-[11px] text-emerald-800/90 leading-relaxed pl-6">
+                <p className="text-[11px] text-brand-ink-muted leading-relaxed pl-6">
                   {isHy ? p.desc_hy : p.desc_en}
                 </p>
               </div>
@@ -249,10 +249,10 @@ export function ManpowerCandidateHub() {
                   <button
                     type="button"
                     onClick={() => handleWhatsAppApply(vacancy.title_en)}
-                    className="py-2.5 px-3.5 rounded-xl border border-brand-stone-300 bg-white text-brand-ink hover:text-emerald-700 hover:border-emerald-500 active:scale-95 text-xs font-medium transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                    className="py-2.5 px-3.5 rounded-xl border border-brand-stone-300 bg-white text-brand-ink hover:text-brand-forest hover:border-brand-olive active:scale-95 text-xs font-medium transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
                     title="Inquire on WhatsApp"
                   >
-                    <MessageCircle className="w-4 h-4 text-emerald-600" />
+                    <MessageCircle className="w-4 h-4 text-[#25D366]" />
                     <span className="hidden sm:inline">WhatsApp</span>
                   </button>
                 </div>

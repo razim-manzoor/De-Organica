@@ -130,9 +130,9 @@ export function TravelServicesMatrix() {
                   <button
                     type="button"
                     onClick={() => handleWhatsAppClick(service.title_en)}
-                    className="w-full py-2.5 px-3 rounded-xl border border-brand-stone-300 bg-white text-brand-ink hover:text-emerald-700 hover:border-emerald-500 active:scale-95 text-xs font-medium transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
+                    className="w-full py-2.5 px-3 rounded-xl border border-brand-stone-300 bg-white text-brand-ink hover:text-brand-forest hover:border-brand-olive active:scale-95 text-xs font-medium transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
                   >
-                    <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+                    <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
                     <span>WhatsApp</span>
                   </button>
                 </div>

@@ -249,7 +249,7 @@ export function PipelineStageShow() {
               {/* Header Badges */}
               <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-6 border-b border-brand-stone-100">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-emerald-50 text-emerald-900 border border-emerald-200">
+                  <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-olive-subtle text-brand-forest border border-brand-olive/30">
                     {isHy ? `Փուլ ${activeStage.step}` : `Stage ${activeStage.step}`} · {isHy ? activeStage.badge_hy : activeStage.badge_en}
                   </span>
                 </div>
@@ -277,7 +277,7 @@ export function PipelineStageShow() {
 
                 {(isHy ? activeStage.safeguards_hy : activeStage.safeguards_en).map((item, idx) => (
                   <div key={idx} className="flex items-start gap-2.5 text-xs text-brand-ink">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-brand-olive shrink-0 mt-0.5" />
                     <span className="leading-snug">{item}</span>
                   </div>
                 ))}
@@ -287,7 +287,7 @@ export function PipelineStageShow() {
             {/* Bottom Callout Banner */}
             <div className="pt-6 border-t border-brand-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-2 text-xs text-brand-ink-muted">
-                <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" />
+                <ShieldCheck className="w-4 h-4 text-brand-olive shrink-0" />
                 <span>
                   {isHy
                     ? "0 ՀՀ դրամ կանխավճար · ՀՀ պաշտոնական աշխատանքի թույլտվություններ"

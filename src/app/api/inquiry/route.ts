@@ -28,11 +28,17 @@ export async function POST(req: NextRequest) {
     const nationality = (formData.get("nationality") as string) || "";
     const currentCountry = (formData.get("currentCountry") as string) || "";
     const targetRole = (formData.get("targetRole") as string) || "";
+    const experienceLevel = (formData.get("experienceLevel") as string) || "";
+    const primaryLanguage = (formData.get("primaryLanguage") as string) || "";
+    const candidateStatus = (formData.get("candidateStatus") as string) || "";
 
     const companyName = (formData.get("companyName") as string) || "";
     const contactPerson = (formData.get("contactPerson") as string) || "";
+    const employerJurisdiction = (formData.get("employerJurisdiction") as string) || "";
     const industrySector = (formData.get("industrySector") as string) || "";
     const headcountRequired = (formData.get("headcountRequired") as string) || "";
+    const employerUrgency = (formData.get("employerUrgency") as string) || "";
+    const employerHousing = (formData.get("employerHousing") as string) || "";
 
     // CV Attachment
     const cvFile = formData.get("cvFile") as File | null;
@@ -82,10 +88,16 @@ export async function POST(req: NextRequest) {
           ${accommodationTier ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Accommodation:</td><td style="padding: 8px 0;">${accommodationTier}</td></tr>` : ""}
           ${fleetTier ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Chauffeur Fleet:</td><td style="padding: 8px 0;">${fleetTier}</td></tr>` : ""}
           ${targetRole ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Target Role:</td><td style="padding: 8px 0;"><strong>${targetRole}</strong></td></tr>` : ""}
+          ${experienceLevel ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Years Experience:</td><td style="padding: 8px 0;">${experienceLevel}</td></tr>` : ""}
+          ${primaryLanguage ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Languages:</td><td style="padding: 8px 0;">${primaryLanguage}</td></tr>` : ""}
+          ${candidateStatus ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Mobility Status:</td><td style="padding: 8px 0;">${candidateStatus}</td></tr>` : ""}
           ${nationality ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Nationality:</td><td style="padding: 8px 0;">${nationality}</td></tr>` : ""}
           ${currentCountry ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Current Location:</td><td style="padding: 8px 0;">${currentCountry}</td></tr>` : ""}
+          ${employerJurisdiction ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Jurisdiction:</td><td style="padding: 8px 0;">${employerJurisdiction}</td></tr>` : ""}
           ${industrySector ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Industry Sector:</td><td style="padding: 8px 0;">${industrySector}</td></tr>` : ""}
           ${headcountRequired ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Headcount Needed:</td><td style="padding: 8px 0;">${headcountRequired}</td></tr>` : ""}
+          ${employerUrgency ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Target Timeline:</td><td style="padding: 8px 0;">${employerUrgency}</td></tr>` : ""}
+          ${employerHousing ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Housing Policy:</td><td style="padding: 8px 0;">${employerHousing}</td></tr>` : ""}
           ${cvFile ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #4A5448;">Attached CV:</td><td style="padding: 8px 0; color: #668B2E; font-weight: bold;">📎 ${cvFile.name} (${Math.round(cvFile.size / 1024)} KB)</td></tr>` : ""}
         </table>
 

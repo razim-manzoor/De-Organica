@@ -53,7 +53,7 @@ const ITINERARY_DAYS: DayStop[] = [
       "Ascend to Armenia's high-altitude turquoise jewel at Lake Sevan, followed by the lush misty beech and oak forests of Dilijan National Park.",
     description_hy:
       "Այցելություն բարձրադիր Սևանա լիճ, որին հաջորդում է հանգիստը Դիլիջանի կուսական անտառներում և Հաղարծնի պատմական վանքում:",
-    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
   },
   {
     day: 3,
@@ -65,7 +65,7 @@ const ITINERARY_DAYS: DayStop[] = [
       "Gaze at snow-capped Mount Ararat from the historic underground dungeon of Khor Virap, continuing through the crimson limestone gorge of Noravank.",
     description_hy:
       "Հիասքանչ տեսարան դեպի բիբլիական Արարատ լեռը Խոր Վիրապից, ավանդական գինու համտես Արենիում և Նորավանքի կարմիր ժայռերը:",
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=80",
   },
   {
     day: 4,
@@ -77,7 +77,7 @@ const ITINERARY_DAYS: DayStop[] = [
       "Soar above the 320-meter deep Vorotan canyon on the world's longest reversible aerial tramway to the cliffside fortress monastery of Tatev.",
     description_hy:
       "Թռիչք աշխարհի ամենաերկար հետադարձելի ճոպանուղով Որոտանի կիրճի վրայով դեպի 9-րդ դարի հզորագույն Տաթևի վանական համալիր:",
-    image: "https://images.unsplash.com/photo-1563911302283-d2bc129e7570?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 

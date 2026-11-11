@@ -122,7 +122,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
             <div className="p-6 sm:p-7 rounded-3xl bg-white border border-brand-stone-200/90 shadow-md space-y-5">
               <div className="flex items-center justify-between pb-4 border-b border-brand-stone-100">
                 <div className="flex items-center gap-2.5">
-                  <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${isDeskOpen ? "bg-emerald-600" : "bg-amber-600"}`} />
+                  <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${isDeskOpen ? "bg-brand-olive" : "bg-amber-600"}`} />
                   <span className="text-xs font-bold text-brand-forest uppercase tracking-wider">
                     {isDeskOpen
                       ? isHy
@@ -188,7 +188,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+                  <ShieldCheck className="w-4 h-4 text-brand-olive shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold text-brand-forest block text-sm">
                       {isHy ? "Իրավաբանական Գրանցում" : "Corporate Legal Entity"}
@@ -224,11 +224,11 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                 {/* Channel 1: Bespoke Leisure & Private Expeditions */}
                 <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
                   <div className="flex items-start gap-3.5">
-                    <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200/80 flex items-center justify-center text-amber-800 shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-brand-olive-subtle border border-brand-olive/30 flex items-center justify-center text-brand-forest shrink-0">
                       <Compass className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-800">
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-olive">
                         <span>{isHy ? "Մասնավոր Երթուղիներ" : "Bespoke Leisure & Private Expeditions"}</span>
                       </div>
                       <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
@@ -246,7 +246,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                     <button
                       type="button"
                       onClick={handleTravelWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
                     >
                       <MessageCircle className="w-3.5 h-3.5" />
                       <span>WhatsApp</span>
@@ -264,13 +264,13 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                 {/* Channel 2: B2B Destination Management (DMC) */}
                 <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
                   <div className="flex items-start gap-3.5">
-                    <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-emerald-800 shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-brand-forest/10 border border-brand-forest/20 flex items-center justify-center text-brand-forest shrink-0">
                       <Building2 className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-800">
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-forest">
                         <span>{isHy ? "B2B Գործընկերություն" : "B2B Destination Management (DMC)"}</span>
-                        <span className="px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-900 text-[9px]">NET TARIFFS</span>
+                        <span className="px-1.5 py-0.2 rounded bg-brand-forest/10 text-brand-forest text-[9px]">NET TARIFFS</span>
                       </div>
                       <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
                         {isHy ? "Մեծածախ DMC Սպասարկում Գործակալություններին" : "Wholesale Ground Handling & Allotments"}
@@ -287,7 +287,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                     <button
                       type="button"
                       onClick={handleTravelWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
                     >
                       <MessageCircle className="w-3.5 h-3.5" />
                       <span>WhatsApp</span>
@@ -305,13 +305,13 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                 {/* Channel 3: Zvartnots EVN Chauffeur Fleet */}
                 <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
                   <div className="flex items-start gap-3.5">
-                    <div className="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-800 shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-brand-stone-100 border border-brand-stone-200 flex items-center justify-center text-brand-forest shrink-0">
                       <Car className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-700">
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-ink-muted">
                         <span>{isHy ? "24/7 Օդանավակայանի Լոգիստիկա" : "Zvartnots (EVN) Airport & Fleet"}</span>
-                        <span className="px-1.5 py-0.2 rounded bg-slate-200 text-slate-800 text-[9px]">24/7 LIVE</span>
+                        <span className="px-1.5 py-0.2 rounded bg-brand-stone-200 text-brand-forest text-[9px]">24/7 LIVE</span>
                       </div>
                       <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
                         {isHy ? "Chauffeur Ավտոպարկ և EVN Տրանսֆեր" : "Executive Chauffeur Fleet & Airport Transfers"}
@@ -328,7 +328,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                     <button
                       type="button"
                       onClick={handleTravelWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
                     >
                       <MessageCircle className="w-3.5 h-3.5" />
                       <span>WhatsApp</span>
@@ -351,13 +351,13 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                 {/* Channel 1: Candidate CV Submission & Placement Desk */}
                 <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
                   <div className="flex items-start gap-3.5">
-                    <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-emerald-800 shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-brand-olive-subtle border border-brand-olive/30 flex items-center justify-center text-brand-forest shrink-0">
                       <Briefcase className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-800">
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-olive">
                         <span>{isHy ? "Աշխատանք Փնտրողների Բաժին" : "Division I · Job Seekers"}</span>
-                        <span className="px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-900 text-[9px]">ZERO FEE</span>
+                        <span className="px-1.5 py-0.2 rounded bg-brand-olive/15 text-brand-forest text-[9px]">ZERO FEE</span>
                       </div>
                       <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
                         {isHy ? "Թեկնածուների Դիմումներ և Ռեզյումե (CV)" : "Candidate CV Submission & Job Advisory"}
@@ -374,7 +374,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                     <button
                       type="button"
                       onClick={handleCandidateWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
                     >
                       <MessageCircle className="w-3.5 h-3.5" />
                       <span>WhatsApp</span>
@@ -392,13 +392,13 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                 {/* Channel 2: Corporate Staffing & B2B Quota Requisition */}
                 <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
                   <div className="flex items-start gap-3.5">
-                    <div className="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-800 shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-brand-stone-100 border border-brand-stone-200 flex items-center justify-center text-brand-forest shrink-0">
                       <Building2 className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-700">
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-ink-muted">
                         <span>{isHy ? "Գործատուների Բաժին" : "Division II · B2B Staffing"}</span>
-                        <span className="px-1.5 py-0.2 rounded bg-slate-200 text-slate-800 text-[9px]">72H SLA</span>
+                        <span className="px-1.5 py-0.2 rounded bg-brand-stone-200 text-brand-forest text-[9px]">72H SLA</span>
                       </div>
                       <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
                         {isHy ? "Կորպորատիվ Գործատուների Պատվերներ" : "Corporate Employer Talent Requisitions"}
@@ -415,7 +415,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                     <button
                       type="button"
                       onClick={handleEmployerWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
                     >
                       <MessageCircle className="w-3.5 h-3.5" />
                       <span>WhatsApp</span>
@@ -433,13 +433,13 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                 {/* Channel 3: Legal Work Permit & Relocation Advisory */}
                 <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
                   <div className="flex items-start gap-3.5">
-                    <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200/80 flex items-center justify-center text-amber-800 shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-brand-gold-subtle border border-brand-gold/30 flex items-center justify-center text-brand-gold shrink-0">
                       <ShieldCheck className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-800">
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-gold">
                         <span>{isHy ? "Իրավական Համապատասխանություն" : "Division III · Legal Permits"}</span>
-                        <span className="px-1.5 py-0.2 rounded bg-amber-100 text-amber-900 text-[9px]">RA MINISTRY</span>
+                        <span className="px-1.5 py-0.2 rounded bg-brand-gold/15 text-brand-gold text-[9px]">RA MINISTRY</span>
                       </div>
                       <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
                         {isHy ? "Աշխատանքի Թույլտվություն և Ռելոկացիա" : "Work Permit Clearance & Relocation Care"}
@@ -456,7 +456,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                     <button
                       type="button"
                       onClick={handleCandidateWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
                     >
                       <MessageCircle className="w-3.5 h-3.5" />
                       <span>WhatsApp</span>
@@ -479,11 +479,11 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                 {/* Channel 1: Travel & Tour Desk */}
                 <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
                   <div className="flex items-start gap-3.5">
-                    <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200/80 flex items-center justify-center text-amber-800 shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-brand-olive-subtle border border-brand-olive/30 flex items-center justify-center text-brand-forest shrink-0">
                       <Compass className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-800">
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-olive">
                         <span>{isHy ? "Բաժին I · Տուրեր և Երթուղիներ" : "Division I · Travel Desk"}</span>
                       </div>
                       <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
@@ -501,7 +501,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                     <button
                       type="button"
                       onClick={handleTravelWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
                     >
                       <MessageCircle className="w-3.5 h-3.5" />
                       <span>WhatsApp</span>
@@ -519,13 +519,13 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                 {/* Channel 2: Candidate CV Drop Desk */}
                 <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
                   <div className="flex items-start gap-3.5">
-                    <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-emerald-800 shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-brand-olive-subtle border border-brand-olive/30 flex items-center justify-center text-brand-forest shrink-0">
                       <Briefcase className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-800">
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-olive">
                         <span>{isHy ? "Բաժին II · Աշխատանք Փնտրողներ" : "Division II · Job Seekers"}</span>
-                        <span className="px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-900 text-[9px]">ZERO FEE</span>
+                        <span className="px-1.5 py-0.2 rounded bg-brand-olive/15 text-brand-forest text-[9px]">ZERO FEE</span>
                       </div>
                       <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
                         {isHy ? "Թեկնածուների Դիմումներ և Ռեզյումե" : "Candidate CV Submission & Job Advisory"}
@@ -542,7 +542,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                     <button
                       type="button"
                       onClick={handleCandidateWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
                     >
                       <MessageCircle className="w-3.5 h-3.5" />
                       <span>WhatsApp</span>
@@ -560,13 +560,13 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                 {/* Channel 3: Corporate Staffing & B2B Quota Requisition */}
                 <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
                   <div className="flex items-start gap-3.5">
-                    <div className="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-800 shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-brand-stone-100 border border-brand-stone-200 flex items-center justify-center text-brand-forest shrink-0">
                       <Building2 className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-700">
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-ink-muted">
                         <span>{isHy ? "Բաժին III · Կորպորատիվ Հավաքագրում" : "Enterprise · B2B Staffing"}</span>
-                        <span className="px-1.5 py-0.2 rounded bg-slate-200 text-slate-800 text-[9px]">72H SLA</span>
+                        <span className="px-1.5 py-0.2 rounded bg-brand-stone-200 text-brand-forest text-[9px]">72H SLA</span>
                       </div>
                       <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
                         {isHy ? "Կորպորատիվ Գործատուների Պատվերներ" : "Corporate Employer Talent Requisitions"}
@@ -583,7 +583,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                     <button
                       type="button"
                       onClick={handleEmployerWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
                     >
                       <MessageCircle className="w-3.5 h-3.5" />
                       <span>WhatsApp</span>

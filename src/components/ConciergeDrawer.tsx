@@ -159,10 +159,18 @@ export function ConciergeDrawer() {
   const [currentCountry, setCurrentCountry] = useState("");
   const [targetRole, setTargetRole] = useState("");
   const [isChangingRole, setIsChangingRole] = useState(false);
+  const [experienceLevel, setExperienceLevel] = useState("3–5 Years");
+  const [primaryLanguage, setPrimaryLanguage] = useState("English Conversational");
+  const [candidateStatus, setCandidateStatus] = useState("In Home Country (Ready for Visa)");
+  const [candidateZeroFeeConsent, setCandidateZeroFeeConsent] = useState(true);
+
   const [companyName, setCompanyName] = useState("");
   const [contactPerson, setContactPerson] = useState("");
-  const [industrySector, setIndustrySector] = useState("");
-  const [headcountRequired, setHeadcountRequired] = useState("");
+  const [employerJurisdiction, setEmployerJurisdiction] = useState("Armenia (ՀՎՀՀ / TIN)");
+  const [industrySector, setIndustrySector] = useState("Hospitality & Restaurants");
+  const [headcountRequired, setHeadcountRequired] = useState("1–5");
+  const [employerUrgency, setEmployerUrgency] = useState("Immediate (< 15 Days)");
+  const [employerHousing, setEmployerHousing] = useState("Employer Housing Included");
   const [notes, setNotes] = useState("");
   const [cvFile, setCvFile] = useState<File | null>(null);
 
@@ -269,6 +277,7 @@ export function ConciergeDrawer() {
         if (!fullName.trim()) throw new Error(isHy ? "Խնդրում ենք լրացնել անունը" : "Please enter your name");
         if (!phoneNumber.trim()) throw new Error(isHy ? "Խնդրում ենք նշել WhatsApp հեռախոսահամար" : "Please provide your WhatsApp number");
         if (!targetRole.trim()) throw new Error(isHy ? "Խնդրում ենք նշել աշխատանքի ոլորտը" : "Please specify target role or sector");
+        if (!candidateZeroFeeConsent) throw new Error(isHy ? "Խնդրում ենք հաստատել էթիկական քարտիայի համաձայնությունը" : "Please confirm acknowledgment of our zero upfront fee policy.");
       } else if (activeTab === "employer") {
         if (!companyName.trim()) throw new Error(isHy ? "Խնդրում ենք նշել ընկերության անվանումը" : "Please enter company name");
         if (!contactPerson.trim()) throw new Error(isHy ? "Խնդրում ենք նշել կոնտակտային անձին" : "Please enter contact person name");
@@ -304,14 +313,20 @@ export function ConciergeDrawer() {
         formData.append("nationality", nationality);
         formData.append("currentCountry", currentCountry);
         formData.append("targetRole", targetRole);
+        formData.append("experienceLevel", experienceLevel);
+        formData.append("primaryLanguage", primaryLanguage);
+        formData.append("candidateStatus", candidateStatus);
         if (cvFile) {
           formData.append("cvFile", cvFile);
         }
       } else if (activeTab === "employer") {
         formData.append("companyName", companyName);
         formData.append("contactPerson", contactPerson);
+        formData.append("employerJurisdiction", employerJurisdiction);
         formData.append("industrySector", industrySector);
         formData.append("headcountRequired", headcountRequired);
+        formData.append("employerUrgency", employerUrgency);
+        formData.append("employerHousing", employerHousing);
       }
 
       // Send to Next.js API route
@@ -356,6 +371,9 @@ export function ConciergeDrawer() {
             nationality,
             currentLocation: currentCountry,
             role: targetRole,
+            experience: experienceLevel,
+            languages: primaryLanguage,
+            status: candidateStatus,
             phone: fullPhone,
             email,
             notes: notes + (cvFile ? ` (CV Attached: ${cvFile.name})` : ""),
@@ -364,10 +382,13 @@ export function ConciergeDrawer() {
           msg = buildEmployerWhatsAppMessage({
             companyName,
             contactPerson,
+            jurisdiction: employerJurisdiction,
             email,
             phone: fullPhone,
             industry: industrySector,
             headcount: headcountRequired,
+            urgency: employerUrgency,
+            housing: employerHousing,
             notes,
           });
         }
@@ -1160,39 +1181,186 @@ export function ConciergeDrawer() {
                         </div>
                       </div>
                     </div>
+
+                    {/* Professional Experience Level */}
+                    <div>
+                      <label className="block text-xs font-semibold text-brand-forest mb-1.5">
+                        {isHy ? "Աշխատանքային փորձի տևողությունը" : "Years of Professional Experience"}
+                      </label>
+                      <div className="grid grid-cols-4 gap-1.5 text-[11px]">
+                        {[
+                          { id: "1–2 Years", label_en: "1–2 Yrs", label_hy: "1–2 Տարի" },
+                          { id: "3–5 Years", label_en: "3–5 Yrs", label_hy: "3–5 Տարի" },
+                          { id: "5+ Years", label_en: "5+ Yrs", label_hy: "5+ Տարի" },
+                          { id: "Entry Level", label_en: "Entry", label_hy: "Սկսնակ" },
+                        ].map((exp) => (
+                          <button
+                            key={exp.id}
+                            type="button"
+                            onClick={() => setExperienceLevel(exp.id)}
+                            className={`py-2 px-1 rounded-xl border text-center transition-all cursor-pointer ${
+                              experienceLevel === exp.id
+                                ? "bg-brand-forest text-white border-brand-forest font-semibold shadow-2xs"
+                                : "bg-white border-brand-stone-200 text-brand-ink-muted hover:border-brand-olive/50"
+                            }`}
+                          >
+                            <span className="block font-bold leading-tight text-xs">{isHy ? exp.label_hy : exp.label_en}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Primary Working Language & Mobility Status */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs font-semibold text-brand-forest mb-1.5">
+                          {isHy ? "Հիմնական աշխատանքային լեզուն" : "Primary Working Language"}
+                        </label>
+                        <select
+                          value={primaryLanguage}
+                          onChange={(e) => setPrimaryLanguage(e.target.value)}
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs focus:ring-2 focus:ring-brand-olive focus:border-transparent outline-hidden"
+                        >
+                          <option value="English Conversational">English (Conversational / Fluent)</option>
+                          <option value="Russian Fluent">Russian (Ռուսերեն - Fluent)</option>
+                          <option value="Basic Armenian">Armenian (Հայերեն - Basic/Learning)</option>
+                          <option value="Arabic">Arabic (العربية)</option>
+                          <option value="Hindi / Urdu">Hindi / Urdu</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-brand-forest mb-1.5">
+                          {isHy ? "Տեղափոխման կարգավիճակ" : "Mobility / Relocation Readiness"}
+                        </label>
+                        <select
+                          value={candidateStatus}
+                          onChange={(e) => setCandidateStatus(e.target.value)}
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs focus:ring-2 focus:ring-brand-olive focus:border-transparent outline-hidden"
+                        >
+                          <option value="In Home Country (Ready for Visa)">In Home Country (Ready for Visa Filing)</option>
+                          <option value="Currently in Armenia">Currently in Armenia (Active Stay)</option>
+                          <option value="Working in UAE / Gulf">Working in UAE / GCC (Ready to Relocate)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* Zero-Fee Legal Guarantee Checkbox */}
+                    <div className="p-3.5 rounded-2xl bg-brand-olive-subtle/80 border border-brand-olive/30 shadow-2xs">
+                      <label className="flex items-start gap-3 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={candidateZeroFeeConsent}
+                          onChange={(e) => setCandidateZeroFeeConsent(e.target.checked)}
+                          className="mt-0.5 w-4 h-4 rounded border-brand-stone-300 text-brand-forest focus:ring-brand-olive cursor-pointer"
+                        />
+                        <div className="text-xs">
+                          <span className="font-bold text-brand-forest block">
+                            {isHy ? "0.00 ֏ Զրոյական Նախնական Վճարի Համաձայնություն" : "Strict Zero Upfront Fee Policy Consent"}
+                          </span>
+                          <span className="text-brand-ink-muted leading-relaxed block text-[11px] mt-0.5">
+                            {isHy
+                              ? "Հաստատում եմ, որ որևէ միջնորդավճար չեմ վճարել: Ծառայության պայմանները գործում են բացառապես պաշտոնական աշխատանքի հրավերի և ՀՀ օրինական աշխատանքի թույլտվության ձևակերպումից հետո:"
+                              : "I understand that De Organica charges zero upfront registration or interview fees. Candidate placement terms apply strictly upon verified job offer and legal Republic of Armenia work permit issuance."}
+                          </span>
+                        </div>
+                      </label>
+                    </div>
                   </>
                 )}
 
                 {/* Mode-Specific Fields: Employer */}
                 {activeTab === "employer" && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label htmlFor="employerIndustryInput" className="block text-xs font-semibold text-brand-forest mb-1.5">
-                        {isHy ? "Արդյունաբերության ոլորտը" : "Industry Sector"}
-                      </label>
-                      <input
-                        id="employerIndustryInput"
-                        type="text"
-                        value={industrySector}
-                        onChange={(e) => setIndustrySector(e.target.value)}
-                        placeholder="e.g. Construction / Hospitality / Fleet"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs"
-                      />
+                  <>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label htmlFor="employerIndustryInput" className="block text-xs font-semibold text-brand-forest mb-1.5">
+                          {isHy ? "Արդյունաբերության ոլորտը" : "Industry Sector"}
+                        </label>
+                        <input
+                          id="employerIndustryInput"
+                          type="text"
+                          value={industrySector}
+                          onChange={(e) => setIndustrySector(e.target.value)}
+                          placeholder="e.g. Construction / Hospitality / Fleet"
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="employerHeadcountInput" className="block text-xs font-semibold text-brand-forest mb-1.5">
+                          {isHy ? "Պահանջվող աշխատակիցների թիվը" : "Headcount Needed"}
+                        </label>
+                        <input
+                          id="employerHeadcountInput"
+                          type="text"
+                          value={headcountRequired}
+                          onChange={(e) => setHeadcountRequired(e.target.value)}
+                          placeholder="e.g. 5–10 workers"
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs"
+                        />
+                      </div>
                     </div>
-                    <div>
-                      <label htmlFor="employerHeadcountInput" className="block text-xs font-semibold text-brand-forest mb-1.5">
-                        {isHy ? "Պահանջվող աշխատակիցների թիվը" : "Headcount Needed"}
-                      </label>
-                      <input
-                        id="employerHeadcountInput"
-                        type="text"
-                        value={headcountRequired}
-                        onChange={(e) => setHeadcountRequired(e.target.value)}
-                        placeholder="e.g. 5–10 workers"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs"
-                      />
+
+                    {/* Corporate Jurisdiction & Target Timeline */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs font-semibold text-brand-forest mb-1.5">
+                          {isHy ? "Իրավական Իրավասություն" : "Company Legal Jurisdiction"}
+                        </label>
+                        <select
+                          value={employerJurisdiction}
+                          onChange={(e) => setEmployerJurisdiction(e.target.value)}
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs focus:ring-2 focus:ring-brand-olive focus:border-transparent outline-hidden"
+                        >
+                          <option value="Armenia (ՀՎՀՀ / TIN)">Armenia (ՀՎՀՀ Registered Enterprise)</option>
+                          <option value="UAE & GCC Enterprise">UAE & GCC Corporation</option>
+                          <option value="Europe / International">Europe / International Business</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-brand-forest mb-1.5">
+                          {isHy ? "Տեղակայման Ժամանակացույց" : "Deployment Timeline Urgency"}
+                        </label>
+                        <select
+                          value={employerUrgency}
+                          onChange={(e) => setEmployerUrgency(e.target.value)}
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs focus:ring-2 focus:ring-brand-olive focus:border-transparent outline-hidden"
+                        >
+                          <option value="Immediate (< 15 Days)">Immediate Requisition (&lt; 15 Days)</option>
+                          <option value="Standard (30 Days)">Standard Batch (30 Days)</option>
+                          <option value="Project Base (60+ Days)">Project Expansion (60+ Days)</option>
+                        </select>
+                      </div>
                     </div>
-                  </div>
+
+                    {/* Accommodation & Housing Policy */}
+                    <div>
+                      <label className="block text-xs font-semibold text-brand-forest mb-1.5">
+                        {isHy ? "Կացարանի և Տեղավորման Քաղաքականություն" : "Accommodation & Housing Policy"}
+                      </label>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px]">
+                        {[
+                          { id: "Employer Housing Included", label_en: "Housing Provided", label_hy: "Կացարանը ներառված է" },
+                          { id: "Worker Self-Arranged", label_en: "Worker Arranges", label_hy: "Աշխատակիցն է հոգում" },
+                          { id: "De Organica Assistance Required", label_en: "De Organica Assist", label_hy: "Անհրաժեշտ է օգնություն" },
+                        ].map((h) => (
+                          <button
+                            key={h.id}
+                            type="button"
+                            onClick={() => setEmployerHousing(h.id)}
+                            className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
+                              employerHousing === h.id
+                                ? "bg-brand-forest text-white border-brand-forest font-semibold shadow-2xs"
+                                : "bg-white border-brand-stone-200 text-brand-ink-muted hover:border-brand-olive/50"
+                            }`}
+                          >
+                            <span className="block font-bold leading-tight">{isHy ? h.label_hy : h.label_en}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </>
                 )}
 
                 {/* Additional Notes / Requirements */}

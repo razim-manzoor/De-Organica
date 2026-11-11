@@ -89,7 +89,7 @@ const DESTINATIONS: HighlightDestination[] = [
     season_en: "April – November",
     season_hy: "Ապրիլ – Նոյեմբեր",
     image:
-      "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
     tag_en: "Engineering Marvel",
     tag_hy: "Ինժեներական Հրաշք",
   },

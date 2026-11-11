@@ -22,6 +22,9 @@ export interface CandidateWhatsAppParams {
   nationality?: string;
   currentLocation?: string;
   role: string;
+  experience?: string;
+  languages?: string;
+  status?: string;
   phone?: string;
   email?: string;
   notes?: string;
@@ -32,8 +35,11 @@ export interface EmployerWhatsAppParams {
   contactPerson?: string;
   email?: string;
   phone?: string;
+  jurisdiction?: string;
   industry: string;
   headcount?: string;
+  urgency?: string;
+  housing?: string;
   notes?: string;
 }
 
@@ -93,9 +99,12 @@ export function buildCandidateWhatsAppMessage(params: CandidateWhatsAppParams): 
     params.nationality ? `*Nationality:* ${params.nationality}` : null,
     params.currentLocation ? `*Current Country:* ${params.currentLocation}` : null,
     `*Target Role / Sector:* ${params.role}`,
+    params.experience ? `*Years of Experience:* ${params.experience}` : null,
+    params.languages ? `*Languages:* ${params.languages}` : null,
+    params.status ? `*Mobility Status:* ${params.status}` : null,
     params.phone ? `*WhatsApp Contact:* ${params.phone}` : null,
     params.email ? `*Email:* ${params.email}` : null,
-    params.notes ? `*Experience / Qualifications:* ${params.notes}` : null,
+    params.notes ? `*Candidate Notes:* ${params.notes}` : null,
     `----------------------------------------`,
     `_Zero Upfront Fee Guarantee · Sent via deorganica.am_`,
   ].filter(Boolean);
@@ -114,10 +123,13 @@ export function buildEmployerWhatsAppMessage(params: EmployerWhatsAppParams): st
     `----------------------------------------`,
     company ? `*Company Name:* ${company}` : null,
     contact ? `*Contact Person:* ${contact}` : null,
+    params.jurisdiction ? `*Jurisdiction:* ${params.jurisdiction}` : null,
     params.email ? `*Business Email:* ${params.email}` : null,
     params.phone ? `*Phone/WhatsApp:* ${params.phone}` : null,
     `*Industry Sector:* ${params.industry}`,
     params.headcount ? `*Personnel Required:* ${params.headcount}` : null,
+    params.urgency ? `*Target Timeline:* ${params.urgency}` : null,
+    params.housing ? `*Housing Coordination:* ${params.housing}` : null,
     params.notes ? `*Scope & Requirements:* ${params.notes}` : null,
     `----------------------------------------`,
     `_Corporate Staffing Desk · Sent via deorganica.am_`,

@@ -5,7 +5,9 @@ import { TravelHero } from "@/components/TravelHero";
 import { ItineraryStageShow } from "@/components/ItineraryStageShow";
 import { TravelServicesMatrix } from "@/components/TravelServicesMatrix";
 import { FeaturedToursGrid } from "@/components/FeaturedToursGrid";
+import { TravelHeritageShowcase } from "@/components/TravelHeritageShowcase";
 import { DmcPartnerSection } from "@/components/DmcPartnerSection";
+import { TravelFaqSection } from "@/components/TravelFaqSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 
@@ -34,8 +36,14 @@ export default function TravelPage() {
         {/* Signature Inbound Tour Packages */}
         <FeaturedToursGrid />
 
+        {/* Living Heritage, Terroir & Gastronomy Showcase */}
+        <TravelHeritageShowcase />
+
         {/* B2B Destination Management (DMC) Wholesale Partner Portal */}
         <DmcPartnerSection />
+
+        {/* Armenia Travel Advisory & FAQ */}
+        <TravelFaqSection />
 
         {/* Contact & Desk Inquiries */}
         <ContactSection variant="travel" />

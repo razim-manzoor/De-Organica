@@ -191,10 +191,10 @@ export function FeaturedToursGrid() {
                     <button
                       type="button"
                       onClick={() => handleWhatsAppBooking(tour.title_en)}
-                      className="py-2.5 px-3.5 rounded-xl border border-brand-stone-300 bg-white text-brand-ink hover:text-emerald-700 hover:border-emerald-500 active:scale-95 text-xs font-medium transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                      className="py-2.5 px-3.5 rounded-xl border border-brand-stone-300 bg-white text-brand-ink hover:text-brand-forest hover:border-brand-olive active:scale-95 text-xs font-medium transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
                       title="Check availability on WhatsApp"
                     >
-                      <MessageCircle className="w-4 h-4 text-emerald-600" />
+                      <MessageCircle className="w-4 h-4 text-[#25D366]" />
                       <span className="hidden sm:inline">WhatsApp</span>
                     </button>
                   </div>

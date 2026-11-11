@@ -138,13 +138,13 @@ export function HeroDualGateway() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-                <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-emerald-900 text-xs font-semibold shadow-2xs">
-                  <Users className="w-3.5 h-3.5 text-emerald-700" />
+                <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-brand-forest text-xs font-semibold shadow-2xs">
+                  <Users className="w-3.5 h-3.5 text-brand-olive" />
                   <span>{isHy ? "Ուղղություն II · Միջազգային Աշխատուժ" : "Division II · International Manpower"}</span>
                 </div>
 
                 <div className="absolute bottom-3.5 left-3.5 right-3.5 text-white">
-                  <p className="text-xs font-medium text-emerald-300 uppercase tracking-wider">
+                  <p className="text-xs font-medium text-brand-olive-light uppercase tracking-wider">
                     {isHy ? "Էթիկական Հավաքագրում և Կացություն" : "Ethical Mobility & Turnkey Placement"}
                   </p>
                   <p className="font-serif text-lg font-bold">
@@ -166,15 +166,15 @@ export function HeroDualGateway() {
               {/* 3 Core Value Signals */}
               <div className="space-y-2.5 mb-8">
                 <div className="flex items-center gap-2.5 text-xs text-stone-700 font-medium">
-                  <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" />
+                  <ShieldCheck className="w-4 h-4 text-brand-olive shrink-0" />
                   <span>{isHy ? "0.00 AMD նախնական գրանցման վճար թեկնածուներից" : "Strict 0.00 AMD Upfront Fee Guarantee for Candidates"}</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-stone-700 font-medium">
-                  <Scale className="w-4 h-4 text-emerald-700 shrink-0" />
+                  <Scale className="w-4 h-4 text-brand-olive shrink-0" />
                   <span>{isHy ? "ՀՀ միգրացիոն ծառայության 100% օրինական աշխատանքի թույլտվություն" : "100% Legal Ministry of Labor & Migration Work Permits"}</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-stone-700 font-medium">
-                  <Building className="w-4 h-4 text-emerald-700 shrink-0" />
+                  <Building className="w-4 h-4 text-brand-olive shrink-0" />
                   <span>{isHy ? "14-21 օր առաջնային տեղավորման ժամանակացույց գործատուներին" : "14–21 Day Enterprise Deployment SLA with Replacement Guarantee"}</span>
                 </div>
               </div>

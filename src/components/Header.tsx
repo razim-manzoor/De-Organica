@@ -69,8 +69,8 @@ export function Header() {
         {/* Header Right Actions */}
         <div className="hidden sm:flex items-center gap-3 lg:gap-4 shrink-0">
           {/* Calm Institutional Location Tag */}
-          <div className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-100/70 border border-stone-200/60 text-xs text-stone-600 font-medium">
-            <span className="w-2 h-2 rounded-full bg-emerald-600 shrink-0" />
+          <div className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-stone-100/70 border border-brand-stone-200/60 text-xs text-brand-forest font-medium">
+            <span className="w-2 h-2 rounded-full bg-brand-olive shrink-0" />
             <span>{isHy ? "Երևան, Հայաստան" : "Yerevan, Armenia"}</span>
           </div>
 
@@ -142,7 +142,7 @@ export function Header() {
               rel="noopener noreferrer"
               className="w-full py-2.5 rounded-xl border border-stone-300 bg-stone-50 text-stone-700 text-xs font-medium flex items-center justify-center gap-2 hover:bg-stone-100 active:scale-98 transition-transform"
             >
-              <PhoneCall className="w-3.5 h-3.5 text-emerald-600" />
+              <PhoneCall className="w-3.5 h-3.5 text-brand-olive" />
               <span>{deorganicaConfig.company.phoneYerevanDesk} (Yerevan Desk)</span>
             </a>
           </div>

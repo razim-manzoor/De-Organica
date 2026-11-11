@@ -79,7 +79,7 @@ export const deorganicaConfig = {
       ],
       badge_en: "Signature Inbound",
       badge_hy: "Հիմնական Ուղղություն",
-      image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80",
+      image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1200&q=80",
       inquiryType: "Armenia Cultural & Nature Tours",
     },
     {
@@ -160,7 +160,7 @@ export const deorganicaConfig = {
       ],
       badge_en: "24/7 Operations",
       badge_hy: "24/7 Գրաֆիկ",
-      image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80",
+      image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80",
       inquiryType: "Hotels & Airport Transfers",
     },
     {
@@ -187,7 +187,7 @@ export const deorganicaConfig = {
       ],
       badge_en: "Tailor-Made",
       badge_hy: "Անհատական",
-      image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80",
+      image: "https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?auto=format&fit=crop&w=1200&q=80",
       inquiryType: "Customized Private Trips",
     },
     {
@@ -371,7 +371,7 @@ export const deorganicaConfig = {
       ],
       inclusions_en: ["Boutique City Hotel", "Private Chauffeur", "Museum Passes", "Airport EVN Transfer"],
       inclusions_hy: ["Բուտիկ հյուրանոց Երևանի կենտրոնում", "Անհատական տրանսպորտ", "Թանգարանային տոմսեր", "Օդանավակայանի տրանսֆեր"],
-      image: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=80",
+      image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1200&q=80",
       showPrice: false,
       isFeatured: false,
     },
