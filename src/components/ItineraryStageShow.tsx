@@ -41,7 +41,7 @@ const ITINERARY_DAYS: DayStop[] = [
       "Journey from the pink tuff architecture of Yerevan into the dramatic basalt organ canyon of Garni and the rock-cut medieval UNESCO sanctuary of Geghard.",
     description_hy:
       "Ճանապարհորդություն Երևանի վարդագույն տուֆե ճարտարապետությունից դեպի Գառնու բազալտե կիրճ և Գեղարդի ժայռափոր վանական համալիր:",
-    image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/tours/garni-temple.jpg",
   },
   {
     day: 2,
@@ -77,7 +77,7 @@ const ITINERARY_DAYS: DayStop[] = [
       "Soar above the 320-meter deep Vorotan canyon on the world's longest reversible aerial tramway to the cliffside fortress monastery of Tatev.",
     description_hy:
       "Թռիչք աշխարհի ամենաերկար հետադարձելի ճոպանուղով Որոտանի կիրճի վրայով դեպի 9-րդ դարի հզորագույն Տաթևի վանական համալիր:",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/tours/wings-of-tatev.jpg",
   },
 ];
 

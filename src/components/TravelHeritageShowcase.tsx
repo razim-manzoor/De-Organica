@@ -33,7 +33,7 @@ const HERITAGE_PILLARS: HeritagePillar[] = [
       "Մասնակցեք ՅՈՒՆԵՍԿՕ-ի ոչ նյութական մշակութային ժառանգության մաս կազմող լավաշի թխման արարողությանը՝ թարմ պանրով և լեռնային կանաչիներով:",
     badge_en: "UNESCO Heritage",
     badge_hy: "ՅՈՒՆԵՍԿՕ Ժառանգություն",
-    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/heritage/tonir-lavash.jpg",
     icon: Utensils,
   },
   {

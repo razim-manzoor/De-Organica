@@ -91,7 +91,7 @@ export function ManpowerCandidateHub() {
           </div>
 
           {/* 4 Trust Pillars */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-6 border-b border-brand-olive/15">
             {deorganicaConfig.manpower.trustPillars.map((p, i) => (
               <div key={i} className="space-y-1.5">
                 <div className="flex items-center gap-2 text-xs font-bold text-brand-forest">
@@ -104,36 +104,37 @@ export function ManpowerCandidateHub() {
               </div>
             ))}
           </div>
-        </div>
 
-        {/* 4-Step Legal Pathway to Armenia */}
-        <div className="mb-16">
-          <div className="max-w-xl mb-8">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-brand-olive block mb-1">
-              {isHy ? "Թափանցիկ Գործընթաց" : "Transparent 4-Step Process"}
-            </span>
-            <h3 className="font-serif text-2xl font-bold text-brand-forest">
-              {isHy ? "Ինչպե՞ս է կատարվում աշխատանքի տեղավորումը" : "How Your Legal Relocation to Armenia Works"}
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {deorganicaConfig.manpower.mobilitySteps.map((step) => (
-              <div
-                key={step.step}
-                className="p-7 rounded-2xl bg-white border border-brand-stone-200/90 relative group hover:border-brand-olive/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-2xs"
-              >
-                <div className="text-3xl font-serif font-bold text-brand-stone-300 group-hover:text-brand-olive transition-colors mb-4">
-                  {step.step}
+          {/* Compact 4-Step Relocation Milestone Ribbon */}
+          <div className="pt-6">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-brand-olive">
+                {isHy ? "Թեկնածուի Թափանցիկ Ճանապարհը" : "Candidate Legal Relocation Flow"}
+              </span>
+              <span className="text-[11px] text-brand-ink-muted font-medium">
+                {isHy ? "Պաշտոնական Պետական Գործընթաց" : "Official State-Approved Pipeline"}
+              </span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {deorganicaConfig.manpower.mobilitySteps.map((step) => (
+                <div
+                  key={step.step}
+                  className="p-3.5 rounded-xl bg-white/80 border border-brand-olive/20 flex items-start gap-3 shadow-2xs"
+                >
+                  <span className="font-serif font-bold text-sm text-brand-olive shrink-0">
+                    {step.step}
+                  </span>
+                  <div>
+                    <h4 className="text-xs font-bold text-brand-forest leading-tight">
+                      {isHy ? step.title_hy : step.title_en}
+                    </h4>
+                    <p className="text-[11px] text-brand-ink-muted leading-snug mt-0.5 line-clamp-2">
+                      {isHy ? step.desc_hy : step.desc_en}
+                    </p>
+                  </div>
                 </div>
-                <h4 className="font-serif text-base font-bold text-brand-forest mb-2">
-                  {isHy ? step.title_hy : step.title_en}
-                </h4>
-                <p className="text-xs text-brand-ink-muted leading-relaxed">
-                  {isHy ? step.desc_hy : step.desc_en}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 

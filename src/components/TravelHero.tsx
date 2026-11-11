@@ -43,8 +43,7 @@ const DESTINATIONS: HighlightDestination[] = [
     altitudeM: 1400,
     season_en: "Year-round",
     season_hy: "Ողջ տարին",
-    image:
-      "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/tours/garni-temple.jpg",
     tag_en: "UNESCO Heritage",
     tag_hy: "ՅՈՒՆԵՍԿՕ Ժառանգություն",
   },
@@ -88,8 +87,7 @@ const DESTINATIONS: HighlightDestination[] = [
     altitudeM: 1537,
     season_en: "April – November",
     season_hy: "Ապրիլ – Նոյեմբեր",
-    image:
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/tours/wings-of-tatev.jpg",
     tag_en: "Engineering Marvel",
     tag_hy: "Ինժեներական Հրաշք",
   },
