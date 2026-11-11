@@ -302,7 +302,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                   </div>
                 </div>
 
-                {/* Channel 3: Zvartnots EVN VIP Chauffeur Fleet */}
+                {/* Channel 3: Zvartnots EVN Chauffeur Fleet */}
                 <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
                   <div className="flex items-start gap-3.5">
                     <div className="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-800 shrink-0">
@@ -314,12 +314,12 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                         <span className="px-1.5 py-0.2 rounded bg-slate-200 text-slate-800 text-[9px]">24/7 LIVE</span>
                       </div>
                       <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
-                        {isHy ? "Executive Chauffeur և EVN Տրանսֆեր" : "Executive Chauffeur Fleet & Airport Transfers"}
+                        {isHy ? "Chauffeur Ավտոպարկ և EVN Տրանսֆեր" : "Executive Chauffeur Fleet & Airport Transfers"}
                       </h4>
                       <p className="text-xs text-brand-ink-muted mt-0.5">
                         {isHy
-                          ? "Թռիչքների առցանց հետևում, executive մարդատար մեքենաներ և VIP մինիվեններ, պրոֆեսիոնալ վարորդներ:"
-                          : "Real-time flight monitoring, executive sedans and VIP passenger vans, and reliable intercity chauffeur dispatch."}
+                          ? "Թռիչքների առցանց հետևում, էկոնոմից մինչև VIP մարդատար մեքենաներ և հուսալի միջքաղաքային երթեր:"
+                          : "Real-time flight monitoring, economy to executive sedans and VIP passenger vans with professional chauffeur dispatch."}
                       </p>
                     </div>
                   </div>
@@ -345,8 +345,136 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
               </>
             )}
 
+            {/* Manpower-Specific Channels */}
+            {variant === "manpower" && (
+              <>
+                {/* Channel 1: Candidate CV Submission & Placement Desk */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-emerald-800 shrink-0">
+                      <Briefcase className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-800">
+                        <span>{isHy ? "Աշխատանք Փնտրողների Բաժին" : "Division I · Job Seekers"}</span>
+                        <span className="px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-900 text-[9px]">ZERO FEE</span>
+                      </div>
+                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                        {isHy ? "Թեկնածուների Դիմումներ և Ռեզյումե (CV)" : "Candidate CV Submission & Job Advisory"}
+                      </h4>
+                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                        {isHy
+                          ? "100% անվճար ռեզյումեի գրանցում, վճարում միայն աշխատանքի ընդունվելիս և պաշտոնական աշխատանքային վիզա:"
+                          : "100% free resume submission with pay-after-job guarantee, verified contracts, and official visa support."}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={handleCandidateWhatsApp}
+                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      <span>WhatsApp</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => openCandidateDrawer()}
+                      className="px-3.5 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors cursor-pointer"
+                    >
+                      {isHy ? "Ուղարկել CV" : "Drop CV"}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Channel 2: Corporate Staffing & B2B Quota Requisition */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-800 shrink-0">
+                      <Building2 className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-700">
+                        <span>{isHy ? "Գործատուների Բաժին" : "Division II · B2B Staffing"}</span>
+                        <span className="px-1.5 py-0.2 rounded bg-slate-200 text-slate-800 text-[9px]">72H SLA</span>
+                      </div>
+                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                        {isHy ? "Կորպորատիվ Գործատուների Պատվերներ" : "Corporate Employer Talent Requisitions"}
+                      </h4>
+                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                        {isHy
+                          ? "ՀՀ աշխատանքի քվոտաների ձևակերպում, թեկնածուների ստուգում և արագ համալրում 30-օրյա երաշխիքով:"
+                          : "Ministry labor quota processing, vetted candidate shortlists within 72 hours, and 30-day replacement warranty."}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={handleEmployerWhatsApp}
+                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      <span>WhatsApp</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => openEmployerDrawer()}
+                      className="px-3.5 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-colors cursor-pointer"
+                    >
+                      {isHy ? "Պատվիրել" : "Requisition"}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Channel 3: Legal Work Permit & Relocation Advisory */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200/80 flex items-center justify-center text-amber-800 shrink-0">
+                      <ShieldCheck className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-800">
+                        <span>{isHy ? "Իրավական Համապատասխանություն" : "Division III · Legal Permits"}</span>
+                        <span className="px-1.5 py-0.2 rounded bg-amber-100 text-amber-900 text-[9px]">RA MINISTRY</span>
+                      </div>
+                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                        {isHy ? "Աշխատանքի Թույլտվություն և Ռելոկացիա" : "Work Permit Clearance & Relocation Care"}
+                      </h4>
+                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                        {isHy
+                          ? "ՀՀ միգրացիոն ծառայության գրանցում, հյուպատոսական վիզա, Զվարթնոցում դիմավորում և կացություն:"
+                          : "Full compliance with RA Migration Service, consular visa files, Zvartnots arrival reception, and residential registration."}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={handleCandidateWhatsApp}
+                      className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      <span>WhatsApp</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => openCandidateDrawer()}
+                      className="px-3.5 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-colors cursor-pointer"
+                    >
+                      {isHy ? "Խորհրդատվություն" : "Advisory"}
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
+
             {/* Standard Multi-Division Channels (Overview / General Contact) */}
-            {variant !== "travel" && (
+            {variant === "all" && (
               <>
                 {/* Channel 1: Travel & Tour Desk */}
                 <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
@@ -356,13 +484,15 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                     </div>
                     <div>
                       <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-800">
-                        <span>Division I · Travel Desk</span>
+                        <span>{isHy ? "Բաժին I · Տուրեր և Երթուղիներ" : "Division I · Travel Desk"}</span>
                       </div>
                       <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
                         {isHy ? "Տուրեր, Երթուղիներ և VIP Տրանսֆեր" : "Armenia Itineraries & Chauffeur Fleet"}
                       </h4>
                       <p className="text-xs text-brand-ink-muted mt-0.5">
-                        Custom holiday planning, Garni/Sevan/Tatev tours, or B2B DMC group tariffs.
+                        {isHy
+                          ? "Հատուկ կազմված տուրիստական ծրագրեր, Գառնի, Սևան, Տաթև և B2B DMC մեծածախ սակագներ:"
+                          : "Custom holiday planning, Garni/Sevan/Tatev tours, or B2B DMC group tariffs."}
                       </p>
                     </div>
                   </div>
@@ -394,14 +524,16 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                     </div>
                     <div>
                       <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-800">
-                        <span>Division II · Job Seekers</span>
+                        <span>{isHy ? "Բաժին II · Աշխատանք Փնտրողներ" : "Division II · Job Seekers"}</span>
                         <span className="px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-900 text-[9px]">ZERO FEE</span>
                       </div>
                       <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
                         {isHy ? "Թեկնածուների Դիմումներ և Ռեզյումե" : "Candidate CV Submission & Job Advisory"}
                       </h4>
                       <p className="text-xs text-brand-ink-muted mt-0.5">
-                        100% free resume submission with pay-after-job guarantee and official visa support.
+                        {isHy
+                          ? "100% անվճար ռեզյումեի ներկայացում, վճարում միայն աշխատանքի ընդունվելիս և վիզայի աջակցություն:"
+                          : "100% free resume submission with pay-after-job guarantee and official visa support."}
                       </p>
                     </div>
                   </div>
@@ -433,14 +565,16 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                     </div>
                     <div>
                       <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-700">
-                        <span>Enterprise · B2B Staffing</span>
+                        <span>{isHy ? "Բաժին III · Կորպորատիվ Հավաքագրում" : "Enterprise · B2B Staffing"}</span>
                         <span className="px-1.5 py-0.2 rounded bg-slate-200 text-slate-800 text-[9px]">72H SLA</span>
                       </div>
                       <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
                         {isHy ? "Կորպորատիվ Գործատուների Պատվերներ" : "Corporate Employer Talent Requisitions"}
                       </h4>
                       <p className="text-xs text-brand-ink-muted mt-0.5">
-                        Ministry labor quota handling, candidate vetting, and complete relocation compliance.
+                        {isHy
+                          ? "ՀՀ աշխատանքի քվոտաների ձևակերպում, թեկնածուների ընտրություն և ամբողջական իրավական աջակցություն:"
+                          : "Ministry labor quota handling, candidate vetting, and complete relocation compliance."}
                       </p>
                     </div>
                   </div>
@@ -471,7 +605,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-brand-olive shrink-0" />
                 <span>
-                  Official Corporate Inquiries:{" "}
+                  {isHy ? "Պաշտոնական կորպորատիվ հարցումներ: " : "Official Corporate Inquiries: "}
                   <a
                     href={`mailto:${deorganicaConfig.company.email}`}
                     className="font-mono text-brand-forest underline underline-offset-2"
@@ -481,7 +615,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                 </span>
               </div>
               <span className="text-[11px] font-medium text-brand-forest">
-                Response SLA: Within 4 Business Hours
+                {isHy ? "Պատասխանի ժամկետ՝ 4 աշխատանքային ժամվա ընթացքում" : "Response SLA: Within 4 Business Hours"}
               </span>
             </div>
           </div>

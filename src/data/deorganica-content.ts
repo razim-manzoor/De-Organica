@@ -340,7 +340,7 @@ export const deorganicaConfig = {
       ],
       inclusions_en: ["Ski Resort Lodging", "Daily Transfers", "Equipment Assist", "EVN Airport Shuttle"],
       inclusions_hy: ["Հյուրանոց Ծաղկաձորում", "Ամենօրյա տրանսֆեր", "Դահուկային սարքավորումների աջակցություն", "Օդանավակայանի տրանսֆեր"],
-      image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
+      image: "https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=1200&q=80",
       showPrice: false,
       isFeatured: false,
     },
