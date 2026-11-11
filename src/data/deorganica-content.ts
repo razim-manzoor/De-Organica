@@ -42,8 +42,8 @@ export const deorganicaConfig = {
   hero: {
     eyebrow_en: "Republic of Armenia · Corporate Headquarters",
     eyebrow_hy: "Հայաստանի Հանրապետություն · Կենտրոնական Գրասենյակ",
-    headline_en: "Bespoke Armenia Hospitality & Global Talent Mobility",
-    headline_hy: "Հայկական հյուրընկալություն և միջազգային աշխատուժի շարժունակություն",
+    headline_en: "Curated Armenia Travel & Global Manpower",
+    headline_hy: "Հայաստանի ճանապարհորդություններ և միջազգային աշխատուժ",
     subtext_en: "Headquartered in Yerevan, De Organica LLC bridges discerning global travellers with authentic Armenian journeys, while delivering verified international manpower supply for growing enterprises.",
     subtext_hy: "Երևանում գործող «Դե Օրգանիկա» ՍՊԸ-ն կապում է համաշխարհային ճանապարհորդներին Հայաստանի բացառիկ երթուղիների հետ և ապահովում է որակավորված միջազգային աշխատուժի մատակարարում գործատուներին:",
     ctaPrimary_en: "Direct Desk Inquiry",
