@@ -137,6 +137,6 @@
   - **Zero console errors, zero runtime exceptions.**
 
 ## Client Handoff Items
+- **GitHub Repository Pushed:** Live on [`https://github.com/razim-manzoor/De-Organica.git`](https://github.com/razim-manzoor/De-Organica.git) tracking `master` and `main`.
 - Provide official Armenian/international WhatsApp number in `src/data/deorganica-content.ts` (currently configured with placeholder `+374 99 000000`).
 - Add `RESEND_API_KEY` to `.env.local` for live email notifications.
-- Remote Git origin is configured: run `git push -u origin master` whenever ready to push upstream.
