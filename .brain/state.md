@@ -19,9 +19,14 @@
    - `src/app/api/inquiry/route.ts` for multipart form parsing, CV file buffering, and Resend email notifications.
 5. **Multi-Route & Single-Page Synergy:**
    - Shipped `/`, `/travel`, `/manpower`, and `/contact` routes.
-6. **Verification:**
-   - `npm run build` compiled 100% cleanly with zero errors.
+6. **Verification & Local Testing:**
+   - `npm run build`: Compiled 100% cleanly with zero errors across all static routes (`/`, `/travel`, `/manpower`, `/contact`) and dynamic route (`/api/inquiry`).
+   - Local HTTP Endpoint Testing: Verified HTTP 200 on all routes.
+   - API Multipart Testing: Verified `POST /api/inquiry` handles travel and candidate CV submissions with file buffering and returns `{ success: true }`.
+   - Browser & Accessibility Verification (Playwright): Verified visual layout, backdrop light-dismiss, keyboard Escape dismissal, and instant `EN | ՀԱՅ` font switching.
+   - Git State: Initialized, `.gitignore` hardened, clean working tree on `master` (`a1877cf`).
 
 ## Outstanding / Client Configuration Points
 - Provide official Armenian/international WhatsApp number in `src/data/deorganica-content.ts` (currently configured with placeholder `+374 99 000000`).
 - Add `RESEND_API_KEY` to `.env.local` when ready to send live inquiry emails.
+- Connect remote Git repository (e.g. GitHub) when target repository URL is provided.
