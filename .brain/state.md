@@ -94,10 +94,28 @@
       - *VIP Minivan & Passenger Van* (Spacious MPVs and vans like Toyota Alphard / Sprinter / V-Class, 4–16 Guests)
       - *Private Tour Coach* (Large group travel, 17+ Guests)
 
-11. **Verification Protocol:**
+11. **Card Structural Deduplication & Forensic Photographic Grounding (New):**
+    - **Replaced 100% of Mismatched Images with Local High-Resolution Cultural Assets:**
+      - **Garni Temple & Geghard Monastery**: Replaced flower oil painting (`photo-1579783900882-c0d3dad7b119`) with authentic Hellenistic basalt colonnaded temple at Garni (`/images/tours/garni-temple.jpg`, 270 KB).
+      - **Wings of Tatev Aerial Tramway**: Replaced asphalt highway bus (`photo-1544620347-c4fd4a3d5957`) with authentic aerial ropeway cabin of Wings of Tatev soaring over the lush Vorotan Gorge (`/images/tours/wings-of-tatev.jpg`, 372 KB).
+      - **UNESCO Lavash Baking**: Replaced sourdough bread loaf (`photo-1509440159596-0249088772ff`) with authentic Armenian thin flatbread slapped on the walls of an underground clay tonir oven (`/images/heritage/tonir-lavash.jpg`, 882 KB).
+      - **Tsaghkadzor Ski**: Replaced generic snow with Mount Teghenis chairlift and winter ski run (`/images/tours/tsaghkadzor-ski.jpg`, 308 KB).
+      - **Yerevan Cascade**: Replaced generic monument with iconic Cafesjian Center Cascade monumental staircase overlooking Yerevan (`/images/tours/yerevan-cascade.jpg`, 469 KB).
+    - **Elevated Tour #1 to Flagship Panoramic Showcase (`FeaturedToursGrid.tsx`):**
+      - Transformed Tour #1 (*Areni Ancient Wine Terroir & Southern Canyons*) into a full-width panoramic card (`grid-cols-1 lg:grid-cols-12`) spanning both columns with a 50/50 horizontal split (panoramic photo on left with "Flagship Signature Terroir" gold badge, rich editorial story, sommelier highlights, and inquiry CTAs on right).
+      - The remaining 4 tours form a balanced, symmetrical 2x2 grid, completely resolving the 5-card asymmetry.
+    - **Streamlined Candidate Journey (`ManpowerCandidateHub.tsx`):**
+      - Removed the redundant 3rd 4-card process grid that previously duplicated the relocation steps and pushed job openings off-screen.
+      - Integrated the candidate relocation milestone flow as a sleek 1-line progress ribbon inside the Ethical Charter banner.
+      - Surfaced the active job openings (filtered by Construction, Hospitality, Transportation, Agriculture) directly below the charter.
+    - **Refined Button Hierarchy:**
+      - Established clear visual hierarchy on cards: Primary high-contrast forest green action + secondary compact official WhatsApp trigger (`#25D366`).
+
+12. **Verification Protocol:**
     - Production build verified with `npm run build` (exit code `0`, 11/11 static pages prerendered).
-    - Playwright automated browser tests executed for desktop and mobile viewports across `/`, `/travel`, `/manpower`, and `/contact` with zero console warnings or errors.
-    - All 19 images on `/travel` and all images on `/manpower` verified with 200 OK HTTP responses.
+    - Playwright automated browser tests executed with complete vertical viewport scrolling across `/`, `/travel`, and `/manpower`:
+      - **100% of images verified loading with `naturalWidth > 0`** (0 broken images).
+      - **Zero console errors, zero uncaught runtime exceptions.**
 
 ## Outstanding / Client Configuration Points
 - Provide official Armenian/international WhatsApp number in `src/data/deorganica-content.ts` (currently configured with placeholder `+374 99 000000`).
