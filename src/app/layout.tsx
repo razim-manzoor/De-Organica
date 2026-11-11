@@ -64,8 +64,61 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" },
+    ],
+    apple: "/icon.svg",
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://deorganica.am/#organization",
+      "name": "De Organica LLC",
+      "alternateName": "«Դե Օրգանիկա» ՍՊԸ",
+      "url": "https://deorganica.am",
+      "logo": "https://deorganica.am/images/de-organica-logo.jpg",
+      "description":
+        "De Organica LLC is an officially registered enterprise in Yerevan, Republic of Armenia, operating bespoke travel & tour management and ethical international manpower recruitment.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Nalbandyan St, Republic Square District",
+        "addressLocality": "Yerevan",
+        "postalCode": "0010",
+        "addressCountry": "AM"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+374-99-000000",
+        "contactType": "customer service",
+        "email": "deorganicallc@gmail.com",
+        "availableLanguage": ["English", "Armenian"]
+      }
+    },
+    {
+      "@type": "TravelAgency",
+      "@id": "https://deorganica.am/#travel-agency",
+      "name": "De Organica Travel & Tours",
+      "url": "https://deorganica.am/travel",
+      "parentOrganization": {
+        "@id": "https://deorganica.am/#organization"
+      },
+      "priceRange": "$$"
+    },
+    {
+      "@type": "EmploymentAgency",
+      "@id": "https://deorganica.am/#manpower-agency",
+      "name": "De Organica Manpower",
+      "url": "https://deorganica.am/manpower",
+      "parentOrganization": {
+        "@id": "https://deorganica.am/#organization"
+      }
+    }
+  ]
 };
 
 export default function RootLayout({
@@ -78,6 +131,12 @@ export default function RootLayout({
       lang="en"
       className={`${cinzel.variable} ${plusJakarta.variable} ${notoSerifArmenian.variable} ${notoSansArmenian.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="antialiased min-h-screen flex flex-col bg-brand-stone-50 text-brand-ink selection:bg-brand-olive selection:text-white">
         <LanguageProvider>
           <DrawerProvider>

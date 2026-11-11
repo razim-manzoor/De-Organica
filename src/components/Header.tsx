@@ -43,7 +43,7 @@ export function Header() {
         {/* Desktop Navigation Links with Distinctive Pill Highlight */}
         <nav
           aria-label="Main Navigation"
-          className="hidden xl:flex items-center gap-1.5 p-1.5 rounded-full bg-brand-stone-100/80 border border-brand-stone-200/80 text-[13px] font-medium text-brand-ink-muted shadow-2xs"
+          className="hidden lg:flex items-center gap-1.5 p-1.5 rounded-full bg-brand-stone-100/80 border border-brand-stone-200/80 text-[13px] font-medium text-brand-ink-muted shadow-2xs"
         >
           {navLinks.map((item) => {
             const active = isActive(item.href);
@@ -66,7 +66,7 @@ export function Header() {
         {/* Header Right Actions */}
         <div className="hidden sm:flex items-center gap-3.5">
           {/* Live Yerevan Desk Status Indicator */}
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-brand-stone-200 text-[11px] text-brand-ink-muted">
+          <div className="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-brand-stone-200 text-[11px] text-brand-ink-muted">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-olive opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-olive"></span>
@@ -87,7 +87,7 @@ export function Header() {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex xl:hidden items-center gap-2.5">
+        <div className="flex lg:hidden items-center gap-2.5">
           <LanguageSwitcher className="sm:hidden" />
           <button
             type="button"
@@ -102,7 +102,7 @@ export function Header() {
 
       {/* Mobile Drawer Dropdown */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-brand-stone-50 border-b border-brand-stone-200 px-6 py-6 space-y-4 animate-in slide-in-from-top-4 duration-200">
+        <div className="lg:hidden bg-brand-stone-50 border-b border-brand-stone-200 px-6 py-6 space-y-4 animate-in slide-in-from-top-4 duration-200">
           <nav className="flex flex-col space-y-2 text-sm font-medium text-brand-ink">
             {navLinks.map((item) => {
               const active = isActive(item.href);

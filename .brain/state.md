@@ -1,7 +1,7 @@
 # Project State: De Organica LLC (`deorganica.am`)
 
 **Updated:** 2026-11-11  
-**Status:** Distinct Visual Archetypes & Thematic Domain Language Shipped & Verified  
+**Status:** Studio-Grade Flagship Verified & Shipped (SEO, Archetypes, Telemetry)
 
 ## Completed Work
 1. **Thematic Visual Archetypes Tailored to Domain (Anti-Slop):**
@@ -20,16 +20,22 @@
      - Live real-time Yerevan local clock (`Asia/Yerevan`, `GMT+4`) with active desk indicator.
      - 3 intent-segmented direct WhatsApp routing channels (Travel, Job Seekers, Enterprise Employers).
      - Republic of Armenia State Registry & corporate credentials.
-2. **Authentic Brand Identity & Vector Lockup:**
+2. **SEO, Schema & Discovery Architecture:**
+   - Shipped `src/app/sitemap.ts` generating canonical `/sitemap.xml` with priorities and weekly change frequencies.
+   - Shipped `src/app/robots.ts` generating `/robots.txt` disallowing internal APIs and pointing to sitemap.
+   - Integrated Schema.org JSON-LD structured data (`Organization`, `TravelAgency`, `EmploymentAgency`) in `src/app/layout.tsx`.
+   - Optimized header navigation breakpoint (`lg:flex`) for full menu visibility on standard laptops and desktops.
+3. **Authentic Brand Identity & Vector Lockup:**
    - Grounded in official brand asset (`de-organica-logo.jpg`).
    - Re-engineered [`src/components/Logo.tsx`](file:///R:/Projects/De%20Organica/src/components/Logo.tsx) with Didone serif `D`, curved ligature, olive `O` with dual-leaf sprout, serif wordmark, and tracked `— LLC —`.
    - Synchronized [`src/app/icon.svg`](file:///R:/Projects/De%20Organica/src/app/icon.svg).
-3. **Interactive StageShow Bento Modules:**
+4. **Interactive StageShow Bento Modules:**
    - [`src/components/ItineraryStageShow.tsx`](file:///R:/Projects/De%20Organica/src/components/ItineraryStageShow.tsx) (Travel) and [`src/components/PipelineStageShow.tsx`](file:///R:/Projects/De%20Organica/src/components/PipelineStageShow.tsx) (Manpower).
-4. **Production Compilation & Verification:**
-   - `npm run build`: Compiled 100% cleanly (exit code `0`) across all static pages, dynamic route handler, and edge middleware.
+5. **Production Compilation & Verification:**
+   - `npm run build`: Compiled 100% cleanly (exit code `0`) generating all 11 static assets, dynamic route handler, and edge middleware.
    - Awwwards CDP Telemetry (`awwwards audit_url`): `layoutThrashCount: 0`, `measureBeforeCompositeCount: 0`, `layoutReads: 0`, `high: 0`.
-   - All 4 routes respond with HTTP 200.
+   - All 6 endpoints (`/`, `/travel`, `/manpower`, `/contact`, `/sitemap.xml`, `/robots.txt`) return HTTP 200.
+   - Public preview tunnel active at `https://itchy-trees-yawn.loca.lt` (Password IP: `223.181.9.221`).
 
 ## Outstanding / Client Configuration Points
 - Provide official Armenian/international WhatsApp number in `src/data/deorganica-content.ts` (currently configured with placeholder `+374 99 000000`).
