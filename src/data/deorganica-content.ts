@@ -221,6 +221,37 @@ export const deorganicaConfig = {
 
   starterTours: [
     {
+      id: "areni-wine-terroir-silk-road",
+      slug: "areni-wine-terroir-silk-road",
+      title_en: "Areni Ancient Wine Terroir & Southern Canyons",
+      title_hy: "Արենիի հնագույն գինեգործություն և հարավային կիրճեր",
+      tagline_en: "6,100-year-old Areni cave winery, boutique vineyard tastings, and Noravank gorge",
+      tagline_hy: "6,100-ամյա Արենի-1 քարանձավ, բուտիկ գինեգործարաններ և Նորավանքի կիրճ",
+      duration_en: "4 Days / 3 Nights",
+      duration_hy: "4 Օր / 3 Գիշեր",
+      location_en: "Ararat Valley · Vayots Dzor · Yeghegnadzor",
+      location_hy: "Արարատյան դաշտ · Վայոց Ձոր · Եղեգնաձոր",
+      description_en: "An exclusive enological journey into the birthplace of world viticulture. Explore the Areni-1 cave complex, sample indigenous Areni Noir and Voskehat vintages, and dine in canyon-side vineyards.",
+      description_hy: "Բացառիկ գինու ճանապարհորդություն համաշխարհային գինեգործության օրրանում: Ծանոթացեք Արենի-1 քարանձավին, վայելեք Արենի Նուար և Ոսկեհատ հազվագյուտ տեսականիները:",
+      highlights_en: [
+        "Areni-1 Cave complex: The world's oldest known winery installation dating back to 4100 BC",
+        "Private barrel tastings and sommelier pairings at boutique Vayots Dzor family estates",
+        "Khor Virap pilgrimage site with direct, unobstructed Mount Ararat vistas",
+        "Noravank 13th-century monastery framed by towering brick-red limestone canyons",
+      ],
+      highlights_hy: [
+        "Արենի-1 քարանձավային համալիր՝ աշխարհի հնագույն գինեգործարանը (Ք.ա. 4100 թ.)",
+        "Տակառային համտեսներ և սոմելիեի դասընթացներ Վայոց Ձորի բուտիկ կալվածքներում",
+        "Խոր Վիրապի վանական համալիր Մասիս սարի անզուգական համայնապատկերով",
+        "Նորավանքի 13-րդ դարի պատմական վանքը կարմիր ժայռերի գրկում",
+      ],
+      inclusions_en: ["Mercedes Chauffeur", "Boutique Wine Resort", "Sommelier Tastings", "Cave Access Passes", "EVN Airport Transfer"],
+      inclusions_hy: ["Անհատական Mercedes", "Բուտիկ գինու հյուրանոց", "Սոմելիեի համտեսներ", "Քարանձավի տոմսեր", "Օդանավակայանի տրանսֆեր"],
+      image: "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=80",
+      showPrice: false,
+      isFeatured: true,
+    },
+    {
       id: "classic-armenia-discovery",
       slug: "classic-armenia-discovery",
       title_en: "Classic Armenia Heritage Discovery",

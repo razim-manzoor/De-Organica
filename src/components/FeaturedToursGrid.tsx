@@ -36,17 +36,17 @@ export function FeaturedToursGrid() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-brand-stone-300 text-brand-forest text-xs font-semibold uppercase tracking-wider mb-3 shadow-2xs">
-              <Sparkles className="w-3.5 h-3.5 text-brand-olive" />
-              <span>{isHy ? "Հայաստանի Երթուղիներ" : "Curated Starter Itineraries"}</span>
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
+              <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
+              <span>{isHy ? "Հեղինակային Երթուղիներ և Գինու Ճանապարհ" : "Signature Expeditions · Terroir & Heritage"}</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
-              {isHy ? "Հայաստանի Բացառիկ Տուրիստական Փաթեթներ" : "Featured Signature Armenia Itineraries"}
+              {isHy ? "Հայաստանի Բացառիկ Երթուղիներ և Տուրիստական Ծրագրեր" : "Curated Expeditions & High-Altitude Terroir Journeys"}
             </h2>
             <p className="text-sm sm:text-base text-brand-ink-muted leading-relaxed">
               {isHy
-                ? "Բոլոր փաթեթները ներառում են անհատական տրանսպորտ, օդանավակայանի դիմավորում, հյուրանոց և էքսկուրսավար: Գները հարմարեցվում են ըստ խմբի չափի:"
-                : "All signature tours include private chauffeur transport, Zvartnots EVN meet-and-greet, hotel lodging, and licensed guides. Tailored around your schedule."}
+                ? "Բոլոր ծրագրերը ներառում են մասնավոր տրանսպորտ, Զվարթնոցի դիմավորում, հյուրանոցային տեղավորում և պրոֆեսիոնալ ուղեկցորդ: Գնառաջարկը կազմվում է անհատական՝ ըստ հարցման:"
+                : "Every journey pairs private chauffeur transport, Zvartnots EVN airfield reception, boutique lodging, and licensed historians. Tailored strictly to private traveler or agency requirements."}
             </p>
           </div>
 
@@ -147,8 +147,8 @@ export function FeaturedToursGrid() {
                 {/* Pricing & Multi-Channel Action Row */}
                 <div className="pt-6 border-t border-brand-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
-                    <span className="text-[10px] uppercase font-bold text-brand-ink-subtle block">
-                      {isHy ? "Գնային քաղաքականություն" : "Pricing Policy"}
+                    <span className="text-[10px] uppercase font-bold tracking-[0.14em] text-brand-olive block">
+                      {isHy ? "Սակագին և Ամրագրում" : "Bespoke Tariff · Availability"}
                     </span>
                     {tour.showPrice && tour.price ? (
                       <div className="font-serif text-xl font-bold text-brand-forest">
@@ -156,8 +156,8 @@ export function FeaturedToursGrid() {
                         <span className="text-xs font-sans text-brand-ink-muted font-normal">/ person</span>
                       </div>
                     ) : (
-                      <div className="text-xs font-semibold text-brand-forest">
-                        {isHy ? "Անհատական գնառաջարկ" : "Tailored Quote on Request"}
+                      <div className="text-xs sm:text-sm font-semibold text-brand-forest mt-0.5">
+                        {isHy ? "Անհատական գնառաջարկ" : "Tailored Tariff on Request"}
                       </div>
                     )}
                   </div>

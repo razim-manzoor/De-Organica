@@ -104,34 +104,30 @@ export function TravelHero() {
   const activeDest = DESTINATIONS[activeDestIdx];
 
   return (
-    <section className="relative pt-12 pb-16 lg:pt-16 lg:pb-24 bg-gradient-to-b from-stone-50 via-brand-stone-50 to-stone-100 overflow-hidden border-b border-brand-stone-200">
-      {/* Warm Volcanic Tufa & Alpine Atmosphere Background Accents */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-olive/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute inset-0 opacity-[0.035] pointer-events-none bg-architectural-grid" />
+    <section className="relative pt-12 pb-16 lg:pt-16 lg:pb-24 bg-brand-stone-50 overflow-hidden border-b border-brand-stone-200">
+      {/* Background Architectural Grid */}
+      <div className="absolute inset-0 opacity-[0.025] pointer-events-none bg-architectural-grid" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Editorial Travel Narrative */}
           <div className="lg:col-span-7">
             {/* Geographic & Curated Travel Tag */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-stone-300 text-stone-700 text-xs font-medium shadow-2xs mb-4">
-              <Compass className="w-3.5 h-3.5 text-brand-olive shrink-0" />
-              <span>{isHy ? "Հայաստանի Բացառիկ Տուրեր և B2B DMC" : "Armenia Inbound DMC and Curated Journeys"}</span>
-              <span className="text-stone-300">·</span>
-              <span className="text-stone-500 font-medium">Yerevan, Armenia</span>
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-olive" />
+              <span>{isHy ? "Հայաստանի Բացառիկ Տուրեր և B2B DMC · Երևան" : "Armenia Inbound DMC & Bespoke Expeditions · Yerevan"}</span>
             </div>
 
             <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-forest leading-[1.12] mb-6">
               {isHy
-                ? "Հայաստանի Վեհաշուք Լեռները և Բացառիկ Հյուրընկալությունը"
-                : "Curated Armenian Highlands & Global Horizons"}
+                ? "Հայաստանի Լեռնաշխարհ, Պատմական Գինեգործություն և Բացառիկ Երթուղիներ"
+                : "Highland Monasteries. Ancient Terroirs. Bespoke Armenia."}
             </h1>
 
-            <p className="text-base sm:text-lg text-brand-ink-muted leading-relaxed mb-8 max-w-2xl">
+            <p className="text-base sm:text-lg text-brand-ink-muted leading-relaxed mb-8 max-w-2xl font-sans">
               {isHy
-                ? "Երևանի սրտից մինչև բարձրադիր Սևանա լիճ, Գառնու հեթանոսական տաճար, ժայռափոր Գեղարդ և Տաթևի խորհրդավոր կիրճեր: Շքեղ Mercedes տրանսպորտ, փորձառու էքսկուրսավարներ, վիզաների աջակցություն և B2B DMC տեղական սպասարկում:"
-                : "From ancient monastic cliff sanctuaries and azure alpine waters to international escapes, consular visa guidance, and white-label DMC ground operations in Yerevan with private Mercedes chauffeur transport."}
+                ? "Երևանի սրտից մինչև Արենիի 6,100-ամյա գինու քարանձավները, բարձրադիր Սևանա լիճ և Տաթևի վեհաշուք կիրճեր: Անհատական Mercedes տրանսպորտ, արտոնագրված էքսկուրսավարներ և B2B DMC մեծածախ սպասարկում արտասահմանյան գործակալություններին:"
+                : "From the 6,100-year wine caves of Areni and UNESCO cliff sanctuaries to private Mercedes chauffeurs across alpine Lake Sevan. De Organica delivers end-to-end ground handling and bespoke itineraries from our Yerevan operations desk."}
             </p>
 
             <div className="flex flex-wrap items-center gap-3 mb-8">
@@ -151,27 +147,43 @@ export function TravelHero() {
 
               <a
                 href="#tours-matrix"
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl border border-brand-stone-300 bg-white text-brand-forest text-xs font-semibold hover:bg-brand-stone-100 active:scale-95 transition-all shadow-2xs"
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-stone-100 text-stone-800 hover:bg-stone-200 active:scale-95 text-xs font-semibold transition-all shadow-2xs cursor-pointer"
               >
                 <span>{isHy ? "Դիտել բոլոր տուրերը" : "Explore Tour Packages"}</span>
               </a>
             </div>
 
             {/* Travel Specific Pillar Badges */}
-            <div className="flex flex-wrap items-center gap-2 pt-6 border-t border-brand-stone-200">
+            <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-brand-stone-200">
               {[
-                { label: "Mercedes Fleet Chauffeurs", icon: Car },
-                { label: "24/7 EVN Airport Meet", icon: Clock },
-                { label: "UNESCO Certified Routes", icon: ShieldCheck },
-                { label: "B2B DMC Wholesale Tariffs", icon: Sparkles },
-              ].map(({ label, icon: Icon }) => (
-                <span
-                  key={label}
-                  className="inline-flex items-center gap-1.5 text-[11px] font-medium px-3 py-1 rounded-full bg-white text-brand-forest border border-brand-stone-200 shadow-2xs"
+                {
+                  label_en: "Mercedes Chauffeur Fleet",
+                  label_hy: "Mercedes անհատական պարկ",
+                  icon: Car,
+                },
+                {
+                  label_en: "24/7 Zvartnots (EVN) Meet",
+                  label_hy: "Զվարթնոցի (EVN) 24/7 դիմավորում",
+                  icon: Clock,
+                },
+                {
+                  label_en: "UNESCO Monastic Sanctuaries",
+                  label_hy: "ՅՈՒՆԵՍԿՕ-ի ժառանգության վայրեր",
+                  icon: ShieldCheck,
+                },
+                {
+                  label_en: "B2B DMC Wholesale Tariffs",
+                  label_hy: "B2B DMC մեծածախ սակագներ",
+                  icon: Sparkles,
+                },
+              ].map(({ label_en, label_hy, icon: Icon }) => (
+                <div
+                  key={label_en}
+                  className="flex items-center gap-2 text-xs font-medium text-stone-700"
                 >
-                  <Icon className="w-3 h-3 text-brand-olive" />
-                  <span>{label}</span>
-                </span>
+                  <Icon className="w-3.5 h-3.5 text-brand-olive shrink-0" />
+                  <span>{isHy ? label_hy : label_en}</span>
+                </div>
               ))}
             </div>
           </div>
@@ -204,7 +216,7 @@ export function TravelHero() {
                 <div className="absolute bottom-3 left-3 right-3 text-white">
                   <div className="flex items-center gap-2 text-xs text-brand-olive-light mb-1">
                     <MapPin className="w-3.5 h-3.5" />
-                    <span>{activeDest.distKm} km from Yerevan</span>
+                    <span>{activeDest.distKm} {isHy ? "կմ Երևանից" : "km from Yerevan"}</span>
                     <span>·</span>
                     <span>{isHy ? activeDest.season_hy : activeDest.season_en}</span>
                   </div>
@@ -248,7 +260,7 @@ export function TravelHero() {
                             : "text-brand-ink-muted"
                         }`}
                       >
-                        {dest.distKm} km · {dest.altitudeM}m
+                        {dest.distKm} {isHy ? "կմ" : "km"} · {dest.altitudeM}{isHy ? "մ" : "m"}
                       </div>
                     </button>
                   ))}

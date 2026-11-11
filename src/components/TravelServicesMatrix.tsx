@@ -46,17 +46,17 @@ export function TravelServicesMatrix() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-stone-100 border border-brand-stone-300 text-brand-forest text-xs font-semibold uppercase tracking-wider mb-3 shadow-2xs">
-            <Compass className="w-3.5 h-3.5 text-brand-olive" />
-            <span>{isHy ? "Ծառայությունների Շարք" : "Hospitality Matrix"}</span>
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
+            <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
+            <span>{isHy ? "Տուրիստական Ենթակառուցվածք և Ծառայություններ" : "Hospitality Infrastructure · Ground Operations"}</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
-            {isHy ? "Ամբողջական Տուրիստական Ծառայություններ" : "Comprehensive Travel & Destination Services"}
+            {isHy ? "Ամբողջական Տեղական Սպասարկում և Տուրիստական Լոգիստիկա" : "Hospitality Infrastructure & Ground Operations"}
           </h2>
-          <p className="text-base text-brand-ink-muted leading-relaxed">
+          <p className="text-sm sm:text-base text-brand-ink-muted leading-relaxed">
             {isHy
-              ? "Հայաստանի մշակութային ժառանգության բացահայտումից մինչև միջազգային հանգիստ, վիզաների աջակցություն և օդանավակայանի 24/7 տրանսֆեր:"
-              : "From curated Armenian monastic routes to international holiday departures, consular visa filings, and seamless Zvartnots EVN ground logistics."}
+              ? "Հայաստանի պատմամշակութային երթուղիներից մինչև արտագնա հանգիստ, վիզաների աջակցություն, բուտիկ հյուրանոցներ և Զվարթնոցի (EVN) 24/7 դիմավորում:"
+              : "From curated Armenian monastic routes to international holiday departures, consular visa processing, luxury chauffeur rentals, and round-the-clock Zvartnots EVN airfield ground dispatch."}
           </p>
         </div>
 

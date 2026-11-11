@@ -116,26 +116,25 @@ export function ItineraryStageShow() {
         {/* StageShow Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-stone-300 text-brand-forest text-xs font-semibold uppercase tracking-wider mb-3 shadow-2xs">
-              <Sparkles className="w-3.5 h-3.5 text-brand-olive" />
-              <span>{isHy ? "Ինտերակտիվ Երթուղու Դիտիչ" : "Interactive Itinerary Explorer"}</span>
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
+              <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
+              <span>{isHy ? "Ինտերակտիվ Երթուղու Մոդելավորում" : "Interactive Expedition Simulator · Day By Day"}</span>
             </div>
 
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
-              {isHy ? "Կարգավորեք Ձեր Հայաստանի Ճամփորդությունը" : "Configure Your Bespoke Armenia Expedition"}
+              {isHy ? "Ձևավորեք Ձեր Հայաստանի Երթուղին և Տրանսպորտը" : "Curate Your Armenian Itinerary & Private Fleet"}
             </h2>
 
             <p className="text-sm sm:text-base text-brand-ink-muted leading-relaxed">
               {isHy
-                ? "Ընտրեք երթուղու օրերը, տրանսպորտի դասը և լրացուցիչ ծառայությունները՝ ստանալու անմիջական խորհրդատվություն մեր Երևանի դեսկից:"
-                : "Explore signature day routes, select your preferred chauffeur fleet, and toggle luxury inclusions. Built for individual travellers, families, and B2B travel partners."}
+                ? "Ընտրեք ցանկալի օրը, տրանսպորտի դասը (Mercedes Sedan կամ VIP Sprinter) և հատուկ ներառումները՝ Երևանի գրասենյակից անհատական սակագին ստանալու համար:"
+                : "Select your expedition day leg, choose your private chauffeur fleet tier, and toggle bespoke inclusions to generate an immediate custom tariff from our Yerevan desk."}
             </p>
           </div>
 
-          <div className="flex items-center gap-2 self-start md:self-auto">
-            <span className="text-xs font-medium text-brand-ink-muted">
-              {isHy ? "Ամբողջական սպասարկում Երևանից" : "White-Glove Ground DMC"}
-            </span>
+          <div className="flex items-center gap-2 self-start md:self-auto px-3.5 py-1.5 rounded-full bg-brand-stone-100 border border-brand-stone-200 text-brand-forest text-xs font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+            <span>{isHy ? "Երևանի դիսպետչերական ծառայություն" : "Live Yerevan Ground Dispatch"}</span>
           </div>
         </div>
 
@@ -275,7 +274,7 @@ export function ItineraryStageShow() {
                 onClick={handleWhatsAppCustomInquiry}
                 className="flex-1 py-3 px-4 rounded-xl bg-emerald-700 text-white text-xs font-semibold hover:bg-emerald-800 active:scale-95 transition-all text-center cursor-pointer shadow-xs flex items-center justify-center gap-2"
               >
-                <span>{isHy ? "Ուղարկել WhatsApp-ով" : "Get Custom Quote on WhatsApp"}</span>
+                <span>{isHy ? "Ստանալ գնառաջարկ WhatsApp-ով" : "Request Quote on WhatsApp"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
 
@@ -288,7 +287,7 @@ export function ItineraryStageShow() {
                 }
                 className="py-3 px-4 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep active:scale-95 transition-all text-center cursor-pointer shadow-xs"
               >
-                {isHy ? "Inquire Desk" : "Inquire Desk"}
+                {isHy ? "Հարցում Desk-ին" : "Inquire Desk"}
               </button>
             </div>
           </div>

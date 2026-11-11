@@ -43,13 +43,14 @@ export function DmcPartnerSection() {
   ];
 
   return (
-    <section id="dmc" className="py-20 lg:py-24 bg-brand-forest text-white relative overflow-hidden">
-      {/* Decorative background curves */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-olive/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-stone-900/30 rounded-full blur-3xl pointer-events-none" />
-
+    <section id="dmc" className="py-20 lg:py-28 bg-brand-forest text-white relative overflow-hidden border-t border-brand-forest-deep">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mb-14">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-light mb-3">
+            <span className="inline-block w-2 h-2 rounded-full bg-brand-olive-light" />
+            <span>{isHy ? "B2B Տեղական Գործընկեր · Երևան Դեսկ" : "B2B Destination Management · Institutional Ground Handling"}</span>
+          </div>
+
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
             {isHy ? "Հայաստանի Վստահելի DMC Գործընկեր" : "Armenia's Institutional Ground Handling Partner"}
           </h2>
