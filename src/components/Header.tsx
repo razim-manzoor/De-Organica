@@ -8,7 +8,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
 import { useDrawer } from "@/context/DrawerContext";
 import { deorganicaConfig } from "@/data/deorganica-content";
-import { MessageSquare, Menu, X, PhoneCall, Sparkles } from "lucide-react";
+import { MessageSquare, Menu, X, PhoneCall, ArrowRight, ShieldCheck } from "lucide-react";
 
 export function Header() {
   const pathname = usePathname();
@@ -20,30 +20,30 @@ export function Header() {
   const navLinks = [
     { href: "/", label_en: "Overview", label_hy: "Գլխավոր" },
     { href: "/travel", label_en: "Travel & Tours", label_hy: "Զբոսաշրջություն" },
-    { href: "/travel#dmc", label_en: "B2B DMC", label_hy: "B2B DMC" },
     { href: "/manpower", label_en: "Manpower & Careers", label_hy: "Աշխատուժ և Կարիերա" },
-    { href: "/manpower#employers", label_en: "For Employers", label_hy: "Գործատուներին" },
     { href: "/contact", label_en: "Contact Desk", label_hy: "Կապ" },
   ];
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
-    if (href.startsWith("/travel")) return pathname.startsWith("/travel");
-    if (href.startsWith("/manpower")) return pathname.startsWith("/manpower");
-    if (href.startsWith("/contact")) return pathname.startsWith("/contact");
+    if (href === "/travel") return pathname === "/travel";
+    if (href === "/manpower") return pathname === "/manpower";
+    if (href === "/contact") return pathname === "/contact";
     return false;
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-brand-stone-50/95 backdrop-blur-md border-b border-brand-stone-200 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {/* Brand Logo with Tactile Micro-Hover */}
-        <Logo />
+    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-stone-200/80 shadow-2xs transition-colors">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-22 flex items-center justify-between gap-4">
+        {/* Authentic Brand Logo */}
+        <div className="shrink-0 flex items-center">
+          <Logo />
+        </div>
 
-        {/* Desktop Navigation Links with Distinctive Pill Highlight */}
+        {/* Desktop Navigation Links — Editorial Typographic Hierarchy */}
         <nav
           aria-label="Main Navigation"
-          className="hidden lg:flex items-center gap-1.5 p-1.5 rounded-full bg-brand-stone-100/80 border border-brand-stone-200/80 text-[13px] font-medium text-brand-ink-muted shadow-2xs"
+          className="hidden md:flex items-center gap-8 lg:gap-10 text-[13.5px] font-medium text-stone-600"
         >
           {navLinks.map((item) => {
             const active = isActive(item.href);
@@ -51,27 +51,32 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-3.5 py-1.5 rounded-full transition-all duration-200 text-center ${
+                className={`relative py-2 transition-colors duration-200 tracking-wide ${
                   active
-                    ? "bg-white text-brand-forest font-semibold shadow-xs"
-                    : "hover:text-brand-forest hover:bg-white/60 active:scale-95"
+                    ? "text-brand-forest font-bold"
+                    : "hover:text-brand-forest text-stone-600"
                 }`}
               >
-                {isHy ? item.label_hy : item.label_en}
+                <span>{isHy ? item.label_hy : item.label_en}</span>
+                {active && (
+                  <span className="absolute -bottom-0.5 left-0 right-0 h-[2.5px] rounded-full bg-brand-forest" />
+                )}
               </Link>
             );
           })}
         </nav>
 
         {/* Header Right Actions */}
-        <div className="hidden sm:flex items-center gap-3.5">
+        <div className="hidden sm:flex items-center gap-3 lg:gap-4 shrink-0">
           {/* Live Yerevan Desk Status Indicator */}
-          <div className="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-brand-stone-200 text-[11px] text-brand-ink-muted">
+          <div className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-full bg-stone-100/80 border border-stone-200/80 text-[11px] font-medium text-stone-700 shadow-2xs">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-olive opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-olive"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
             </span>
-            <span className="font-medium text-brand-forest">EVN Desk Live</span>
+            <span className="font-mono text-[10.5px] uppercase tracking-wider text-stone-800">
+              Yerevan Desk Live
+            </span>
           </div>
 
           <LanguageSwitcher />
@@ -79,21 +84,21 @@ export function Header() {
           <button
             type="button"
             onClick={() => openTravelDrawer()}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-brand-forest text-white text-xs font-semibold tracking-wide hover:bg-brand-forest-deep transition-all duration-200 shadow-xs hover:shadow-md active:scale-95 cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-forest text-white text-xs font-semibold tracking-wide hover:bg-brand-forest-deep active:scale-95 transition-all duration-200 shadow-xs hover:shadow-md cursor-pointer group"
           >
-            <MessageSquare className="w-3.5 h-3.5 text-brand-olive-light" />
-            <span>{isHy ? "Կապվել գրասենյակի հետ" : "Direct Desk Inquiry"}</span>
+            <MessageSquare className="w-3.5 h-3.5 text-brand-olive-light transition-transform duration-200 group-hover:scale-110" />
+            <span>{isHy ? "Հարցում գրասենյակին" : "Direct Inquiry"}</span>
           </button>
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex lg:hidden items-center gap-2.5">
+        <div className="flex md:hidden items-center gap-2">
           <LanguageSwitcher className="sm:hidden" />
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle mobile menu"
-            className="p-2 rounded-xl text-brand-forest hover:bg-brand-stone-200 active:scale-95 transition-all"
+            className="p-2 rounded-xl text-brand-forest hover:bg-stone-100 active:scale-95 transition-all cursor-pointer"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -102,8 +107,8 @@ export function Header() {
 
       {/* Mobile Drawer Dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-brand-stone-50 border-b border-brand-stone-200 px-6 py-6 space-y-4 animate-in slide-in-from-top-4 duration-200">
-          <nav className="flex flex-col space-y-2 text-sm font-medium text-brand-ink">
+        <div className="md:hidden bg-white border-b border-stone-200 px-6 py-6 space-y-4 shadow-xl animate-in slide-in-from-top-4 duration-200">
+          <nav className="flex flex-col space-y-2 text-sm font-medium text-stone-800">
             {navLinks.map((item) => {
               const active = isActive(item.href);
               return (
@@ -111,8 +116,10 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`px-3 py-2 rounded-lg transition-colors ${
-                    active ? "bg-white text-brand-forest font-bold shadow-2xs border-l-3 border-brand-olive" : "hover:text-brand-forest hover:bg-brand-stone-100"
+                  className={`px-3 py-2.5 rounded-xl transition-all ${
+                    active
+                      ? "bg-brand-stone-100 text-brand-forest font-bold border-l-4 border-brand-forest"
+                      : "hover:bg-stone-50 hover:text-brand-forest text-stone-700"
                   }`}
                 >
                   {isHy ? item.label_hy : item.label_en}
@@ -121,27 +128,27 @@ export function Header() {
             })}
           </nav>
 
-          <div className="pt-2 flex flex-col gap-3">
+          <div className="pt-2 flex flex-col gap-3 border-t border-stone-100">
             <button
               type="button"
               onClick={() => {
                 setMobileMenuOpen(false);
                 openTravelDrawer();
               }}
-              className="w-full py-3 rounded-xl bg-brand-forest text-white text-xs font-semibold tracking-wide flex items-center justify-center gap-2 shadow-xs active:scale-98 transition-transform"
+              className="w-full py-3 rounded-xl bg-brand-forest text-white text-xs font-semibold tracking-wide flex items-center justify-center gap-2 shadow-xs active:scale-98 transition-transform cursor-pointer"
             >
               <MessageSquare className="w-4 h-4 text-brand-olive-light" />
-              <span>{isHy ? "Կապվել գրասենյակի հետ" : "Direct Desk Inquiry"}</span>
+              <span>{isHy ? "Հարցում գրասենյակին" : "Direct Desk Inquiry"}</span>
             </button>
 
             <a
               href={`https://wa.me/${deorganicaConfig.company.whatsappNumberDigits}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-2.5 rounded-xl border border-brand-stone-300 bg-white text-brand-ink-muted text-xs font-medium flex items-center justify-center gap-2 hover:bg-brand-stone-50 active:scale-98 transition-transform"
+              className="w-full py-2.5 rounded-xl border border-stone-300 bg-stone-50 text-stone-700 text-xs font-medium flex items-center justify-center gap-2 hover:bg-stone-100 active:scale-98 transition-transform"
             >
               <PhoneCall className="w-3.5 h-3.5 text-emerald-600" />
-              <span>{deorganicaConfig.company.phoneYerevanDesk} (Yerevan HQ)</span>
+              <span>{deorganicaConfig.company.phoneYerevanDesk} (Yerevan Desk)</span>
             </a>
           </div>
         </div>
