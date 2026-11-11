@@ -87,7 +87,7 @@ export function ItineraryStageShow() {
   const isHy = locale === "hy";
 
   const [activeDay, setActiveDay] = useState<number>(1);
-  const [vehicle, setVehicle] = useState<"sedan" | "sprinter">("sedan");
+  const [vehicle, setVehicle] = useState<"economy" | "sedan" | "sprinter">("sedan");
   const [includeGuide, setIncludeGuide] = useState<boolean>(true);
   const [includeWineMasterclass, setIncludeWineMasterclass] = useState<boolean>(true);
   const [includeEvnFastTrack, setIncludeEvnFastTrack] = useState<boolean>(true);
@@ -95,9 +95,14 @@ export function ItineraryStageShow() {
   const selectedDayData = ITINERARY_DAYS.find((d) => d.day === activeDay) || ITINERARY_DAYS[0];
 
   const handleWhatsAppCustomInquiry = () => {
-    const summary = `Custom Armenia Itinerary (Day ${activeDay}: ${selectedDayData.title_en}, Vehicle: ${
-      vehicle === "sedan" ? "Executive Mercedes Sedan" : "VIP Sprinter (16 Seats)"
-    }, Guide: ${includeGuide ? "Yes" : "No"}, Wine Class: ${
+    const vehicleName =
+      vehicle === "economy"
+        ? "Comfort Economy Chauffeur (Value / Budget)"
+        : vehicle === "sedan"
+        ? "Executive Mercedes Sedan"
+        : "VIP Sprinter (16 Seats)";
+
+    const summary = `Custom Armenia Itinerary (Day ${activeDay}: ${selectedDayData.title_en}, Vehicle: ${vehicleName}, Guide: ${includeGuide ? "Yes" : "No"}, Wine Class: ${
       includeWineMasterclass ? "Yes" : "No"
     }, EVN Meet & Greet: ${includeEvnFastTrack ? "Yes" : "No"})`;
 
@@ -192,11 +197,27 @@ export function ItineraryStageShow() {
                   02 · Chauffeur Fleet Tier
                 </span>
 
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-3 gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => setVehicle("economy")}
+                    className={`p-2.5 rounded-xl border text-xs font-semibold flex flex-col items-start gap-1 transition-all cursor-pointer ${
+                      vehicle === "economy"
+                        ? "bg-white border-brand-forest text-brand-forest shadow-xs ring-1 ring-brand-forest/20"
+                        : "bg-brand-stone-100/70 border-brand-stone-200 text-brand-ink-muted hover:bg-white"
+                    }`}
+                  >
+                    <Car className="w-4 h-4 text-brand-olive shrink-0" />
+                    <div className="text-left">
+                      <span className="block leading-none text-[11px] font-bold">Economy</span>
+                      <span className="text-[9px] font-normal text-brand-ink-muted">Value · 1–3</span>
+                    </div>
+                  </button>
+
                   <button
                     type="button"
                     onClick={() => setVehicle("sedan")}
-                    className={`p-3 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all cursor-pointer ${
+                    className={`p-2.5 rounded-xl border text-xs font-semibold flex flex-col items-start gap-1 transition-all cursor-pointer ${
                       vehicle === "sedan"
                         ? "bg-white border-brand-forest text-brand-forest shadow-xs ring-1 ring-brand-forest/20"
                         : "bg-brand-stone-100/70 border-brand-stone-200 text-brand-ink-muted hover:bg-white"
@@ -204,15 +225,15 @@ export function ItineraryStageShow() {
                   >
                     <Car className="w-4 h-4 text-brand-olive shrink-0" />
                     <div className="text-left">
-                      <span className="block leading-none">Mercedes Sedan</span>
-                      <span className="text-[10px] font-normal text-brand-ink-muted">1–3 Guests</span>
+                      <span className="block leading-none text-[11px] font-bold">Mercedes</span>
+                      <span className="text-[9px] font-normal text-brand-ink-muted">Exec · 1–3</span>
                     </div>
                   </button>
 
                   <button
                     type="button"
                     onClick={() => setVehicle("sprinter")}
-                    className={`p-3 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all cursor-pointer ${
+                    className={`p-2.5 rounded-xl border text-xs font-semibold flex flex-col items-start gap-1 transition-all cursor-pointer ${
                       vehicle === "sprinter"
                         ? "bg-white border-brand-forest text-brand-forest shadow-xs ring-1 ring-brand-forest/20"
                         : "bg-brand-stone-100/70 border-brand-stone-200 text-brand-ink-muted hover:bg-white"
@@ -220,8 +241,8 @@ export function ItineraryStageShow() {
                   >
                     <Users className="w-4 h-4 text-brand-olive shrink-0" />
                     <div className="text-left">
-                      <span className="block leading-none">VIP Sprinter</span>
-                      <span className="text-[10px] font-normal text-brand-ink-muted">4–16 Guests</span>
+                      <span className="block leading-none text-[11px] font-bold">Sprinter</span>
+                      <span className="text-[9px] font-normal text-brand-ink-muted">Group · 4–16</span>
                     </div>
                   </button>
                 </div>
@@ -337,7 +358,7 @@ export function ItineraryStageShow() {
               {/* Dynamic Live Configuration Pill Strip */}
               <div className="pt-4 border-t border-white/10 flex flex-wrap items-center gap-2 text-[11px]">
                 <span className="px-3 py-1 rounded-full bg-white/10 text-brand-stone-200 border border-white/10">
-                  Fleet: {vehicle === "sedan" ? "Mercedes E-Class (Chauffeur)" : "VIP Sprinter (Chauffeur)"}
+                  Fleet: {vehicle === "economy" ? "Economy Sedan (Comfort/Value)" : vehicle === "sedan" ? "Mercedes E-Class (Executive)" : "VIP Sprinter (Chauffeur)"}
                 </span>
                 {includeGuide && (
                   <span className="px-3 py-1 rounded-full bg-emerald-900/60 text-emerald-200 border border-emerald-500/30">

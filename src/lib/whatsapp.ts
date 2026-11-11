@@ -6,6 +6,7 @@ export interface TravelWhatsAppParams {
   phone?: string;
   serviceOrTour: string;
   travelerType?: string;
+  budgetTier?: string;
   agencyName?: string;
   agencyCountry?: string;
   dates?: string;
@@ -53,6 +54,7 @@ export function buildTravelWhatsAppMessage(params: TravelWhatsAppParams): string
     params.agencyName ? `*Travel Agency / Tour Operator:* ${params.agencyName}` : null,
     params.agencyCountry ? `*Agency Country of Origin:* ${params.agencyCountry}` : null,
     params.travelerType ? `*Inquiry Category:* ${isB2B ? "B2B DMC Wholesale Contract" : "Private Leisure / Family Expedition"}` : null,
+    params.budgetTier ? `*Budget / Trip Style:* ${params.budgetTier}` : null,
     params.email ? `*Email:* ${params.email}` : null,
     params.phone ? `*Phone/WhatsApp:* ${params.phone}` : null,
     `*Selected Tour/Service:* ${params.serviceOrTour}`,

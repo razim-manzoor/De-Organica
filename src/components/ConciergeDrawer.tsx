@@ -31,6 +31,7 @@ import {
   Wine,
   Building2,
   Globe,
+  Sparkles,
 } from "lucide-react";
 import { PhoneCountryInput } from "@/components/PhoneCountryInput";
 
@@ -52,6 +53,7 @@ export function ConciergeDrawer() {
 
   // Advanced Travel Fields
   const [travelerType, setTravelerType] = useState<"individual" | "b2b">("individual");
+  const [budgetTier, setBudgetTier] = useState<string>("Boutique & Luxury");
   const [agencyName, setAgencyName] = useState("");
   const [agencyCountry, setAgencyCountry] = useState("");
   const [accommodationTier, setAccommodationTier] = useState("Boutique Wine & Heritage Resorts");
@@ -170,6 +172,7 @@ export function ConciergeDrawer() {
           formData.append("agencyName", agencyName);
           formData.append("agencyCountry", agencyCountry);
         } else {
+          formData.append("budgetTier", budgetTier);
           formData.append("travelDates", travelDates);
           formData.append("guestsCount", guestsCount);
           formData.append("accommodationTier", accommodationTier);
@@ -213,6 +216,7 @@ export function ConciergeDrawer() {
             agencyName: travelerType === "b2b" ? agencyName : undefined,
             agencyCountry: travelerType === "b2b" ? agencyCountry : undefined,
             serviceOrTour: selectedService || "Travel & Tours Inquiry",
+            budgetTier: travelerType === "individual" ? budgetTier : undefined,
             dates: travelDates,
             guests: guestsCount,
             accommodation: travelerType === "individual" ? accommodationTier : undefined,
@@ -649,6 +653,71 @@ export function ConciergeDrawer() {
                     ) : (
                       /* Individual / Family Fields */
                       <div className="space-y-3.5 pt-1">
+                        {/* Travel Style & Budget Category Selector */}
+                        <div>
+                          <div className="flex items-center justify-between mb-1.5">
+                            <label className="text-xs font-semibold text-brand-forest flex items-center gap-1.5">
+                              <Sparkles className="w-3.5 h-3.5 text-brand-olive" />
+                              <span>{isHy ? "Ճամփորդության ոճը և բյուջեն" : "Travel Style & Budget Category"}</span>
+                            </label>
+                            <span className="text-[10px] font-mono text-brand-olive font-bold">
+                              {budgetTier}
+                            </span>
+                          </div>
+
+                          <div className="grid grid-cols-3 gap-1.5 text-[11px]">
+                            {[
+                              {
+                                id: "Economy / Value",
+                                label_en: "Economy / Value",
+                                label_hy: "Էկոնոմ / Մատչելի",
+                                sub_en: "Clean 3★, Value Fleet",
+                                sub_hy: "3★, մատչելի պարկ",
+                                lodging: "Economy & Clean 3★ Stays",
+                                fleet: "Economy Sedan",
+                              },
+                              {
+                                id: "Classic Comfort",
+                                label_en: "Classic Comfort",
+                                label_hy: "Կոմֆորտ (4★)",
+                                sub_en: "4★ Hotels, Chauffeur",
+                                sub_hy: "4★, chauffeur",
+                                lodging: "4-Star City Comfort",
+                                fleet: "Mercedes Sedan",
+                              },
+                              {
+                                id: "Boutique & Luxury",
+                                label_en: "Boutique & Luxury",
+                                label_hy: "Բուտիկ և VIP",
+                                sub_en: "Wine Resorts, 5★",
+                                sub_hy: "5★, բուտիկ",
+                                lodging: "Boutique Wine & Heritage Resorts",
+                                fleet: "Mercedes Sedan",
+                              },
+                            ].map((b) => (
+                              <button
+                                key={b.id}
+                                type="button"
+                                onClick={() => {
+                                  setBudgetTier(b.id);
+                                  setAccommodationTier(b.lodging);
+                                  setFleetTier(b.fleet);
+                                }}
+                                className={`p-2 rounded-xl border text-left transition-all cursor-pointer ${
+                                  budgetTier === b.id
+                                    ? "bg-brand-forest text-white border-brand-forest font-semibold shadow-2xs"
+                                    : "bg-white border-brand-stone-200 text-brand-ink-muted hover:border-brand-olive/50"
+                                }`}
+                              >
+                                <span className="block font-bold leading-tight">{isHy ? b.label_hy : b.label_en}</span>
+                                <span className={`text-[9px] block ${budgetTier === b.id ? "text-brand-olive-light" : "text-brand-ink-subtle"}`}>
+                                  {isHy ? b.sub_hy : b.sub_en}
+                                </span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
                         {/* Group Size with Quick Chips */}
                         <div>
                           <div className="flex items-center justify-between mb-1.5">
@@ -708,9 +777,10 @@ export function ConciergeDrawer() {
                           </label>
                           <div className="grid grid-cols-2 gap-2 text-[11px]">
                             {[
+                              "Economy & Clean 3★ Stays",
                               "Boutique Wine & Heritage Resorts",
-                              "5-Star Luxury Hotels",
                               "4-Star City Comfort",
+                              "5-Star Luxury Hotels",
                               "Tours & Chauffeur Only",
                             ].map((tier) => (
                               <button
@@ -735,11 +805,12 @@ export function ConciergeDrawer() {
                             <Car className="w-3.5 h-3.5 text-brand-olive" />
                             <span>{isHy ? "Տրանսպորտային դաս" : "Chauffeur Fleet Preference"}</span>
                           </label>
-                          <div className="grid grid-cols-3 gap-2 text-[11px]">
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[11px]">
                             {[
-                              { label: "Mercedes Sedan", sub: "1–3 Guests" },
-                              { label: "VIP Sprinter", sub: "4–16 Guests" },
-                              { label: "Tour Coach", sub: "17+ Guests" },
+                              { label: "Economy Sedan", sub: "Value · 1–3" },
+                              { label: "Mercedes Sedan", sub: "Exec · 1–3" },
+                              { label: "VIP Sprinter", sub: "Group · 4–16" },
+                              { label: "Tour Coach", sub: "Large · 17+" },
                             ].map((f) => (
                               <button
                                 key={f.label}
@@ -751,7 +822,7 @@ export function ConciergeDrawer() {
                                     : "bg-white border-brand-stone-200 text-brand-ink-muted hover:border-brand-olive/50"
                                 }`}
                               >
-                                <span className="block font-semibold leading-tight">{f.label}</span>
+                                <span className="block font-semibold leading-tight text-xs">{f.label}</span>
                                 <span className={`text-[9px] block ${fleetTier === f.label ? "text-brand-olive-light" : "text-brand-ink-subtle"}`}>{f.sub}</span>
                               </button>
                             ))}

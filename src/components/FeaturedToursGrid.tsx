@@ -45,8 +45,8 @@ export function FeaturedToursGrid() {
             </h2>
             <p className="text-sm sm:text-base text-brand-ink-muted leading-relaxed">
               {isHy
-                ? "Բոլոր ծրագրերը ներառում են մասնավոր տրանսպորտ, Զվարթնոցի դիմավորում, հյուրանոցային տեղավորում և պրոֆեսիոնալ ուղեկցորդ: Գնառաջարկը կազմվում է անհատական՝ ըստ հարցման:"
-                : "Every journey pairs private chauffeur transport, Zvartnots EVN airfield reception, boutique lodging, and licensed historians. Tailored strictly to private traveler or agency requirements."}
+                ? "Յուրաքանչյուր ծրագիր հարմարեցվում է Ձեր նախընտրած բյուջեին և ոճին՝ մատչելի 3-աստղանի հյուրանոցներից ու ճկուն երթուղիներից մինչև բուտիկ գինեգործարաններ և VIP Mercedes սպասարկում:"
+                : "Every journey is customized to your preferred travel style and budget — from cost-conscious 3-star central stays and self-paced routes to boutique wine resorts and VIP Mercedes chauffeurs."}
             </p>
           </div>
 
