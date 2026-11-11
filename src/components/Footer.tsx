@@ -6,7 +6,7 @@ import { Logo } from "@/components/Logo";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
 import { deorganicaConfig } from "@/data/deorganica-content";
-import { ShieldCheck, MapPin, Mail, PhoneCall } from "lucide-react";
+import { ShieldCheck, MapPin, Mail, PhoneCall, Sparkles } from "lucide-react";
 
 export function Footer() {
   const { locale } = useLanguage();
@@ -25,13 +25,13 @@ export function Footer() {
                 : "De Organica LLC is an officially registered corporate enterprise in Yerevan, Republic of Armenia, operating bespoke travel & tour management and ethical international manpower mobility."}
             </p>
 
-            <div className="pt-2 text-xs text-brand-stone-400 space-y-1.5">
+            <div className="pt-2 text-xs text-brand-stone-400 space-y-2">
               <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-brand-olive-light" />
+                <MapPin className="w-3.5 h-3.5 text-brand-olive-light shrink-0" />
                 <span>{isHy ? deorganicaConfig.company.address_hy : deorganicaConfig.company.address_en}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-brand-olive-light" />
+                <Mail className="w-3.5 h-3.5 text-brand-olive-light shrink-0" />
                 <a href={`mailto:${deorganicaConfig.company.email}`} className="hover:text-white transition-colors">
                   {deorganicaConfig.company.email}
                 </a>
@@ -46,29 +46,29 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#travel" className="hover:text-white transition-colors">
+                <Link href="/travel" className="hover:text-white transition-colors">
                   {isHy ? "Մշակութային տուրեր" : "Armenia Cultural Tours"}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#visa-transfers" className="hover:text-white transition-colors">
+                <Link href="/travel#tours-matrix" className="hover:text-white transition-colors">
                   {isHy ? "Տուրիստական փաթեթներ" : "Featured Tour Packages"}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#travel" className="hover:text-white transition-colors">
+                <Link href="/travel#travel-services" className="hover:text-white transition-colors">
                   {isHy ? "Վիզաների աջակցություն" : "Visa & Documentation"}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#travel" className="hover:text-white transition-colors">
+                <Link href="/travel#travel-services" className="hover:text-white transition-colors">
                   {isHy ? "Օդանավակայանի տրանսֆեր" : "EVN Airport Transfers"}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#dmc" className="hover:text-white transition-colors">
+                <Link href="/travel#dmc" className="hover:text-white transition-colors">
                   {isHy ? "B2B DMC Գործընկերություն" : "B2B DMC Net Tariffs"}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -80,29 +80,29 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#manpower-candidates" className="hover:text-white transition-colors">
+                <Link href="/manpower" className="hover:text-white transition-colors">
                   {isHy ? "Թափուր աշխատատեղեր" : "Active Job Vacancies"}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#manpower-candidates" className="hover:text-white transition-colors">
+                <Link href="/manpower#manpower-candidates" className="hover:text-white transition-colors">
                   {isHy ? "Ուղարկել ռեզյումե (CV)" : "Submit General CV"}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#manpower-candidates" className="hover:text-white transition-colors">
+                <Link href="/manpower#manpower-candidates" className="hover:text-white transition-colors">
                   {isHy ? "Զրոյական նախնական վճար" : "Pay-After-Job Guarantee"}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#manpower-employers" className="hover:text-white transition-colors">
+                <Link href="/manpower#employers" className="hover:text-white transition-colors">
                   {isHy ? "Գործատուներին (B2B Staffing)" : "For Hiring Employers"}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#manpower-employers" className="hover:text-white transition-colors">
+                <Link href="/manpower#employers" className="hover:text-white transition-colors">
                   {isHy ? "Աշխատանքի թույլտվություններ" : "Work Permit Compliance"}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -129,7 +129,7 @@ export function Footer() {
             © {new Date().getFullYear()} {deorganicaConfig.company.legalName}. All rights reserved.
           </p>
 
-          <p className="max-w-md text-right sm:text-right text-[10px] text-brand-stone-400">
+          <p className="max-w-md text-left sm:text-right text-[10px] text-brand-stone-400">
             {isHy
               ? "«Դե Օրգանիկա» ՍՊԸ-ն գործում է թեկնածուների պաշտպանության և էթիկական հավաքագրման միջազգային սկզբունքներով:"
               : "Zero Upfront Candidate Placement Fees · Verified Republic of Armenia Ministry of Labor Work Permits."}

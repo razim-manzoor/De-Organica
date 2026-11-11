@@ -25,6 +25,8 @@ import {
   Compass,
   FileText,
   ShieldCheck,
+  Check,
+  Trash2,
 } from "lucide-react";
 
 const COUNTRY_DIAL_CODES = [
@@ -82,7 +84,6 @@ export function ConciergeDrawer() {
       }
       setSubmitSuccess(false);
       setErrorMessage("");
-      // Focus close button on open
       setTimeout(() => closeBtnRef.current?.focus(), 50);
     }
   }, [state]);
@@ -178,17 +179,17 @@ export function ConciergeDrawer() {
 
       setSubmitSuccess(true);
 
-      // Trigger WhatsApp handoff if requested
+      // Optionally launch WhatsApp if requested
       if (openWhatsAppChat) {
         let msg = "";
         if (activeTab === "travel") {
           msg = buildTravelWhatsAppMessage({
             name: fullName,
-            email,
-            phone: fullPhone,
-            serviceOrTour: selectedService || "Custom Armenia Travel Itinerary",
+            serviceOrTour: selectedService || "Travel & Tours Inquiry",
             dates: travelDates,
             guests: guestsCount,
+            phone: fullPhone,
+            email,
             notes,
           });
         } else if (activeTab === "candidate") {
@@ -232,7 +233,7 @@ export function ConciergeDrawer() {
     >
       {/* Light-Dismiss Backdrop */}
       <div
-        className="fixed inset-0 bg-brand-stone-900/60 backdrop-blur-xs transition-opacity"
+        className="fixed inset-0 bg-brand-stone-900/60 backdrop-blur-xs transition-opacity cursor-pointer"
         onClick={closeDrawer}
         aria-hidden="true"
       />
@@ -245,7 +246,10 @@ export function ConciergeDrawer() {
         {/* Top Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-brand-stone-200 bg-white">
           <div className="flex items-center gap-3">
-            <div className="w-2.5 h-2.5 rounded-full bg-brand-olive animate-pulse" />
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-olive opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-olive"></span>
+            </span>
             <div>
               <h2 className="font-serif text-lg font-bold text-brand-forest">
                 {isHy ? "Ուղիղ կապ Երևանի գրասենյակի հետ" : "Direct Yerevan Desk Inquiry"}
@@ -260,24 +264,24 @@ export function ConciergeDrawer() {
             type="button"
             onClick={closeDrawer}
             aria-label="Close drawer"
-            className="p-2 rounded-full text-brand-ink-subtle hover:text-brand-forest hover:bg-brand-stone-100 transition-colors"
+            className="p-2 rounded-full text-brand-ink-subtle hover:text-brand-forest hover:bg-brand-stone-100 active:scale-95 transition-all cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Mode Selector Tabs */}
-        <div className="grid grid-cols-3 p-2 bg-brand-stone-100 border-b border-brand-stone-200 gap-1 text-xs font-medium">
+        <div className="grid grid-cols-3 p-2 bg-brand-stone-100 border-b border-brand-stone-200 gap-1.5 text-xs font-medium">
           <button
             type="button"
             onClick={() => {
               setActiveTab("travel");
               setSubmitSuccess(false);
             }}
-            className={`py-2 px-1 rounded-md transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 text-center ${
+            className={`py-2.5 px-2 rounded-xl transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 text-center cursor-pointer ${
               activeTab === "travel"
                 ? "bg-white text-brand-forest shadow-xs font-semibold"
-                : "text-brand-ink-muted hover:text-brand-forest"
+                : "text-brand-ink-muted hover:text-brand-forest hover:bg-white/50 active:scale-95"
             }`}
           >
             <Compass className="w-4 h-4 text-brand-olive" />
@@ -290,10 +294,10 @@ export function ConciergeDrawer() {
               setActiveTab("candidate");
               setSubmitSuccess(false);
             }}
-            className={`py-2 px-1 rounded-md transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 text-center ${
+            className={`py-2.5 px-2 rounded-xl transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 text-center cursor-pointer ${
               activeTab === "candidate"
                 ? "bg-white text-brand-forest shadow-xs font-semibold"
-                : "text-brand-ink-muted hover:text-brand-forest"
+                : "text-brand-ink-muted hover:text-brand-forest hover:bg-white/50 active:scale-95"
             }`}
           >
             <Briefcase className="w-4 h-4 text-brand-olive" />
@@ -306,10 +310,10 @@ export function ConciergeDrawer() {
               setActiveTab("employer");
               setSubmitSuccess(false);
             }}
-            className={`py-2 px-1 rounded-md transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 text-center ${
+            className={`py-2.5 px-2 rounded-xl transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 text-center cursor-pointer ${
               activeTab === "employer"
                 ? "bg-white text-brand-forest shadow-xs font-semibold"
-                : "text-brand-ink-muted hover:text-brand-forest"
+                : "text-brand-ink-muted hover:text-brand-forest hover:bg-white/50 active:scale-95"
             }`}
           >
             <Building className="w-4 h-4 text-brand-olive" />
@@ -320,31 +324,31 @@ export function ConciergeDrawer() {
         {/* Scrollable Form Body */}
         <div className="flex-1 overflow-y-auto px-6 py-6 space-y-5">
           {submitSuccess ? (
-            <div className="p-6 rounded-xl bg-brand-olive-subtle/50 border border-brand-olive/30 text-center space-y-4 my-auto">
-              <CheckCircle2 className="w-12 h-12 text-brand-olive mx-auto" />
-              <h3 className="font-serif text-xl font-bold text-brand-forest">
+            <div className="p-8 rounded-2xl bg-brand-olive-subtle/50 border border-brand-olive/30 text-center space-y-4 my-auto shadow-xs">
+              <CheckCircle2 className="w-14 h-14 text-brand-olive mx-auto" />
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-brand-forest">
                 {isHy ? "Ձեր հարցումը հաջողությամբ ուղարկված է" : "Inquiry Dispatched Successfully"}
               </h3>
-              <p className="text-sm text-brand-ink-muted max-w-md mx-auto">
+              <p className="text-sm text-brand-ink-muted max-w-md mx-auto leading-relaxed">
                 {isHy
                   ? "Մեր մասնագետը կկապվի Ձեզ հետ նշված հեռախոսահամարով կամ էլ. փոստով: Կարող եք նաև անմիջապես գրել WhatsApp-ով:"
                   : "The Yerevan desk has received your details. A representative will review and respond promptly. You may also connect directly via WhatsApp."}
               </p>
-              <div className="pt-2 flex flex-col sm:flex-row gap-3 justify-center">
+              <div className="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
                 <button
                   type="button"
                   onClick={() => handleSubmit(true)}
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-700 text-white font-medium hover:bg-emerald-800 transition-colors text-sm"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-emerald-700 text-white font-medium hover:bg-emerald-800 active:scale-95 transition-all text-sm cursor-pointer shadow-xs"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  {isHy ? "Բացել WhatsApp չատը" : "Open WhatsApp Chat"}
+                  <span>{isHy ? "Բացել WhatsApp չատը" : "Open WhatsApp Chat"}</span>
                 </button>
                 <button
                   type="button"
                   onClick={closeDrawer}
-                  className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg border border-brand-stone-300 bg-white text-brand-ink-muted hover:text-brand-forest text-sm font-medium"
+                  className="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-brand-stone-300 bg-white text-brand-ink-muted hover:text-brand-forest active:scale-95 text-sm font-medium transition-all cursor-pointer shadow-2xs"
                 >
-                  {isHy ? "Փակել" : "Close Window"}
+                  <span>{isHy ? "Փակել" : "Close Window"}</span>
                 </button>
               </div>
             </div>
@@ -352,13 +356,13 @@ export function ConciergeDrawer() {
             <>
               {/* Trust/Policy Notice banner based on tab */}
               {activeTab === "candidate" && (
-                <div className="p-3.5 rounded-lg bg-brand-olive-subtle/40 border border-brand-olive/30 flex items-start gap-3 text-xs text-brand-forest">
-                  <ShieldCheck className="w-5 h-5 text-brand-olive flex-shrink-0 mt-0.5" />
+                <div className="p-4 rounded-xl bg-emerald-50/70 border border-emerald-200/80 flex items-start gap-3 text-xs text-brand-forest shadow-2xs">
+                  <ShieldCheck className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-semibold block text-brand-forest">
+                    <span className="font-bold block text-emerald-950 mb-0.5">
                       {isHy ? "Զրոյական նախնական վճարի երաշխիք" : "Zero Upfront Fee · Pay-After-Job Guarantee"}
                     </span>
-                    <span className="text-brand-ink-muted">
+                    <span className="text-emerald-800 leading-normal">
                       {isHy
                         ? "Դիմումների գրանցումը և հարցազրույցներն անվճար են: Ծառայության վճարումը կատարվում է միայն աշխատանքի պաշտոնական հաստատումից հետո:"
                         : "Registration and interviews are 100% free. Placement terms apply strictly upon verified job offer and legal work permit approval."}
@@ -368,13 +372,13 @@ export function ConciergeDrawer() {
               )}
 
               {activeTab === "employer" && (
-                <div className="p-3.5 rounded-lg bg-brand-stone-100 border border-brand-stone-200 flex items-start gap-3 text-xs text-brand-ink-muted">
-                  <Building className="w-5 h-5 text-brand-forest flex-shrink-0 mt-0.5" />
+                <div className="p-4 rounded-xl bg-brand-stone-100 border border-brand-stone-200 flex items-start gap-3 text-xs text-brand-ink-muted shadow-2xs">
+                  <Building className="w-5 h-5 text-brand-forest shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-semibold block text-brand-forest">
+                    <span className="font-bold block text-brand-forest mb-0.5">
                       {isHy ? "Կորպորատիվ հավաքագրում և աշխատանքային վիզաներ" : "B2B Staffing & Work Permit Administration"}
                     </span>
-                    <span>
+                    <span className="leading-normal">
                       {isHy
                         ? "Լրացրեք պահանջվող մասնագետների թիվը և ոլորտը: Մեր թիմը կպատրաստի թեկնածուների նախնական ցանկ:"
                         : "Tell us your industry and required headcount. Our Yerevan HR desk will source, vet, and present shortlisted candidate profiles."}
@@ -385,8 +389,8 @@ export function ConciergeDrawer() {
 
               {/* Error banner if any */}
               {errorMessage && (
-                <div className="p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-800 flex items-center gap-2 text-xs">
-                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 flex items-center gap-2 text-xs shadow-2xs">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
                   <span>{errorMessage}</span>
                 </div>
               )}
@@ -395,7 +399,7 @@ export function ConciergeDrawer() {
               <div className="space-y-4 text-sm">
                 {/* Full Name */}
                 <div>
-                  <label className="block text-xs font-semibold text-brand-forest mb-1">
+                  <label className="block text-xs font-semibold text-brand-forest mb-1.5">
                     {activeTab === "employer"
                       ? isHy ? "Կոնտակտային անձի անունը *" : "Contact Person Name *"
                       : isHy ? "Լրիվ Անուն Ազգանուն *" : "Full Name *"}
@@ -410,14 +414,14 @@ export function ConciergeDrawer() {
                         : setFullName(e.target.value)
                     }
                     placeholder={isHy ? "օրինակ՝ Արամ Սարգսյան" : "e.g. Rahul Sharma / David Smith"}
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-brand-stone-300 bg-white focus:outline-hidden focus:ring-2 focus:ring-brand-olive focus:border-transparent text-brand-ink"
+                    className="w-full px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white focus:outline-hidden focus:ring-2 focus:ring-brand-olive focus:border-transparent text-brand-ink shadow-2xs transition-all"
                   />
                 </div>
 
                 {/* Company Name if Employer */}
                 {activeTab === "employer" && (
                   <div>
-                    <label className="block text-xs font-semibold text-brand-forest mb-1">
+                    <label className="block text-xs font-semibold text-brand-forest mb-1.5">
                       {isHy ? "Ընկերության անվանումը *" : "Company / Enterprise Name *"}
                     </label>
                     <input
@@ -426,21 +430,21 @@ export function ConciergeDrawer() {
                       value={companyName}
                       onChange={(e) => setCompanyName(e.target.value)}
                       placeholder={isHy ? "օրինակ՝ Արմենիա Հյուրանոցային Խումբ" : "e.g. Yerevan Construction Group LLC"}
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-brand-stone-300 bg-white focus:outline-hidden focus:ring-2 focus:ring-brand-olive focus:border-transparent text-brand-ink"
+                      className="w-full px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white focus:outline-hidden focus:ring-2 focus:ring-brand-olive focus:border-transparent text-brand-ink shadow-2xs transition-all"
                     />
                   </div>
                 )}
 
                 {/* International Phone with Country Preset */}
                 <div>
-                  <label className="block text-xs font-semibold text-brand-forest mb-1">
+                  <label className="block text-xs font-semibold text-brand-forest mb-1.5">
                     {isHy ? "Հեռախոսահամար / WhatsApp *" : "WhatsApp / Mobile Number *"}
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                     <select
                       value={dialCode}
                       onChange={(e) => setDialCode(e.target.value)}
-                      className="px-3 py-2.5 rounded-lg border border-brand-stone-300 bg-white text-xs font-medium text-brand-ink focus:outline-hidden focus:ring-2 focus:ring-brand-olive"
+                      className="px-3 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs font-medium text-brand-ink focus:outline-hidden focus:ring-2 focus:ring-brand-olive shadow-2xs"
                     >
                       {COUNTRY_DIAL_CODES.map((c) => (
                         <option key={c.label} value={c.code}>
@@ -453,10 +457,10 @@ export function ConciergeDrawer() {
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
                       placeholder="99 000000"
-                      className="sm:col-span-2 px-3.5 py-2.5 rounded-lg border border-brand-stone-300 bg-white focus:outline-hidden focus:ring-2 focus:ring-brand-olive focus:border-transparent text-brand-ink"
+                      className="sm:col-span-2 px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white focus:outline-hidden focus:ring-2 focus:ring-brand-olive focus:border-transparent text-brand-ink shadow-2xs"
                     />
                   </div>
-                  <p className="text-[11px] text-brand-ink-subtle mt-1">
+                  <p className="text-[11px] text-brand-ink-subtle mt-1.5">
                     {isHy
                       ? "Մենք կուղարկենք հաստատումը WhatsApp-ով կամ SMS-ով:"
                       : "We route inquiries directly to our WhatsApp dispatch desk."}
@@ -465,7 +469,7 @@ export function ConciergeDrawer() {
 
                 {/* Email Address */}
                 <div>
-                  <label className="block text-xs font-semibold text-brand-forest mb-1">
+                  <label className="block text-xs font-semibold text-brand-forest mb-1.5">
                     {isHy ? "Էլ. Փոստի հասցե" : "Email Address"}
                   </label>
                   <input
@@ -473,7 +477,7 @@ export function ConciergeDrawer() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@example.com"
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-brand-stone-300 bg-white focus:outline-hidden focus:ring-2 focus:ring-brand-olive focus:border-transparent text-brand-ink"
+                    className="w-full px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white focus:outline-hidden focus:ring-2 focus:ring-brand-olive focus:border-transparent text-brand-ink shadow-2xs"
                   />
                 </div>
 
@@ -481,13 +485,13 @@ export function ConciergeDrawer() {
                 {activeTab === "travel" && (
                   <>
                     <div>
-                      <label className="block text-xs font-semibold text-brand-forest mb-1">
+                      <label className="block text-xs font-semibold text-brand-forest mb-1.5">
                         {isHy ? "Հետաքրքրող ծառայությունը կամ տուրը" : "Selected Tour or Travel Service"}
                       </label>
                       <select
                         value={selectedService}
                         onChange={(e) => setSelectedService(e.target.value)}
-                        className="w-full px-3 py-2.5 rounded-lg border border-brand-stone-300 bg-white text-xs font-medium text-brand-ink focus:outline-hidden focus:ring-2 focus:ring-brand-olive"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs font-medium text-brand-ink focus:outline-hidden focus:ring-2 focus:ring-brand-olive shadow-2xs"
                       >
                         <option value="">{isHy ? "Ընտրեք ցանկից կամ նշեք ստորև" : "Select from list or describe below"}</option>
                         {deorganicaConfig.travelServices.map((s) => (
@@ -505,22 +509,22 @@ export function ConciergeDrawer() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-semibold text-brand-forest mb-1 flex items-center gap-1">
+                        <label className="block text-xs font-semibold text-brand-forest mb-1.5 flex items-center gap-1.5">
                           <Calendar className="w-3.5 h-3.5 text-brand-olive" />
-                          {isHy ? "Նախատեսվող ամսաթիվ" : "Estimated Travel Dates"}
+                          <span>{isHy ? "Նախատեսվող ամսաթիվ" : "Estimated Travel Dates"}</span>
                         </label>
                         <input
                           type="text"
                           value={travelDates}
                           onChange={(e) => setTravelDates(e.target.value)}
                           placeholder={isHy ? "օրինակ՝ Հունիս 2026" : "e.g. Next month / Oct 15-22"}
-                          className="w-full px-3 py-2 rounded-lg border border-brand-stone-300 bg-white text-xs text-brand-ink"
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-semibold text-brand-forest mb-1 flex items-center gap-1">
+                        <label className="block text-xs font-semibold text-brand-forest mb-1.5 flex items-center gap-1.5">
                           <Users className="w-3.5 h-3.5 text-brand-olive" />
-                          {isHy ? "Անձանց թիվը" : "Number of Guests"}
+                          <span>{isHy ? "Անձանց թիվը" : "Number of Guests"}</span>
                         </label>
                         <input
                           type="number"
@@ -528,7 +532,7 @@ export function ConciergeDrawer() {
                           max="100"
                           value={guestsCount}
                           onChange={(e) => setGuestsCount(e.target.value)}
-                          className="w-full px-3 py-2 rounded-lg border border-brand-stone-300 bg-white text-xs text-brand-ink"
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs"
                         />
                       </div>
                     </div>
@@ -540,7 +544,7 @@ export function ConciergeDrawer() {
                   <>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-semibold text-brand-forest mb-1">
+                        <label className="block text-xs font-semibold text-brand-forest mb-1.5">
                           {isHy ? "Քաղաքացիություն" : "Nationality"}
                         </label>
                         <input
@@ -548,11 +552,11 @@ export function ConciergeDrawer() {
                           value={nationality}
                           onChange={(e) => setNationality(e.target.value)}
                           placeholder="e.g. Indian, Filipino, Georgian"
-                          className="w-full px-3 py-2 rounded-lg border border-brand-stone-300 bg-white text-xs text-brand-ink"
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-semibold text-brand-forest mb-1">
+                        <label className="block text-xs font-semibold text-brand-forest mb-1.5">
                           {isHy ? "Ներկայիս երկիրը" : "Current Country of Residence"}
                         </label>
                         <input
@@ -560,13 +564,13 @@ export function ConciergeDrawer() {
                           value={currentCountry}
                           onChange={(e) => setCurrentCountry(e.target.value)}
                           placeholder="e.g. UAE / India / Armenia"
-                          className="w-full px-3 py-2 rounded-lg border border-brand-stone-300 bg-white text-xs text-brand-ink"
+                          className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-brand-forest mb-1">
+                      <label className="block text-xs font-semibold text-brand-forest mb-1.5">
                         {isHy ? "Ցանկալի պաշտոնը կամ ոլորտը *" : "Target Role / Industry Sector *"}
                       </label>
                       <input
@@ -575,17 +579,17 @@ export function ConciergeDrawer() {
                         value={targetRole}
                         onChange={(e) => setTargetRole(e.target.value)}
                         placeholder="e.g. Chef / Line Cook / Crane Operator / Driver"
-                        className="w-full px-3.5 py-2.5 rounded-lg border border-brand-stone-300 bg-white text-sm text-brand-ink"
+                        className="w-full px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-sm text-brand-ink shadow-2xs"
                       />
                     </div>
 
                     {/* CV File Upload */}
                     <div>
-                      <label className="block text-xs font-semibold text-brand-forest mb-1 flex items-center justify-between">
+                      <label className="block text-xs font-semibold text-brand-forest mb-1.5 flex items-center justify-between">
                         <span>{isHy ? "Կցել Ռեզյումե (CV / Resume)" : "Attach CV / Resume (PDF / DOCX)"}</span>
                         <span className="text-[10px] text-brand-ink-subtle">Max 5MB</span>
                       </label>
-                      <div className="relative border-2 border-dashed border-brand-stone-300 hover:border-brand-olive rounded-lg p-3 text-center transition-colors bg-brand-stone-100/50">
+                      <div className="relative border-2 border-dashed border-brand-stone-300 hover:border-brand-olive rounded-xl p-4 text-center transition-colors bg-brand-stone-100/60 shadow-2xs">
                         <input
                           type="file"
                           accept=".pdf,.doc,.docx"
@@ -598,17 +602,30 @@ export function ConciergeDrawer() {
                         />
                         <div className="flex items-center justify-center gap-2 text-xs text-brand-ink-muted">
                           {cvFile ? (
-                            <>
-                              <FileText className="w-4 h-4 text-brand-olive" />
+                            <div className="flex items-center gap-3">
+                              <FileText className="w-5 h-5 text-brand-olive shrink-0" />
                               <span className="font-semibold text-brand-forest truncate max-w-xs">
                                 {cvFile.name}
                               </span>
-                            </>
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setCvFile(null);
+                                }}
+                                className="p-1 rounded-full text-brand-ink-subtle hover:text-rose-600 transition-colors"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
                           ) : (
-                            <>
-                              <Upload className="w-4 h-4 text-brand-stone-500" />
-                              <span>{isHy ? "Սեղմեք ֆայլ ընտրելու համար" : "Click or drag resume file here"}</span>
-                            </>
+                            <div className="flex flex-col items-center gap-1.5 py-1">
+                              <Upload className="w-5 h-5 text-brand-stone-500" />
+                              <span className="font-medium text-brand-forest">
+                                {isHy ? "Սեղմեք ֆայլ ընտրելու համար" : "Click or drag resume file here"}
+                              </span>
+                              <span className="text-[10px] text-brand-ink-subtle">Supports PDF, DOC, DOCX</span>
+                            </div>
                           )}
                         </div>
                       </div>
@@ -620,7 +637,7 @@ export function ConciergeDrawer() {
                 {activeTab === "employer" && (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-semibold text-brand-forest mb-1">
+                      <label className="block text-xs font-semibold text-brand-forest mb-1.5">
                         {isHy ? "Արդյունաբերության ոլորտը" : "Industry Sector"}
                       </label>
                       <input
@@ -628,11 +645,11 @@ export function ConciergeDrawer() {
                         value={industrySector}
                         onChange={(e) => setIndustrySector(e.target.value)}
                         placeholder="e.g. Construction / Hospitality / Fleet"
-                        className="w-full px-3 py-2 rounded-lg border border-brand-stone-300 bg-white text-xs text-brand-ink"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-brand-forest mb-1">
+                      <label className="block text-xs font-semibold text-brand-forest mb-1.5">
                         {isHy ? "Պահանջվող աշխատակիցների թիվը" : "Headcount Needed"}
                       </label>
                       <input
@@ -640,7 +657,7 @@ export function ConciergeDrawer() {
                         value={headcountRequired}
                         onChange={(e) => setHeadcountRequired(e.target.value)}
                         placeholder="e.g. 5–10 workers"
-                        className="w-full px-3 py-2 rounded-lg border border-brand-stone-300 bg-white text-xs text-brand-ink"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs text-brand-ink shadow-2xs"
                       />
                     </div>
                   </div>
@@ -648,7 +665,7 @@ export function ConciergeDrawer() {
 
                 {/* Additional Notes / Requirements */}
                 <div>
-                  <label className="block text-xs font-semibold text-brand-forest mb-1">
+                  <label className="block text-xs font-semibold text-brand-forest mb-1.5">
                     {isHy ? "Լրացուցիչ նշումներ կամ պահանջներ" : "Additional Notes or Specific Requests"}
                   </label>
                   <textarea
@@ -662,7 +679,7 @@ export function ConciergeDrawer() {
                         ? isHy ? "Նշեք աշխատանքի սկզբի ժամկետները..." : "Specify contract duration, shift requirements..."
                         : isHy ? "Հատուկ ցանկություններ, երեխաներ, հյուրանոց..." : "Special preferences, hotel tier, dietary requests..."
                     }
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-brand-stone-300 bg-white focus:outline-hidden focus:ring-2 focus:ring-brand-olive focus:border-transparent text-xs text-brand-ink resize-none"
+                    className="w-full px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white focus:outline-hidden focus:ring-2 focus:ring-brand-olive focus:border-transparent text-xs text-brand-ink resize-none shadow-2xs"
                   />
                 </div>
               </div>
@@ -677,7 +694,7 @@ export function ConciergeDrawer() {
               type="button"
               disabled={isSubmitting}
               onClick={() => handleSubmit(true)}
-              className="w-full py-3 px-4 rounded-xl bg-brand-forest text-white font-medium hover:bg-brand-forest-deep transition-all flex items-center justify-center gap-2 shadow-sm disabled:opacity-50"
+              className="w-full py-3.5 px-4 rounded-xl bg-brand-forest text-white font-semibold hover:bg-brand-forest-deep active:scale-98 transition-all flex items-center justify-center gap-2 shadow-xs disabled:opacity-50 cursor-pointer"
             >
               {isSubmitting ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -695,7 +712,7 @@ export function ConciergeDrawer() {
               type="button"
               disabled={isSubmitting}
               onClick={() => handleSubmit(false)}
-              className="w-full py-2.5 px-4 rounded-xl border border-brand-stone-300 bg-brand-stone-50 text-brand-ink-muted hover:text-brand-forest hover:bg-white transition-all flex items-center justify-center gap-2 text-xs font-medium disabled:opacity-50"
+              className="w-full py-2.5 px-4 rounded-xl border border-brand-stone-300 bg-brand-stone-50 text-brand-ink-muted hover:text-brand-forest hover:bg-white active:scale-98 transition-all flex items-center justify-center gap-2 text-xs font-medium disabled:opacity-50 cursor-pointer"
             >
               <Send className="w-3.5 h-3.5" />
               <span>{isHy ? "Ուղարկել միայն էլ. փոստով" : "Send Official Inquiry by Email Only"}</span>

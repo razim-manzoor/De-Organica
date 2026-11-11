@@ -12,19 +12,15 @@ export function ManpowerHero() {
 
   return (
     <section className="relative pt-12 pb-16 lg:pt-16 lg:pb-24 bg-brand-stone-50 overflow-hidden border-b border-brand-stone-200">
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(#233D20 1px, transparent 1px)`,
-          backgroundSize: "28px 28px",
-        }}
-      />
+      <div className="absolute inset-0 opacity-[0.035] pointer-events-none bg-architectural-grid" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-stone-100 border border-brand-stone-300 text-brand-forest text-xs font-semibold uppercase tracking-wider mb-5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-stone-300 text-brand-forest text-xs font-semibold shadow-2xs mb-5">
             <Users2 className="w-3.5 h-3.5 text-brand-olive" />
-            <span>{isHy ? "Դե Օրգանիկա Միջազգային Աշխատուժ" : "Division II · International Manpower"}</span>
+            <span className="font-sans uppercase tracking-[0.18em] text-[11px]">
+              {isHy ? "Դե Օրգանիկա Միջազգային Աշխատուժ" : "Division II · International Manpower"}
+            </span>
           </div>
 
           <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-forest leading-[1.12] mb-6">
@@ -43,16 +39,16 @@ export function ManpowerHero() {
             <button
               type="button"
               onClick={() => openCandidateDrawer()}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-forest text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-forest-deep transition-all shadow-sm"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-forest text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-forest-deep active:scale-95 transition-all shadow-xs cursor-pointer group"
             >
-              <Briefcase className="w-4 h-4 text-brand-olive-light" />
+              <Briefcase className="w-4 h-4 text-brand-olive-light transition-transform duration-200 group-hover:scale-110" />
               <span>{isHy ? "Թեկնածուներին · Ուղարկել CV" : "Job Seekers · Submit CV"}</span>
             </button>
 
             <button
               type="button"
               onClick={() => openEmployerDrawer()}
-              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl border border-brand-stone-300 bg-white text-brand-forest text-xs font-semibold hover:bg-brand-stone-100 transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl border border-brand-stone-300 bg-white text-brand-forest text-xs font-semibold hover:bg-brand-stone-100 active:scale-95 transition-all shadow-2xs cursor-pointer"
             >
               <Building2 className="w-4 h-4 text-brand-olive" />
               <span>{isHy ? "Գործատուներին · Պատվիրել աշխատուժ" : "Employers · Hire Manpower"}</span>
@@ -61,12 +57,17 @@ export function ManpowerHero() {
 
           {/* Trust Guarantees */}
           <div className="flex flex-wrap items-center gap-2 pt-8 mt-8 border-t border-brand-stone-200">
-            {["Zero Upfront Application Fees", "Pay-After-Placement Guarantee", "Legal Work Permits & Visas", "EVN Airport Reception & Housing"].map((badge) => (
+            {[
+              "Zero Upfront Application Fees",
+              "Pay-After-Placement Guarantee",
+              "Legal Work Permits & Visas",
+              "EVN Airport Reception & Housing",
+            ].map((badge) => (
               <span
                 key={badge}
-                className="text-[11px] font-medium px-3 py-1 rounded-full bg-brand-olive-subtle/70 text-brand-forest border border-brand-olive/30 shadow-2xs flex items-center gap-1.5"
+                className="text-[11px] font-medium px-3.5 py-1 rounded-full bg-emerald-50 text-emerald-900 border border-emerald-200/80 shadow-2xs flex items-center gap-1.5"
               >
-                <ShieldCheck className="w-3.5 h-3.5 text-brand-olive" />
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
                 <span>{badge}</span>
               </span>
             ))}

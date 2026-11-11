@@ -27,14 +27,14 @@
     color: #FFFFFF;
   }
 
-  /* Accessible Focus Rings */
+  /* Accessible Dual-Layer Focus Rings (taste-skill + a11y standards) */
   :focus-visible {
-    outline: 2px solid #668B2E;
-    outline-offset: 2px;
+    outline: none;
+    box-shadow: 0 0 0 2px #FBFBF9, 0 0 0 4px #668B2E;
   }
 }
 
-/* Custom subtle scrollbars */
+/* Custom subtle architectural scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -51,4 +51,33 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #BEB9AB;
+}
+
+/* Hardware-accelerated transitions & motion damping */
+.will-change-transform {
+  will-change: transform, opacity;
+}
+
+/* Subtle luxury grain / pattern overlay helper */
+.bg-architectural-grid {
+  background-image: radial-gradient(#233D20 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Modern Web Guidance: Top-layer animations with discrete transition & reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-pulse,
+  .animate-spin,
+  .animate-bounce {
+    animation: none !important;
+  }
 }

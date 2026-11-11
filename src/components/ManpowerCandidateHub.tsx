@@ -18,6 +18,7 @@ import {
   FileText,
   Building,
   Check,
+  Sparkles,
 } from "lucide-react";
 
 export function ManpowerCandidateHub() {
@@ -45,9 +46,10 @@ export function ManpowerCandidateHub() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
-          <span className="text-xs font-bold uppercase tracking-[0.22em] text-brand-olive block mb-3">
-            {isHy ? "Բաժին II · Միջազգային Աշխատուժ և Կարիերա" : "Division II · International Careers & Talent Pool"}
-          </span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-stone-100 border border-brand-stone-300 text-brand-forest text-xs font-semibold uppercase tracking-wider mb-3 shadow-2xs">
+            <Sparkles className="w-3.5 h-3.5 text-brand-olive" />
+            <span>{isHy ? "Թեկնածուների Կենտրոն" : "Candidate Portal & Talent Pool"}</span>
+          </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
             {isHy ? "Աշխատանք Հայաստանում և Արտերկրում" : "Opportunities in Armenia & Global Corridors"}
           </h2>
@@ -57,17 +59,17 @@ export function ManpowerCandidateHub() {
         </div>
 
         {/* Ethical Contingency Charter Box */}
-        <div className="rounded-2xl bg-brand-stone-50 border border-brand-stone-200 p-6 sm:p-8 mb-16 shadow-xs">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-brand-stone-200">
+        <div className="rounded-3xl bg-emerald-50/60 border border-emerald-200/90 p-7 sm:p-10 mb-16 shadow-xs">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-emerald-200/60">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-brand-olive-subtle flex items-center justify-center text-brand-olive flex-shrink-0">
-                <ShieldCheck className="w-6 h-6" />
+              <div className="w-14 h-14 rounded-2xl bg-white border border-emerald-200 flex items-center justify-center text-emerald-800 shrink-0 shadow-2xs">
+                <ShieldCheck className="w-7 h-7" />
               </div>
               <div>
-                <h3 className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
+                <h3 className="font-serif text-lg sm:text-2xl font-bold text-emerald-950">
                   {isHy ? "Էթիկական Հավաքագրման և Զրոյական Նախնական Վճարի Քարտիա" : "Ethical Recruitment & Zero Upfront Fee Charter"}
                 </h3>
-                <p className="text-xs sm:text-sm text-brand-ink-muted mt-1 max-w-2xl">
+                <p className="text-xs sm:text-sm text-emerald-800 mt-1 max-w-2xl leading-relaxed">
                   {isHy
                     ? "«Դե Օրգանիկա»-ն առաջնորդվում է թեկնածուների պաշտպանության միջազգային սկզբունքներով: Գրանցման, ռեզյումեի ընդունման կամ հարցազրույցի համար որևէ վճար չի գանձվում:"
                     : "De Organica LLC operates on a strict candidate-first model. Candidates never pay upfront registration, application, or interview fees. Placement terms apply strictly upon verified job offer."}
@@ -78,7 +80,7 @@ export function ManpowerCandidateHub() {
             <button
               type="button"
               onClick={() => openCandidateDrawer()}
-              className="self-start md:self-auto px-5 py-2.5 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-all flex items-center gap-2 flex-shrink-0"
+              className="self-start md:self-auto px-5 py-3 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep active:scale-95 transition-all flex items-center gap-2 shrink-0 cursor-pointer shadow-xs"
             >
               <Upload className="w-3.5 h-3.5 text-brand-olive-light" />
               <span>{isHy ? "Ուղարկել ընդհանուր CV" : "Drop General CV"}</span>
@@ -89,11 +91,11 @@ export function ManpowerCandidateHub() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
             {deorganicaConfig.manpower.trustPillars.map((p, i) => (
               <div key={i} className="space-y-1.5">
-                <div className="flex items-center gap-2 text-xs font-bold text-brand-forest">
-                  <Check className="w-4 h-4 text-brand-olive flex-shrink-0" />
+                <div className="flex items-center gap-2 text-xs font-bold text-emerald-950">
+                  <Check className="w-4 h-4 text-emerald-700 shrink-0" />
                   <span>{isHy ? p.title_hy : p.title_en}</span>
                 </div>
-                <p className="text-[11px] text-brand-ink-muted leading-relaxed pl-6">
+                <p className="text-[11px] text-emerald-800/90 leading-relaxed pl-6">
                   {isHy ? p.desc_hy : p.desc_en}
                 </p>
               </div>
@@ -116,7 +118,7 @@ export function ManpowerCandidateHub() {
             {deorganicaConfig.manpower.mobilitySteps.map((step) => (
               <div
                 key={step.step}
-                className="p-6 rounded-xl bg-white border border-brand-stone-200 relative group hover:border-brand-olive/50 transition-colors shadow-xs"
+                className="p-7 rounded-2xl bg-white border border-brand-stone-200/90 relative group hover:border-brand-olive/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-2xs"
               >
                 <div className="text-3xl font-serif font-bold text-brand-stone-300 group-hover:text-brand-olive transition-colors mb-4">
                   {step.step}
@@ -150,7 +152,7 @@ export function ManpowerCandidateHub() {
             <button
               type="button"
               onClick={() => openCandidateDrawer()}
-              className="self-start sm:self-auto inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-brand-olive text-brand-forest text-xs font-semibold hover:bg-brand-olive hover:text-white transition-colors"
+              className="self-start sm:self-auto inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-brand-olive text-brand-forest text-xs font-semibold hover:bg-brand-olive hover:text-white active:scale-95 transition-all cursor-pointer shadow-2xs"
             >
               <Upload className="w-3.5 h-3.5" />
               <span>{isHy ? "Ընդհանուր Ռեզյումեի Բազա" : "Join General Talent Pool"}</span>
@@ -164,10 +166,10 @@ export function ManpowerCandidateHub() {
                 key={sec.id}
                 type="button"
                 onClick={() => setSelectedSector(sec.id)}
-                className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
+                className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
                   selectedSector === sec.id
                     ? "bg-brand-forest text-white shadow-xs"
-                    : "bg-brand-stone-100 text-brand-ink-muted hover:text-brand-forest hover:bg-brand-stone-200"
+                    : "bg-brand-stone-100 text-brand-ink-muted hover:text-brand-forest hover:bg-brand-stone-200 active:scale-95"
                 }`}
               >
                 {isHy ? sec.label_hy : sec.label_en}
@@ -180,25 +182,25 @@ export function ManpowerCandidateHub() {
             {filteredVacancies.map((vacancy) => (
               <div
                 key={vacancy.id}
-                className="rounded-xl bg-brand-stone-50 border border-brand-stone-200 p-6 sm:p-7 flex flex-col justify-between hover:border-brand-olive/50 hover:shadow-md transition-all space-y-5"
+                className="group rounded-3xl bg-white border border-brand-stone-200/90 p-7 sm:p-8 flex flex-col justify-between hover:border-brand-olive/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 space-y-5 shadow-xs"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-brand-stone-200 text-brand-forest">
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-stone-100 text-brand-forest border border-brand-stone-200">
                       {isHy ? vacancy.sector_hy : vacancy.sector_en}
                     </span>
-                    <div className="flex items-center gap-1 text-[11px] text-brand-ink-muted">
+                    <div className="flex items-center gap-1.5 text-[11px] text-brand-ink-muted">
                       <Clock className="w-3 h-3 text-brand-olive" />
                       <span>{isHy ? vacancy.type_hy : vacancy.type_en}</span>
                     </div>
                   </div>
 
-                  <h4 className="font-serif text-lg sm:text-xl font-bold text-brand-forest mb-2">
+                  <h4 className="font-serif text-lg sm:text-xl font-bold text-brand-forest mb-1.5 group-hover:text-brand-forest-deep transition-colors">
                     {isHy ? vacancy.title_hy : vacancy.title_en}
                   </h4>
 
                   <div className="flex items-center gap-1.5 text-xs text-brand-olive-dark font-medium mb-3">
-                    <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+                    <MapPin className="w-3.5 h-3.5 shrink-0" />
                     <span>{isHy ? vacancy.location_hy : vacancy.location_en}</span>
                   </div>
 
@@ -213,31 +215,32 @@ export function ManpowerCandidateHub() {
                     </span>
                     {(isHy ? vacancy.requirements_hy : vacancy.requirements_en).map((req, i) => (
                       <div key={i} className="flex items-start gap-2 text-xs text-brand-ink">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-olive mt-1.5 flex-shrink-0" />
-                        <span>{req}</span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-olive mt-1.5 shrink-0" />
+                        <span className="leading-snug">{req}</span>
                       </div>
                     ))}
                   </div>
 
                   {/* Benefits */}
-                  <div className="flex flex-wrap gap-1.5 pt-3 border-t border-brand-stone-200">
+                  <div className="flex flex-wrap gap-1.5 pt-3 border-t border-brand-stone-100">
                     {(isHy ? vacancy.benefits_hy : vacancy.benefits_en).map((b, i) => (
                       <span
                         key={i}
-                        className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-white text-brand-forest border border-brand-stone-200"
+                        className="inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-0.5 rounded-md bg-brand-stone-100 text-brand-forest border border-brand-stone-200"
                       >
-                        ✓ {b}
+                        <Check className="w-3 h-3 text-brand-olive" />
+                        <span>{b}</span>
                       </span>
                     ))}
                   </div>
                 </div>
 
                 {/* Apply Actions */}
-                <div className="pt-4 border-t border-brand-stone-200 flex items-center gap-2">
+                <div className="pt-4 border-t border-brand-stone-100 flex items-center gap-2">
                   <button
                     type="button"
                     onClick={() => openCandidateDrawer(isHy ? vacancy.title_hy : vacancy.title_en)}
-                    className="flex-1 py-2.5 px-3 rounded-lg bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-colors text-center"
+                    className="flex-1 py-2.5 px-3 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep active:scale-95 transition-all text-center cursor-pointer shadow-2xs"
                   >
                     {isHy ? "Դիմել այս հաստիքին" : "Apply for Position"}
                   </button>
@@ -245,7 +248,7 @@ export function ManpowerCandidateHub() {
                   <button
                     type="button"
                     onClick={() => handleWhatsAppApply(vacancy.title_en)}
-                    className="py-2.5 px-3 rounded-lg border border-brand-stone-300 bg-white text-brand-ink hover:text-emerald-700 hover:border-emerald-500 text-xs font-medium transition-colors flex items-center gap-1.5"
+                    className="py-2.5 px-3.5 rounded-xl border border-brand-stone-300 bg-white text-brand-ink hover:text-emerald-700 hover:border-emerald-500 active:scale-95 text-xs font-medium transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
                     title="Inquire on WhatsApp"
                   >
                     <MessageCircle className="w-4 h-4 text-emerald-600" />
@@ -257,16 +260,16 @@ export function ManpowerCandidateHub() {
           </div>
 
           {/* Talent Pool Catch-All Banner */}
-          <div className="mt-8 p-6 rounded-2xl bg-brand-stone-100 border border-brand-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="mt-8 p-7 sm:p-8 rounded-3xl bg-brand-stone-100/90 border border-brand-stone-200 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
             <div className="flex items-center gap-4 text-center sm:text-left">
-              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-brand-forest shadow-xs flex-shrink-0 hidden sm:flex">
-                <FileText className="w-6 h-6 text-brand-olive" />
+              <div className="w-14 h-14 rounded-2xl bg-white border border-brand-stone-200 flex items-center justify-center text-brand-forest shadow-2xs shrink-0 hidden sm:flex">
+                <FileText className="w-7 h-7 text-brand-olive" />
               </div>
               <div>
-                <h4 className="font-serif text-base font-bold text-brand-forest">
+                <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
                   {isHy ? "Չգտա՞ք Ձեր մասնագիտությունը" : "Don't see your specific specialization?"}
                 </h4>
-                <p className="text-xs text-brand-ink-muted">
+                <p className="text-xs text-brand-ink-muted mt-1 leading-relaxed">
                   {isHy
                     ? "Ուղարկեք Ձեր ռեզյումեն ընդհանուր տվյալների բազա: Նոր թափուր աշխատատեղերի դեպքում մենք կկապվենք Ձեզ հետ:"
                     : "Submit your profile directly into our Yerevan talent repository. We match your skills as new corporate employer requisitions open."}
@@ -277,7 +280,7 @@ export function ManpowerCandidateHub() {
             <button
               type="button"
               onClick={() => openCandidateDrawer()}
-              className="px-6 py-2.5 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-all shadow-xs flex-shrink-0"
+              className="px-6 py-3.5 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep active:scale-95 transition-all shadow-xs shrink-0 cursor-pointer"
             >
               {isHy ? "Ներկայացնել Ռեզյումե" : "Submit Your Profile"}
             </button>

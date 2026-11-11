@@ -13,6 +13,7 @@ import {
   Calendar,
   CreditCard,
   ExternalLink,
+  Sparkles,
 } from "lucide-react";
 
 export function FeaturedToursGrid() {
@@ -30,11 +31,15 @@ export function FeaturedToursGrid() {
   };
 
   return (
-    <section id="visa-transfers" className="py-20 lg:py-28 bg-brand-stone-100/70 border-t border-brand-stone-200">
+    <section id="tours-matrix" className="py-20 lg:py-28 bg-brand-stone-100/70 border-t border-brand-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-brand-stone-300 text-brand-forest text-xs font-semibold uppercase tracking-wider mb-3 shadow-2xs">
+              <Sparkles className="w-3.5 h-3.5 text-brand-olive" />
+              <span>{isHy ? "Հայաստանի Երթուղիներ" : "Curated Starter Itineraries"}</span>
+            </div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
               {isHy ? "Հայաստանի Բացառիկ Տուրիստական Փաթեթներ" : "Featured Signature Armenia Itineraries"}
             </h2>
@@ -48,7 +53,7 @@ export function FeaturedToursGrid() {
           <button
             type="button"
             onClick={() => openTravelDrawer("Bespoke Private Itinerary")}
-            className="self-start md:self-auto px-5 py-2.5 rounded-full border border-brand-forest text-brand-forest hover:bg-brand-forest hover:text-white transition-all text-xs font-semibold"
+            className="self-start md:self-auto px-5 py-2.5 rounded-full border border-brand-forest text-brand-forest hover:bg-brand-forest hover:text-white active:scale-95 transition-all text-xs font-semibold cursor-pointer shadow-2xs"
           >
             {isHy ? "Կազմել անհատական երթուղի" : "Request Custom Route"}
           </button>
@@ -59,17 +64,17 @@ export function FeaturedToursGrid() {
           {deorganicaConfig.starterTours.map((tour) => (
             <div
               key={tour.id}
-              className="rounded-2xl bg-white border border-brand-stone-200 overflow-hidden shadow-xs hover:shadow-xl hover:border-brand-olive/50 transition-all duration-300 flex flex-col justify-between"
+              className="group rounded-3xl bg-white border border-brand-stone-200/90 overflow-hidden shadow-xs hover:shadow-2xl hover:border-brand-olive/50 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
             >
               {/* Image & Header Overlay */}
               <div className="relative h-64 w-full overflow-hidden bg-brand-stone-200">
                 <img
                   src={tour.image}
                   alt={isHy ? tour.title_hy : tour.title_en}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-106"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/80 via-brand-forest/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/90 via-brand-forest/30 to-transparent" />
 
                 {/* Duration & Location Badges */}
                 <div className="absolute top-4 left-4 flex flex-wrap gap-2">
@@ -80,12 +85,12 @@ export function FeaturedToursGrid() {
                 </div>
 
                 {tour.isFeatured && (
-                  <div className="absolute top-4 right-4 bg-brand-gold text-brand-forest text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs">
+                  <div className="absolute top-4 right-4 bg-brand-gold text-brand-forest text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-xs">
                     {isHy ? "Հանրաճանաչ" : "Most Popular"}
                   </div>
                 )}
 
-                <div className="absolute bottom-4 left-4 right-4 text-white">
+                <div className="absolute bottom-4 left-5 right-5 text-white">
                   <div className="flex items-center gap-1.5 text-xs text-brand-olive-light font-medium mb-1">
                     <MapPin className="w-3.5 h-3.5" />
                     <span>{isHy ? tour.location_hy : tour.location_en}</span>
@@ -114,7 +119,7 @@ export function FeaturedToursGrid() {
                     </span>
                     {(isHy ? tour.highlights_hy : tour.highlights_en).map((h, i) => (
                       <div key={i} className="flex items-start gap-2 text-xs text-brand-ink">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-olive mt-1.5 flex-shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-olive mt-1.5 shrink-0" />
                         <span className="leading-snug">{h}</span>
                       </div>
                     ))}
@@ -164,7 +169,7 @@ export function FeaturedToursGrid() {
                         href={tour.externalBookingUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="py-2.5 px-3.5 rounded-lg bg-brand-forest text-white text-xs font-semibold flex items-center gap-1.5 hover:bg-brand-forest-deep transition-colors"
+                        className="py-2.5 px-3.5 rounded-xl bg-brand-forest text-white text-xs font-semibold flex items-center gap-1.5 hover:bg-brand-forest-deep active:scale-95 transition-all shadow-2xs"
                       >
                         <CreditCard className="w-3.5 h-3.5" />
                         <span>{isHy ? "Ամրագրել առցանց" : "Book Online"}</span>
@@ -176,7 +181,7 @@ export function FeaturedToursGrid() {
                     <button
                       type="button"
                       onClick={() => openTravelDrawer(isHy ? tour.title_hy : tour.title_en)}
-                      className="py-2.5 px-3.5 rounded-lg bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-colors"
+                      className="py-2.5 px-4 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep active:scale-95 transition-all cursor-pointer shadow-2xs"
                     >
                       {isHy ? "Հարցում Desk-ին" : "Inquire Desk"}
                     </button>
@@ -185,7 +190,7 @@ export function FeaturedToursGrid() {
                     <button
                       type="button"
                       onClick={() => handleWhatsAppBooking(tour.title_en)}
-                      className="py-2.5 px-3 rounded-lg border border-brand-stone-300 bg-white text-brand-ink hover:text-emerald-700 hover:border-emerald-500 text-xs font-medium transition-colors flex items-center gap-1"
+                      className="py-2.5 px-3.5 rounded-xl border border-brand-stone-300 bg-white text-brand-ink hover:text-emerald-700 hover:border-emerald-500 active:scale-95 text-xs font-medium transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
                       title="Check availability on WhatsApp"
                     >
                       <MessageCircle className="w-4 h-4 text-emerald-600" />
