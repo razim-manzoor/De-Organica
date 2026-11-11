@@ -117,18 +117,7 @@ export function ContactSection() {
             <div className="p-6 sm:p-7 rounded-3xl bg-white border border-brand-stone-200/90 shadow-md space-y-5">
               <div className="flex items-center justify-between pb-4 border-b border-brand-stone-100">
                 <div className="flex items-center gap-2.5">
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span
-                      className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
-                        isDeskOpen ? "bg-emerald-500" : "bg-amber-500"
-                      }`}
-                    ></span>
-                    <span
-                      className={`relative inline-flex rounded-full h-2.5 w-2.5 ${
-                        isDeskOpen ? "bg-emerald-600" : "bg-amber-600"
-                      }`}
-                    ></span>
-                  </span>
+                  <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${isDeskOpen ? "bg-emerald-600" : "bg-amber-600"}`} />
                   <span className="text-xs font-bold text-brand-forest uppercase tracking-wider">
                     {isDeskOpen
                       ? isHy

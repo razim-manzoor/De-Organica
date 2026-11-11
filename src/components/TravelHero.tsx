@@ -114,16 +114,12 @@ export function TravelHero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Editorial Travel Narrative */}
           <div className="lg:col-span-7">
-            {/* Coordinates & Geographic Baseline Tag */}
-            <div className="flex flex-wrap items-center gap-2 mb-4">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-brand-stone-300 text-brand-forest text-[11px] font-mono tracking-wider shadow-2xs">
-                <Navigation className="w-3 h-3 text-brand-olive shrink-0" />
-                <span>YEREVAN HUB · 40.1792° N, 44.4991° E</span>
-              </div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200/80 text-amber-900 text-[11px] font-medium shadow-2xs">
-                <Mountain className="w-3 h-3 text-amber-700 shrink-0" />
-                <span>1,020m – 2,200m ASL</span>
-              </div>
+            {/* Geographic & Curated Travel Tag */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-stone-300 text-stone-700 text-xs font-medium shadow-2xs mb-4">
+              <Compass className="w-3.5 h-3.5 text-brand-olive shrink-0" />
+              <span>{isHy ? "Հայաստանի Բացառիկ Տուրեր և B2B DMC" : "Armenia Inbound DMC and Curated Journeys"}</span>
+              <span className="text-stone-300">·</span>
+              <span className="text-stone-500 font-medium">Yerevan, Armenia</span>
             </div>
 
             <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-forest leading-[1.12] mb-6">
@@ -199,7 +195,7 @@ export function TravelHero() {
                   </span>
                 </div>
 
-                <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-full text-brand-forest text-[11px] font-mono font-semibold flex items-center gap-1 shadow-2xs">
+                <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-full text-brand-forest text-xs font-semibold flex items-center gap-1 shadow-2xs">
                   <Mountain className="w-3 h-3 text-brand-olive" />
                   <span>{activeDest.altitudeM}m ASL</span>
                 </div>

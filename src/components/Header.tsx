@@ -68,15 +68,10 @@ export function Header() {
 
         {/* Header Right Actions */}
         <div className="hidden sm:flex items-center gap-3 lg:gap-4 shrink-0">
-          {/* Live Yerevan Desk Status Indicator */}
-          <div className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-full bg-stone-100/80 border border-stone-200/80 text-[11px] font-medium text-stone-700 shadow-2xs">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
-            </span>
-            <span className="font-mono text-[10.5px] uppercase tracking-wider text-stone-800">
-              Yerevan Desk Live
-            </span>
+          {/* Calm Institutional Location Tag */}
+          <div className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-100/70 border border-stone-200/60 text-xs text-stone-600 font-medium">
+            <span className="w-2 h-2 rounded-full bg-emerald-600 shrink-0" />
+            <span>{isHy ? "Երևան, Հայաստան" : "Yerevan, Armenia"}</span>
           </div>
 
           <LanguageSwitcher />

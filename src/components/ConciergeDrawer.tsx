@@ -28,16 +28,7 @@ import {
   Check,
   Trash2,
 } from "lucide-react";
-
-const COUNTRY_DIAL_CODES = [
-  { label: "🇦🇲 Armenia (+374)", code: "+374" },
-  { label: "🇮🇳 India (+91)", code: "+91" },
-  { label: "🇦🇪 UAE (+971)", code: "+971" },
-  { label: "🇵🇭 Philippines (+63)", code: "+63" },
-  { label: "🇬🇪 Georgia (+995)", code: "+995" },
-  { label: "🇷🇺 Russia (+7)", code: "+7" },
-  { label: "🌐 Other Country", code: "+" },
-];
+import { PhoneCountryInput } from "@/components/PhoneCountryInput";
 
 export function ConciergeDrawer() {
   const { state, closeDrawer } = useDrawer();
@@ -246,16 +237,13 @@ export function ConciergeDrawer() {
         {/* Top Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-brand-stone-200 bg-white">
           <div className="flex items-center gap-3">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-olive opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-olive"></span>
-            </span>
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0" />
             <div>
               <h2 className="font-serif text-lg font-bold text-brand-forest">
                 {isHy ? "Ուղիղ կապ Երևանի գրասենյակի հետ" : "Direct Yerevan Desk Inquiry"}
               </h2>
               <p className="text-xs text-brand-ink-muted">
-                {deorganicaConfig.company.workingHours_en}
+                {isHy ? deorganicaConfig.company.workingHours_hy : deorganicaConfig.company.workingHours_en}
               </p>
             </div>
           </div>
@@ -435,35 +423,23 @@ export function ConciergeDrawer() {
                   </div>
                 )}
 
-                {/* International Phone with Country Preset */}
+                {/* International Phone with Accessible SVG Flag Picker */}
                 <div>
                   <label className="block text-xs font-semibold text-brand-forest mb-1.5">
                     {isHy ? "Հեռախոսահամար / WhatsApp *" : "WhatsApp / Mobile Number *"}
                   </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                    <select
-                      value={dialCode}
-                      onChange={(e) => setDialCode(e.target.value)}
-                      className="px-3 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs font-medium text-brand-ink focus:outline-hidden focus:ring-2 focus:ring-brand-olive shadow-2xs"
-                    >
-                      {COUNTRY_DIAL_CODES.map((c) => (
-                        <option key={c.label} value={c.code}>
-                          {c.label}
-                        </option>
-                      ))}
-                    </select>
-                    <input
-                      type="tel"
-                      value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
-                      placeholder="99 000000"
-                      className="sm:col-span-2 px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white focus:outline-hidden focus:ring-2 focus:ring-brand-olive focus:border-transparent text-brand-ink shadow-2xs"
-                    />
-                  </div>
-                  <p className="text-[11px] text-brand-ink-subtle mt-1.5">
+                  <PhoneCountryInput
+                    dialCode={dialCode}
+                    onDialCodeChange={setDialCode}
+                    phoneNumber={phoneNumber}
+                    onPhoneNumberChange={setPhoneNumber}
+                    isHy={isHy}
+                    required
+                  />
+                  <p className="text-[11px] text-stone-500 mt-1.5">
                     {isHy
                       ? "Մենք կուղարկենք հաստատումը WhatsApp-ով կամ SMS-ով:"
-                      : "We route inquiries directly to our WhatsApp dispatch desk."}
+                      : "We route inquiries directly to our Yerevan WhatsApp dispatch desk."}
                   </p>
                 </div>
 

@@ -37,9 +37,8 @@ export function HeroDualGateway() {
         {/* Editorial Top Headline Block */}
         <div className="max-w-3xl mb-12 lg:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-stone-300 text-brand-forest text-xs font-semibold tracking-wide shadow-2xs mb-5">
-            <span className="w-2 h-2 rounded-full bg-brand-olive" />
             <MapPin className="w-3.5 h-3.5 text-brand-olive" />
-            <span className="font-sans uppercase tracking-[0.16em] text-[11px]">
+            <span className="font-sans uppercase tracking-[0.14em] text-[11px]">
               {isHy ? deorganicaConfig.hero.eyebrow_hy : deorganicaConfig.hero.eyebrow_en}
             </span>
           </div>
@@ -64,8 +63,8 @@ export function HeroDualGateway() {
                 <div className="w-14 h-14 rounded-2xl bg-amber-100/70 border border-amber-200 flex items-center justify-center text-amber-900 group-hover:bg-brand-forest group-hover:text-white transition-colors duration-300 shadow-2xs">
                   <Compass className="w-7 h-7 transition-transform duration-300 group-hover:rotate-12" />
                 </div>
-                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-[10px] font-mono uppercase tracking-wider font-bold">
-                  <Mountain className="w-3 h-3 text-amber-700" />
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-[11px] font-medium tracking-wide">
+                  <Mountain className="w-3.5 h-3.5 text-amber-700" />
                   <span>Division I · Travel & Tours</span>
                 </div>
               </div>
@@ -127,8 +126,8 @@ export function HeroDualGateway() {
                 <div className="w-14 h-14 rounded-2xl bg-emerald-100/70 border border-emerald-200 flex items-center justify-center text-emerald-900 group-hover:bg-brand-forest group-hover:text-white transition-colors duration-300 shadow-2xs">
                   <Users className="w-7 h-7 transition-transform duration-300 group-hover:scale-105" />
                 </div>
-                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-900 text-[10px] font-mono uppercase tracking-wider font-bold">
-                  <Scale className="w-3 h-3 text-emerald-700" />
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-900 text-[11px] font-medium tracking-wide">
+                  <Scale className="w-3.5 h-3.5 text-emerald-700" />
                   <span>Division II · Manpower Mobility</span>
                 </div>
               </div>
