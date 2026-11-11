@@ -1,10 +1,28 @@
 # Project State: De Organica LLC (`deorganica.am`)
 
 **Updated:** 2026-11-11  
-**Status:** Studio-Grade Flagship Verified & Shipped (Brand Palette Harmonization, Image-to-Text Mismatch Resolution, Manpower Form Architecture Elevation, Cultural Heritage Showcase, Bilingual FAQs, Zero 404 Assets)
+**Status:** Studio-Grade Flagship Verified & Shipped (Editorial Pruning, Natural Headings, Brand Palette Harmonization, Image-to-Text Mismatch Resolution, Manpower Form Architecture Elevation, Cultural Heritage Showcase, Bilingual FAQs, Zero 404 Assets)
 
 ## Completed Work
-1. **Brand Palette Harmonization Across Entire Application:**
+1. **Zero-Bias Editorial Pruning & Natural Heading Refactoring:**
+   - **Eliminated Buzzword Inflation:** Replaced stiff, corporate-manual jargon (*"Hospitality Infrastructure"*, *"Terroir Journeys"*, *"Ethical Workforce Mobility"*, *"Human Capital"*) with crisp, confident luxury statements:
+     - `/travel` Hero: *"Private Tours & Bespoke Journeys in Armenia"* (*«Անհատական Տուրեր և Բացառիկ Ճամփորդություններ Հայաստանում»*)
+     - `/travel` Services: *"Complete Travel & Ground Services in Armenia"* (*«Ամբողջական Տուրիստական Ծառայություններ Հայաստանում»*)
+     - `/travel` Tours: *"Signature Armenia Tours & Multi-Day Journeys"* (*«Հայաստանի Հեղինակային Տուրեր և Երթուղիներ»*)
+     - `/travel` Heritage: *"Living Heritage, Gastronomy & Natural Wonders"* (*«Պատմական Ժառանգություն, Գաստրոնոմիա և Բնություն»*)
+     - `/travel` DMC: *"Your Trusted DMC & Ground Partner in Armenia"* (*«Ձեր Վստահելի DMC Գործընկերը Հայաստանում»*)
+     - `/manpower` Hero: *"International Recruitment & Staffing with Zero Upfront Fees"* (*«Միջազգային Հավաքագրում և Աշխատուժ՝ 0 ֏ Կանխավճարով»*)
+     - `/manpower` Pipeline: *"How It Works: From Application to Arrival"* (*«Ինչպես է Աշխատում՝ Դիմումից Մինչև Ժամանում»*)
+     - `/manpower` Compliance: *"100% Legal Work Permits. Zero Upfront Candidate Fees."* (*«100% Օրինական Աշխատանքի Թույլտվություն և 0 ֏ Կանխավճար»*)
+     - `/manpower` Openings: *"Current Job Openings in Armenia"* (*«Թափուր Աշխատատեղեր Հայաստանում»*)
+     - `/manpower` Employers: *"Enterprise Workforce Solutions for Armenia"* (*«Աշխատուժի Լուծումներ Հայաստանի Գործատուների Համար»*)
+     - Contact Desks: *"Contact Our Yerevan Office"* (*«Կապ Հաստատեք Երևանի Մեր Գրասենյակի Հետ»*)
+   - **Eradicated Eyebrow-to-Heading Duplication:** Replaced duplicate phrases with clean category markers or institutional location pins.
+   - **Pruned Triple-Layer Card Redundancy:** Removed the redundant 3-4 line middle prose paragraphs inside `TravelServicesMatrix.tsx` and `FeaturedToursGrid.tsx`. Every card now follows an ultra-crisp, luxury hierarchy: Title → 1-line hook → 3 scannable bullet points → direct CTA buttons.
+   - **Removed Duplicate `CorporateFoundation`:** Stripped the holding-level corporate foundation component from `/manpower/page.tsx`, eliminating 600px of duplicate legal text before the contact desk and keeping it solely on the homepage `/`.
+   - **Section Intro Subtitle Pruning:** Shortened 40–50 word paragraphs into punchy, elegant 15–20 word introductory hooks.
+
+2. **Brand Palette Harmonization Across Entire Application:**
    - Eradicated all off-brand generic Tailwind colors (`emerald-50/700/800`, `amber-50/800`, `slate-100/200`) across components.
    - Unified every component to De Organica's bespoke architectural brand palette:
      - Heritage Forest Green: `#233D20` (`brand-forest`)

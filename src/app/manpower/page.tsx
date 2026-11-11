@@ -6,7 +6,6 @@ import { PipelineStageShow } from "@/components/PipelineStageShow";
 import { ManpowerCandidateHub } from "@/components/ManpowerCandidateHub";
 import { ManpowerComplianceBanner } from "@/components/ManpowerComplianceBanner";
 import { ManpowerEmployerSection } from "@/components/ManpowerEmployerSection";
-import { CorporateFoundation } from "@/components/CorporateFoundation";
 import { ManpowerFaqSection } from "@/components/ManpowerFaqSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
@@ -41,9 +40,6 @@ export default function ManpowerPage() {
 
         {/* Regulatory Compliance & Labor Standards FAQ */}
         <ManpowerFaqSection />
-
-        {/* Institutional Foundation */}
-        <CorporateFoundation />
 
         {/* Direct Contact Desk (Manpower Specific) */}
         <ContactSection variant="manpower" />

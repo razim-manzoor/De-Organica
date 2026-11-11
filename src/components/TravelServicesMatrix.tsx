@@ -46,18 +46,18 @@ export function TravelServicesMatrix() {
     <section id="travel-services" className="py-20 lg:py-28 bg-white border-t border-brand-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-12 sm:mb-16">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
             <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
-            <span>{isHy ? "Տուրիստական Ենթակառուցվածք և Ծառայություններ" : "Hospitality Infrastructure · Ground Operations"}</span>
+            <span>{isHy ? "Տեղական Գետնային Սպասարկում" : "Local Ground Operations"}</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
-            {isHy ? "Ամբողջական Տեղական Սպասարկում և Տուրիստական Լոգիստիկա" : "Hospitality Infrastructure & Ground Operations"}
+            {isHy ? "Ամբողջական Տուրիստական Ծառայություններ Հայաստանում" : "Complete Travel & Ground Services in Armenia"}
           </h2>
           <p className="text-sm sm:text-base text-brand-ink-muted leading-relaxed">
             {isHy
-              ? "Հայաստանի պատմամշակութային երթուղիներից մինչև արտագնա հանգիստ, վիզաների աջակցություն, բուտիկ հյուրանոցներ և Զվարթնոցի (EVN) 24/7 դիմավորում:"
-              : "From curated Armenian monastic routes to international holiday departures, consular visa processing, luxury chauffeur rentals, and round-the-clock Zvartnots EVN airfield ground dispatch."}
+              ? "Պատմամշակութային շրջագայություններից մինչև վիզաների աջակցություն, անհատական տրանսպորտ և Զվարթնոց (EVN) օդանավակայանի 24/7 դիմավորում:"
+              : "From signature overland expeditions and consular visa support to private chauffeur transfers and 24/7 Zvartnots (EVN) airport dispatch."}
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export function TravelServicesMatrix() {
               className="group rounded-3xl bg-white border border-brand-stone-200/90 overflow-hidden flex flex-col justify-between hover:border-brand-olive/50 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 shadow-xs"
             >
               {/* Image Container with Badge */}
-              <div className="relative h-56 w-full overflow-hidden bg-brand-stone-200">
+              <div className="relative h-52 w-full overflow-hidden bg-brand-stone-200">
                 <img
                   src={service.image}
                   alt={isHy ? service.title_hy : service.title_en}
@@ -94,21 +94,17 @@ export function TravelServicesMatrix() {
               {/* Card Content */}
               <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-brand-forest mb-1.5 group-hover:text-brand-forest-deep transition-colors">
+                  <h3 className="font-serif text-xl font-bold text-brand-forest mb-2 group-hover:text-brand-forest-deep transition-colors">
                     {isHy ? service.title_hy : service.title_en}
                   </h3>
 
-                  <p className="text-xs font-semibold text-brand-olive-dark mb-3">
+                  <p className="text-xs sm:text-[13px] text-brand-ink-muted leading-relaxed mb-5 font-normal">
                     {isHy ? service.tagline_hy : service.tagline_en}
-                  </p>
-
-                  <p className="text-xs text-brand-ink-muted leading-relaxed mb-6">
-                    {isHy ? service.description_hy : service.description_en}
                   </p>
 
                   {/* Feature Checkpoints */}
                   <div className="space-y-2 mb-6 border-t border-brand-stone-100 pt-4">
-                    {(isHy ? service.features_hy : service.features_en).map((feature, idx) => (
+                    {(isHy ? service.features_hy : service.features_en).slice(0, 3).map((feature, idx) => (
                       <div key={idx} className="flex items-start gap-2 text-xs text-brand-ink">
                         <CheckCircle2 className="w-3.5 h-3.5 text-brand-olive shrink-0 mt-0.5" />
                         <span className="leading-snug">{feature}</span>

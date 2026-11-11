@@ -49,13 +49,15 @@ export function ManpowerCandidateHub() {
         <div className="max-w-3xl mb-12">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
             <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
-            <span>{isHy ? "Թեկնածուների Կենտրոն · 0 ՀՀ Դրամ Կանխավճար" : "Candidate Portal · Zero Upfront Fee Charter"}</span>
+            <span>{isHy ? "Թափուր Հաստիքներ" : "Verified Vacancies"}</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
-            {isHy ? "Աշխատանք Հայաստանում և Արտերկրում" : "Opportunities in Armenia & Global Corridors"}
+            {isHy ? "Թափուր Աշխատատեղեր Հայաստանում" : "Current Job Openings in Armenia"}
           </h2>
           <p className="text-sm sm:text-base text-brand-ink-muted leading-relaxed">
-            {isHy ? deorganicaConfig.manpower.heroSubtext_hy : deorganicaConfig.manpower.heroSubtext_en}
+            {isHy
+              ? "Թափուր հաստիքներ շինարարության, հյուրընկալության, գյուղատնտեսության և տրանսպորտի ոլորտներում՝ պաշտոնական աշխատանքային պայմանագրերով:"
+              : "Explore active positions in construction, hospitality, agriculture, and transportation with verified employer contracts."}
           </p>
         </div>
 

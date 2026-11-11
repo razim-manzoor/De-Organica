@@ -35,19 +35,19 @@ export function FeaturedToursGrid() {
     <section id="tours-matrix" className="py-20 lg:py-28 bg-brand-stone-100/70 border-t border-brand-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
               <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
-              <span>{isHy ? "Հեղինակային Երթուղիներ և Գինու Ճանապարհ" : "Signature Expeditions · Terroir & Heritage"}</span>
+              <span>{isHy ? "Հեղինակային Երթուղիներ" : "Signature Expeditions"}</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
-              {isHy ? "Հայաստանի Բացառիկ Երթուղիներ և Տուրիստական Ծրագրեր" : "Curated Expeditions & High-Altitude Terroir Journeys"}
+              {isHy ? "Հայաստանի Հեղինակային Տուրեր և Երթուղիներ" : "Signature Armenia Tours & Multi-Day Journeys"}
             </h2>
             <p className="text-sm sm:text-base text-brand-ink-muted leading-relaxed">
               {isHy
-                ? "Յուրաքանչյուր ծրագիր հարմարեցվում է Ձեր նախընտրած բյուջեին և ոճին՝ մատչելի 3-աստղանի հյուրանոցներից ու ճկուն երթուղիներից մինչև բուտիկ գինեգործարաններ և VIP executive տրանսպորտ:"
-                : "Every journey is customized to your preferred travel style and budget — from cost-conscious 3-star central stays and self-paced routes to boutique wine resorts and VIP executive chauffeurs."}
+                ? "Հարմարեցված Ձեր բյուջեին և ոճին՝ հարմարավետ 3★ հյուրանոցներից մինչև բուտիկ գինեգործարաններ և VIP տրանսպորտ:"
+                : "Customized to your travel style and budget — from clean 3-star comfort and self-paced routes to luxury wine châteaux and executive chauffeurs."}
             </p>
           </div>
 
@@ -105,12 +105,8 @@ export function FeaturedToursGrid() {
               {/* Content Body */}
               <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-6">
                 <div>
-                  <p className="text-xs font-medium text-brand-olive-dark mb-3">
+                  <p className="text-xs sm:text-[13px] font-medium text-brand-ink-muted mb-5 leading-relaxed">
                     {isHy ? tour.tagline_hy : tour.tagline_en}
-                  </p>
-
-                  <p className="text-xs text-brand-ink-muted leading-relaxed mb-6">
-                    {isHy ? tour.description_hy : tour.description_en}
                   </p>
 
                   {/* Highlights List */}

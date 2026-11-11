@@ -45,20 +45,20 @@ export function DmcPartnerSection() {
   return (
     <section id="dmc" className="py-20 lg:py-28 bg-brand-forest text-white relative overflow-hidden border-t border-brand-forest-deep">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-3xl mb-14">
+        <div className="max-w-3xl mb-12 sm:mb-14">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-light mb-3">
             <span className="inline-block w-2 h-2 rounded-full bg-brand-olive-light" />
-            <span>{isHy ? "B2B Տեղական Գործընկեր · Երևան Դեսկ" : "B2B Destination Management · Institutional Ground Handling"}</span>
+            <span>{isHy ? "B2B DMC Գործընկերություն · Երևան" : "B2B Destination Management · Yerevan Desk"}</span>
           </div>
 
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
-            {isHy ? "Հայաստանի Վստահելի DMC Գործընկեր" : "Armenia's Institutional Ground Handling Partner"}
+            {isHy ? "Ձեր Վստահելի DMC Գործընկերը Հայաստանում" : "Your Trusted DMC & Ground Partner in Armenia"}
           </h2>
 
           <p className="text-brand-stone-300 text-sm sm:text-base leading-relaxed">
             {isHy
-              ? "Մենք ապահովում ենք ամբողջական տեղական սպասարկում արտասահմանյան տուրիստական ընկերությունների, MICE կազմակերպիչների և կորպորատիվ հաճախորդների համար:"
-              : "We serve as the on-the-ground extension for international travel management companies, handling every element of ground hospitality in the Republic of Armenia."}
+              ? "Ամբողջական տեղական սպասարկում, մեծածախ սակագներ և 4-ժամյա գնառաջարկ միջազգային տուրիստական ընկերությունների համար:"
+              : "White-label ground handling, wholesale group tariffs, modern vehicle fleet, and 4-hour SLA quotation for international travel agencies."}
           </p>
         </div>
 

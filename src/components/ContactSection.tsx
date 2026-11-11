@@ -106,15 +106,15 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
             <div>
               <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-olive" />
-                <span>{isHy ? "Երևանի Կենտրոնական Գրասենյակ" : "Yerevan Commercial Headquarters"}</span>
+                <span>{isHy ? "Երևանի Գլխավոր Գրասենյակ" : "Yerevan Headquarters · Armenia"}</span>
               </div>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
-                {isHy ? "Ուղիղ Կապ Երևանի Գրասենյակի Հետ" : "Direct Access to our Yerevan Executive Desk"}
+                {isHy ? "Կապ Հաստատեք Երևանի Մեր Գրասենյակի Հետ" : "Contact Our Yerevan Office"}
               </h2>
               <p className="text-sm text-brand-ink-muted leading-relaxed">
                 {isHy
-                  ? "Գտնվելով Երևանի կենտրոնում՝ մեր թիմը համակարգում է ինչպես Հայաստանի բացառիկ տուրիստական երթուղիները, այնպես էլ միջազգային աշխատուժի օրինական ներգրավումը:"
-                  : "Headquartered in Yerevan, Republic of Armenia, De Organica LLC provides direct advisory for destination travel, private chauffeur tours, consular visa filings, and certified overseas talent placement."}
+                  ? "Ուղիղ խորհրդատվություն անհատական տուրերի, տրանսպորտային պարկի, վիզաների և միջազգային աշխատուժի հարցերով:"
+                  : "Direct consultation for bespoke Armenian travel, private chauffeur fleet, visa support, and certified international staffing."}
               </p>
             </div>
 

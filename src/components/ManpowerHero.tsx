@@ -110,21 +110,21 @@ export function ManpowerHero() {
               <ShieldCheck className="w-4 h-4 text-brand-olive shrink-0" />
               <span>
                 {isHy
-                  ? "Օրինական Աշխատանքային Շարժունություն · 0 ՀՀ դրամ կանխավճար"
-                  : "Ethical Workforce Mobility · Zero Upfront Candidate Fees"}
+                  ? "Երևանի Գլխավոր Գրասենյակ · ՀՀ Լիցենզավորված Գործունեություն"
+                  : "Yerevan Recruitment Desk · Republic of Armenia"}
               </span>
             </div>
 
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-forest leading-[1.12] mb-6">
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-forest leading-[1.12] mb-5">
               {isHy
-                ? "Էթիկական Հավաքագրում և Օրինական Աշխատանքային Շարժունություն"
-                : "Ethical Workforce Mobility & Verified International Recruitment"}
+                ? "Միջազգային Հավաքագրում և Աշխատուժ՝ 0 ֏ Կանխավճարով"
+                : "International Recruitment & Staffing with Zero Upfront Fees"}
             </h1>
 
             <p className="text-base sm:text-lg text-brand-ink-muted leading-relaxed mb-8 max-w-2xl font-sans">
               {isHy
-                ? "Մենք կապում ենք որակավորված միջազգային մասնագետներին Հայաստանի առաջատար գործատուների հետ: Թեկնածուներից որևէ նախնական վճար չի գանձվում, իսկ գործատուների համար երաշխավորվում է աշխատանքի և կացության պաշտոնական թույլտվությունների 100% օրինականություն:"
-                : "Bridging vetted international talent with enterprise employers in Armenia. Operating on an uncompromising candidate-first charter: absolute zero upfront fees, legitimate Ministry work permits, and legally binding employment contracts."}
+                ? "Որակավորված մասնագետների հավաքագրում Հայաստանի գործատուների համար՝ ՀՀ աշխատանքի օրինական թույլտվություններով և պետական գրանցմամբ:"
+                : "Connecting vetted overseas talent with corporate enterprises in Armenia. Governed by 100% legal Ministry of Labor work permits and transparent employment contracts."}
             </p>
 
             <div className="flex flex-wrap items-center gap-3 mb-8">
@@ -151,7 +151,7 @@ export function ManpowerHero() {
             {/* Key Dimensional Metrics */}
             <div className="grid grid-cols-3 gap-3 pt-6 border-t border-brand-stone-200">
               <div className="p-3.5 rounded-2xl bg-white border border-brand-stone-200/90 shadow-2xs">
-                <div className="font-mono text-lg sm:text-xl font-bold text-emerald-800">
+                <div className="font-mono text-lg sm:text-xl font-bold text-brand-forest">
                   0.00 AMD
                 </div>
                 <div className="text-[10px] text-brand-ink-muted uppercase tracking-wider mt-0.5 font-semibold">

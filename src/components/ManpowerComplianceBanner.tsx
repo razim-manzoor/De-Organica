@@ -47,21 +47,21 @@ export function ManpowerComplianceBanner() {
               <ShieldCheck className="w-4 h-4 text-brand-olive-light shrink-0" />
               <span>
                 {isHy
-                  ? "Պաշտոնական Իրավական Չափորոշիչներ · Երևան Դեսկ"
-                  : "State Regulatory Integrity · Yerevan HR Desk"}
+                  ? "Օրինական Կարգավորումներ · Երևան"
+                  : "Labor Compliance & Protection · Yerevan"}
               </span>
             </div>
 
             <h2 className="font-serif text-2xl sm:text-4xl font-bold tracking-tight mb-4 leading-tight">
               {isHy
-                ? "Էթիկական Աշխատուժ: ՀՀ Օրենսդրության Լիարժեք Համապատասխանություն:"
-                : "Ethical Human Capital. Absolute Ministry of Labor Integrity."}
+                ? "100% Օրինական Աշխատանքի Թույլտվություն և 0 ֏ Կանխավճար"
+                : "100% Legal Work Permits. Zero Upfront Candidate Fees."}
             </h2>
 
             <p className="text-brand-stone-300 text-xs sm:text-sm leading-relaxed max-w-2xl mb-6">
               {isHy
-                ? "«Դե Օրգանիկա»-ն գործում է ՀՀ օրենսդրության շրջանակներում: Մենք բացառում ենք թեկնածուներից որևէ նախնական վճարների գանձումը՝ ապահովելով պետական գրանցում, թափանցիկ աշխատավարձեր և կայուն համագործակցություն:"
-                : "De Organica LLC operates as a certified commercial entity in Yerevan. We eradicate exploitative recruitment practices: candidates pay zero upfront fees, while employers receive vetted, legally compliant talent under binding bilateral labor contracts."}
+                ? "Բացառելով շահագործումը՝ թեկնածուները չեն վճարում որևէ կանխավճար, իսկ գործատուները ստանում են օրինական աշխատուժ:"
+                : "Eliminating recruitment exploitation: candidates pay zero application fees, while Armenian enterprises receive fully compliant, contractually bound talent."}
             </p>
 
             <div className="flex flex-wrap items-center gap-3">

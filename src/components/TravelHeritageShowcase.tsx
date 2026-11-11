@@ -92,19 +92,19 @@ export function TravelHeritageShowcase() {
     <section className="py-20 lg:py-28 bg-white border-t border-brand-stone-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
               <span className="w-2 h-2 rounded-full bg-brand-olive" />
-              <span>{isHy ? "Հայաստանի Ոչ Նյութական Ժառանգություն և Տերուար" : "Armenian Living Heritage & Terroir"}</span>
+              <span>{isHy ? "Պատմական Ժառանգություն և Գաստրոնոմիա" : "Living Heritage & Gastronomy"}</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
-              {isHy ? "Հնագույն Գաստրոնոմիա և Բնական Հրաշքներ" : "Living Antiquity, Terroir & Culinary Soul"}
+              {isHy ? "Պատմական Ժառանգություն, Գաստրոնոմիա և Բնություն" : "Living Heritage, Gastronomy & Natural Wonders"}
             </h2>
             <p className="text-sm sm:text-base text-brand-ink-muted leading-relaxed">
               {isHy
-                ? "Բացահայտեք ավելին, քան պարզապես տեսարժան վայրեր: Մասնակցեք ավանդական արարողություններին, համտեսեք հազվագյուտ տերուարային գինիները և զգացեք Հայաստանի բնության շունչը:"
-                : "Every De Organica expedition is enriched with hands-on immersion: taste indigenous vintages where viticulture was born, dine on high-altitude alpine lake trout, and bake UNESCO bread with local master bakers."}
+                ? "Կենդանի մշակութային փորձառություն՝ հնագույն գինու համտես, լեռնային խոհանոց և ՅՈՒՆԵՍԿՕ-ի լավաշի թխման վարպետաց դասեր:"
+                : "Hands-on cultural immersion: taste indigenous varietals where winemaking began, dine on alpine trout, and master UNESCO lavash baking."}
             </p>
           </div>
 

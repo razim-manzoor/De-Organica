@@ -85,18 +85,18 @@ export function ManpowerFaqSection() {
     <section className="py-20 lg:py-28 bg-brand-stone-50 border-t border-brand-stone-200">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
             <ShieldCheck className="w-4 h-4 text-brand-olive" />
-            <span>{isHy ? "Իրավական Պաշտպանություն և Կանոնադրություն" : "Regulatory Compliance & Manpower FAQ"}</span>
+            <span>{isHy ? "Աշխատանքային Կանոններ և Հարցեր" : "Labor Standards & FAQ"}</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-forest tracking-tight mb-4">
-            {isHy ? "Հաճախ Տրվող Հարցեր և Օրենսդրական Կարգավորումներ" : "Frequently Asked Questions & Labor Standards"}
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-forest tracking-tight mb-3">
+            {isHy ? "Հաճախ Տրվող Հարցեր" : "Frequently Asked Questions"}
           </h2>
           <p className="text-sm text-brand-ink-muted max-w-2xl mx-auto leading-relaxed">
             {isHy
-              ? "Թեկնածուների իրավունքների պաշտպանություն, աշխատանքի թույլտվությունների ժամկետներ և կորպորատիվ գործատուների երաշխիքներ:"
-              : "Clear answers on zero upfront fee contingency, Ministry of Labor permit timelines, AMD banking, and our 30-day replacement warranty."}
+              ? "Պարզաբանումներ 0 ֏ կանխավճարի, թույլտվությունների ժամկետների, բանկային քարտերի և փոխարինման երաշխիքի վերաբերյալ:"
+              : "Clear guidance on the zero upfront fee policy, Ministry permit timelines, AMD direct banking, and replacement guarantees."}
           </p>
         </div>
 

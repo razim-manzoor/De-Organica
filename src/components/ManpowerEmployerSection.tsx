@@ -36,20 +36,20 @@ export function ManpowerEmployerSection() {
     <section id="manpower-employers" className="py-20 lg:py-28 bg-brand-stone-100/70 border-t border-brand-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-12 sm:mb-16">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
             <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
-            <span>{isHy ? "B2B Կորպորատիվ Հավաքագրում և Քվոտաներ" : "B2B Enterprise Staffing · Corporate Quotas"}</span>
+            <span>{isHy ? "Կորպորատիվ Հավաքագրում" : "B2B Enterprise Staffing"}</span>
           </div>
 
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
-            {isHy ? "Վստահելի Միջազգային Աշխատուժ Ձեր Ընկերության Համար" : "End-to-End International Manpower & Staffing"}
+            {isHy ? "Աշխատուժի Լուծումներ Հայաստանի Գործատուների Համար" : "Enterprise Workforce Solutions for Armenia"}
           </h2>
 
           <p className="text-sm sm:text-base text-brand-ink-muted leading-relaxed">
             {isHy
-              ? "Մենք ապահովում ենք որակավորված և աշխատասեր կադրերի մատակարարում Հայաստանի և տարածաշրջանի ձեռնարկություններին՝ հոգալով օրինական աշխատանքի թույլտվության, վիզայի և տեղավորման բոլոր հարցերը:"
-              : "We supply verified international talent for enterprise operations in Armenia and regional corridors, managing end-to-end legal quotas, Ministry of Labor permits, and on-site deployment."}
+              ? "Որակավորված կադրերի մատակարարում Հայաստանի ձեռնարկություններին՝ պետական քվոտաների, վիզաների և տեղավորման ամբողջական կառավարմամբ:"
+              : "Supplying vetted international skilled and semi-skilled talent with full Ministry quotas, work permits, and on-site integration."}
           </p>
         </div>
 

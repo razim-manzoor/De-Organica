@@ -158,17 +158,17 @@ export function PipelineStageShow() {
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
               <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
-              <span>{isHy ? "Թափանցիկության Ինտերակտիվ Շղթա · ՀՀ Օրինական Ուղի" : "Transparency & Compliance Engine · 4-Stage Legal Route"}</span>
+              <span>{isHy ? "Հավաքագրման և Վիզայի Գործընթաց" : "Recruitment & Visa Process"}</span>
             </div>
 
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
-              {isHy ? "Միջազգային Աշխատուժի 4-Փուլ Իրավական Ուղին" : "The 4-Stage Ethical Relocation Pathway"}
+              {isHy ? "Ինչպես է Աշխատում՝ Դիմումից Մինչև Ժամանում" : "How It Works: From Application to Arrival"}
             </h2>
 
             <p className="text-sm sm:text-base text-brand-ink-muted leading-relaxed">
               {isHy
-                ? "Սեղմեք ցանկացած փուլ՝ ծանոթանալու թեկնածուների պաշտպանության երաշխիքներին և ՀՀ օրինական աշխատանքի թույլտվությունների ձևակերպմանը:"
-                : "Explore how De Organica LLC bridges overseas talent with verified employers in Armenia. Governed by zero candidate fee terms and full Ministry of Labor compliance."}
+                ? "Թափանցիկ 4-փուլ գործընթաց՝ 0 ֏ կանխավճարով, հմտությունների ստուգմամբ և ՀՀ աշխատանքի օրինական թույլտվությամբ:"
+                : "A transparent 4-stage pathway ensuring zero candidate fees, rigorous skill vetting, and official Republic of Armenia work permits."}
             </p>
           </div>
 

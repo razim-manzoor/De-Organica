@@ -123,22 +123,22 @@ export function ItineraryStageShow() {
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
               <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
-              <span>{isHy ? "Ինտերակտիվ Երթուղու Մոդելավորում" : "Interactive Expedition Simulator · Day By Day"}</span>
+              <span>{isHy ? "Ինտերակտիվ Երթուղի" : "Itinerary Simulator"}</span>
             </div>
 
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
-              {isHy ? "Ձևավորեք Ձեր Հայաստանի Երթուղին և Տրանսպորտը" : "Curate Your Armenian Itinerary & Private Fleet"}
+              {isHy ? "Ձևավորեք Ձեր Հայաստանի Երթուղին և Տրանսպորտը" : "Curate Your Armenian Itinerary & Fleet"}
             </h2>
 
             <p className="text-sm sm:text-base text-brand-ink-muted leading-relaxed">
               {isHy
-                ? "Ընտրեք ցանկալի օրը, տրանսպորտի դասը (Economy, Executive Sedan կամ VIP Minivan) և հատուկ ներառումները՝ Երևանի գրասենյակից անհատական սակագին ստանալու համար:"
-                : "Select your expedition day leg, choose your private chauffeur fleet tier, and toggle bespoke inclusions to generate an immediate custom tariff from our Yerevan desk."}
+                ? "Ընտրեք երթուղու օրը, տրանսպորտի դասը և նախընտրած ներառումները՝ անհատական գնառաջարկ ստանալու համար:"
+                : "Select your route leg, chauffeur fleet tier, and preferred inclusions for an immediate bespoke quotation."}
             </p>
           </div>
 
           <div className="flex items-center gap-2 self-start md:self-auto px-3.5 py-1.5 rounded-full bg-brand-stone-100 border border-brand-stone-200 text-brand-forest text-xs font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-olive animate-pulse" />
             <span>{isHy ? "Երևանի դիսպետչերական ծառայություն" : "Live Yerevan Ground Dispatch"}</span>
           </div>
         </div>

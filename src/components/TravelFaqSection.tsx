@@ -84,15 +84,15 @@ export function TravelFaqSection() {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
             <HelpCircle className="w-4 h-4 text-brand-olive" />
-            <span>{isHy ? "Հաճախ Տրվող Հարցեր · Հայաստանի Ուղեցույց" : "Armenia Travel Advisory & FAQ"}</span>
+            <span>{isHy ? "Ճամփորդական Խորհրդատվություն" : "Travel Advisory & FAQ"}</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-forest tracking-tight mb-4">
-            {isHy ? "Ամեն ինչ Ձեր Հայաստանի Ճամփորդության Մասին" : "Everything You Need to Know for Your Journey"}
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-forest tracking-tight mb-3">
+            {isHy ? "Հաճախ Տրվող Հարցեր" : "Frequently Asked Questions"}
           </h2>
           <p className="text-sm text-brand-ink-muted max-w-2xl mx-auto leading-relaxed">
             {isHy
-              ? "Վիզաների կարգավիճակ, եղանակային խորհուրդներ, անվտանգություն և B2B գործընկերություն: Եթե ունեք այլ հարցեր, կապվեք մեր Երևանի գրասենյակի հետ:"
-              : "Clear, factual guidance on consular visas, travel seasons, safety, and custom pricing. Have a question not listed here? Talk to our Yerevan team directly."}
+              ? "Հիմնական տեղեկատվություն վիզաների, լավագույն եղանակների և անհատական երթուղիների վերաբերյալ:"
+              : "Essential details on visas, best travel seasons, high-altitude safety, and bespoke itinerary planning."}
           </p>
         </div>
 

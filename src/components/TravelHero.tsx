@@ -115,19 +115,19 @@ export function TravelHero() {
             {/* Geographic & Curated Travel Tag */}
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-olive" />
-              <span>{isHy ? "Հայաստանի Բացառիկ Տուրեր և B2B DMC · Երևան" : "Armenia Inbound DMC & Bespoke Expeditions · Yerevan"}</span>
+              <span>{isHy ? "Հայաստանի Inbound DMC · Երևան" : "Armenia Inbound DMC · Yerevan"}</span>
             </div>
 
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-forest leading-[1.12] mb-6">
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-forest leading-[1.12] mb-5">
               {isHy
-                ? "Հայաստանի Լեռնաշխարհ, Պատմական Գինեգործություն և Բացառիկ Երթուղիներ"
-                : "Highland Monasteries. Ancient Terroirs. Bespoke Armenia."}
+                ? "Անհատական Տուրեր և Բացառիկ Ճամփորդություններ Հայաստանում"
+                : "Private Tours & Bespoke Journeys in Armenia"}
             </h1>
 
             <p className="text-base sm:text-lg text-brand-ink-muted leading-relaxed mb-8 max-w-2xl font-sans">
               {isHy
-                ? "Երևանի սրտից մինչև Արենիի 6,100-ամյա գինու քարանձավները, բարձրադիր Սևանա լիճ և Տաթևի վեհաշուք կիրճեր: Անհատական տրանսպորտ, արտոնագրված էքսկուրսավարներ և B2B DMC մեծածախ սպասարկում արտասահմանյան գործակալություններին:"
-                : "From the 6,100-year wine caves of Areni and UNESCO cliff sanctuaries to private chauffeur transport across alpine Lake Sevan. De Organica delivers end-to-end ground handling and bespoke itineraries from our Yerevan operations desk."}
+                ? "Հեղինակային բազմօրյա երթուղիներ, անհատական վարորդական սպասարկում և B2B DMC ծառայություններ Երևանի մեր գրասենյակից:"
+                : "Curated multi-day expeditions, chauffeur-driven transport, and B2B ground handling from our Yerevan operations desk."}
             </p>
 
             <div className="flex flex-wrap items-center gap-3 mb-8">
