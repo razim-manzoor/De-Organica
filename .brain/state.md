@@ -84,9 +84,14 @@
     - **Manpower-Exclusive Ground Desks:** Configured `<ContactSection variant="manpower" />` on [`src/app/manpower/page.tsx`](file:///R:/Projects/De%20Organica/src/app/manpower/page.tsx), isolating the page to only the 3 recruitment desks (*Candidate CV Drop*, *B2B Corporate Staffing*, and *Work Permit & Visa Advisory*).
     - **Polished Candidate & Employer WhatsApp Dispatch:** Refactored [`src/lib/whatsapp.ts`](file:///R:/Projects/De%20Organica/src/lib/whatsapp.ts) to eliminate awkward placeholder names (*"Job Applicant"* / *"Prospective Employer"*) during direct card clicks, producing human, culturally fluent Armenian and English greetings.
 
-12. **Verification Protocol:**
-   - Production build verified with `npm run build` (exit code `0`, 11/11 static pages prerendered).
-   - Playwright automated browser tests executed for desktop and mobile viewports with zero console warnings or errors.
+12. **Asset Integrity & Contact Channel Variant Isolation:**
+    - **Authentic Tsaghkadzor Alpine Snow Asset:** Replaced mismatched conference room photo (`photo-1517048676732-d65bc937f952`) with a genuine, dramatic Armenian winter ski resort landscape (`photo-1546548970-71785318a17b`) in [`src/data/deorganica-content.ts`](file:///R:/Projects/De%20Organica/src/data/deorganica-content.ts).
+    - **Dedicated Manpower Ground Desks on `/manpower`:** Resolved contact section fallback bug by adding dedicated `variant === "manpower"` channel handling in [`src/components/ContactSection.tsx`](file:///R:/Projects/De%20Organica/src/components/ContactSection.tsx) with three isolated recruitment desks (*Candidate CV Submission*, *Corporate Employer Talent Requisition*, and *Work Permit & Relocation Advisory*).
+    - **100% Bilingual Armenian Parity in Contact Channels:** Translated all subtexts, division titles, badges, and response SLAs across all three contact variants (*all*, *travel*, *manpower*) to ensure zero English fallback leaks.
+
+13. **Verification Protocol:**
+    - Production build verified with `npm run build` (exit code `0`, 11/11 static pages prerendered).
+    - Playwright automated browser tests executed for desktop and mobile viewports across `/`, `/travel`, `/manpower`, and `/contact` with zero console warnings or errors.
 
 ## Outstanding / Client Configuration Points
 - Provide official Armenian/international WhatsApp number in `src/data/deorganica-content.ts` (currently configured with placeholder `+374 99 000000`).
