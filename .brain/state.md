@@ -49,10 +49,14 @@
      - B2B DMC Desk: *"Armenia's Institutional Ground Handling Partner"* (Armenian: *«Հայաստանի Վստահելի DMC Գործընկեր»*).
    - **Bilingual Armenian Parity:** Verified that all distance markers (`կմ Երևանից`, `մ ASL`), chauffeur pillar badges (`Mercedes անհատական պարկ`, `Զվարթնոցի (EVN) 24/7 դիմավորում`), and CTA buttons (`Հարցում Desk-ին`, `Ստանալ գնառաջարկ WhatsApp-ով`) render seamlessly in Armenian without fallback leaks.
 
-8. **State-of-the-Art Travel Form Architecture:**
+8. **State-of-the-Art Travel Form Architecture & Forensic State Decoupling:**
    - **Executive Expedition Context Card:** Solved the broken `<select>` preset issue. When clicking any tour or itinerary button, the drawer displays an authentic context card (*"Selected Expedition Context: Areni Ancient Wine Terroir & Southern Canyons"*) with 1-click change capability.
    - **Intelligent Persona Segmentation (`Private Traveler / Family` vs `B2B Travel Agent / DMC`):**
-     - Private Traveler: Quick interactive chips for Group Size (`1–2 Guests Sedan`, `3–5 Guests Family`, `6–10 Guests Sprinter`, `10+ Coach`), Lodging Style (`Boutique Wine & Heritage Resorts`, `5-Star Luxury`, `4-Star City Comfort`, `Tours & Chauffeur Only`), and Fleet Tier (`Mercedes Sedan`, `VIP Sprinter`, `Tour Coach`).
+     - Private Traveler: Quick interactive chips for Group Size (`1–2 Guests Sedan`, `3–5 Guests Family`, `6–10 Guests Sprinter`, `10+ Coach`), Lodging Style, and Fleet Tier, plus a direct numeric stepper.
+     - B2B Travel Agent: Dedicated company name, agency country, and decoupled `b2bScope` state (`FITs & Private VIPs`, `Leisure Groups 15–40`, `MICE Delegations`) alongside independent travel window/season input.
+   - **Bilingual Parity Across All Interactive Selectors:** 100% Armenian translation for all lodging preferences, fleet tiers, step indices, and inclusions in both the Concierge Drawer and Itinerary Simulator.
+   - **Error Handling & Mobile UX:** Form auto-scrolls to top upon validation errors, and renders an inline warning banner above the action buttons to prevent off-screen error confusion.
+   - **Polished WhatsApp Message Builder:** Removed awkward generic fallback names ("Traveler") from direct card inquiries in [`src/lib/whatsapp.ts`](file:///R:/Projects/De%20Organica/src/lib/whatsapp.ts).
      - B2B Travel Agent / DMC: Specialized fields for Agency Name, Agency Country of Origin, and Inbound Group Scope (`FITs & VIPs`, `Leisure Groups 15-40`, `MICE Delegations`).
    - **Travel-Exclusive Ground Desks on `/travel`:** Configured `ContactSection variant="travel"` to eliminate unrelated candidate/recruitment cards from the travel page, replacing them with 3 specialized travel desks: *Bespoke Leisure & Private Expeditions*, *B2B Destination Management (DMC)*, and *24/7 Zvartnots (EVN) VIP Chauffeur Fleet*.
    - **Dual Dispatch Synchronization:** Integrated all rich travel attributes (`travelerType`, `agencyName`, `accommodationTier`, `fleetTier`) into both `/api/inquiry` and WhatsApp message generators.
