@@ -1,6 +1,7 @@
 import React from "react";
 import { Header } from "@/components/Header";
 import { HeroDualGateway } from "@/components/HeroDualGateway";
+import { YerevanCrossroadsBanner } from "@/components/YerevanCrossroadsBanner";
 import { CorporateFoundation } from "@/components/CorporateFoundation";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
@@ -12,6 +13,9 @@ export default function HomePage() {
       <main className="flex-grow">
         {/* Executive Corporate Gateway (Dual-Pillar Split to /travel and /manpower) */}
         <HeroDualGateway />
+
+        {/* High-Contrast Editorial Intermission: Sovereign Crossroads Banner */}
+        <YerevanCrossroadsBanner />
 
         {/* Corporate Foundation & Institutional Trust Signals */}
         <CorporateFoundation />

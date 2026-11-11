@@ -26,9 +26,7 @@ export function HeroDualGateway() {
   return (
     <section id="about" className="relative pt-12 pb-20 lg:pt-16 lg:pb-28 overflow-hidden bg-brand-stone-50">
       {/* Background Architectural Grid Pattern */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-architectural-grid" />
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 opacity-[0.025] pointer-events-none bg-architectural-grid" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Editorial Top Headline Block */}
@@ -50,7 +48,7 @@ export function HeroDualGateway() {
         {/* 2-Pillar Split Gateway Bento Cards with Rich Visual Media */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
           {/* Pillar I: Travel & Tours */}
-          <div className="relative group rounded-3xl bg-white border border-amber-200/80 p-6 sm:p-8 shadow-xs hover:shadow-2xl hover:border-amber-500/60 transition-all duration-300 flex flex-col justify-between overflow-hidden">
+          <div className="relative group rounded-3xl bg-white border border-stone-200/90 p-6 sm:p-8 shadow-xs hover:shadow-2xl hover:border-brand-forest/50 transition-all duration-300 flex flex-col justify-between overflow-hidden">
             <div>
               {/* Media Preview Frame */}
               <div className="relative h-52 sm:h-60 w-full rounded-2xl overflow-hidden mb-6 bg-stone-100 shadow-2xs">
@@ -118,7 +116,7 @@ export function HeroDualGateway() {
               <button
                 type="button"
                 onClick={() => openTravelDrawer("Bespoke Private Itinerary")}
-                className="inline-flex items-center justify-center px-4 py-3.5 rounded-xl border border-stone-300 bg-white text-stone-800 hover:bg-stone-50 active:scale-95 text-xs font-semibold transition-all cursor-pointer shadow-2xs"
+                className="inline-flex items-center justify-center px-5 py-3.5 rounded-xl bg-stone-100 text-stone-800 hover:bg-stone-200 active:scale-95 text-xs font-semibold transition-all cursor-pointer shadow-2xs"
               >
                 {isHy ? "Պատվիրել անհատական տուր" : "Inquire Custom Trip"}
               </button>
@@ -126,7 +124,7 @@ export function HeroDualGateway() {
           </div>
 
           {/* Pillar II: Manpower & Recruitment */}
-          <div className="relative group rounded-3xl bg-white border border-emerald-200/80 p-6 sm:p-8 shadow-xs hover:shadow-2xl hover:border-emerald-500/60 transition-all duration-300 flex flex-col justify-between overflow-hidden">
+          <div className="relative group rounded-3xl bg-white border border-stone-200/90 p-6 sm:p-8 shadow-xs hover:shadow-2xl hover:border-brand-forest/50 transition-all duration-300 flex flex-col justify-between overflow-hidden">
             <div>
               {/* Media Preview Frame */}
               <div className="relative h-52 sm:h-60 w-full rounded-2xl overflow-hidden mb-6 bg-stone-100 shadow-2xs">
@@ -194,7 +192,7 @@ export function HeroDualGateway() {
               <button
                 type="button"
                 onClick={() => openCandidateDrawer()}
-                className="inline-flex items-center justify-center px-4 py-3.5 rounded-xl border border-stone-300 bg-white text-stone-800 hover:bg-stone-50 active:scale-95 text-xs font-semibold transition-all cursor-pointer shadow-2xs"
+                className="inline-flex items-center justify-center px-5 py-3.5 rounded-xl bg-stone-100 text-stone-800 hover:bg-stone-200 active:scale-95 text-xs font-semibold transition-all cursor-pointer shadow-2xs"
               >
                 {isHy ? "Ուղարկել ինքնակենսագրական (CV)" : "Submit Candidate CV"}
               </button>
