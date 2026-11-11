@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
+import { ManpowerHero } from "@/components/ManpowerHero";
 import { ManpowerCandidateHub } from "@/components/ManpowerCandidateHub";
 import { ManpowerEmployerSection } from "@/components/ManpowerEmployerSection";
 import { CorporateFoundation } from "@/components/CorporateFoundation";
@@ -17,10 +18,22 @@ export default function ManpowerPage() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow pt-8">
+      <main className="flex-grow">
+        {/* Dedicated Manpower & Careers Hero */}
+        <ManpowerHero />
+
+        {/* Candidate Hub: Ethical Charter, 4-Step Pathway, Vacancies & CV Drop */}
         <ManpowerCandidateHub />
-        <ManpowerEmployerSection />
+
+        {/* Corporate Employers: Sourcing, Screening, and Deployment */}
+        <div id="employers">
+          <ManpowerEmployerSection />
+        </div>
+
+        {/* Institutional Foundation */}
         <CorporateFoundation />
+
+        {/* Direct Contact Desk */}
         <ContactSection />
       </main>
       <Footer />

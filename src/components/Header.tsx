@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Logo } from "@/components/Logo";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
@@ -10,13 +11,31 @@ import { deorganicaConfig } from "@/data/deorganica-content";
 import { MessageSquare, Menu, X, PhoneCall } from "lucide-react";
 
 export function Header() {
+  const pathname = usePathname();
   const { locale } = useLanguage();
   const { openTravelDrawer } = useDrawer();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isHy = locale === "hy";
 
+  const navLinks = [
+    { href: "/", label_en: "Overview", label_hy: "Գլխավոր" },
+    { href: "/travel", label_en: "Travel & Tours", label_hy: "Զբոսաշրջություն" },
+    { href: "/travel#dmc", label_en: "B2B DMC", label_hy: "B2B DMC" },
+    { href: "/manpower", label_en: "Manpower & Careers", label_hy: "Աշխատուժ և Կարիերա" },
+    { href: "/manpower#employers", label_en: "For Employers", label_hy: "Գործատուներին" },
+    { href: "/contact", label_en: "Contact Desk", label_hy: "Կապ" },
+  ];
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    if (href.startsWith("/travel")) return pathname.startsWith("/travel");
+    if (href.startsWith("/manpower")) return pathname.startsWith("/manpower");
+    if (href.startsWith("/contact")) return pathname.startsWith("/contact");
+    return false;
+  };
+
   return (
-    <header className="sticky top-0 z-40 w-full bg-brand-stone-50/90 backdrop-blur-md border-b border-brand-stone-200 transition-all">
+    <header className="sticky top-0 z-40 w-full bg-brand-stone-50/95 backdrop-blur-md border-b border-brand-stone-200 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Brand Logo */}
         <Logo />
@@ -24,17 +43,24 @@ export function Header() {
         {/* Desktop Navigation Links */}
         <nav
           aria-label="Main Navigation"
-          className="hidden xl:flex items-center gap-6 text-[13px] font-medium text-brand-ink-muted"
+          className="hidden xl:flex items-center gap-7 text-[13px] font-medium text-brand-ink-muted"
         >
-          {deorganicaConfig.nav.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="hover:text-brand-forest transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brand-olive hover:after:w-full after:transition-all"
-            >
-              {isHy ? item.label_hy : item.label_en}
-            </a>
-          ))}
+          {navLinks.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`py-1 relative transition-colors ${
+                  active
+                    ? "text-brand-forest font-semibold after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-brand-olive"
+                    : "hover:text-brand-forest after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brand-olive hover:after:w-full after:transition-all"
+                }`}
+              >
+                {isHy ? item.label_hy : item.label_en}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Header Right Actions */}
@@ -69,16 +95,21 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="xl:hidden bg-brand-stone-50 border-b border-brand-stone-200 px-6 py-6 space-y-4 animate-in slide-in-from-top-4 duration-200">
           <nav className="flex flex-col space-y-3 text-sm font-medium text-brand-ink">
-            {deorganicaConfig.nav.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-1.5 border-b border-brand-stone-200/60 hover:text-brand-forest transition-colors"
-              >
-                {isHy ? item.label_hy : item.label_en}
-              </a>
-            ))}
+            {navLinks.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`py-1.5 border-b border-brand-stone-200/60 transition-colors ${
+                    active ? "text-brand-forest font-bold pl-2 border-l-2 border-brand-olive" : "hover:text-brand-forest"
+                  }`}
+                >
+                  {isHy ? item.label_hy : item.label_en}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="pt-2 flex flex-col gap-3">

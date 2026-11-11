@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
+import { TravelHero } from "@/components/TravelHero";
 import { TravelServicesMatrix } from "@/components/TravelServicesMatrix";
 import { FeaturedToursGrid } from "@/components/FeaturedToursGrid";
 import { DmcPartnerSection } from "@/components/DmcPartnerSection";
@@ -17,10 +18,22 @@ export default function TravelPage() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow pt-8">
-        <TravelServicesMatrix />
+      <main className="flex-grow">
+        {/* Dedicated Travel Division Hero */}
+        <TravelHero />
+
+        {/* 6-Service Hospitality Matrix */}
+        <div id="tours-matrix">
+          <TravelServicesMatrix />
+        </div>
+
+        {/* Signature Inbound Tour Packages */}
         <FeaturedToursGrid />
+
+        {/* B2B Destination Management (DMC) Wholesale Partner Portal */}
         <DmcPartnerSection />
+
+        {/* Contact & Desk Inquiries */}
         <ContactSection />
       </main>
       <Footer />

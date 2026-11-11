@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { useDrawer } from "@/context/DrawerContext";
 import { deorganicaConfig } from "@/data/deorganica-content";
@@ -80,13 +81,13 @@ export function HeroDualGateway() {
             </div>
 
             <div className="pt-4 border-t border-brand-stone-100 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              <a
-                href="#travel"
+              <Link
+                href="/travel"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-all shadow-xs"
               >
                 <span>{isHy ? deorganicaConfig.hero.ctaTravel_hy : deorganicaConfig.hero.ctaTravel_en}</span>
                 <ArrowUpRight className="w-4 h-4 text-brand-olive-light" />
-              </a>
+              </Link>
 
               <button
                 type="button"
@@ -136,13 +137,13 @@ export function HeroDualGateway() {
             </div>
 
             <div className="pt-4 border-t border-brand-stone-100 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              <a
-                href="#manpower-candidates"
+              <Link
+                href="/manpower"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-all shadow-xs"
               >
                 <span>{isHy ? deorganicaConfig.hero.ctaManpower_hy : deorganicaConfig.hero.ctaManpower_en}</span>
                 <ArrowUpRight className="w-4 h-4 text-brand-olive-light" />
-              </a>
+              </Link>
 
               <button
                 type="button"
