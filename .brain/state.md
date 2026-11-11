@@ -31,7 +31,13 @@
    - Removed redundant brand prefix "De Organica" from the overview gateway cards, establishing clean, bold card titles: **Travel & Tours** and **Manpower & Careers** (Armenian: **«Զբոսաշրջություն և Տուրեր»** and **«Միջազգային Աշխատուժ և Կարիերա»**).
    - Homepage architecture structured as a sovereign Armenian commercial house / holding company (`De Organica LLC · Republic of Armenia`), seamlessly accommodating future enterprise verticals (such as Armenian wine/spirits export, wholesale & retail trade) without re-architecting the brand.
 
-6. **Verification Protocol:**
+6. **Flagship Overview Page Elevation (`taste-skill` Anti-Default Standards):**
+   - **Eliminated SaaS Blur Blobs:** Removed generic neon blur orbs from the hero background in [`src/components/HeroDualGateway.tsx`](file:///R:/Projects/De%20Organica/src/components/HeroDualGateway.tsx), replaced with a pure warm Alabaster canvas (`#FBFBF9`) and fine architectural watermark grid.
+   - **Unified Luxury Card Borders:** Eradicated the amber vs. emerald border conflict on gateway bento cards, standardizing both into a bespoke architectural stone border (`border-stone-200/90 hover:border-brand-forest/50`) with warm stone secondary action buttons (`bg-stone-100 hover:bg-stone-200`).
+   - **Authored Yerevan Crossroads Intermission Banner ([`src/components/YerevanCrossroadsBanner.tsx`](file:///R:/Projects/De%20Organica/src/components/YerevanCrossroadsBanner.tsx)):** Full-bleed Heritage Forest Green (`#233D20`) high-contrast transitional band featuring authoritative editorial statement and 3 live telemetry signals (100% In-House Direct Ground Operations, Zvartnots EVN 24/7 VIP Chauffeur Dispatch, and Official RA Ministry Work Quota Compliance), resolving previous light-gray section monotony.
+   - **Elevated Corporate Foundation Ledger ([`src/components/CorporateFoundation.tsx`](file:///R:/Projects/De%20Organica/src/components/CorporateFoundation.tsx)):** Replaced generic 4-box feature layout with an Architectural Trust Ledger featuring large classical serif indices (`01`, `02`, `03`, `04`) and official Republic of Armenia legal accreditation tags.
+
+7. **Verification Protocol:**
    - Production build verified with `npm run build` (exit code `0`, 11/11 static pages prerendered).
    - Playwright automated browser tests executed for desktop and mobile viewports with zero console warnings or errors.
 
