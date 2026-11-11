@@ -2,6 +2,13 @@
   "name": "de-organica",
   "version": "1.0.0",
   "private": true,
+  "description": "De Organica LLC - Sovereign commercial web platform for bespoke Armenian tourism, DMC ground operations, and ethical international recruitment.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/razim-manzoor/De-Organica.git"
+  },
+  "author": "Maneesha Muraleedharan <deorganicallc@gmail.com>",
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

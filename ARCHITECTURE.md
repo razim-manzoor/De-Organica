@@ -1,0 +1,140 @@
+# De Organica LLC — System Architecture & Design Specification
+
+## 1. Architectural Philosophy
+The De Organica platform is architected as an **institutional digital flagship** for a dual-vertical sovereign commercial house in Yerevan, Republic of Armenia:
+1. **Vertical I: De Organica Travel & Tours** (Inbound Armenian luxury, outbound leisure, private chauffeured transport, and B2B DMC ground operations).
+2. **Vertical II: De Organica Manpower & Recruitment** (Ethical international candidate placement under a strict 0.00 AMD upfront fee contingency model and enterprise workforce staffing).
+
+The system prioritizes **uncompromising visual elegance, zero buzzword inflation, authentic cultural grounding, strict bilingual parity (English / Armenian), and resilient serverless multi-channel inquiry dispatch**.
+
+---
+
+## 2. Technology Stack & Runtime Environment
+
+| Layer | Technology | Rationale |
+| :--- | :--- | :--- |
+| **Framework** | Next.js 15.5+ (App Router) | High-performance React Server Components, automatic static site generation (SSG) for all 11 routes, and edge-ready API routes. |
+| **Language** | Strict TypeScript (ES2022) | 100% type-safe data schema for tours, vacancies, services, and form submissions. |
+| **Styling** | Tailwind CSS v4 + PostCSS | Zero-runtime CSS with custom architectural color palette (`brand-forest`, `brand-olive`, `brand-stone`, `brand-ink`). |
+| **Typography** | Google Fonts (`next/font/google`) | Native font bindings for `Noto Serif Armenian`, `Noto Sans Armenian`, `Playfair Display`, and `Inter` with zero layout shift (CLS = 0). |
+| **Email Dispatch** | Resend API | Serverless multipart email handling with buffered PDF/Word CV attachments. |
+| **Instant Dispatch** | WhatsApp Deep Linking | Direct URL scheme builder routing inquiries with pre-filled structured Armenian/English text to the Yerevan desk. |
+| **Icons** | Lucide React | Tree-shaken, pixel-crisp SVG icon set. |
+| **Testing** | Playwright (Python / Node) | Automated headless visual regression and image load validation across mobile and desktop viewports. |
+
+---
+
+## 3. Data Flow & Component Hierarchy
+
+### Unified Single-Source Data Engine
+All application state, route content, tours, vacancies, and corporate credentials live in `src/data/deorganica-content.ts`:
+```
+src/data/deorganica-content.ts
+ ├── company (Founder, Entity, Desk Email, Coordinates, Global Channels)
+ ├── travelServices (6 Ground Services: Cultural, Outbound, Visas, Transfers, MICE, DMC)
+ ├── starterTours (Flagship Areni + 4 Curated Thematic Multi-Day Journeys)
+ ├── vehicleFleet (Economy, Executive Sedan, VIP Minivan, Tour Coach)
+ ├── manpower
+ │    ├── trustPillars (4 Candidate Guarantees)
+ │    ├── mobilitySteps (4 Relocation Milestones)
+ │    ├── sectors (Construction, Hospitality, Logistics, Agriculture)
+ │    ├── vacancies (6 Active Open Positions + General Pool)
+ │    └── employerSteps (3 Corporate Requisition Milestones)
+ └── faqs (Travel & Manpower Bilingual Accordion Sets)
+```
+
+### Component Hierarchy & Layout Tree
+```
+RootLayout (src/app/layout.tsx)
+ ├── LanguageProvider (src/context/LanguageContext.tsx)
+ │    └── DrawerProvider (src/context/DrawerContext.tsx)
+ │         ├── Header (src/components/Header.tsx)
+ │         │    ├── Logo (src/components/Logo.tsx)
+ │         │    ├── NavigationLinks (Overview, Travel, Manpower, Contact)
+ │         │    └── LanguageSwitcher (src/components/LanguageSwitcher.tsx)
+ │         │
+ │         ├── Route Content:
+ │         │    ├── / (src/app/page.tsx)
+ │         │    │    ├── HeroDualGateway.tsx
+ │         │    │    ├── YerevanCrossroadsBanner.tsx
+ │         │    │    ├── ItineraryStageShow.tsx (Travel Preview)
+ │         │    │    ├── PipelineStageShow.tsx (Manpower Preview)
+ │         │    │    ├── CorporateFoundation.tsx
+ │         │    │    └── ContactSection.tsx
+ │         │    │
+ │         │    ├── /travel (src/app/travel/page.tsx)
+ │         │    │    ├── TravelHero.tsx
+ │         │    │    ├── ItineraryStageShow.tsx
+ │         │    │    ├── TravelServicesMatrix.tsx
+ │         │    │    ├── FeaturedToursGrid.tsx (Flagship Panoramic + 2x2 Grid)
+ │         │    │    ├── TravelHeritageShowcase.tsx (Living Culture)
+ │         │    │    ├── DmcPartnerSection.tsx
+ │         │    │    ├── TravelFaqSection.tsx
+ │         │    │    └── ContactSection.tsx
+ │         │    │
+ │         │    ├── /manpower (src/app/manpower/page.tsx)
+ │         │    │    ├── ManpowerHero.tsx
+ │         │    │    ├── PipelineStageShow.tsx
+ │         │    │    ├── ManpowerCandidateHub.tsx (Ethical Charter + Vacancies)
+ │         │    │    ├── ManpowerEmployerSection.tsx
+ │         │    │    ├── ManpowerComplianceBanner.tsx
+ │         │    │    ├── ManpowerFaqSection.tsx
+ │         │    │    └── ContactSection.tsx
+ │         │    │
+ │         │    └── /contact (src/app/contact/page.tsx)
+ │         │         └── ContactSection.tsx
+ │         │
+ │         ├── ConciergeDrawer (src/components/ConciergeDrawer.tsx)
+ │         │    ├── PhoneCountryInput (src/components/PhoneCountryInput.tsx - 38+ SVG Flags)
+ │         │    ├── Travel Inquiry Form
+ │         │    ├── Candidate Application Form (with File Buffer)
+ │         │    └── Employer Staffing RFP Form
+ │         │
+ │         └── Footer (src/components/Footer.tsx)
+```
+
+---
+
+## 4. Multi-Channel Dispatch Pipeline
+
+```
+                       ┌────────────────────────┐
+                       │  User Submits Inquiry  │
+                       └───────────┬────────────┘
+                                   │
+                  ┌────────────────┴────────────────┐
+                  ▼                                 ▼
+      [Email Route Dispatch]              [Instant WhatsApp Desk]
+      POST /api/inquiry                   src/lib/whatsapp.ts
+      Multipart Form-Data                 buildWhatsAppUrl(...)
+                  │                                 │
+                  ▼                                 ▼
+     ┌────────────────────────┐         ┌────────────────────────┐
+     │ Node.js Serverless API │         │ Redirects to           │
+     │ - Buffers CV file      │         │ https://wa.me/374...   │
+     │ - Sanitizes telemetry  │         │ with structured        │
+     │ - Formats HTML Table   │         │ Armenian/English text  │
+     └────────────┬───────────┘         └────────────────────────┘
+                  │
+                  ▼
+     ┌────────────────────────┐
+     │ Resend API Delivery    │
+     │ -> deorganicallc@gmail │
+     └────────────────────────┘
+```
+
+---
+
+## 5. Bilingual Font Loading Strategy
+
+To ensure zero layout shift and flawless rendering of the Armenian alphabet:
+1. `Noto Serif Armenian` and `Noto Sans Armenian` are instantiated in `src/app/layout.tsx` via `next/font/google` with subsets `["armenian", "latin"]` and configured with CSS variable bindings (`--font-noto-serif-armenian`, `--font-noto-sans-armenian`).
+2. Tailwind maps `font-serif` to `var(--font-noto-serif-armenian), var(--font-playfair), Georgia, serif` and `font-sans` to `var(--font-noto-sans-armenian), var(--font-inter), sans-serif`.
+3. The root layout dynamically updates `lang={locale}` based on client state, guaranteeing semantic accessibility for screen readers.
+
+---
+
+## 6. Security & Production Checklist
+- **No Client-Side Secrets:** Resend API keys are strictly server-side (`RESEND_API_KEY`).
+- **File Upload Safeguards:** `api/inquiry` limits candidate CV attachments to 5 MB with strict MIME validation (PDF, DOC, DOCX).
+- **Zero External Stock Vulnerabilities:** Cultural photography is permanently hosted inside `public/images/` to eliminate broken external CDN URLs.
