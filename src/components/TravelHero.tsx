@@ -59,7 +59,7 @@ const DESTINATIONS: HighlightDestination[] = [
     season_en: "May – October",
     season_hy: "Մայիս – Հոկտեմբեր",
     image:
-      "https://images.unsplash.com/photo-1627881923055-6677f24ea110?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
     tag_en: "Alpine Jewel",
     tag_hy: "Ալպիական Գոհար",
   },

@@ -20,8 +20,8 @@ export function CorporateFoundation() {
     <section className="py-20 lg:py-28 bg-brand-stone-100/60 border-t border-brand-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-brand-stone-300 text-brand-forest text-xs font-semibold uppercase tracking-wider mb-3 shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5 text-brand-olive" />
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-olive" />
             <span>{isHy ? "Կորպորատիվ Հիմնասյուներ" : "Corporate Trust & Foundation"}</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">

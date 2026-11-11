@@ -99,9 +99,9 @@ export function ContactSection() {
           {/* Left Column: Yerevan Diplomatic & Commercial Desk Information */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-stone-300 text-brand-forest text-xs font-semibold uppercase tracking-wider mb-4 shadow-2xs">
-                <Navigation className="w-3.5 h-3.5 text-brand-olive" />
-                <span>{isHy ? "Երևանի Կենտրոնական Գրասենյակ" : "Yerevan Executive Headquarters"}</span>
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-olive" />
+                <span>{isHy ? "Երևանի Կենտրոնական Գրասենյակ" : "Yerevan Commercial Headquarters"}</span>
               </div>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
                 {isHy ? "Ուղիղ Կապ Երևանի Գրասենյակի Հետ" : "Direct Access to our Yerevan Executive Desk"}
