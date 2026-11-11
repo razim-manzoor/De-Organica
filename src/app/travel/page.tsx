@@ -1,0 +1,29 @@
+import React from "react";
+import type { Metadata } from "next";
+import { Header } from "@/components/Header";
+import { TravelServicesMatrix } from "@/components/TravelServicesMatrix";
+import { FeaturedToursGrid } from "@/components/FeaturedToursGrid";
+import { DmcPartnerSection } from "@/components/DmcPartnerSection";
+import { ContactSection } from "@/components/ContactSection";
+import { Footer } from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "De Organica Travel & Tours · Armenia Inbound & Outbound DMC",
+  description:
+    "Curated cultural tours across Armenia (Garni, Geghard, Sevan, Dilijan, Tatev), international holiday escapes, consular visa guidance, and B2B DMC partner services in Yerevan.",
+};
+
+export default function TravelPage() {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-grow pt-8">
+        <TravelServicesMatrix />
+        <FeaturedToursGrid />
+        <DmcPartnerSection />
+        <ContactSection />
+      </main>
+      <Footer />
+    </div>
+  );
+}

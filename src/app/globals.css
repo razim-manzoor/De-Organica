@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-serif: 'Cinzel', 'Noto Serif Armenian', serif;
+    --font-sans: 'Plus Jakarta Sans', 'Noto Sans Armenian', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #FBFBF9;
+    color: #1A2219;
+  }
+
+  body {
+    overflow-x: hidden;
+    min-height: 100dvh;
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background-color: #668B2E;
+    color: #FFFFFF;
+  }
+
+  /* Accessible Focus Rings */
+  :focus-visible {
+    outline: 2px solid #668B2E;
+    outline-offset: 2px;
+  }
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4F3EE;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DCD9CE;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #BEB9AB;
+}
