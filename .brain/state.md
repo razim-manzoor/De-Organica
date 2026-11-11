@@ -57,7 +57,13 @@
    - **Travel-Exclusive Ground Desks on `/travel`:** Configured `ContactSection variant="travel"` to eliminate unrelated candidate/recruitment cards from the travel page, replacing them with 3 specialized travel desks: *Bespoke Leisure & Private Expeditions*, *B2B Destination Management (DMC)*, and *24/7 Zvartnots (EVN) VIP Chauffeur Fleet*.
    - **Dual Dispatch Synchronization:** Integrated all rich travel attributes (`travelerType`, `agencyName`, `accommodationTier`, `fleetTier`) into both `/api/inquiry` and WhatsApp message generators.
 
-9. **Verification Protocol:**
+9. **Budget & Economy Travel Accommodation:**
+   - **Dedicated Budget & Travel Style Switcher:** Mounted a 3-way tier selector (`Economy / Value (Clean 3★, Value Fleet)` vs `Classic Comfort (4★ Hotels, Chauffeur)` vs `Boutique & Luxury (Wine Resorts, 5★)`) directly inside the Concierge Drawer. Clicking `Economy / Value` automatically configures clean 3-star lodging and value economy transport.
+   - **Economy Chauffeur Fleet Tier:** Added *Comfort Economy Sedan* (1–3 Guests, e.g. Toyota / clean AC) to both `ItineraryStageShow.tsx` and the Concierge Drawer alongside Mercedes Executive and VIP Sprinter.
+   - **Tours & Chauffeur Only Option:** Allows budget travelers and diaspora visitors who already booked an apartment, central hostel, or Airbnb to opt out of hotel charges and pay exclusively for local ground itineraries and airport EVN pickups.
+   - **Catalog Copy Inclusion:** Clarified across `FeaturedToursGrid.tsx` and `src/data/deorganica-content.ts` that all signature tours are completely customizable across all budget tiers — from cost-conscious 3★ stays to luxury wine estates.
+
+10. **Verification Protocol:**
    - Production build verified with `npm run build` (exit code `0`, 11/11 static pages prerendered).
    - Playwright automated browser tests executed for desktop and mobile viewports with zero console warnings or errors.
 
