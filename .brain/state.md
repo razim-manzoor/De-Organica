@@ -1,7 +1,7 @@
 # Project State: De Organica LLC (`deorganica.am`)
 
 **Updated:** 2026-11-11  
-**Status:** Studio-Grade Flagship Verified & Shipped (Accessible SVG Country Picker, Logo Auto-Trim, Overview Editorial Overhaul, Zero 404 Assets)
+**Status:** Studio-Grade Flagship Verified & Shipped (Accessible SVG Country Picker, Logo Auto-Trim, Overview Editorial Overhaul, Travel Division Elevation, Zero 404 Assets)
 
 ## Completed Work
 1. **Accessible Multi-Region Phone Country Picker with Authentic Vector SVG Flags:**
@@ -37,7 +37,19 @@
    - **Authored Yerevan Crossroads Intermission Banner ([`src/components/YerevanCrossroadsBanner.tsx`](file:///R:/Projects/De%20Organica/src/components/YerevanCrossroadsBanner.tsx)):** Full-bleed Heritage Forest Green (`#233D20`) high-contrast transitional band featuring authoritative editorial statement and 3 live telemetry signals (100% In-House Direct Ground Operations, Zvartnots EVN 24/7 VIP Chauffeur Dispatch, and Official RA Ministry Work Quota Compliance), resolving previous light-gray section monotony.
    - **Elevated Corporate Foundation Ledger ([`src/components/CorporateFoundation.tsx`](file:///R:/Projects/De%20Organica/src/components/CorporateFoundation.tsx)):** Replaced generic 4-box feature layout with an Architectural Trust Ledger featuring large classical serif indices (`01`, `02`, `03`, `04`) and official Republic of Armenia legal accreditation tags.
 
-7. **Verification Protocol:**
+7. **Travel & Tours Division Page Overhaul (`/travel`):**
+   - **Enological Heritage & Areni Wine Signature Route:** Integrated Armenia's 6,100-year wine heritage into `src/data/deorganica-content.ts` with a dedicated featured expedition: *Areni Ancient Wine Terroir & Southern Canyons (4 Days / 3 Nights)* exploring Areni-1 cave winery, boutique Vayots Dzor sommelier pairings, Khor Virap, and Noravank gorge.
+   - **Strict Zero Public Prices Enforced:** Replaced all hardcoded/starter dollar prices with bespoke quotation and tariff upon request (`showPrice: false`), rendering luxury micro-ledger tags (*"Bespoke Tariff · Availability — Tailored Tariff on Request"* / *«Սակագին և Ամրագրում — Անհատական գնառաջարկ»*) with direct Yerevan Concierge Desk and WhatsApp dispatch.
+   - **Eliminated Eyebrow Fatigue & Blur Blobs on `/travel`:** Transformed all rounded pill badges across `TravelHero.tsx`, `ItineraryStageShow.tsx`, `TravelServicesMatrix.tsx`, `FeaturedToursGrid.tsx`, and `DmcPartnerSection.tsx` into architectural tracked uppercase typography (`text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive`) with discreet accent indicators. Removed background glow orbs in `DmcPartnerSection.tsx`.
+   - **Elevated Headings & Editorial Cadence:**
+     - Hero: *"Highland Monasteries. Ancient Terroirs. Bespoke Armenia."* (Armenian: *«Հայաստանի Լեռնաշխարհ, Պատմական Գինեգործություն և Բացառիկ Երթուղիներ»*).
+     - Interactive Simulator: *"Curate Your Armenian Itinerary & Private Fleet"* (Armenian: *«Ձևավորեք Ձեր Հայաստանի Երթուղին և Տրանսպորտը»*).
+     - Ground Matrix: *"Hospitality Infrastructure & Ground Operations"* (Armenian: *«Ամբողջական Տեղական Սպասարկում և Տուրիստական Լոգիստիկա»*).
+     - Tour Catalog: *"Signature Armenian Expeditions & Terroir Journeys"* (Armenian: *«Հայաստանի Բացառիկ Երթուղիներ և Գինու Ճանապարհորդություններ»*).
+     - B2B DMC Desk: *"Armenia's Institutional Ground Handling Partner"* (Armenian: *«Հայաստանի Վստահելի DMC Գործընկեր»*).
+   - **Bilingual Armenian Parity:** Verified that all distance markers (`կմ Երևանից`, `մ ASL`), chauffeur pillar badges (`Mercedes անհատական պարկ`, `Զվարթնոցի (EVN) 24/7 դիմավորում`), and CTA buttons (`Հարցում Desk-ին`, `Ստանալ գնառաջարկ WhatsApp-ով`) render seamlessly in Armenian without fallback leaks.
+
+8. **Verification Protocol:**
    - Production build verified with `npm run build` (exit code `0`, 11/11 static pages prerendered).
    - Playwright automated browser tests executed for desktop and mobile viewports with zero console warnings or errors.
 
