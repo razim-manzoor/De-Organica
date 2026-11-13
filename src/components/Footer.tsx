@@ -3,137 +3,206 @@
 import React from "react";
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
-import { deorganicaConfig } from "@/data/deorganica-content";
-import { ShieldCheck, MapPin, Mail, PhoneCall, Sparkles } from "lucide-react";
+import { useDrawer } from "@/context/DrawerContext";
+import { useSiteData } from "@/context/SiteDataContext";
+import { MapPin, Mail, Phone, ShieldCheck, ArrowUpRight } from "lucide-react";
 
 export function Footer() {
   const { locale } = useLanguage();
+  const { openTravelDrawer, openCandidateDrawer, openEmployerDrawer } = useDrawer();
+  const { siteSettings } = useSiteData();
+  const company = siteSettings.company;
   const isHy = locale === "hy";
+  const currentYear = 2026;
 
   return (
-    <footer className="bg-brand-forest text-brand-stone-300 pt-16 pb-12 border-t border-brand-stone-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-brand-stone-800">
-          {/* Brand & Corporate Overview (Col 1-2) */}
-          <div className="lg:col-span-2 space-y-4">
-            <Logo inverted />
-            <p className="text-xs text-brand-stone-300 leading-relaxed max-w-sm pt-2">
+    <footer className="bg-brand-forest text-white border-t border-brand-forest-deep mt-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-18">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-white/15">
+          {/* Column 1: Institutional Crest */}
+          <div className="lg:col-span-4 space-y-5">
+            <Link href="/" className="inline-block rounded-lg">
+              <Logo variant="horizontal" inverted />
+            </Link>
+
+            <p className="text-sm text-brand-stone-200 leading-relaxed max-w-sm">
               {isHy
-                ? "«Դե Օրգանիկա» ՍՊԸ — Համաշխարհային զբոսաշրջության և միջազգային աշխատուժի շարժունակության կորպորատիվ հարթակ՝ գրանցված Երևանում, Հայաստանի Հանրապետություն:"
-                : "De Organica LLC is an officially registered corporate enterprise in Yerevan, Republic of Armenia, operating bespoke travel & tour management and ethical international manpower mobility."}
+                ? siteSettings.footerDescription_hy
+                : siteSettings.footerDescription_en}
             </p>
 
-            <div className="pt-2 text-xs text-brand-stone-400 space-y-2">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-brand-olive-light shrink-0" />
-                <span>{isHy ? deorganicaConfig.company.address_hy : deorganicaConfig.company.address_en}</span>
+            <div className="pt-2 space-y-1.5 text-xs text-brand-stone-200">
+              <div className="flex items-center gap-2 font-semibold text-brand-olive-onDark">
+                <ShieldCheck className="w-4 h-4 shrink-0" />
+                <span>
+                  {isHy
+                    ? company.registrationStatus_hy
+                    : company.registrationStatus_en}
+                </span>
               </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-brand-olive-light shrink-0" />
-                <a href={`mailto:${deorganicaConfig.company.email}`} className="hover:text-white transition-colors">
-                  {deorganicaConfig.company.email}
-                </a>
-              </div>
+              <p className="text-brand-stone-200">
+                {isHy ? "Հիմնադիր և Տնօրեն՝" : "Founder & CEO:"}{" "}
+                {company.ceo}
+              </p>
             </div>
           </div>
 
-          {/* Division I: Travel Links (Col 3) */}
-          <div className="space-y-3">
-            <h4 className="font-serif text-sm font-bold text-white uppercase tracking-wider">
-              {isHy ? "Զբոսաշրջություն" : "Travel & Tours"}
-            </h4>
-            <ul className="space-y-2 text-xs">
+          {/* Column 2: Travel & Tours */}
+          <div className="lg:col-span-2 space-y-4">
+            <h3 className="font-serif text-base font-bold text-brand-olive-onDark tracking-wide">
+              {isHy ? "Տուրիզմ և Տուրեր" : "Travel & Tours"}
+            </h3>
+            <ul className="space-y-2.5 text-xs sm:text-sm text-brand-stone-200">
               <li>
-                <Link href="/travel" className="hover:text-white transition-colors">
-                  {isHy ? "Մշակութային տուրեր" : "Armenia Cultural Tours"}
+                <Link href="/travel" className="hover:text-white transition-colors inline-block py-0.5">
+                  {isHy ? "Տուրիստական Բաժին" : "Travel Overview"}
                 </Link>
               </li>
               <li>
-                <Link href="/travel#tours-matrix" className="hover:text-white transition-colors">
-                  {isHy ? "Տուրիստական փաթեթներ" : "Featured Tour Packages"}
+                <Link href="/travel#tours" className="hover:text-white transition-colors inline-block py-0.5">
+                  {isHy ? "Հայաստանի Տուրեր" : "Armenia Tours"}
                 </Link>
               </li>
               <li>
-                <Link href="/travel#travel-services" className="hover:text-white transition-colors">
-                  {isHy ? "Վիզաների աջակցություն" : "Visa & Documentation"}
+                <Link href="/travel#services" className="hover:text-white transition-colors inline-block py-0.5">
+                  {isHy ? "Ծառայություններ" : "Ground Services"}
                 </Link>
               </li>
               <li>
-                <Link href="/travel#travel-services" className="hover:text-white transition-colors">
-                  {isHy ? "Օդանավակայանի տրանսֆեր" : "EVN Airport Transfers"}
+                <Link href="/travel#dmc" className="hover:text-white transition-colors inline-block py-0.5">
+                  {isHy ? "B2B DMC Գործընկերներ" : "B2B DMC Partners"}
                 </Link>
               </li>
               <li>
-                <Link href="/travel#dmc" className="hover:text-white transition-colors">
-                  {isHy ? "B2B DMC Գործընկերություն" : "B2B DMC Net Tariffs"}
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Division II: Manpower Links (Col 4) */}
-          <div className="space-y-3">
-            <h4 className="font-serif text-sm font-bold text-white uppercase tracking-wider">
-              {isHy ? "Աշխատուժ և Կարիերա" : "Manpower & Careers"}
-            </h4>
-            <ul className="space-y-2 text-xs">
-              <li>
-                <Link href="/manpower" className="hover:text-white transition-colors">
-                  {isHy ? "Թափուր աշխատատեղեր" : "Active Job Vacancies"}
-                </Link>
-              </li>
-              <li>
-                <Link href="/manpower#manpower-candidates" className="hover:text-white transition-colors">
-                  {isHy ? "Ուղարկել ռեզյումե (CV)" : "Submit General CV"}
-                </Link>
-              </li>
-              <li>
-                <Link href="/manpower#manpower-candidates" className="hover:text-white transition-colors">
-                  {isHy ? "Զրոյական նախնական վճար" : "Pay-After-Job Guarantee"}
-                </Link>
-              </li>
-              <li>
-                <Link href="/manpower#manpower-employers" className="hover:text-white transition-colors">
-                  {isHy ? "Գործատուներին (B2B Staffing)" : "For Hiring Employers"}
-                </Link>
-              </li>
-              <li>
-                <Link href="/manpower#manpower-employers" className="hover:text-white transition-colors">
-                  {isHy ? "Աշխատանքի թույլտվություններ" : "Work Permit Compliance"}
-                </Link>
+                <button
+                  type="button"
+                  onClick={() => openTravelDrawer("General Travel Inquiry")}
+                  className="hover:text-white text-brand-olive-onDark font-semibold inline-flex items-center gap-1 py-0.5 cursor-pointer"
+                >
+                  <span>{isHy ? "Հարցում Տուրի Համար" : "Plan Custom Trip"}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </button>
               </li>
             </ul>
           </div>
 
-          {/* Language & Provenance (Col 5) */}
-          <div className="space-y-4">
-            <h4 className="font-serif text-sm font-bold text-white uppercase tracking-wider">
-              {isHy ? "Լեզվի Ընտրություն" : "Language / Լեզու"}
-            </h4>
-            <LanguageSwitcher />
+          {/* Column 3: Manpower & Recruitment */}
+          <div className="lg:col-span-3 space-y-4">
+            <h3 className="font-serif text-base font-bold text-brand-olive-onDark tracking-wide">
+              {isHy ? "Միջազգային Կադրեր" : "International Manpower"}
+            </h3>
+            <ul className="space-y-2.5 text-xs sm:text-sm text-brand-stone-200">
+              <li>
+                <Link href="/manpower" className="hover:text-white transition-colors inline-block py-0.5">
+                  {isHy ? "Կադրերի Բաժին" : "Manpower Overview"}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/manpower#manpower-candidates"
+                  className="hover:text-white transition-colors inline-block py-0.5"
+                >
+                  {isHy ? "Թափուր Հաստիքներ" : "Active Vacancies"}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/manpower#manpower-employers"
+                  className="hover:text-white transition-colors inline-block py-0.5"
+                >
+                  {isHy ? "Գործատուների Համար" : "Enterprise Staffing"}
+                </Link>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => openCandidateDrawer()}
+                  className="hover:text-white text-brand-olive-onDark font-semibold inline-flex items-center gap-1 py-0.5 cursor-pointer"
+                >
+                  <span>{isHy ? "Ուղարկել CV (Անվճար)" : "Submit CV (Zero Fee)"}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={openEmployerDrawer}
+                  className="hover:text-white transition-colors inline-flex items-center gap-1 py-0.5 cursor-pointer"
+                >
+                  <span>{isHy ? "Պատվիրել Աշխատուժ" : "Hire International Staff"}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </button>
+              </li>
+            </ul>
+          </div>
 
-            <div className="pt-2 text-[11px] text-brand-stone-400 leading-snug">
-              <span className="font-semibold text-white block mb-1">
-                {isHy ? "ՀՀ Իրավական Գրանցում" : "Republic of Armenia"}
-              </span>
-              <span>{isHy ? deorganicaConfig.company.registrationStatus_hy : deorganicaConfig.company.registrationStatus_en}</span>
+          {/* Column 4: Yerevan Headquarters */}
+          <div className="lg:col-span-3 space-y-4">
+            <h3 className="font-serif text-base font-bold text-brand-olive-onDark tracking-wide">
+              {isHy ? "Երևանի Գլխավոր Դեսկ" : "Yerevan Operations Desk"}
+            </h3>
+            <div className="space-y-3 text-xs sm:text-sm text-brand-stone-200">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-brand-olive-onDark shrink-0 mt-1" />
+                <span>
+                  {isHy ? company.address_hy : company.address_en}
+                </span>
+              </div>
+
+              <div className="flex items-start gap-2.5">
+                <Phone className="w-4 h-4 text-brand-olive-onDark shrink-0 mt-1" />
+                <a
+                  href={`tel:${company.phoneYerevanDesk.replace(/\s+/g, "")}`}
+                  className="font-mono hover:text-white underline underline-offset-2 transition-colors"
+                >
+                  {company.phoneYerevanDesk}
+                </a>
+              </div>
+
+              <div className="flex items-start gap-2.5">
+                <Mail className="w-4 h-4 text-brand-olive-onDark shrink-0 mt-1" />
+                <a
+                  href={`mailto:${company.email}`}
+                  className="font-mono hover:text-white underline underline-offset-2 transition-colors break-all"
+                >
+                  {company.email}
+                </a>
+              </div>
+
+              <p className="text-xs text-brand-stone-200 pt-1">
+                {isHy
+                  ? company.workingHours_hy
+                  : company.workingHours_en}
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Bottom Disclaimer & Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row sm:items-center justify-between text-[11px] text-brand-stone-400 gap-4">
+        {/* Bottom Copyright & Compliance Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-stone-200">
           <p>
-            © {new Date().getFullYear()} {deorganicaConfig.company.legalName}. All rights reserved.
+            {isHy
+              ? `© ${currentYear} «Դե Օրգանիկա» ՍՊԸ: Բոլոր իրավունքները պաշտպանված են:`
+              : `© ${currentYear} ${company.legalName}. All rights reserved.`}
           </p>
 
-          <p className="max-w-md text-left sm:text-right text-[10px] text-brand-stone-400">
-            {isHy
-              ? "«Դե Օրգանիկա» ՍՊԸ-ն գործում է թեկնածուների պաշտպանության և էթիկական հավաքագրման միջազգային սկզբունքներով:"
-              : "Zero Upfront Candidate Placement Fees · Verified Republic of Armenia Ministry of Labor Work Permits."}
-          </p>
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-4">
+            <Link href="/privacy" className="hover:text-white underline underline-offset-2">
+              {isHy ? "Գաղտնիություն" : "Privacy Policy"}
+            </Link>
+            <Link href="/terms" className="hover:text-white underline underline-offset-2">
+              {isHy ? "Պայմաններ" : "Terms of Service"}
+            </Link>
+            <Link href="/contact" className="hover:text-white underline underline-offset-2">
+              {isHy ? "Կապ և Գրասենյակ" : "Contact & Desk"}
+            </Link>
+            <span className="text-brand-olive-onDark font-medium">
+              {isHy
+                ? "Տուրիզմ և ՀՀ Աշխատանքի Թույլտվություններ"
+                : "Licensed Tours & RA Work Permit Compliance"}
+            </span>
+          </div>
         </div>
       </div>
     </footer>

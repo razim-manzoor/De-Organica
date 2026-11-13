@@ -33,8 +33,14 @@ export function middleware(req: NextRequest) {
     currentHost.startsWith("manpower.localhost") ||
     currentHost.startsWith("careers.localhost");
 
-  // Keep API routes untouched across all domains and subdomains
-  if (url.pathname.startsWith("/api")) {
+  // Keep API, Sanity Studio, contact, & shared legal routes untouched across all domains and subdomains
+  if (
+    url.pathname.startsWith("/api") ||
+    url.pathname.startsWith("/studio") ||
+    url.pathname === "/contact" ||
+    url.pathname === "/privacy" ||
+    url.pathname === "/terms"
+  ) {
     return NextResponse.next();
   }
 

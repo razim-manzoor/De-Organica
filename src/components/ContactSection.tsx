@@ -3,8 +3,15 @@
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useDrawer } from "@/context/DrawerContext";
-import { deorganicaConfig } from "@/data/deorganica-content";
-import { buildWhatsAppUrl, buildTravelWhatsAppMessage, buildCandidateWhatsAppMessage, buildEmployerWhatsAppMessage } from "@/lib/whatsapp";
+import { useSiteData } from "@/context/SiteDataContext";
+import {
+  buildWhatsAppUrl,
+  buildTravelWhatsAppMessage,
+  buildCandidateWhatsAppMessage,
+  buildEmployerWhatsAppMessage,
+} from "@/lib/whatsapp";
+import type { ContactPageContent } from "@/types/content";
+import { defaultContactPageContent } from "@/data/cms-fallbacks";
 import {
   MapPin,
   Mail,
@@ -12,26 +19,32 @@ import {
   Clock,
   MessageCircle,
   ShieldCheck,
-  Send,
-  Building,
-  Sparkles,
-  ArrowRight,
-  Compass,
   Briefcase,
   Building2,
-  Navigation,
-  Globe,
+  Compass,
   Car,
 } from "lucide-react";
 
 interface ContactSectionProps {
   variant?: "all" | "travel" | "manpower";
+  headingLevel?: "h1" | "h2";
+  content?: ContactPageContent;
 }
 
-export function ContactSection({ variant = "all" }: ContactSectionProps) {
+export function ContactSection({
+  variant = "all",
+  headingLevel = "h2",
+  content = defaultContactPageContent,
+}: ContactSectionProps) {
   const { locale } = useLanguage();
   const { openTravelDrawer, openCandidateDrawer, openEmployerDrawer } = useDrawer();
+  const { siteSettings } = useSiteData();
+  const company = siteSettings.company;
   const isHy = locale === "hy";
+
+  const PrimaryHeading = headingLevel === "h1" ? "h1" : "h2";
+  const SecondaryHeading = headingLevel === "h1" ? "h2" : "h3";
+  const CardHeading = headingLevel === "h1" ? "h3" : "h4";
 
   // Real-time Yerevan Local Clock (Asia/Yerevan, GMT+4)
   const [yerevanTime, setYerevanTime] = useState<string>("");
@@ -50,7 +63,6 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
         });
         setYerevanTime(timeStr);
 
-        // Check if between 09:00 and 19:00 Yerevan time
         const hourFormatter = new Intl.DateTimeFormat("en-US", {
           timeZone: "Asia/Yerevan",
           hour: "numeric",
@@ -58,7 +70,7 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
         });
         const currentHour = parseInt(hourFormatter.format(now), 10);
         setIsDeskOpen(currentHour >= 9 && currentHour < 19);
-      } catch (e) {
+      } catch {
         setYerevanTime("GMT+4 (Armenia)");
       }
     };
@@ -74,16 +86,17 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
       serviceOrTour: "Yerevan Desk Travel Inquiry",
       notes: "Hello De Organica team, I am reaching out to discuss an upcoming trip or DMC collaboration in Armenia.",
     });
-    window.open(buildWhatsAppUrl(msg), "_blank", "noopener,noreferrer");
+    window.open(buildWhatsAppUrl(msg, company.whatsappNumberDigits), "_blank", "noopener,noreferrer");
   };
 
   const handleCandidateWhatsApp = () => {
     const msg = buildCandidateWhatsAppMessage({
       name: "Job Applicant",
       role: "International Placement",
-      notes: "Hello De Organica HR, I would like to inquire about overseas job opportunities and the zero-fee placement process.",
+      notes:
+        "Hello De Organica HR, I would like to inquire about overseas job opportunities and the zero-fee placement process.",
     });
-    window.open(buildWhatsAppUrl(msg), "_blank", "noopener,noreferrer");
+    window.open(buildWhatsAppUrl(msg, company.whatsappNumberDigits), "_blank", "noopener,noreferrer");
   };
 
   const handleEmployerWhatsApp = () => {
@@ -92,45 +105,51 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
       contactPerson: "Hiring Manager",
       industry: "Skilled / Hospitality / Logistics Manpower",
       headcount: "1-10",
-      notes: "Hello De Organica corporate team, we would like to initiate a talent requisition for our Armenian operations.",
+      notes:
+        "Hello De Organica corporate team, we would like to initiate a talent requisition for our Armenian operations.",
     });
-    window.open(buildWhatsAppUrl(msg), "_blank", "noopener,noreferrer");
+    window.open(buildWhatsAppUrl(msg, company.whatsappNumberDigits), "_blank", "noopener,noreferrer");
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-28 bg-gradient-to-b from-brand-stone-100/60 to-white border-t border-brand-stone-200">
+    <section
+      id="contact"
+      className="py-20 lg:py-28 bg-gradient-to-b from-brand-stone-100/60 to-white border-t border-brand-stone-200"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Yerevan Diplomatic & Commercial Desk Information */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-4">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-text mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-olive" />
-                <span>{isHy ? "Երևանի Գլխավոր Գրասենյակ" : "Yerevan Headquarters · Armenia"}</span>
+                <span>{isHy ? content.eyebrow_hy : content.eyebrow_en}</span>
               </div>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
-                {isHy ? "Կապ Հաստատեք Երևանի Մեր Գրասենյակի Հետ" : "Contact Our Yerevan Office"}
-              </h2>
-              <p className="text-sm text-brand-ink-muted leading-relaxed">
-                {isHy
-                  ? "Ուղիղ խորհրդատվություն անհատական տուրերի, տրանսպորտային պարկի, վիզաների և միջազգային աշխատուժի հարցերով:"
-                  : "Direct consultation for bespoke Armenian travel, private chauffeur fleet, visa support, and certified international staffing."}
+              <PrimaryHeading className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
+                {isHy ? content.headline_hy : content.headline_en}
+              </PrimaryHeading>
+              <p className="text-sm sm:text-base text-brand-ink-muted leading-relaxed">
+                {isHy ? content.subtext_hy : content.subtext_en}
               </p>
             </div>
 
             {/* Live Yerevan Desk Status Card */}
             <div className="p-6 sm:p-7 rounded-3xl bg-white border border-brand-stone-200/90 shadow-md space-y-5">
-              <div className="flex items-center justify-between pb-4 border-b border-brand-stone-100">
+              <div className="flex items-center justify-between gap-2 pb-4 border-b border-brand-stone-100">
                 <div className="flex items-center gap-2.5">
-                  <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${isDeskOpen ? "bg-brand-olive" : "bg-amber-600"}`} />
+                  <span
+                    className={`w-2.5 h-2.5 rounded-full shrink-0 ${
+                      isDeskOpen ? "bg-brand-olive" : "bg-brand-gold"
+                    }`}
+                  />
                   <span className="text-xs font-bold text-brand-forest uppercase tracking-wider">
                     {isDeskOpen
                       ? isHy
-                        ? "Գրասենյակը բաց է"
-                        : "Yerevan Desk Open"
+                        ? content.deskOpenLabel_hy
+                        : content.deskOpenLabel_en
                       : isHy
-                      ? "Հերթապահ ռեժիմ (WhatsApp ակտիվ)"
-                      : "After-Hours WhatsApp Active"}
+                      ? content.deskClosedLabel_hy
+                      : content.deskClosedLabel_en}
                   </span>
                 </div>
 
@@ -138,66 +157,88 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                   <span className="font-mono text-xs font-bold text-brand-forest block">
                     {yerevanTime || "12:00:00 PM"}
                   </span>
-                  <span className="text-[10px] text-brand-ink-muted font-mono uppercase">
+                  <span className="text-xs text-brand-ink-subtle font-mono uppercase">
                     YEREVAN (GMT+4)
                   </span>
                 </div>
               </div>
 
-              <div className="space-y-4 text-xs text-brand-ink">
+              <div className="space-y-4 text-xs sm:text-sm text-brand-ink">
                 <div className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 text-brand-olive shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-brand-olive-text shrink-0 mt-1" />
                   <div>
                     <span className="font-semibold text-brand-forest block text-sm">
-                      {deorganicaConfig.company.legalName}
+                      {company.legalName}
                     </span>
                     <span className="text-brand-ink-muted">
-                      {isHy ? deorganicaConfig.company.address_hy : deorganicaConfig.company.address_en}
+                      {isHy
+                        ? company.address_hy
+                        : company.address_en}
                     </span>
-                    <span className="text-[11px] font-mono text-brand-olive block mt-0.5">
-                      Coordinates: 40.1792° N, 44.4991° E
+                    <span className="text-xs font-mono text-brand-olive-text block mt-0.5">
+                      {content.coordinates}
                     </span>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Mail className="w-4 h-4 text-brand-olive shrink-0 mt-0.5" />
+                  <Phone className="w-4 h-4 text-brand-olive-text shrink-0 mt-1" />
                   <div>
                     <span className="font-semibold text-brand-forest block text-sm">
-                      {isHy ? "Պաշտոնական էլ. փոստ" : "Primary Email Desk"}
+                      {isHy ? "Հեռախոս և WhatsApp Դեսկ" : "Direct Telephone & WhatsApp Desk"}
                     </span>
                     <a
-                      href={`mailto:${deorganicaConfig.company.email}`}
-                      className="text-brand-forest hover:text-brand-olive transition-colors underline underline-offset-2 font-mono text-xs"
+                      href={`tel:${company.phoneYerevanDesk.replace(/\s+/g, "")}`}
+                      className="text-brand-forest hover:text-brand-olive-text transition-colors underline underline-offset-2 font-mono text-xs sm:text-sm inline-block py-0.5"
                     >
-                      {deorganicaConfig.company.email}
+                      {company.phoneYerevanDesk}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Clock className="w-4 h-4 text-brand-olive shrink-0 mt-0.5" />
+                  <Mail className="w-4 h-4 text-brand-olive-text shrink-0 mt-1" />
+                  <div>
+                    <span className="font-semibold text-brand-forest block text-sm">
+                      {isHy ? "Պաշտոնական էլ. փոստ" : "Primary Email Desk"}
+                    </span>
+                    <a
+                      href={`mailto:${company.email}`}
+                      className="text-brand-forest hover:text-brand-olive-text transition-colors underline underline-offset-2 font-mono text-xs sm:text-sm inline-block py-0.5"
+                    >
+                      {company.email}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Clock className="w-4 h-4 text-brand-olive-text shrink-0 mt-1" />
                   <div>
                     <span className="font-semibold text-brand-forest block text-sm">
                       {isHy ? "Աշխատանքային ժամեր" : "Desk Operating Hours"}
                     </span>
                     <span className="text-brand-ink-muted">
-                      {isHy ? deorganicaConfig.company.workingHours_hy : deorganicaConfig.company.workingHours_en}
+                      {isHy
+                        ? company.workingHours_hy
+                        : company.workingHours_en}
                     </span>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <ShieldCheck className="w-4 h-4 text-brand-olive shrink-0 mt-0.5" />
+                  <ShieldCheck className="w-4 h-4 text-brand-olive-text shrink-0 mt-1" />
                   <div>
                     <span className="font-semibold text-brand-forest block text-sm">
                       {isHy ? "Իրավաբանական Գրանցում" : "Corporate Legal Entity"}
                     </span>
                     <span className="text-brand-ink-muted">
-                      {isHy ? deorganicaConfig.company.registrationStatus_hy : deorganicaConfig.company.registrationStatus_en}
+                      {isHy
+                        ? company.registrationStatus_hy
+                        : company.registrationStatus_en}
                     </span>
-                    <span className="text-[11px] text-brand-ink-muted block mt-0.5">
-                      CEO: Maneesha Muraleedharan
+                    <span className="text-xs text-brand-ink-subtle block mt-0.5">
+                      {isHy ? "Հիմնադիր և Տնօրեն՝" : "Founder & CEO:"}{" "}
+                      {company.ceo}
                     </span>
                   </div>
                 </div>
@@ -208,33 +249,30 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
           {/* Right Column: Intent-Segmented Direct Dispatch Cards */}
           <div className="lg:col-span-7 space-y-4">
             <div className="mb-2">
-              <h3 className="font-serif text-2xl font-bold text-brand-forest">
-                {isHy ? "Ընտրեք Ձեր հարցման բնույթը" : "Select Your Direct Inquiry Channel"}
-              </h3>
+              <SecondaryHeading className="font-serif text-2xl sm:text-3xl font-bold text-brand-forest">
+                {isHy ? content.channelsTitle_hy : content.channelsTitle_en}
+              </SecondaryHeading>
               <p className="text-xs sm:text-sm text-brand-ink-muted mt-1">
-                {isHy
-                  ? "Սեղմեք համապատասխան բաժինը՝ անմիջապես համակարգողի հետ WhatsApp-ով կապվելու կամ լիարժեք հայտ ներկայացնելու համար:"
-                  : "Route directly to the appropriate specialist desk in Yerevan with pre-formatted inquiry parameters:"}
+                {isHy ? content.channelsSubtitle_hy : content.channelsSubtitle_en}
               </p>
             </div>
 
             {/* Travel-Specific Channels */}
             {variant === "travel" && (
               <>
-                {/* Channel 1: Bespoke Leisure & Private Expeditions */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-sm hover:border-brand-olive/50 hover:shadow-md transition-colors duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-start gap-3.5">
                     <div className="w-12 h-12 rounded-xl bg-brand-olive-subtle border border-brand-olive/30 flex items-center justify-center text-brand-forest shrink-0">
-                      <Compass className="w-6 h-6" />
+                      <Compass className="w-6 h-6 text-brand-olive-text" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-olive">
+                      <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-olive-text">
                         <span>{isHy ? "Մասնավոր Երթուղիներ" : "Bespoke Leisure & Private Expeditions"}</span>
                       </div>
-                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                      <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Անհատական Տուրեր և Գինու Ճանապարհ" : "Bespoke Cultural & Wine Expeditions"}
-                      </h4>
-                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                      </CardHeading>
+                      <p className="text-xs sm:text-sm text-brand-ink-muted mt-0.5">
                         {isHy
                           ? "Հատուկ կազմված երթուղիներ, Արենիի գինու համտեսներ, ընտանեկան հանգիստ և անհատական էքսկուրսավարներ:"
                           : "Curated itineraries, Areni-1 wine tastings, luxury resort lodging, and private multi-day itineraries across Armenia."}
@@ -245,37 +283,38 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                   <div className="flex items-center gap-2 shrink-0">
                     <button
                       type="button"
-                      onClick={handleTravelWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      onClick={() => openTravelDrawer("Bespoke Private Itinerary")}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
                     >
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      <span>WhatsApp</span>
+                      {isHy ? "Հայտ" : "Inquire"}
                     </button>
                     <button
                       type="button"
-                      onClick={() => openTravelDrawer("Bespoke Private Itinerary")}
-                      className="px-3.5 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-colors cursor-pointer"
+                      onClick={handleTravelWhatsApp}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
                     >
-                      {isHy ? "Հայտ" : "Inquire"}
+                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <span>WhatsApp</span>
                     </button>
                   </div>
                 </div>
 
-                {/* Channel 2: B2B Destination Management (DMC) */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-sm hover:border-brand-olive/50 hover:shadow-md transition-colors duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-start gap-3.5">
                     <div className="w-12 h-12 rounded-xl bg-brand-forest/10 border border-brand-forest/20 flex items-center justify-center text-brand-forest shrink-0">
                       <Building2 className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-forest">
+                      <div className="inline-flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-forest">
                         <span>{isHy ? "B2B Գործընկերություն" : "B2B Destination Management (DMC)"}</span>
-                        <span className="px-1.5 py-0.2 rounded bg-brand-forest/10 text-brand-forest text-[9px]">NET TARIFFS</span>
+                        <span className="px-2 py-0.5 rounded bg-brand-forest/10 text-brand-forest text-xs font-semibold">
+                          NET TARIFFS
+                        </span>
                       </div>
-                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                      <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Մեծածախ DMC Սպասարկում Գործակալություններին" : "Wholesale Ground Handling & Allotments"}
-                      </h4>
-                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                      </CardHeading>
+                      <p className="text-xs sm:text-sm text-brand-ink-muted mt-0.5">
                         {isHy
                           ? "Հատուկ գներ արտերկրի տուրօպերատորների համար, սպիտակ բրենդավորմամբ դիմավորում և MICE միջոցառումներ:"
                           : "Exclusive contract rates for overseas tour operators, white-label EVN airport reception, and group allotments."}
@@ -286,37 +325,38 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                   <div className="flex items-center gap-2 shrink-0">
                     <button
                       type="button"
-                      onClick={handleTravelWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      onClick={() => openTravelDrawer("B2B Travel Partner DMC Agreement")}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
                     >
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      <span>WhatsApp</span>
+                      {isHy ? "Պայմանագիր" : "B2B Desk"}
                     </button>
                     <button
                       type="button"
-                      onClick={() => openTravelDrawer("B2B Travel Partner DMC Agreement")}
-                      className="px-3.5 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors cursor-pointer"
+                      onClick={handleTravelWhatsApp}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
                     >
-                      {isHy ? "Պայմանագիր" : "B2B Desk"}
+                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <span>WhatsApp</span>
                     </button>
                   </div>
                 </div>
 
-                {/* Channel 3: Zvartnots EVN Chauffeur Fleet */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-sm hover:border-brand-olive/50 hover:shadow-md transition-colors duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-start gap-3.5">
                     <div className="w-12 h-12 rounded-xl bg-brand-stone-100 border border-brand-stone-200 flex items-center justify-center text-brand-forest shrink-0">
                       <Car className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-ink-muted">
+                      <div className="inline-flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-ink-muted">
                         <span>{isHy ? "24/7 Օդանավակայանի Լոգիստիկա" : "Zvartnots (EVN) Airport & Fleet"}</span>
-                        <span className="px-1.5 py-0.2 rounded bg-brand-stone-200 text-brand-forest text-[9px]">24/7 LIVE</span>
+                        <span className="px-2 py-0.5 rounded bg-brand-stone-200 text-brand-forest text-xs font-semibold">
+                          24/7 LIVE
+                        </span>
                       </div>
-                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                      <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Chauffeur Ավտոպարկ և EVN Տրանսֆեր" : "Executive Chauffeur Fleet & Airport Transfers"}
-                      </h4>
-                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                      </CardHeading>
+                      <p className="text-xs sm:text-sm text-brand-ink-muted mt-0.5">
                         {isHy
                           ? "Թռիչքների առցանց հետևում, էկոնոմից մինչև VIP մարդատար մեքենաներ և հուսալի միջքաղաքային երթեր:"
                           : "Real-time flight monitoring, economy to executive sedans and VIP passenger vans with professional chauffeur dispatch."}
@@ -327,18 +367,18 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                   <div className="flex items-center gap-2 shrink-0">
                     <button
                       type="button"
-                      onClick={handleTravelWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      onClick={() => openTravelDrawer("Hotels & Airport Transfers")}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
                     >
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      <span>WhatsApp</span>
+                      {isHy ? "Ամրագրել" : "Book Fleet"}
                     </button>
                     <button
                       type="button"
-                      onClick={() => openTravelDrawer("Hotels & Airport Transfers")}
-                      className="px-3.5 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-colors cursor-pointer"
+                      onClick={handleTravelWhatsApp}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
                     >
-                      {isHy ? "Ամրագրել" : "Book Fleet"}
+                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <span>WhatsApp</span>
                     </button>
                   </div>
                 </div>
@@ -348,21 +388,22 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
             {/* Manpower-Specific Channels */}
             {variant === "manpower" && (
               <>
-                {/* Channel 1: Candidate CV Submission & Placement Desk */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-sm hover:border-brand-olive/50 hover:shadow-md transition-colors duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-start gap-3.5">
                     <div className="w-12 h-12 rounded-xl bg-brand-olive-subtle border border-brand-olive/30 flex items-center justify-center text-brand-forest shrink-0">
-                      <Briefcase className="w-6 h-6" />
+                      <Briefcase className="w-6 h-6 text-brand-olive-text" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-olive">
+                      <div className="inline-flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-olive-text">
                         <span>{isHy ? "Աշխատանք Փնտրողների Բաժին" : "Division I · Job Seekers"}</span>
-                        <span className="px-1.5 py-0.2 rounded bg-brand-olive/15 text-brand-forest text-[9px]">ZERO FEE</span>
+                        <span className="px-2 py-0.5 rounded bg-brand-olive-subtle text-brand-forest text-xs font-semibold">
+                          ZERO FEE
+                        </span>
                       </div>
-                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                      <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Թեկնածուների Դիմումներ և Ռեզյումե (CV)" : "Candidate CV Submission & Job Advisory"}
-                      </h4>
-                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                      </CardHeading>
+                      <p className="text-xs sm:text-sm text-brand-ink-muted mt-0.5">
                         {isHy
                           ? "100% անվճար ռեզյումեի գրանցում, վճարում միայն աշխատանքի ընդունվելիս և պաշտոնական աշխատանքային վիզա:"
                           : "100% free resume submission with pay-after-job guarantee, verified contracts, and official visa support."}
@@ -373,39 +414,40 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                   <div className="flex items-center gap-2 shrink-0">
                     <button
                       type="button"
-                      onClick={handleCandidateWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      onClick={() => openCandidateDrawer()}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
                     >
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      <span>WhatsApp</span>
+                      {isHy ? "Ուղարկել CV" : "Drop CV"}
                     </button>
                     <button
                       type="button"
-                      onClick={() => openCandidateDrawer()}
-                      className="px-3.5 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors cursor-pointer"
+                      onClick={handleCandidateWhatsApp}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
                     >
-                      {isHy ? "Ուղարկել CV" : "Drop CV"}
+                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <span>WhatsApp</span>
                     </button>
                   </div>
                 </div>
 
-                {/* Channel 2: Corporate Staffing & B2B Quota Requisition */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-sm hover:border-brand-olive/50 hover:shadow-md transition-colors duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-start gap-3.5">
                     <div className="w-12 h-12 rounded-xl bg-brand-stone-100 border border-brand-stone-200 flex items-center justify-center text-brand-forest shrink-0">
                       <Building2 className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-ink-muted">
+                      <div className="inline-flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-ink-muted">
                         <span>{isHy ? "Գործատուների Բաժին" : "Division II · B2B Staffing"}</span>
-                        <span className="px-1.5 py-0.2 rounded bg-brand-stone-200 text-brand-forest text-[9px]">72H SLA</span>
+                        <span className="px-2 py-0.5 rounded bg-brand-stone-200 text-brand-forest text-xs font-semibold">
+                          SHORTLIST &lt; 72H
+                        </span>
                       </div>
-                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                      <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Կորպորատիվ Գործատուների Պատվերներ" : "Corporate Employer Talent Requisitions"}
-                      </h4>
-                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                      </CardHeading>
+                      <p className="text-xs sm:text-sm text-brand-ink-muted mt-0.5">
                         {isHy
-                          ? "ՀՀ աշխատանքի քվոտաների ձևակերպում, թեկնածուների ստուգում և արագ համալրում 30-օրյա երաշխիքով:"
+                          ? "ՀՀ աշխատանքի քվոտաների ձևակերպում, թեկնածուների ստուգում (72 ժամում) և 30-օրյա երաշխիք:"
                           : "Ministry labor quota processing, vetted candidate shortlists within 72 hours, and 30-day replacement warranty."}
                       </p>
                     </div>
@@ -414,40 +456,41 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                   <div className="flex items-center gap-2 shrink-0">
                     <button
                       type="button"
-                      onClick={handleEmployerWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      onClick={() => openEmployerDrawer()}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
                     >
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      <span>WhatsApp</span>
+                      {isHy ? "Պատվիրել" : "Requisition"}
                     </button>
                     <button
                       type="button"
-                      onClick={() => openEmployerDrawer()}
-                      className="px-3.5 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-colors cursor-pointer"
+                      onClick={handleEmployerWhatsApp}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
                     >
-                      {isHy ? "Պատվիրել" : "Requisition"}
+                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <span>WhatsApp</span>
                     </button>
                   </div>
                 </div>
 
-                {/* Channel 3: Legal Work Permit & Relocation Advisory */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-sm hover:border-brand-olive/50 hover:shadow-md transition-colors duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-start gap-3.5">
-                    <div className="w-12 h-12 rounded-xl bg-brand-gold-subtle border border-brand-gold/30 flex items-center justify-center text-brand-gold shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-brand-gold-subtle border border-brand-gold/40 flex items-center justify-center text-brand-gold-text shrink-0">
                       <ShieldCheck className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-gold">
+                      <div className="inline-flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-gold-text">
                         <span>{isHy ? "Իրավական Համապատասխանություն" : "Division III · Legal Permits"}</span>
-                        <span className="px-1.5 py-0.2 rounded bg-brand-gold/15 text-brand-gold text-[9px]">RA MINISTRY</span>
+                        <span className="px-2 py-0.5 rounded bg-brand-gold-subtle border border-brand-gold/30 text-brand-gold-text text-xs font-semibold">
+                          RA MINISTRY
+                        </span>
                       </div>
-                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                      <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Աշխատանքի Թույլտվություն և Ռելոկացիա" : "Work Permit Clearance & Relocation Care"}
-                      </h4>
-                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                      </CardHeading>
+                      <p className="text-xs sm:text-sm text-brand-ink-muted mt-0.5">
                         {isHy
-                          ? "ՀՀ միգրացիոն ծառայության գրանցում, հյուպատոսական վիզա, Զվարթնոցում դիմավորում և կացություն:"
-                          : "Full compliance with RA Migration Service, consular visa files, Zvartnots arrival reception, and residential registration."}
+                          ? "ՀՀ միգրացիոն ծառայության գրանցում (15–25 աշխ. օր), հյուպատոսական վիզա և Զվարթնոցում դիմավորում:"
+                          : "Full compliance with RA Migration Service (15–25 business days), consular visa files, and Zvartnots arrival reception."}
                       </p>
                     </div>
                   </div>
@@ -455,18 +498,18 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                   <div className="flex items-center gap-2 shrink-0">
                     <button
                       type="button"
-                      onClick={handleCandidateWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      onClick={() => openCandidateDrawer()}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
                     >
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      <span>WhatsApp</span>
+                      {isHy ? "Խորհրդատվություն" : "Advisory"}
                     </button>
                     <button
                       type="button"
-                      onClick={() => openCandidateDrawer()}
-                      className="px-3.5 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-colors cursor-pointer"
+                      onClick={handleCandidateWhatsApp}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
                     >
-                      {isHy ? "Խորհրդատվություն" : "Advisory"}
+                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <span>WhatsApp</span>
                     </button>
                   </div>
                 </div>
@@ -476,20 +519,19 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
             {/* Standard Multi-Division Channels (Overview / General Contact) */}
             {variant === "all" && (
               <>
-                {/* Channel 1: Travel & Tour Desk */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-sm hover:border-brand-olive/50 hover:shadow-md transition-colors duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-start gap-3.5">
                     <div className="w-12 h-12 rounded-xl bg-brand-olive-subtle border border-brand-olive/30 flex items-center justify-center text-brand-forest shrink-0">
-                      <Compass className="w-6 h-6" />
+                      <Compass className="w-6 h-6 text-brand-olive-text" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-olive">
+                      <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-olive-text">
                         <span>{isHy ? "Բաժին I · Տուրեր և Երթուղիներ" : "Division I · Travel Desk"}</span>
                       </div>
-                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                      <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Տուրեր, Երթուղիներ և VIP Տրանսֆեր" : "Armenia Itineraries & Chauffeur Fleet"}
-                      </h4>
-                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                      </CardHeading>
+                      <p className="text-xs sm:text-sm text-brand-ink-muted mt-0.5">
                         {isHy
                           ? "Հատուկ կազմված տուրիստական ծրագրեր, Գառնի, Սևան, Տաթև և B2B DMC մեծածախ սակագներ:"
                           : "Custom holiday planning, Garni/Sevan/Tatev tours, or B2B DMC group tariffs."}
@@ -500,37 +542,38 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                   <div className="flex items-center gap-2 shrink-0">
                     <button
                       type="button"
-                      onClick={handleTravelWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      onClick={() => openTravelDrawer("General Travel Inquiry")}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
                     >
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      <span>WhatsApp</span>
+                      {isHy ? "Հայտ" : "Form"}
                     </button>
                     <button
                       type="button"
-                      onClick={() => openTravelDrawer("General Travel Inquiry")}
-                      className="px-3.5 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-colors cursor-pointer"
+                      onClick={handleTravelWhatsApp}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
                     >
-                      {isHy ? "Հայտ" : "Form"}
+                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <span>WhatsApp</span>
                     </button>
                   </div>
                 </div>
 
-                {/* Channel 2: Candidate CV Drop Desk */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-sm hover:border-brand-olive/50 hover:shadow-md transition-colors duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-start gap-3.5">
                     <div className="w-12 h-12 rounded-xl bg-brand-olive-subtle border border-brand-olive/30 flex items-center justify-center text-brand-forest shrink-0">
-                      <Briefcase className="w-6 h-6" />
+                      <Briefcase className="w-6 h-6 text-brand-olive-text" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-olive">
+                      <div className="inline-flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-olive-text">
                         <span>{isHy ? "Բաժին II · Աշխատանք Փնտրողներ" : "Division II · Job Seekers"}</span>
-                        <span className="px-1.5 py-0.2 rounded bg-brand-olive/15 text-brand-forest text-[9px]">ZERO FEE</span>
+                        <span className="px-2 py-0.5 rounded bg-brand-olive-subtle text-brand-forest text-xs font-semibold">
+                          ZERO FEE
+                        </span>
                       </div>
-                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                      <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Թեկնածուների Դիմումներ և Ռեզյումե" : "Candidate CV Submission & Job Advisory"}
-                      </h4>
-                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                      </CardHeading>
+                      <p className="text-xs sm:text-sm text-brand-ink-muted mt-0.5">
                         {isHy
                           ? "100% անվճար ռեզյումեի ներկայացում, վճարում միայն աշխատանքի ընդունվելիս և վիզայի աջակցություն:"
                           : "100% free resume submission with pay-after-job guarantee and official visa support."}
@@ -541,37 +584,38 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                   <div className="flex items-center gap-2 shrink-0">
                     <button
                       type="button"
-                      onClick={handleCandidateWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      onClick={() => openCandidateDrawer()}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
                     >
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      <span>WhatsApp</span>
+                      {isHy ? "Ուղարկել CV" : "Drop CV"}
                     </button>
                     <button
                       type="button"
-                      onClick={() => openCandidateDrawer()}
-                      className="px-3.5 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors cursor-pointer"
+                      onClick={handleCandidateWhatsApp}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
                     >
-                      {isHy ? "Ուղարկել CV" : "Drop CV"}
+                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <span>WhatsApp</span>
                     </button>
                   </div>
                 </div>
 
-                {/* Channel 3: Corporate Staffing & B2B Quota Requisition */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-xs hover:border-brand-olive/50 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                <div className="p-5 sm:p-6 rounded-2xl bg-white border border-brand-stone-200 shadow-sm hover:border-brand-olive/50 hover:shadow-md transition-colors duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-start gap-3.5">
                     <div className="w-12 h-12 rounded-xl bg-brand-stone-100 border border-brand-stone-200 flex items-center justify-center text-brand-forest shrink-0">
                       <Building2 className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-ink-muted">
+                      <div className="inline-flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-ink-muted">
                         <span>{isHy ? "Բաժին III · Կորպորատիվ Հավաքագրում" : "Enterprise · B2B Staffing"}</span>
-                        <span className="px-1.5 py-0.2 rounded bg-brand-stone-200 text-brand-forest text-[9px]">72H SLA</span>
+                        <span className="px-2 py-0.5 rounded bg-brand-stone-200 text-brand-forest text-xs font-semibold">
+                          SHORTLIST &lt; 72H
+                        </span>
                       </div>
-                      <h4 className="font-serif text-base sm:text-lg font-bold text-brand-forest">
+                      <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Կորպորատիվ Գործատուների Պատվերներ" : "Corporate Employer Talent Requisitions"}
-                      </h4>
-                      <p className="text-xs text-brand-ink-muted mt-0.5">
+                      </CardHeading>
+                      <p className="text-xs sm:text-sm text-brand-ink-muted mt-0.5">
                         {isHy
                           ? "ՀՀ աշխատանքի քվոտաների ձևակերպում, թեկնածուների ընտրություն և ամբողջական իրավական աջակցություն:"
                           : "Ministry labor quota handling, candidate vetting, and complete relocation compliance."}
@@ -582,18 +626,18 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
                   <div className="flex items-center gap-2 shrink-0">
                     <button
                       type="button"
-                      onClick={handleEmployerWhatsApp}
-                      className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                      onClick={() => openEmployerDrawer()}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
                     >
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      <span>WhatsApp</span>
+                      {isHy ? "Պատվիրել" : "Requisition"}
                     </button>
                     <button
                       type="button"
-                      onClick={() => openEmployerDrawer()}
-                      className="px-3.5 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-colors cursor-pointer"
+                      onClick={handleEmployerWhatsApp}
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
                     >
-                      {isHy ? "Պատվիրել" : "Requisition"}
+                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <span>WhatsApp</span>
                     </button>
                   </div>
                 </div>
@@ -601,21 +645,21 @@ export function ContactSection({ variant = "all" }: ContactSectionProps) {
             )}
 
             {/* General Email & Legal Guarantee Note */}
-            <div className="p-4 rounded-2xl bg-brand-stone-100/80 border border-brand-stone-200 text-xs text-brand-ink-muted flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="p-4 rounded-2xl bg-brand-stone-100/80 border border-brand-stone-200 text-xs text-brand-ink-muted flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-brand-olive shrink-0" />
+                <Mail className="w-4 h-4 text-brand-olive-text shrink-0" />
                 <span>
                   {isHy ? "Պաշտոնական կորպորատիվ հարցումներ: " : "Official Corporate Inquiries: "}
                   <a
-                    href={`mailto:${deorganicaConfig.company.email}`}
+                    href={`mailto:${company.email}`}
                     className="font-mono text-brand-forest underline underline-offset-2"
                   >
-                    {deorganicaConfig.company.email}
+                    {company.email}
                   </a>
                 </span>
               </div>
-              <span className="text-[11px] font-medium text-brand-forest">
-                {isHy ? "Պատասխանի ժամկետ՝ 4 աշխատանքային ժամվա ընթացքում" : "Response SLA: Within 4 Business Hours"}
+              <span className="text-xs font-medium text-brand-forest">
+                {isHy ? content.replySla_hy : content.replySla_en}
               </span>
             </div>
           </div>

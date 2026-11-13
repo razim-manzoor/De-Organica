@@ -55,10 +55,11 @@
   - **Body & Interface:** `Noto Sans Armenian` + `Inter`
 - Client-side language switcher context with persistence and seamless bidirectional layout support.
 
-### B. Single-Source Configuration Architecture
-- Centralized data layer in [`src/data/deorganica-content.ts`](src/data/deorganica-content.ts).
-- All service packages, itineraries, vacancies, vehicle categories, trust metrics, and FAQs are typed and managed in one place.
-- Eliminates hardcoded copy across UI components; changing a detail updates the site and the inquiry drawer automatically.
+### B. Sanity CMS & Zero-Dependency Fallback Engine
+- **Embedded Studio:** Accessible at `/studio` via [`sanity.config.ts`](sanity.config.ts) and [`src/app/studio/[[...tool]]/page.tsx`](src/app/studio/[[...tool]]/page.tsx). When `NEXT_PUBLIC_SANITY_PROJECT_ID` is unset, `/studio` displays a safe setup screen instead of crashing.
+- **Typed Domain Fallback Layer:** [`src/data/cms-fallbacks.ts`](src/data/cms-fallbacks.ts) and [`src/data/deorganica-content.ts`](src/data/deorganica-content.ts) provide 100% bilingual defaults for every singleton (`siteSettings`, `homePage`, `travelPage`, `manpowerPage`) and collection (`tourPackage`, `travelService`, `jobVacancy`, `faqItem`).
+- **On-Demand ISR & Draft Preview:** Webhooks trigger [`src/app/api/revalidate/route.ts`](src/app/api/revalidate/route.ts), and editorial previews use `/api/draft-mode/enable` and `/api/draft-mode/disable`.
+- **Single-Command Dataset Seeding:** `npm run sanity:seed` uploads local imagery from `public/images/` and upserts all 31 bilingual documents into Sanity (or `--export-ndjson` generates an importable NDJSON bundle).
 
 ### C. Tri-Modal Context-Aware Concierge Drawer
 - Located at [`src/components/ConciergeDrawer.tsx`](src/components/ConciergeDrawer.tsx).
@@ -123,49 +124,40 @@ r:/Projects/De Organica/
 ├── src/
 │   ├── app/                    # Next.js 15 App Router
 │   │   ├── api/
-│   │   │   └── inquiry/        # Serverless Resend multipart email handler
+│   │   │   ├── draft-mode/     # Sanity preview enable & disable routes
+│   │   │   ├── inquiry/        # Serverless Resend multipart email handler
+│   │   │   └── revalidate/     # On-demand Sanity webhook revalidation
 │   │   ├── contact/            # /contact dedicated route
 │   │   ├── manpower/           # /manpower dedicated route
-│   │   ├── travel/             # /travel dedicated route
-│   │   ├── layout.tsx          # Root layout with font bindings & metadata
+│   │   ├── studio/             # /studio embedded Sanity Content Desk
+│   │   ├── travel/             # /travel overview + /travel/[slug] details
+│   │   ├── layout.tsx          # Async root layout fetching SiteSettings & providing SiteDataContext
 │   │   ├── page.tsx            # / Overview Gateway route
+│   │   ├── sitemap.ts          # Dynamic sitemap including published tours
 │   │   └── globals.css         # Tailwind CSS imports and theme variables
-│   ├── components/             # Production UI components
-│   │   ├── ConciergeDrawer.tsx # Slide-over inquiry modal
-│   │   ├── ContactSection.tsx  # Multi-desk contact rows
-│   │   ├── CorporateFoundation.tsx # Legal entity & governance
-│   │   ├── DmcPartnerSection.tsx   # B2B DMC ground operations
-│   │   ├── FeaturedToursGrid.tsx   # Flagship panoramic + 2x2 tour matrix
-│   │   ├── Footer.tsx          # Institutional footer
-│   │   ├── Header.tsx          # Sticky navigation with language switcher
-│   │   ├── HeroDualGateway.tsx # Dual division overview hero
-│   │   ├── ItineraryStageShow.tsx  # Interactive route simulator
-│   │   ├── LanguageSwitcher.tsx    # EN / ՀԱՅ toggle
-│   │   ├── Logo.tsx            # Auto-trimmed SVG/PNG brand lockup
-│   │   ├── ManpowerCandidateHub.tsx# Vacancies & Ethical Charter
-│   │   ├── ManpowerComplianceBanner.tsx # Legal guarantee banner
-│   │   ├── ManpowerEmployerSection.tsx  # B2B corporate staffing
-│   │   ├── ManpowerFaqSection.tsx  # Manpower FAQs
-│   │   ├── ManpowerHero.tsx    # Manpower division hero
-│   │   ├── PhoneCountryInput.tsx   # SVG flag country picker
-│   │   ├── PipelineStageShow.tsx   # 4-stage relocation pipeline
-│   │   ├── TravelFaqSection.tsx    # Travel FAQs
-│   │   ├── TravelHeritageShowcase.tsx # UNESCO living culture
-│   │   ├── TravelHero.tsx      # Travel division hero & preview
-│   │   ├── TravelServicesMatrix.tsx# 6 ground services cards
-│   │   └── YerevanCrossroadsBanner.tsx # Live telemetry banner
+│   ├── components/             # Production UI components (including TourDetailView & icons.ts)
 │   ├── context/
 │   │   ├── DrawerContext.tsx   # Global slide-over drawer state
-│   │   └── LanguageContext.tsx # Global bilingual locale state
+│   │   ├── LanguageContext.tsx # Global bilingual locale state
+│   │   └── SiteDataContext.tsx # Server-injected CMS siteSettings, tours & services
 │   ├── data/
-│   │   └── deorganica-content.ts# Single source of truth for site data
+│   │   ├── cms-fallbacks.ts    # Typed bilingual default fallbacks for Sanity singletons & collections
+│   │   └── deorganica-content.ts# Core typed domain datasets
 │   ├── lib/
 │   │   └── whatsapp.ts         # Structured WhatsApp message & URL builder
+│   ├── sanity/
+│   │   ├── env.ts              # Safe Sanity env detection (`isSanityConfigured`)
+│   │   ├── structure.ts        # Desk structure organizing Singletons & Collections
+│   │   ├── lib/                # client.ts, image.ts, queries.ts, fetch.ts (with fallback merge)
+│   │   └── schemaTypes/        # Bilingual object, singleton & document schemas
 │   └── types/
-│       └── content.ts          # TypeScript interfaces for all data structures
+│       └── content.ts          # TypeScript interfaces for all CMS & site data structures
+├── scripts/
+│   └── seed-sanity.mjs         # Seeds Sanity dataset from src/data/cms-fallbacks.ts
 ├── AGENTS.md                   # Agent directives & workspace rules
-├── next.config.mjs             # Next.js image optimization settings
+├── next.config.mjs             # Next.js image optimization (incl. cdn.sanity.io)
 ├── package.json                # Dependencies and script definitions
+├── sanity.config.ts            # Embedded Sanity Studio configuration
 ├── README.md                   # This document
 ├── tailwind.config.ts          # Tailwind theme configuration
 └── tsconfig.json               # Strict TypeScript configuration
@@ -192,17 +184,20 @@ npm install
 
 ### Environment Configuration
 
-Create a `.env.local` file in the project root:
+Create a `.env.local` file in the project root (see `.env.example`):
 
 ```env
 # Resend API Key for Email Notifications
 RESEND_API_KEY=re_your_api_key_here
+RESEND_FROM_EMAIL=De Organica Desk <inquiries@deorganica.am>
 
-# Notification Recipient Email
-INQUIRY_NOTIFICATION_EMAIL=deorganicallc@gmail.com
-
-# WhatsApp Desk Number (International Format without '+')
-NEXT_PUBLIC_WHATSAPP_NUMBER=37494291888
+# Sanity CMS Configuration (Optional — falls back cleanly to local defaults if omitted)
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_API_VERSION=2025-01-01
+SANITY_API_READ_TOKEN=your_read_token
+SANITY_REVALIDATE_SECRET=your_webhook_secret
+SANITY_API_WRITE_TOKEN=your_write_token
 ```
 
 ### Scripts
@@ -217,8 +212,8 @@ npm run build
 # Start production server
 npm start
 
-# Run ESLint validation
-npm run lint
+# Seed all singletons, tours, services, vacancies, FAQs & local images into Sanity
+npm run sanity:seed
 ```
 
 ---

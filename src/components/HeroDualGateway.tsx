@@ -2,202 +2,170 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { useDrawer } from "@/context/DrawerContext";
-import { deorganicaConfig } from "@/data/deorganica-content";
-import {
-  Compass,
-  Users,
-  ArrowUpRight,
-  ShieldCheck,
-  MapPin,
-  Car,
-  Scale,
-  Sparkles,
-  Building,
-} from "lucide-react";
+import type { HomePageContent } from "@/types/content";
+import { defaultHomePageContent } from "@/data/cms-fallbacks";
+import { getCmsIcon } from "@/components/icons";
+import { ArrowRight, Compass, Briefcase, Globe, ShieldCheck } from "lucide-react";
 
-export function HeroDualGateway() {
+interface HeroDualGatewayProps {
+  content?: HomePageContent;
+}
+
+export function HeroDualGateway({ content = defaultHomePageContent }: HeroDualGatewayProps) {
   const { locale } = useLanguage();
   const { openTravelDrawer, openCandidateDrawer } = useDrawer();
   const isHy = locale === "hy";
+  const { masthead, travelPillar, manpowerPillar } = content;
 
   return (
-    <section id="about" className="relative pt-12 pb-20 lg:pt-16 lg:pb-28 overflow-hidden bg-brand-stone-50">
-      {/* Background Architectural Grid Pattern */}
-      <div className="absolute inset-0 opacity-[0.025] pointer-events-none bg-architectural-grid" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Editorial Top Headline Block */}
-        <div className="max-w-3xl mb-12 lg:mb-16">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-olive" />
-            <span>{isHy ? deorganicaConfig.hero.eyebrow_hy : deorganicaConfig.hero.eyebrow_en}</span>
+    <section className="relative bg-brand-stone-50 overflow-hidden pt-8 pb-16 lg:pt-12 lg:pb-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Masthead Intro Bar */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-8 border-b border-brand-stone-200">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-text mb-3">
+              <span className="w-2 h-2 rounded-full bg-brand-olive" />
+              <span>{isHy ? masthead.eyebrow_hy : masthead.eyebrow_en}</span>
+            </div>
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-[3.25rem] font-bold text-brand-forest leading-[1.1] tracking-tight">
+              {isHy ? masthead.headline_hy : masthead.headline_en}
+            </h1>
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-forest leading-[1.12] mb-5">
-            {isHy ? deorganicaConfig.hero.headline_hy : deorganicaConfig.hero.headline_en}
-          </h1>
-
-          <p className="text-base sm:text-lg text-brand-ink-muted leading-relaxed max-w-2xl font-sans">
-            {isHy ? deorganicaConfig.hero.subtext_hy : deorganicaConfig.hero.subtext_en}
+          <p className="text-sm sm:text-base text-brand-ink-muted max-w-md leading-relaxed">
+            {isHy ? masthead.subtext_hy : masthead.subtext_en}
           </p>
         </div>
 
-        {/* 2-Pillar Split Gateway Bento Cards with Rich Visual Media */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
-          {/* Pillar I: Travel & Tours */}
-          <div className="relative group rounded-3xl bg-white border border-stone-200/90 p-6 sm:p-8 shadow-xs hover:shadow-2xl hover:border-brand-forest/50 transition-all duration-300 flex flex-col justify-between overflow-hidden">
+        {/* Dual-Pillar Split Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+          {/* PILLAR 1: Travel & Tours */}
+          <article className="group rounded-3xl bg-white border border-brand-stone-200 overflow-hidden shadow-sm hover-lift hover:shadow-2xl hover:border-brand-olive/40 flex flex-col justify-between">
             <div>
-              {/* Media Preview Frame */}
-              <div className="relative h-52 sm:h-60 w-full rounded-2xl overflow-hidden mb-6 bg-stone-100 shadow-2xs">
-                <Image
-                  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80"
-                  alt="Armenian Alpine Highlands and Rivers"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  priority
+              {/* Hero Photo */}
+              <div className="relative h-64 sm:h-72 overflow-hidden bg-brand-stone-200">
+                <img
+                  src={travelPillar.image || "/images/tours/garni-temple.jpg"}
+                  alt={isHy ? travelPillar.imageAlt_hy : travelPillar.imageAlt_en}
+                  className="w-full h-full object-cover hover-img-zoom"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
-                <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-brand-forest text-xs font-semibold shadow-2xs">
-                  <Compass className="w-3.5 h-3.5 text-brand-olive" />
-                  <span>{isHy ? "Ուղղություն I · Զբոսաշրջություն" : "Division I · Travel & Tours"}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-forest/95 text-white text-xs font-semibold border border-white/20 shadow-sm">
+                  <Compass className="w-3.5 h-3.5 text-brand-olive-onDark" />
+                  <span>{isHy ? travelPillar.badge_hy : travelPillar.badge_en}</span>
                 </div>
-
-                <div className="absolute bottom-3.5 left-3.5 right-3.5 text-white">
-                  <p className="text-xs font-medium text-brand-stone-200 uppercase tracking-wider">
-                    {isHy ? "Հայաստանի Բացառիկ Երթուղիներ" : "Inbound Armenia DMC & World Holidays"}
-                  </p>
-                  <p className="font-serif text-lg font-bold">
-                    {isHy ? "Հայաստանի Լեռնաշխարհ և B2B DMC" : "Highlands, Monasteries & VIP Ground Handling"}
-                  </p>
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white text-xs font-medium">
+                  <span>{isHy ? travelPillar.locationStrip_hy : travelPillar.locationStrip_en}</span>
+                  <span className="px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-sm">
+                    {isHy ? travelPillar.dispatchTag_hy : travelPillar.dispatchTag_en}
+                  </span>
                 </div>
               </div>
 
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-brand-forest mb-2.5">
-                {isHy ? "Զբոսաշրջություն և Տուրեր" : "Travel & Tours"}
-              </h2>
+              <div className="p-7 sm:p-9 space-y-5">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-brand-forest leading-tight">
+                  {isHy ? travelPillar.title_hy : travelPillar.title_en}
+                </h2>
+                <p className="text-sm text-brand-ink-muted leading-relaxed">
+                  {isHy ? travelPillar.description_hy : travelPillar.description_en}
+                </p>
 
-              <p className="text-sm text-brand-ink-muted leading-relaxed mb-6 font-sans">
-                {isHy
-                  ? "Հեղինակային էքսկուրսիաներ Հայաստանում (Գառնի, Սևան, Տաթև), անհատական տրանսֆեր, վիզաների աջակցություն և B2B DMC տեղական սպասարկում արտասահմանյան գործընկերների համար:"
-                  : "Curated Armenian monastic journeys, private chauffeur transport, consular visa advisory, and white-label DMC ground handling in Yerevan for global agency partners."}
-              </p>
-
-              {/* 3 Core Value Signals */}
-              <div className="space-y-2.5 mb-8">
-                <div className="flex items-center gap-2.5 text-xs text-stone-700 font-medium">
-                  <Car className="w-4 h-4 text-brand-olive shrink-0" />
-                  <span>{isHy ? "Անհատական ավտոպարկ և 24/7 Զվարթնոց օդանավակայանի դիմավորում" : "Private Chauffeur Fleet & 24/7 Zvartnots EVN Meet"}</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs text-stone-700 font-medium">
-                  <Compass className="w-4 h-4 text-brand-olive shrink-0" />
-                  <span>{isHy ? "ՅՈՒՆԵՍԿՕ-ի ժառանգության վայրեր և գինու վարպետության դասեր" : "UNESCO Monastic Sanctuaries & Areni Wine Terroirs"}</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs text-stone-700 font-medium">
-                  <Sparkles className="w-4 h-4 text-brand-olive shrink-0" />
-                  <span>{isHy ? "Մեծածախ B2B Net սակագներ արտերկրի տուրօպերատորներին" : "Wholesale B2B Net Tariffs for International Agencies"}</span>
+                <div className="grid grid-cols-2 gap-3 pt-2 border-t border-brand-stone-100 text-xs">
+                  {travelPillar.features.map((feat, idx) => {
+                    const Icon = getCmsIcon(feat.icon, Globe);
+                    return (
+                      <div key={idx} className="flex items-center gap-2 text-brand-forest font-semibold">
+                        <Icon className="w-4 h-4 text-brand-olive-text shrink-0" />
+                        <span>{isHy ? feat.label_hy : feat.label_en}</span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
 
-            <div className="pt-5 border-t border-stone-200/80 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div className="px-7 pb-7 sm:px-9 sm:pb-9 pt-4 border-t border-brand-stone-100 flex flex-col sm:flex-row gap-3">
               <Link
                 href="/travel"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep active:scale-95 transition-all shadow-xs group/btn cursor-pointer"
+                className="flex-1 min-h-[46px] px-5 py-3 rounded-xl bg-brand-forest text-white text-xs sm:text-sm font-semibold hover:bg-brand-forest-deep transition-colors duration-200 flex items-center justify-center gap-2 shadow-sm"
               >
-                <span>{isHy ? deorganicaConfig.hero.ctaTravel_hy : deorganicaConfig.hero.ctaTravel_en}</span>
-                <ArrowUpRight className="w-4 h-4 text-brand-olive-light transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                <span>{isHy ? travelPillar.ctaPrimary_hy : travelPillar.ctaPrimary_en}</span>
+                <ArrowRight className="w-4 h-4" />
               </Link>
-
               <button
                 type="button"
-                onClick={() => openTravelDrawer("Bespoke Private Itinerary")}
-                className="inline-flex items-center justify-center px-5 py-3.5 rounded-xl bg-stone-100 text-stone-800 hover:bg-stone-200 active:scale-95 text-xs font-semibold transition-all cursor-pointer shadow-2xs"
+                onClick={() => openTravelDrawer("Armenia Custom Itinerary")}
+                className="min-h-[46px] px-5 py-3 rounded-xl border border-brand-stone-300 bg-white text-brand-forest hover:bg-brand-stone-100 text-xs sm:text-sm font-semibold transition-colors duration-200 cursor-pointer"
               >
-                {isHy ? "Պատվիրել անհատական տուր" : "Inquire Custom Trip"}
+                {isHy ? travelPillar.ctaSecondary_hy : travelPillar.ctaSecondary_en}
               </button>
             </div>
-          </div>
+          </article>
 
-          {/* Pillar II: Manpower & Recruitment */}
-          <div className="relative group rounded-3xl bg-white border border-stone-200/90 p-6 sm:p-8 shadow-xs hover:shadow-2xl hover:border-brand-forest/50 transition-all duration-300 flex flex-col justify-between overflow-hidden">
+          {/* PILLAR 2: Ethical International Manpower */}
+          <article className="group rounded-3xl bg-brand-forest text-white border border-brand-forest-deep overflow-hidden shadow-lg hover-lift hover:shadow-2xl flex flex-col justify-between">
             <div>
-              {/* Media Preview Frame */}
-              <div className="relative h-52 sm:h-60 w-full rounded-2xl overflow-hidden mb-6 bg-stone-100 shadow-2xs">
-                <Image
-                  src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1200&q=80"
-                  alt="Verified Hospitality and Enterprise Talent"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  priority
+              {/* Clean Armenian civic architecture image with un-occluded subject */}
+              <div className="relative h-64 sm:h-72 overflow-hidden bg-brand-forest-deep">
+                <img
+                  src={manpowerPillar.image || "/images/tours/yerevan-cascade.jpg"}
+                  alt={isHy ? manpowerPillar.imageAlt_hy : manpowerPillar.imageAlt_en}
+                  className="w-full h-full object-cover hover-img-zoom"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
-                <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-brand-forest text-xs font-semibold shadow-2xs">
-                  <Users className="w-3.5 h-3.5 text-brand-olive" />
-                  <span>{isHy ? "Ուղղություն II · Միջազգային Աշխատուժ" : "Division II · International Manpower"}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-forest-deep/90 via-black/25 to-transparent" />
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-brand-forest text-xs font-bold shadow-sm">
+                  <Briefcase className="w-3.5 h-3.5 text-brand-olive-text" />
+                  <span>{isHy ? manpowerPillar.badge_hy : manpowerPillar.badge_en}</span>
                 </div>
-
-                <div className="absolute bottom-3.5 left-3.5 right-3.5 text-white">
-                  <p className="text-xs font-medium text-brand-olive-light uppercase tracking-wider">
-                    {isHy ? "Էթիկական Հավաքագրում և Կացություն" : "Ethical Mobility & Turnkey Placement"}
-                  </p>
-                  <p className="font-serif text-lg font-bold">
-                    {isHy ? "Զրո Կանխավճար և Օրինական Թույլտվություններ" : "Zero Candidate Fee · 100% Legal Work Permits"}
-                  </p>
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-brand-stone-100 text-xs font-semibold">
+                  <span>{isHy ? manpowerPillar.feeTag_hy : manpowerPillar.feeTag_en}</span>
+                  <span className="px-2.5 py-0.5 rounded-full bg-brand-olive-onDark text-brand-forest-deep font-bold">
+                    {isHy ? manpowerPillar.slaTag_hy : manpowerPillar.slaTag_en}
+                  </span>
                 </div>
               </div>
 
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-brand-forest mb-2.5">
-                {isHy ? "Միջազգային Աշխատուժ և Կարիերա" : "Manpower & Careers"}
-              </h2>
+              <div className="p-7 sm:p-9 space-y-5">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight">
+                  {isHy ? manpowerPillar.title_hy : manpowerPillar.title_en}
+                </h2>
+                <p className="text-sm text-brand-stone-200 leading-relaxed">
+                  {isHy ? manpowerPillar.description_hy : manpowerPillar.description_en}
+                </p>
 
-              <p className="text-sm text-brand-ink-muted leading-relaxed mb-6 font-sans">
-                {isHy
-                  ? "Էթիկական միջազգային հավաքագրում և աշխատուժի մատակարարում: Զրո նախնական վճար թեկնածուներից, լիարժեք օրինական աշխատանքային թույլտվություններ և B2B գործընկերություն:"
-                  : "Ethical international talent placement and verified workforce supply for enterprise employers across Armenia. Operating on an uncompromising candidate-first charter."}
-              </p>
-
-              {/* 3 Core Value Signals */}
-              <div className="space-y-2.5 mb-8">
-                <div className="flex items-center gap-2.5 text-xs text-stone-700 font-medium">
-                  <ShieldCheck className="w-4 h-4 text-brand-olive shrink-0" />
-                  <span>{isHy ? "0.00 AMD նախնական գրանցման վճար թեկնածուներից" : "Strict 0.00 AMD Upfront Fee Guarantee for Candidates"}</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs text-stone-700 font-medium">
-                  <Scale className="w-4 h-4 text-brand-olive shrink-0" />
-                  <span>{isHy ? "ՀՀ միգրացիոն ծառայության 100% օրինական աշխատանքի թույլտվություն" : "100% Legal Ministry of Labor & Migration Work Permits"}</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs text-stone-700 font-medium">
-                  <Building className="w-4 h-4 text-brand-olive shrink-0" />
-                  <span>{isHy ? "14-21 օր առաջնային տեղավորման ժամանակացույց գործատուներին" : "14–21 Day Enterprise Deployment SLA with Replacement Guarantee"}</span>
+                <div className="grid grid-cols-2 gap-3 pt-2 border-t border-white/15 text-xs text-brand-stone-200">
+                  {manpowerPillar.features.map((feat, idx) => {
+                    const Icon = getCmsIcon(feat.icon, ShieldCheck);
+                    return (
+                      <div key={idx} className="flex items-center gap-2 font-semibold">
+                        <Icon className="w-4 h-4 text-brand-olive-onDark shrink-0" />
+                        <span>{isHy ? feat.label_hy : feat.label_en}</span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
 
-            <div className="pt-5 border-t border-stone-200/80 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div className="px-7 pb-7 sm:px-9 sm:pb-9 pt-4 border-t border-white/15 flex flex-col sm:flex-row gap-3">
               <Link
                 href="/manpower"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep active:scale-95 transition-all shadow-xs group/btn cursor-pointer"
+                className="flex-1 min-h-[46px] px-5 py-3 rounded-xl bg-brand-olive-onDark text-brand-forest-deep text-xs sm:text-sm font-bold hover:bg-white transition-colors duration-200 flex items-center justify-center gap-2 shadow-sm"
               >
-                <span>{isHy ? deorganicaConfig.hero.ctaManpower_hy : deorganicaConfig.hero.ctaManpower_en}</span>
-                <ArrowUpRight className="w-4 h-4 text-brand-olive-light transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                <span>{isHy ? manpowerPillar.ctaPrimary_hy : manpowerPillar.ctaPrimary_en}</span>
+                <ArrowRight className="w-4 h-4" />
               </Link>
-
               <button
                 type="button"
                 onClick={() => openCandidateDrawer()}
-                className="inline-flex items-center justify-center px-5 py-3.5 rounded-xl bg-stone-100 text-stone-800 hover:bg-stone-200 active:scale-95 text-xs font-semibold transition-all cursor-pointer shadow-2xs"
+                className="min-h-[46px] px-5 py-3 rounded-xl border border-white/30 bg-white/10 text-white hover:bg-white/20 text-xs sm:text-sm font-semibold transition-colors duration-200 cursor-pointer"
               >
-                {isHy ? "Ուղարկել ինքնակենսագրական (CV)" : "Submit Candidate CV"}
+                {isHy ? manpowerPillar.ctaSecondary_hy : manpowerPillar.ctaSecondary_en}
               </button>
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>

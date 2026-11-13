@@ -1,10 +1,14 @@
 import type { MetadataRoute } from "next";
+import { getTours } from "@/sanity/lib/fetch";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 60;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://deorganica.am";
   const now = new Date();
+  const tours = await getTours();
 
-  return [
+  const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/`,
       lastModified: now,
@@ -29,5 +33,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/privacy`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
   ];
+
+  const tourRoutes: MetadataRoute.Sitemap = tours
+    .filter((t) => Boolean(t.slug))
+    .map((t) => ({
+      url: `${baseUrl}/travel/${t.slug}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    }));
+
+  return [...staticRoutes, ...tourRoutes];
 }

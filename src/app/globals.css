@@ -4,80 +4,208 @@
 
 @layer base {
   :root {
-    --font-serif: 'Cinzel', 'Noto Serif Armenian', serif;
-    --font-sans: 'Plus Jakarta Sans', 'Noto Sans Armenian', sans-serif;
+    --font-serif: "Cormorant Garamond", "Noto Serif Armenian", Georgia, serif;
+    --font-sans: "Plus Jakarta Sans", "Noto Sans Armenian", system-ui, sans-serif;
+    --brand-forest: #233d20;
+    --brand-olive: #668b2e;
+    --brand-olive-text: #4b6820;
+    --brand-canvas: #fbfbf9;
+    --brand-ink: #1a2219;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(35, 61, 32, 0.35) transparent;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   html {
-    scroll-behavior: smooth;
+    background-color: #fbfbf9;
+    color: #1a2219;
+    scroll-padding-top: 6rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #FBFBF9;
-    color: #1A2219;
+    font-size-adjust: from-font;
   }
 
   body {
-    overflow-x: hidden;
-    min-height: 100dvh;
     font-family: var(--font-sans);
+    background-color: #fbfbf9;
+    color: #1a2219;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-serif {
+    font-family: var(--font-serif);
+    text-wrap: balance;
+  }
+
+  /* High-contrast accessible focus ring with forced-colors preservation */
+  :focus-visible {
+    outline: 2px solid #233d20;
+    outline-offset: 2px;
+  }
+
+  @media (forced-colors: active) {
+    :focus-visible {
+      outline: 2px solid ButtonText;
+    }
   }
 
   ::selection {
-    background-color: #668B2E;
-    color: #FFFFFF;
-  }
-
-  /* Accessible Dual-Layer Focus Rings (taste-skill + a11y standards) */
-  :focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px #FBFBF9, 0 0 0 4px #668B2E;
+    background-color: #eff5e8;
+    color: #233d20;
   }
 }
 
-/* Custom subtle architectural scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+/* Hover scaling gated for fine pointer devices only */
+@media (hover: hover) and (pointer: fine) {
+  .hover-lift {
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.2s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-3px);
+  }
+
+  .hover-img-zoom {
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .group:hover .hover-img-zoom {
+    transform: scale(1.04);
+  }
 }
 
-::-webkit-scrollbar-track {
-  background: #F4F3EE;
+/* Native top-layer <dialog> sheet transitions + scroll lock */
+dialog.concierge-dialog {
+  margin: 0 0 0 auto;
+  padding: 0;
+  border: 0;
+  width: min(100vw, 36rem);
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  background-color: #fbfbf9;
+  color: #1a2219;
+  overscroll-behavior: contain;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.22s ease,
+    display 0.28s allow-discrete,
+    overlay 0.28s allow-discrete;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #DCD9CE;
-  border-radius: 9999px;
+dialog.concierge-dialog[open] {
+  transform: translateX(0);
+  opacity: 1;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #BEB9AB;
+dialog.concierge-dialog[data-closing] {
+  transform: translateX(100%);
+  opacity: 0;
 }
 
-/* Hardware-accelerated transitions & motion damping */
-.will-change-transform {
-  will-change: transform, opacity;
+dialog.concierge-dialog:modal,
+dialog.concierge-dialog::backdrop {
+  overscroll-behavior: contain;
 }
 
-/* Subtle luxury grain / pattern overlay helper */
-.bg-architectural-grid {
-  background-image: radial-gradient(#233D20 1px, transparent 1px);
-  background-size: 24px 24px;
+dialog.concierge-dialog::backdrop {
+  background-color: rgba(27, 26, 22, 0.56);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.25s ease,
+    display 0.25s allow-discrete,
+    overlay 0.25s allow-discrete;
 }
 
-/* Modern Web Guidance: Top-layer animations with discrete transition & reduced motion support */
+dialog.concierge-dialog[open]::backdrop {
+  opacity: 1;
+}
+
+dialog.concierge-dialog[data-closing]::backdrop {
+  opacity: 0;
+}
+
+@starting-style {
+  dialog.concierge-dialog[open] {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  dialog.concierge-dialog[open]::backdrop {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  dialog.concierge-dialog,
+  dialog.concierge-dialog::backdrop {
+    transition-duration: 0.01s;
+  }
+}
+
+/* Semantic accordion smooth expand via grid-template-rows */
+.accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.accordion-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.accordion-panel > div {
+  overflow: hidden;
+}
+
+/* Non-animated motion suppression respects color/border/opacity UI feedback */
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift:hover,
+  .group:hover .hover-img-zoom,
+  .accordion-panel {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Legacy scrollbar fallback scoped for engines without scrollbar-color */
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
   }
 
-  .animate-pulse,
-  .animate-spin,
-  .animate-bounce {
-    animation: none !important;
+  ::-webkit-scrollbar-track {
+    background: #fbfbf9;
   }
+
+  ::-webkit-scrollbar-thumb {
+    background: #d5d2c7;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4b6820;
+  }
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }

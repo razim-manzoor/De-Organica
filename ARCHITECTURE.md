@@ -26,22 +26,11 @@ The system prioritizes **uncompromising visual elegance, zero buzzword inflation
 
 ## 3. Data Flow & Component Hierarchy
 
-### Unified Single-Source Data Engine
-All application state, route content, tours, vacancies, and corporate credentials live in `src/data/deorganica-content.ts`:
-```
-src/data/deorganica-content.ts
- ├── company (Founder, Entity, Desk Email, Coordinates, Global Channels)
- ├── travelServices (6 Ground Services: Cultural, Outbound, Visas, Transfers, MICE, DMC)
- ├── starterTours (Flagship Areni + 4 Curated Thematic Multi-Day Journeys)
- ├── vehicleFleet (Economy, Executive Sedan, VIP Minivan, Tour Coach)
- ├── manpower
- │    ├── trustPillars (4 Candidate Guarantees)
- │    ├── mobilitySteps (4 Relocation Milestones)
- │    ├── sectors (Construction, Hospitality, Logistics, Agriculture)
- │    ├── vacancies (6 Active Open Positions + General Pool)
- │    └── employerSteps (3 Corporate Requisition Milestones)
- └── faqs (Travel & Manpower Bilingual Accordion Sets)
-```
+### Sanity CMS + Typed Fallback Engine
+Content flows from Sanity CMS (`src/sanity/lib/fetch.ts`) with deep-merge fallback onto typed local defaults (`src/data/cms-fallbacks.ts` & `src/data/deorganica-content.ts`) whenever `NEXT_PUBLIC_SANITY_PROJECT_ID` is unset or fields are omitted:
+- **Singletons:** `siteSettings`, `homePage`, `travelPage`, `manpowerPage`
+- **Collections:** `tourPackage` (drives `/travel` + dynamic `/travel/[slug]` + `/sitemap.xml`), `travelService`, `jobVacancy` (filtered by `isPublished == true`), `faqItem`
+- **Embedded Desk & Webhooks:** `/studio` (Sanity Studio v4 via `next-sanity/studio`), `/api/revalidate` (ISR tag/path invalidation), `/api/draft-mode/enable|disable`.
 
 ### Component Hierarchy & Layout Tree
 ```

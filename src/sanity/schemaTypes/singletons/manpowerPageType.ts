@@ -1,0 +1,128 @@
+import { defineField, defineType } from "sanity";
+
+export const manpowerPageType = defineType({
+  name: "manpowerPage",
+  title: "Manpower & Recruitment Page",
+  type: "document",
+  groups: [
+    { name: "hero", title: "Hero & Track Switcher", default: true },
+    { name: "pipeline", title: "Pipeline Stage Show" },
+    { name: "candidates", title: "Candidate Hub & Charter" },
+    { name: "compliance", title: "Compliance Banner" },
+    { name: "employers", title: "Enterprise Employers" },
+    { name: "faq", title: "FAQ Header" },
+    { name: "seo", title: "SEO & Social Share" },
+  ],
+  fields: [
+    defineField({
+      name: "hero",
+      title: "Manpower Hero & Track Switcher",
+      type: "object",
+      group: "hero",
+      fields: [
+        defineField({ name: "eyebrow_en", title: "Eyebrow (EN)", type: "string" }),
+        defineField({ name: "eyebrow_hy", title: "Eyebrow (HY)", type: "string" }),
+        defineField({ name: "headline_en", title: "Headline (EN)", type: "string" }),
+        defineField({ name: "headline_hy", title: "Headline (HY)", type: "string" }),
+        defineField({ name: "subtext_en", title: "Subtext (EN)", type: "text", rows: 3 }),
+        defineField({ name: "subtext_hy", title: "Subtext (HY)", type: "text", rows: 3 }),
+        defineField({
+          name: "metrics",
+          title: "Hero Key Metrics",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                defineField({ name: "figure", title: "Figure", type: "string" }),
+                defineField({ name: "label_en", title: "Label (EN)", type: "string" }),
+                defineField({ name: "label_hy", title: "Label (HY)", type: "string" }),
+              ],
+            },
+          ],
+        }),
+        defineField({ name: "candidateStages", title: "Candidate Track Stages", type: "array", of: [{ type: "heroStageItem" }] }),
+        defineField({ name: "employerStages", title: "Employer Track Stages", type: "array", of: [{ type: "heroStageItem" }] }),
+      ],
+    }),
+    defineField({
+      name: "pipelineStageShow",
+      title: "Interactive Pipeline Stage Show",
+      type: "object",
+      group: "pipeline",
+      fields: [
+        defineField({ name: "eyebrow_en", title: "Eyebrow (EN)", type: "string" }),
+        defineField({ name: "eyebrow_hy", title: "Eyebrow (HY)", type: "string" }),
+        defineField({ name: "headline_en", title: "Headline (EN)", type: "string" }),
+        defineField({ name: "headline_hy", title: "Headline (HY)", type: "string" }),
+        defineField({ name: "subtext_en", title: "Subtext (EN)", type: "text", rows: 2 }),
+        defineField({ name: "subtext_hy", title: "Subtext (HY)", type: "text", rows: 2 }),
+        defineField({ name: "stages", title: "Pipeline Stages", type: "array", of: [{ type: "pipelineStage" }] }),
+      ],
+    }),
+    defineField({
+      name: "candidateHub",
+      title: "Candidate Placement Hub & Charter",
+      type: "object",
+      group: "candidates",
+      fields: [
+        defineField({ name: "eyebrow_en", title: "Eyebrow (EN)", type: "string" }),
+        defineField({ name: "eyebrow_hy", title: "Eyebrow (HY)", type: "string" }),
+        defineField({ name: "headline_en", title: "Headline (EN)", type: "string" }),
+        defineField({ name: "headline_hy", title: "Headline (HY)", type: "string" }),
+        defineField({ name: "subtext_en", title: "Subtext (EN)", type: "text", rows: 2 }),
+        defineField({ name: "subtext_hy", title: "Subtext (HY)", type: "text", rows: 2 }),
+        defineField({ name: "charterTitle_en", title: "Charter Heading (EN)", type: "string" }),
+        defineField({ name: "charterTitle_hy", title: "Charter Heading (HY)", type: "string" }),
+        defineField({ name: "charterDesc_en", title: "Charter Description (EN)", type: "text", rows: 3 }),
+        defineField({ name: "charterDesc_hy", title: "Charter Description (HY)", type: "text", rows: 3 }),
+        defineField({ name: "trustPillars", title: "Trust Pillars", type: "array", of: [{ type: "manpowerTrustPillar" }] }),
+        defineField({ name: "mobilitySteps", title: "Mobility Roadmap Steps", type: "array", of: [{ type: "manpowerMobilityStep" }] }),
+        defineField({
+          name: "sectors",
+          title: "Fallback Sector Filter Pills",
+          type: "array",
+          of: [{ type: "manpowerSector" }],
+          description: "Automatically overridden whenever Job Sectors documents exist in the CMS Desk.",
+        }),
+      ],
+    }),
+    defineField({
+      name: "complianceBanner",
+      title: "Ethics & Compliance Banner",
+      type: "object",
+      group: "compliance",
+      fields: [
+        defineField({ name: "eyebrow_en", title: "Eyebrow (EN)", type: "string" }),
+        defineField({ name: "eyebrow_hy", title: "Eyebrow (HY)", type: "string" }),
+        defineField({ name: "headline_en", title: "Headline (EN)", type: "string" }),
+        defineField({ name: "headline_hy", title: "Headline (HY)", type: "string" }),
+        defineField({ name: "subtext_en", title: "Subtext (EN)", type: "text", rows: 3 }),
+        defineField({ name: "subtext_hy", title: "Subtext (HY)", type: "text", rows: 3 }),
+        defineField({ name: "trustMetrics", title: "Compliance Metrics", type: "array", of: [{ type: "manpowerTrustMetric" }] }),
+      ],
+    }),
+    defineField({
+      name: "employerSection",
+      title: "Enterprise Employer Staffing Section",
+      type: "object",
+      group: "employers",
+      fields: [
+        defineField({ name: "eyebrow_en", title: "Eyebrow (EN)", type: "string" }),
+        defineField({ name: "eyebrow_hy", title: "Eyebrow (HY)", type: "string" }),
+        defineField({ name: "headline_en", title: "Headline (EN)", type: "string" }),
+        defineField({ name: "headline_hy", title: "Headline (HY)", type: "string" }),
+        defineField({ name: "subtext_en", title: "Subtext (EN)", type: "text", rows: 2 }),
+        defineField({ name: "subtext_hy", title: "Subtext (HY)", type: "text", rows: 2 }),
+        defineField({ name: "steps", title: "Employer Process Steps", type: "array", of: [{ type: "employerProcessStep" }] }),
+      ],
+    }),
+    defineField({ name: "faqHeader", title: "Manpower FAQ Header", type: "sectionHeader", group: "faq" }),
+    defineField({ name: "seo", title: "Manpower Page SEO", type: "pageSeo", group: "seo" }),
+  ],
+  preview: {
+    prepare() {
+      return { title: "Manpower & Recruitment Page" };
+    },
+  },
+});

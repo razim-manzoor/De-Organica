@@ -12,15 +12,21 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "sanity:seed": "node scripts/seed-sanity.mjs"
   },
   "dependencies": {
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^4.22.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.16.0",
     "next": "^15.1.7",
+    "next-sanity": "^11.6.13",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "resend": "^4.1.2",
+    "sanity": "^4.22.1",
+    "styled-components": "^6.6.0",
     "tailwind-merge": "^3.0.1"
   },
   "devDependencies": {

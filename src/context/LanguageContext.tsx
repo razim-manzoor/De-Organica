@@ -20,14 +20,20 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       const saved = localStorage.getItem("deorganica_locale") as Locale;
       if (saved === "en" || saved === "hy") {
         setLocaleState(saved);
+        document.documentElement.lang = saved;
       }
     } catch {
       // localStorage may fail in private mode
     }
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale);
+    document.documentElement.lang = newLocale;
     try {
       localStorage.setItem("deorganica_locale", newLocale);
     } catch {
