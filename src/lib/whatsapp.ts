@@ -106,7 +106,7 @@ export function buildCandidateWhatsAppMessage(params: CandidateWhatsAppParams): 
     params.email ? `*Email:* ${params.email}` : null,
     params.notes ? `*Candidate Notes:* ${params.notes}` : null,
     `----------------------------------------`,
-    `_Zero Upfront Fee Guarantee · Sent via deorganica.am_`,
+    `_Legal RA Work Permits & Verified Placement · Sent via deorganica.am_`,
   ].filter(Boolean);
 
   return lines.join("\n");

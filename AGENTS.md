@@ -6,7 +6,7 @@
 - **Founder / CEO:** Maneesha Muraleedharan (`deorganicallc@gmail.com`)
 - **Verticals:**
   1. De Organica Travel & Tours (Inbound Armenia tours, outbound holidays, visa consultation, EVN transfers, B2B DMC ground handling)
-  2. De Organica Manpower (International recruitment, zero upfront candidate fees, pay-after-job guarantee, legal work permits, B2B enterprise staffing)
+  2. De Organica Manpower (International recruitment, legal work permits, candidate vetting, B2B enterprise staffing)
 
 ## 2. Technical Stack
 - **Framework:** Next.js 15+ (App Router, Strict TypeScript)

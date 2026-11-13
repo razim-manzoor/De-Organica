@@ -40,7 +40,7 @@ export const defaultHomePageContent: HomePageContent = {
     headline_en: "Armenia Travel Concierge & Ethical International Manpower",
     headline_hy: "Հայաստանի Տուրիզմ և Միջազգային Կադրերի Հավաքագրում",
     subtext_en:
-      "Two specialized divisions under one licensed Yerevan institution — curated Armenian hospitality & zero-fee global workforce recruitment.",
+      "Two specialized divisions under one licensed Yerevan institution — curated Armenian hospitality & verified international workforce recruitment.",
     subtext_hy:
       "Երկու մասնագիտացված բաժին մեկ հուսալի կազմակերպության ներքո՝ անհատական ուղևորություններ Հայաստանով և օրինական միջազգային աշխատատեղեր:",
   },
@@ -72,18 +72,18 @@ export const defaultHomePageContent: HomePageContent = {
   manpowerPillar: {
     badge_en: "Division 02 · Global Manpower",
     badge_hy: "Բաժին 02 · Միջազգային Կադրեր",
-    feeTag_en: "0.00 AMD Candidate Fee",
-    feeTag_hy: "Զրո նախնական վճար",
+    feeTag_en: "Legal Work Permits & Visas",
+    feeTag_hy: "Օրինական Աշխատանքային Վիզաներ",
     slaTag_en: "15–25 Days Permit SLA",
     slaTag_hy: "15–25 Աշխ. Օր Թույլտվություն",
     title_en: "International Careers & Enterprise Workforce Solutions",
     title_hy: "Միջազգային Աշխատանք և Կորպորատիվ Հավաքագրում",
     description_en:
-      "Sourcing vetted hospitality, skilled trade, agricultural, and logistics talent for Armenian enterprises — zero upfront fees for job seekers, legal Migration Service permits.",
+      "Sourcing vetted hospitality, skilled trade, agricultural, and logistics talent for Armenian enterprises — 100% verified employer contracts and legal Migration Service permits.",
     description_hy:
       "Մասնագետների հավաքագրում հյուրընկալության, շինարարության, գյուղատնտեսության և լոգիստիկայի համար՝ 100% օրինական աշխատանքային թույլտվություններով:",
     features: [
-      { icon: "ShieldCheck", label_en: "Pay-After-Placement", label_hy: "Վճարում Աշխատանքից Հետո" },
+      { icon: "ShieldCheck", label_en: "Verified Employer Contracts", label_hy: "Հաստատված աշխատանքային պայմանագրեր" },
       { icon: "Users2", label_en: "30-Day Employer Warranty", label_hy: "30-Օրյա Գործատուի Երաշխիք" },
     ],
     image: "/images/tours/yerevan-cascade.jpg",
@@ -449,26 +449,26 @@ export const defaultManpowerPageContent: ManpowerPageContent = {
   hero: {
     eyebrow_en: "Yerevan Recruitment Desk · Republic of Armenia",
     eyebrow_hy: "Երևանի Գլխավոր Գրասենյակ · ՀՀ Լիցենզավորված Գործունեություն",
-    headline_en: "International Recruitment & Staffing with Zero Upfront Fees",
-    headline_hy: "Միջազգային Հավաքագրում և Աշխատուժ՝ 0 ֏ Կանխավճարով",
+    headline_en: "International Recruitment & Enterprise Staffing Solutions",
+    headline_hy: "Միջազգային Հավաքագրում և Կորպորատիվ Աշխատուժի Լուծումներ",
     subtext_en:
       "Connecting vetted overseas talent with corporate enterprises in Armenia. Governed by 100% legal Ministry of Labor work permits and transparent employment contracts.",
     subtext_hy:
       "Որակավորված մասնագետների հավաքագրում Հայաստանի գործատուների համար՝ ՀՀ աշխատանքի օրինական թույլտվություններով և պետական գրանցմամբ:",
     metrics: [
-      { figure: "0.00 AMD", label_en: "Upfront Candidate Fee", label_hy: "0 Դրամ Կանխավճար" },
+      { figure: "100% Legal", label_en: "Work Permit Compliance", label_hy: "Օրինական Թույլտվություն" },
       { figure: "15–25 Days", label_en: "Ministry Permit SLA", label_hy: "ՀՀ Թույլտվության Ժամկետ" },
-      { figure: "100% Legal", label_en: "Residence Card Issuance", label_hy: "Օրինական Կացության Քարտ" },
+      { figure: "SLA < 72H", label_en: "Corporate Shortlist", label_hy: "Թեկնածուների Ցանկ" },
     ],
     candidateStages: [
       {
         stage_en: "STAGE 01 · REGISTRATION",
         stage_hy: "ՓՈՒԼ 01 · ԳՐԱՆՑՈՒՄ",
-        badge_en: "FEE = 0.00 AMD",
-        badge_hy: "ՎՃԱՐԸ = 0.00 AMD",
+        badge_en: "DIRECT INTAKE",
+        badge_hy: "ՈՒՂԻՂ ԴԻՄՈՒՄ",
         badgeTone: "olive",
-        desc_en: "Free CV drop. Zero application, resume review, or registration fees.",
-        desc_hy: "Ռեզյումեի անվճար հանձնում: Զրո դրամ գրանցման կամ դիմումի համար:",
+        desc_en: "Confidential CV review and initial profile assessment against active mandates.",
+        desc_hy: "CV-ի գաղտնի ստուգում և համապատասխանեցում ակտիվ թափուր հաստիքներին:",
         isHighlight: false,
       },
       {
@@ -492,10 +492,10 @@ export const defaultManpowerPageContent: ManpowerPageContent = {
         isHighlight: true,
       },
       {
-        stage_en: "STAGE 04 · ARRIVAL & PAY",
-        stage_hy: "ՓՈՒԼ 04 · ԺԱՄԱՆՈՒՄ",
-        badge_en: "PAY-AFTER-JOB",
-        badge_hy: "ՎՃԱՐՈՒՄԸ ՄԻԱՅՆ ԱՇԽԱՏԵԼԻՍ",
+        stage_en: "STAGE 04 · ARRIVAL & ONBOARDING",
+        stage_hy: "ՓՈՒԼ 04 · ԺԱՄԱՆՈՒՄ ԵՎ ՏԵՂԱՎՈՐՈՒՄ",
+        badge_en: "ON-SITE SUPPORT",
+        badge_hy: "ԱՄԲՈՂՋԱԿԱՆ ԱՋԱԿՑՈՒԹՅՈՒՆ",
         badgeTone: "forest",
         desc_en: "Zvartnots airport reception, housing orientation, and contract start.",
         desc_hy: "Դիմավորում Զվարթնոցում, կացության ապահովում և աշխատանքի սկիզբ:",
@@ -551,9 +551,9 @@ export const defaultManpowerPageContent: ManpowerPageContent = {
     headline_en: "How It Works: From Application to Arrival",
     headline_hy: "Ինչպես է Աշխատում՝ Դիմումից Մինչև Ժամանում",
     subtext_en:
-      "A transparent 4-stage pathway ensuring zero candidate fees, rigorous skill vetting, and official Republic of Armenia work permits.",
+      "A transparent 4-stage pathway ensuring verified employer contracts, rigorous skill vetting, and official Republic of Armenia work permits.",
     subtext_hy:
-      "Թափանցիկ 4-փուլ գործընթաց՝ 0 ֏ կանխավճարով, հմտությունների ստուգմամբ և ՀՀ աշխատանքի օրինական թույլտվությամբ:",
+      "Թափանցիկ 4-փուլ գործընթաց՝ հաստատված պայմանագրերով, հմտությունների ստուգմամբ և ՀՀ աշխատանքի օրինական թույլտվությամբ:",
     stages: [
       {
         id: "stage-1",
@@ -584,25 +584,25 @@ export const defaultManpowerPageContent: ManpowerPageContent = {
       {
         id: "stage-2",
         step: "02",
-        title_en: "Zero-Fee Candidate Sourcing & Skill Vetting",
-        title_hy: "Անվճար ընտրություն և որակավորման ստուգում",
-        badge_en: "100% Free for Applicants",
-        badge_hy: "100% Անվճար Թեկնածուներին",
+        title_en: "Candidate Sourcing & Skill Vetting",
+        title_hy: "Թեկնածուների ընտրություն և որակավորման ստուգում",
+        badge_en: "Ethical Vetting",
+        badge_hy: "Էթիկական ընտրություն",
         role_en: "For International Candidates",
         role_hy: "Միջազգային Թեկնածուներին",
         description_en:
-          "International job seekers undergo thorough technical interviews and credential verification. Under our Ethical Charter, candidates never pay registration or interview fees.",
+          "International job seekers undergo thorough technical interviews and credential verification. Under our Ethical Charter, candidates are evaluated purely on merit and professional experience.",
         description_hy:
-          "Թեկնածուները մասնակցում են հարցազրույցի և մասնագիտական ստուգման: Գրանցման կամ դիմումի համար որևէ կանխավճար չի գանձվում:",
+          "Թեկնածուները մասնակցում են հարցազրույցի և մասնագիտական ստուգման: Ընտրությունը կատարվում է բացառապես փորձի և որակավորման հիման վրա:",
         safeguards_en: [
-          "Zero registration, interview, or CV submission fees",
           "Structured video interviews and practical trade skill testing",
-          "Transparent contingency terms (payable only upon verified job placement)",
+          "Direct review by accredited corporate hiring managers",
+          "Comprehensive credential, criminal record, and medical screening",
         ],
         safeguards_hy: [
-          "Զրո նախնական վճար CV-ի ընդունման և հարցազրույցների համար",
           "Տեսահարցազրույցներ և գործնական հմտությունների ստուգում",
-          "Վճարում միայն աշխատանքի պաշտոնական հաստատումից հետո",
+          "Ուղիղ գնահատում գործատուի պատասխանատուների կողմից",
+          "Փաստաթղթերի, դատվածության և բժշկական ամբողջական ստուգում",
         ],
         metrics_en: "3–7 Days Matching",
         metrics_hy: "3–7 Օր Ընտրություն",
@@ -664,18 +664,18 @@ export const defaultManpowerPageContent: ManpowerPageContent = {
   candidateHub: {
     eyebrow_en: "International Recruitment · Candidate Portal",
     eyebrow_hy: "Թեկնածուների Կենտրոն",
-    headline_en: "Zero-Fee International Placement in Armenia",
+    headline_en: "Verified International Placement in Armenia",
     headline_hy: "Միջազգային Աշխատանք Հայաստանում",
     subtext_en:
       "Explore active positions in construction, hospitality, agriculture, and transportation with verified employer contracts.",
     subtext_hy:
       "Ընտրեք ակտիվ հաստիքները հյուրընկալության, շինարարության, գյուղատնտեսության և լոգիստիկայի ոլորտներում՝ ստուգված պայմանագրերով:",
-    charterTitle_en: "Ethical Recruitment & Zero Upfront Fee Charter",
-    charterTitle_hy: "Էթիկական Հավաքագրման և Զրոյական Նախնական Վճարի Քարտիա",
+    charterTitle_en: "Ethical Recruitment & Labor Standards Charter",
+    charterTitle_hy: "Էթիկական Հավաքագրման և Աշխատանքային Ստանդարտների Քարտիա",
     charterDesc_en:
-      "De Organica LLC operates on a strict candidate-first model. Candidates never pay upfront registration, application, or interview fees. Placement terms apply strictly upon verified job offer.",
+      "De Organica LLC operates on a strict candidate-first model. We adhere to transparent placement procedures and formal work permit authorizations issued under Republic of Armenia labor laws.",
     charterDesc_hy:
-      "«Դե Օրգանիկա»-ն առաջնորդվում է թեկնածուների պաշտպանության միջազգային սկզբունքներով: Գրանցման, ռեզյումեի ընդունման կամ հարցազրույցի համար որևէ վճար չի գանձվում:",
+      "«Դե Օրգանիկա»-ն առաջնորդվում է թեկնածուների պաշտպանության միջազգային սկզբունքներով: Գործընթացն իրականացվում է թափանցիկ ընթացակարգերով և ՀՀ աշխատանքային օրենսդրությանը համապատասխան:",
     trustPillars: deorganicaConfig.manpower.trustPillars,
     mobilitySteps: deorganicaConfig.manpower.mobilitySteps,
     sectors: deorganicaConfig.manpower.sectors,
@@ -683,19 +683,19 @@ export const defaultManpowerPageContent: ManpowerPageContent = {
   complianceBanner: {
     eyebrow_en: "Labor Compliance & Protection · Yerevan",
     eyebrow_hy: "Օրինական Կարգավորումներ · Երևան",
-    headline_en: "100% Legal Work Permits. Zero Upfront Candidate Fees.",
-    headline_hy: "100% Օրինական Աշխատանքի Թույլտվություն և 0 ֏ Կանխավճար",
+    headline_en: "100% Legal Work Permits & Enterprise Labor Compliance",
+    headline_hy: "100% Օրինական Աշխատանքի Թույլտվություն և Կորպորատիվ Համապատասխանություն",
     subtext_en:
-      "Eliminating recruitment exploitation: candidates pay zero application fees, while Armenian enterprises receive fully compliant, contractually bound talent.",
+      "Ensuring ethical labor mobility: verified corporate contracts, official Republic of Armenia work permits, and accredited enterprise staffing.",
     subtext_hy:
-      "Բացառելով շահագործումը՝ թեկնածուները չեն վճարում որևէ կանխավճար, իսկ գործատուները ստանում են օրինական աշխատուժ:",
+      "Ապահովելով թափանցիկ աշխատանքային միգրացիա՝ հաստատված պայմանագրերով, ՀՀ օրինական աշխատանքի թույլտվություններով և կորպորատիվ ստանդարտներով:",
     trustMetrics: [
       {
-        figure: "0.00 AMD",
-        label_en: "Upfront Candidate Fee",
-        label_hy: "0 Դրամ Կանխավճար",
-        detail_en: "Zero fees for CV submission, testing, or employer interviews.",
-        detail_hy: "Ռեզյումեի ընդունումը և հարցազրույցներն անվճար են:",
+        figure: "100% Legal",
+        label_en: "Government Work Permits",
+        label_hy: "Պետական Թույլտվություն",
+        detail_en: "Direct coordination with RA Unified Migration Service and Ministry of Labor.",
+        detail_hy: "Ուղիղ համագործակցություն ՀՀ միգրացիոն ծառայության և նախարարության հետ:",
       },
       {
         figure: "100% Legal",
@@ -730,14 +730,14 @@ export const defaultManpowerPageContent: ManpowerPageContent = {
     title_en: "Frequently Asked Questions",
     title_hy: "Հաճախ Տրվող Հարցեր",
     subtitle_en:
-      "Clear guidance on the zero upfront fee policy, Ministry permit timelines, AMD direct banking, and replacement guarantees.",
+      "Clear guidance on Ministry permit timelines, legal employment contracts, direct banking, and replacement guarantees.",
     subtitle_hy:
-      "Պարզաբանումներ 0 ֏ կանխավճարի, թույլտվությունների ժամկետների, բանկային քարտերի և փոխարինման երաշխիքի վերաբերյալ:",
+      "Պարզաբանումներ թույլտվությունների ժամկետների, աշխատանքային պայմանագրերի, բանկային քարտերի և փոխարինման երաշխիքի վերաբերյալ:",
   },
   seo: {
     seoTitle: "De Organica Manpower · International Recruitment & B2B Staffing",
     seoDescription:
-      "Verified international talent supply and recruitment for Armenia. Zero upfront fees for candidates, pay-after-job guarantee, legal Ministry of Labor work permits, and B2B corporate staffing.",
+      "Verified international talent supply and recruitment for Armenia. Transparent candidate placement, legal Ministry of Labor work permits, and accredited B2B corporate staffing.",
   },
 };
 
@@ -850,15 +850,15 @@ export const defaultTravelFaqs: FaqItem[] = [
 
 export const defaultManpowerFaqs: FaqItem[] = [
   {
-    id: "manpower-faq-zerofee",
+    id: "manpower-faq-protection",
     category: "manpower",
     target: "candidate",
-    q_en: "How does the Zero Upfront Fee guarantee protect international candidates?",
-    q_hy: "Ինչպե՞ս է 0.00 AMD նախնական վճարի երաշխիքը պաշտպանում միջազգային թեկնածուներին:",
+    q_en: "How does De Organica protect international candidates during the recruitment process?",
+    q_hy: "Ինչպե՞ս է «Դե Օրգանիկա»-ն ապահովում միջազգային թեկնածուների իրավական պաշտպանությունը:",
     a_en:
-      "Under our strict ethical charter, submitting your CV, qualification assessment, and employer video interviews are 100% free of charge. Candidates never pay a single Dram in advance. Placement terms apply strictly upon verified job contract signing and official Ministry of Labor work permit clearance.",
+      "Under our strict ethical charter, candidate intake and interviews are conducted directly with vetted Armenian corporate employers. All placements are governed by formal written employment contracts and official Ministry of Labor work permits, ensuring full statutory labor protection and legal residency.",
     a_hy:
-      "Մեր էթիկական կանոնադրության համաձայն՝ ռեզյումեի հանձնումը, հմտությունների ստուգումը և գործատուի հետ հարցազրույցները 100% անվճար են: Թեկնածուն երբեք չի վճարում որևէ կանխավճար: Պայմանները գործում են միայն պաշտոնական աշխատանքային հրավերի և ՀՀ օրինական աշխատանքի թույլտվության ձևակերպումից հետո:",
+      "Մեր էթիկական կանոնադրության համաձայն՝ թեկնածուների ընտրությունն ու հարցազրույցներն անցկացվում են բացառապես ստուգված հայաստանյան կորպորատիվ գործատուների հետ: Բոլոր տեղակայումները կարգավորվում են պաշտոնական աշխատանքային պայմանագրերով և ՀՀ աշխատանքի օրինական թույլտվություններով՝ երաշխավորելով իրավական պաշտպանվածություն և օրինական կացություն:",
     isPublished: true,
   },
   {

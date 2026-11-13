@@ -94,7 +94,7 @@ export function ContactSection({
       name: "Job Applicant",
       role: "International Placement",
       notes:
-        "Hello De Organica HR, I would like to inquire about overseas job opportunities and the zero-fee placement process.",
+        "Hello De Organica HR, I would like to inquire about overseas job opportunities and official work permit placement.",
     });
     window.open(buildWhatsAppUrl(msg, company.whatsappNumberDigits), "_blank", "noopener,noreferrer");
   };
@@ -397,7 +397,7 @@ export function ContactSection({
                       <div className="inline-flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-olive-text">
                         <span>{isHy ? "Աշխատանք Փնտրողների Բաժին" : "Division I · Job Seekers"}</span>
                         <span className="px-2 py-0.5 rounded bg-brand-olive-subtle text-brand-forest text-xs font-semibold">
-                          ZERO FEE
+                          {isHy ? "ՍՏՈՒԳՎԱԾ ՀԱՍՏԻՔՆԵՐ" : "VERIFIED JOBS"}
                         </span>
                       </div>
                       <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
@@ -405,8 +405,8 @@ export function ContactSection({
                       </CardHeading>
                       <p className="text-xs sm:text-sm text-brand-ink-muted mt-0.5">
                         {isHy
-                          ? "100% անվճար ռեզյումեի գրանցում, վճարում միայն աշխատանքի ընդունվելիս և պաշտոնական աշխատանքային վիզա:"
-                          : "100% free resume submission with pay-after-job guarantee, verified contracts, and official visa support."}
+                          ? "Ռեզյումեների ընդունում, հաստատված կորպորատիվ պայմանագրեր և ՀՀ օրինական աշխատանքի թույլտվության ձևակերպում:"
+                          : "Direct resume intake with verified corporate contracts, skill evaluation, and official Republic of Armenia work permit facilitation."}
                       </p>
                     </div>
                   </div>
@@ -567,7 +567,7 @@ export function ContactSection({
                       <div className="inline-flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-olive-text">
                         <span>{isHy ? "Բաժին II · Աշխատանք Փնտրողներ" : "Division II · Job Seekers"}</span>
                         <span className="px-2 py-0.5 rounded bg-brand-olive-subtle text-brand-forest text-xs font-semibold">
-                          ZERO FEE
+                          {isHy ? "ՈՒՂԻՂ ԴԻՄՈՒՄ" : "DIRECT INTAKE"}
                         </span>
                       </div>
                       <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
@@ -575,8 +575,8 @@ export function ContactSection({
                       </CardHeading>
                       <p className="text-xs sm:text-sm text-brand-ink-muted mt-0.5">
                         {isHy
-                          ? "100% անվճար ռեզյումեի ներկայացում, վճարում միայն աշխատանքի ընդունվելիս և վիզայի աջակցություն:"
-                          : "100% free resume submission with pay-after-job guarantee and official visa support."}
+                          ? "Ռեզյումեների ընդունում, հաստատված պայմանագրեր և ՀՀ օրինական աշխատանքի թույլտվության աջակցություն:"
+                          : "Direct candidate intake with verified contracts and official Republic of Armenia visa support."}
                       </p>
                     </div>
                   </div>

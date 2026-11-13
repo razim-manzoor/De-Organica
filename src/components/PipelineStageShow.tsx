@@ -176,8 +176,8 @@ export function PipelineStageShow({
                 <ShieldCheck className="w-4 h-4 text-brand-olive-text shrink-0" />
                 <span>
                   {isHy
-                    ? "0 ՀՀ դրամ կանխավճար · ՀՀ պաշտոնական աշխատանքի թույլտվություններ"
-                    : "Zero Upfront Placement Fees · Republic of Armenia Work Permits"}
+                    ? "100% Օրինական գործընթաց · ՀՀ պաշտոնական աշխատանքի թույլտվություններ"
+                    : "100% Legal Compliance · Republic of Armenia Work Permits"}
                 </span>
               </div>
 

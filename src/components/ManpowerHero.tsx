@@ -176,7 +176,7 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
                   className="min-h-[44px] w-full py-3 px-4 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-sm cursor-pointer group/cta"
                 >
                   <Briefcase className="w-3.5 h-3.5 text-brand-olive-onDark" />
-                  <span>{isHy ? "Ներկայացնել Ռեզյումե (Անվճար)" : "Drop CV for Placement (Zero Fee)"}</span>
+                  <span>{isHy ? "Ներկայացնել Ռեզյումե (CV)" : "Submit Candidate CV / Resume"}</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/cta:translate-x-1" />
                 </button>
               ) : (

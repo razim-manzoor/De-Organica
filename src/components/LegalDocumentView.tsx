@@ -135,14 +135,14 @@ export function LegalDocumentView({ mode }: LegalDocumentViewProps) {
             </p>
           </section>
 
-          <section aria-labelledby="terms-zero-fee" className="space-y-3">
-            <h2 id="terms-zero-fee" className="font-serif text-2xl font-bold text-brand-forest">
-              {isHy ? "2. Զրոյական նախնական վճարի քաղաքականություն (Manpower)" : "2. Strict Zero Upfront Candidate Fee Policy"}
+          <section aria-labelledby="terms-placement" className="space-y-3">
+            <h2 id="terms-placement" className="font-serif text-2xl font-bold text-brand-forest">
+              {isHy ? "2. Միջազգային հավաքագրման և վիզաների քաղաքականություն (Manpower)" : "2. Ethical Recruitment & Work Permit Policy (Manpower)"}
             </h2>
             <p className="text-brand-ink-muted">
               {isHy
-                ? "Աշխատանքի տեղավորման բաժինը խիստ արգելում է գրանցման, հարցազրույցի կամ նախնական խորհրդատվության որևէ վճար թեկնածուներից: Ծառայության պայմանագրային վճարումը կամ գործատուի հաշվարկը կատարվում է միայն պաշտոնական աշխատանքի հրավերի և օրինական աշխատանքի թույլտվության ձևակերպումից հետո:"
-                : "De Organica strictly forbids charging prospective job candidates any registration fee, CV screening fee, or interview fee prior to employment confirmation. Transparent placement agreements become effective solely upon verified written job offer issuance and formal work permit authorization."}
+                ? "Աշխատանքի տեղավորման բաժինն առաջնորդվում է բացառապես Հայաստանի Հանրապետության միգրացիոն և աշխատանքային օրենսդրությամբ: Թեկնածուների տեղակայումը, պայմանագրերի կնքումը և փաստաթղթավորումն իրականացվում են հավաստագրված գործատուների պաշտոնական աշխատանքի հրավերի և օրինական աշխատանքի թույլտվության հիման վրա:"
+                : "Our international manpower division operates strictly under Republic of Armenia labor migration standards. Candidate placement, employment contracts, and document processing proceed strictly upon verified written job offer issuance and formal government work permit authorization."}
             </p>
           </section>
 

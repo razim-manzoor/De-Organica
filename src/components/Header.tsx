@@ -171,8 +171,8 @@ export function Header() {
                 <span>
                   {isManpowerRoute
                     ? isHy
-                      ? "Ուղարկել Ռեզյումե (0 ֏ վճար)"
-                      : "Submit Candidate CV (Zero Fee)"
+                      ? "Ուղարկել Ռեզյումե (CV)"
+                      : "Submit Candidate CV / Resume"
                     : isHy
                     ? "Ուղիղ Հարցում Երևանի Դեսկին"
                     : "Direct Inquiry · Yerevan Desk"}

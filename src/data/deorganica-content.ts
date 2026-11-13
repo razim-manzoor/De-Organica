@@ -377,21 +377,21 @@ export const deorganicaConfig = {
   manpower: {
     heroTagline_en: "Verified International Talent Supply & Ethical Placement",
     heroTagline_hy: "Որակավորված միջազգային աշխատուժ և էթիկական հավաքագրում",
-    heroSubtext_en: "Bridging global skilled and semi-skilled workers with corporate employers in Armenia and regional corridors. We operate on a strict Zero Upfront Fee contingency model: candidates pay nothing until a verified job offer and legal work permit are secured.",
-    heroSubtext_hy: "Մենք կապում ենք որակավորված միջազգային մասնագետներին Հայաստանի առաջատար գործատուների հետ: Գործում է բացառիկ երաշխիքային սկզբունք. թեկնածուները չեն վճարում որևէ նախնական գումար մինչև աշխատանքի պաշտոնական հաստատումը:",
+    heroSubtext_en: "Bridging vetted international skilled and semi-skilled talent with corporate employers in Armenia and regional corridors. We ensure 100% legal compliance, transparent recruitment, and official Republic of Armenia work permit processing.",
+    heroSubtext_hy: "Մենք կապում ենք որակավորված միջազգային մասնագետներին Հայաստանի առաջատար գործատուների հետ: Ապահովում ենք 100% օրինական գործընթաց, թափանցիկ հավաքագրում և ՀՀ աշխատանքի թույլտվության ձևակերպում:",
     
     trustPillars: [
       {
-        title_en: "Zero Upfront Registration Fees",
-        title_hy: "Զրոյական նախնական վճարներ",
-        desc_en: "Submitting your CV, candidate screening, and employer interviews are 100% free of charge.",
-        desc_hy: "Ռեզյումեի ներկայացումը, հարցազրույցները և փաստաթղթերի առաջնային ստուգումն անվճար են:",
+        title_en: "Verified Candidate Screening",
+        title_hy: "Թեկնածուների մասնագիտական ստուգում",
+        desc_en: "Submitting your CV, technical skill assessment, and employer interviews are coordinated directly by our Yerevan desk.",
+        desc_hy: "Ռեզյումեի ներկայացումը, մասնագիտական ստուգումը և հարցազրույցները համակարգվում են մեր գրասենյակի կողմից:",
       },
       {
-        title_en: "Pay-After-Job Placement Model",
-        title_hy: "Վճարում միայն աշխատանքի ընդունվելիս",
-        desc_en: "Placement terms apply only upon verified employment contract and government work permit clearance.",
-        desc_hy: "Պայմանագրային պայմանները գործում են միայն պաշտոնական աշխատանքային հրավերի դեպքում:",
+        title_en: "Direct Employer Contracts",
+        title_hy: "Ուղիղ գործատուի պայմանագիր",
+        desc_en: "Placement proceeds strictly upon verified written employment contract and official government work permit clearance.",
+        desc_hy: "Տեղավորումն իրականացվում է բացառապես պաշտոնական աշխատանքային հրավերի և օրինական թույլտվության դեպքում:",
       },
       {
         title_en: "Government Legal Work Permits",
@@ -412,8 +412,8 @@ export const deorganicaConfig = {
         step: "01",
         title_en: "Profile Review & Screening",
         title_hy: "Ռեզյումեի ստուգում և հարցազրույց",
-        desc_en: "Free submission of your CV and credentials. Our Yerevan HR desk assesses experience against active employer mandates.",
-        desc_hy: "CV-ի անվճար ներկայացում: Մեր մասնագետները ստուգում են համապատասխանությունը գործատուի պահանջներին:",
+        desc_en: "Submission of your CV and credentials. Our Yerevan HR desk assesses experience against active employer mandates.",
+        desc_hy: "CV-ի ներկայացում: Մեր մասնագետները ստուգում են համապատասխանությունը գործատուի պահանջներին:",
       },
       {
         step: "02",

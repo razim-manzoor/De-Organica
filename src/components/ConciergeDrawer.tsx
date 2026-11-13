@@ -472,8 +472,8 @@ export function ConciergeDrawer() {
       if (!candidateZeroFeeConsent) {
         raiseValidationError(
           isHy
-            ? "Խնդրում ենք հաստատել էթիկական քարտիայի համաձայնությունը"
-            : "Please confirm acknowledgment of our zero upfront fee policy.",
+            ? "Խնդրում ենք հաստատել համաձայնությունը աշխատանքի տեղավորման պայմաններին"
+            : "Please confirm acknowledgment of our placement and work permit policy.",
           "consent",
           consentRef
         );
@@ -755,13 +755,13 @@ export function ConciergeDrawer() {
                   <div>
                     <span className="font-bold block text-brand-forest mb-0.5">
                       {isHy
-                        ? "Զրոյական նախնական վճարի երաշխիք"
-                        : "Zero Upfront Fee · Pay-After-Job Guarantee"}
+                        ? "Օրինական Աշխատանքի Թույլտվություն և Պայմանագիր"
+                        : "Legal Work Permits & Verified Contracts"}
                     </span>
                     <span className="text-brand-ink-muted leading-normal">
                       {isHy
-                        ? "Դիմումների գրանցումը և հարցազրույցներն անվճար են: Ծառայության վճարումը կատարվում է միայն աշխատանքի պաշտոնական հաստատումից հետո:"
-                        : "Registration and interviews are 100% free. Placement terms apply strictly upon verified job offer and legal work permit approval."}
+                        ? "Դիմումների ընդունումը և նախնական հարցազրույցներն անցկացվում են անմիջապես Երևանի մեր գրասենյակի կողմից՝ ՀՀ աշխատանքային օրենսդրությանը համապատասխան:"
+                        : "Candidate intake and vetting are conducted directly by our Yerevan desk in full compliance with Republic of Armenia labor migration standards."}
                     </span>
                   </div>
                 </div>
@@ -1599,7 +1599,7 @@ export function ConciergeDrawer() {
                       </div>
                     </div>
 
-                    {/* Zero-Fee Legal Guarantee Checkbox */}
+                    {/* Candidate Legal Placement Consent Checkbox */}
                     <div
                       className={`p-3.5 rounded-2xl border shadow-sm ${
                         invalidField === "consent"
@@ -1620,13 +1620,13 @@ export function ConciergeDrawer() {
                         <div className="text-xs">
                           <span className="font-bold text-brand-forest block">
                             {isHy
-                              ? "0.00 ֏ Զրոյական Նախնական Վճարի Համաձայնություն"
-                              : "Strict Zero Upfront Fee Policy Consent"}
+                              ? "Օրինական Աշխատանքի Տեղավորման և Վիզայի Պայմանների Համաձայնություն"
+                              : "Verified Placement & Work Permit Terms Consent"}
                           </span>
                           <span className="text-brand-ink-muted leading-relaxed block mt-0.5">
                             {isHy
-                              ? "Հաստատում եմ, որ որևէ միջնորդավճար չեմ վճարել: Ծառայության պայմանները գործում են բացառապես պաշտոնական աշխատանքի հրավերի և ՀՀ օրինական աշխատանքի թույլտվության ձևակերպումից հետո:"
-                              : "I understand that De Organica charges zero upfront registration or interview fees. Candidate placement terms apply strictly upon verified job offer and legal Republic of Armenia work permit issuance."}
+                              ? "Հաստատում եմ ներկայացված տվյալների և փաստաթղթերի իսկությունը: Հասկանում եմ, որ աշխատանքի տեղավորումը և ՀՀ օրինական աշխատանքի թույլտվության ձևակերպումն իրականացվում են պաշտոնական աշխատանքի հրավերի հիման վրա:"
+                              : "I confirm that all submitted details and documents are authentic. I understand that candidate placement and legal Republic of Armenia work permit processing proceed strictly upon verified employer job offer."}
                           </span>
                         </div>
                       </label>

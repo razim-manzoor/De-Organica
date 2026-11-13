@@ -120,7 +120,7 @@ export function Footer() {
                   onClick={() => openCandidateDrawer()}
                   className="hover:text-white text-brand-olive-onDark font-semibold inline-flex items-center gap-1 py-0.5 cursor-pointer"
                 >
-                  <span>{isHy ? "Ուղարկել CV (Անվճար)" : "Submit CV (Zero Fee)"}</span>
+                  <span>{isHy ? "Ուղարկել CV / Ռեզյումե" : "Submit CV / Resume"}</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </button>
               </li>
