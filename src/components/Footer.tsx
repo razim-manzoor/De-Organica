@@ -41,10 +41,6 @@ export function Footer() {
                     : company.registrationStatus_en}
                 </span>
               </div>
-              <p className="text-brand-stone-200">
-                {isHy ? "Հիմնադիր և Տնօրեն՝" : "Founder & CEO:"}{" "}
-                {company.ceo}
-              </p>
             </div>
           </div>
 

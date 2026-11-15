@@ -124,7 +124,7 @@ export interface CompanyInfo {
   legalName: string;
   tagline_en: string;
   tagline_hy: string;
-  ceo: string;
+  ceo?: string;
   address_en: string;
   address_hy: string;
   city: string;

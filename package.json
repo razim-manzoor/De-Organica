@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/razim-manzoor/De-Organica.git"
   },
-  "author": "Maneesha Muraleedharan <deorganicallc@gmail.com>",
+  "author": "De Organica LLC <deorganicallc@gmail.com>",
   "license": "UNLICENSED",
   "scripts": {
     "dev": "next dev",

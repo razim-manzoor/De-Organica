@@ -12,7 +12,6 @@ export const deorganicaConfig = {
     legalName: "De Organica LLC",
     tagline_en: "Corporate Gateway for Global Tourism & International Workforce Mobility",
     tagline_hy: "Համաշխարհային զբոսաշրջության և միջազգային աշխատուժի շարժունակության կորպորատիվ հարթակ",
-    ceo: "Maneesha Muraleedharan",
     address_en: "Yerevan, Republic of Armenia",
     address_hy: "Երևան, Հայաստանի Հանրապետություն",
     city: "Yerevan",

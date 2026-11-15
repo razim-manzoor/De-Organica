@@ -15,7 +15,7 @@
 
 - **Legal Entity:** De Organica LLC (`«Դե Օրգանիկա» ՍՊԸ`)
 - **Jurisdiction:** Republic of Armenia (`Հայաստանի Հանրապետություն`), Yerevan
-- **Founder / CEO:** Maneesha Muraleedharan
+- **Corporate Governance:** Executive Desk (`deorganicallc@gmail.com`)
 - **Official Desk Email:** `deorganicallc@gmail.com`
 - **Headquarters Desk:** Yerevan, Republic of Armenia
 - **Primary Domain:** [deorganica.am](https://deorganica.am)
@@ -234,5 +234,4 @@ The codebase adheres to the strict 5-point production quality gate:
 
 © 2026 **De Organica LLC** (`«Դե Օրգանիկա» ՍՊԸ`). All Rights Reserved.  
 Registered Commercial Enterprise, Republic of Armenia.  
-Headquarters: Yerevan, Republic of Armenia.  
-Founder & CEO: Maneesha Muraleedharan (`deorganicallc@gmail.com`).
+Headquarters: Yerevan, Republic of Armenia (`deorganicallc@gmail.com`).

@@ -3,7 +3,7 @@
 ## 1. Project Overview
 - **Domain:** `deorganica.am`
 - **Legal Entity:** De Organica LLC (`Republic of Armenia`)
-- **Founder / CEO:** Maneesha Muraleedharan (`deorganicallc@gmail.com`)
+- **Executive Desk:** `deorganicallc@gmail.com`
 - **Verticals:**
   1. De Organica Travel & Tours (Inbound Armenia tours, outbound holidays, visa consultation, EVN transfers, B2B DMC ground handling)
   2. De Organica Manpower (International recruitment, legal work permits, candidate vetting, B2B enterprise staffing)

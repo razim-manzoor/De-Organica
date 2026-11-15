@@ -102,7 +102,7 @@ export function HeroDualGateway({ content = defaultHomePageContent }: HeroDualGa
               {/* Hero Photo */}
               <div className="relative h-48 sm:h-72 overflow-hidden bg-brand-forest-deep">
                 <Image
-                  src={manpowerPillar.image || "/images/tours/yerevan-cascade.jpg"}
+                  src={manpowerPillar.image || "/images/manpower/international-workforce.jpg"}
                   alt={isHy ? manpowerPillar.imageAlt_hy : manpowerPillar.imageAlt_en}
                   fill
                   priority

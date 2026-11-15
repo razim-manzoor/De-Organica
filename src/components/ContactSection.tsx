@@ -235,10 +235,6 @@ export function ContactSection({
                         ? company.registrationStatus_hy
                         : company.registrationStatus_en}
                     </span>
-                    <span className="text-xs text-brand-ink-subtle block mt-0.5">
-                      {isHy ? "Հիմնադիր և Տնօրեն՝" : "Founder & CEO:"}{" "}
-                      {company.ceo}
-                    </span>
                   </div>
                 </div>
               </div>
