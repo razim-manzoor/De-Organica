@@ -12,7 +12,7 @@ export default function NotFound() {
   const isHy = locale === "hy";
 
   return (
-    <div className="flex flex-col min-h-screen bg-brand-canvas">
+    <div className="flex flex-col min-h-screen bg-brand-stone-50">
       <Header />
       <main
         id="main-content"

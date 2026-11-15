@@ -11,6 +11,10 @@ const ALLOWED_CV_MIMES = new Set([
   "application/octet-stream",
 ]);
 
+// Rate Limiting Architecture:
+// In-memory sliding window for single-node / container deployments (e.g. self-hosted Node / next start).
+// For high-concurrency multi-region serverless deployment (Vercel / Netlify edge),
+// replace ipRequestLog with an Upstash Redis KV / @upstash/ratelimit client.
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 10;
 const ipRequestLog = new Map<string, number[]>();
@@ -252,7 +256,7 @@ export async function POST(req: NextRequest) {
                 )
               : ""
           }
-          ${row("Budget Tier:", budgetTier, true)}
+          ${row("Travel Style:", budgetTier, true)}
           ${agencyName ? row("Agency Name:", `${agencyName} (${agencyCountry || "N/A"})`) : ""}
           ${row("B2B Group Scope:", b2bScope, true)}
           ${row("Travel Dates:", travelDates)}
@@ -302,13 +306,27 @@ export async function POST(req: NextRequest) {
     const resendApiKey = process.env.RESEND_API_KEY;
     if (resendApiKey) {
       const resend = new Resend(resendApiKey);
-      await resend.emails.send({
+      const { data, error } = await resend.emails.send({
         from: process.env.RESEND_FROM_EMAIL || `${company.name} Desk <inquiries@deorganica.am>`,
         to: [company.email],
         subject,
         html: bodyContent,
         attachments: attachments.length > 0 ? attachments : undefined,
       });
+
+      if (error) {
+        console.error("[Resend Delivery Error]", error);
+        return NextResponse.json(
+          {
+            success: false,
+            error: "Email delivery failed to transmit. Please connect with our Yerevan operations desk directly via WhatsApp or phone.",
+            details: process.env.NODE_ENV === "development" ? error.message : undefined,
+          },
+          { status: 502 }
+        );
+      }
+
+      console.log("[Resend Delivery Succeeded]", { id: data?.id, subject });
     } else {
       console.log("[De Organica Inquiry Received]", {
         subject,

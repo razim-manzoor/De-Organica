@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-brand-canvas">
+    <div className="flex flex-col min-h-screen bg-brand-stone-50">
       <Header />
       <main id="main-content" className="flex-grow pt-8">
         <LegalDocumentView mode="privacy" />

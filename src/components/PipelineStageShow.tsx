@@ -30,7 +30,6 @@ export function PipelineStageShow({
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-text mb-3">
-              <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
               <span>{isHy ? content.eyebrow_hy : content.eyebrow_en}</span>
             </div>
 
@@ -185,14 +184,14 @@ export function PipelineStageShow({
                 <button
                   type="button"
                   onClick={() => openCandidateDrawer()}
-                  className="flex-1 sm:flex-none min-h-[44px] py-2.5 px-4 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-colors duration-200 cursor-pointer shadow-sm text-center"
+                  className="flex-1 sm:flex-none min-h-[44px] py-2.5 px-4 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-all active:scale-95 duration-200 cursor-pointer shadow-sm text-center"
                 >
                   {isHy ? "Ուղարկել ռեզյումե (CV)" : "Submit Candidate CV"}
                 </button>
                 <button
                   type="button"
                   onClick={() => openEmployerDrawer()}
-                  className="flex-1 sm:flex-none min-h-[44px] py-2.5 px-4 rounded-xl border border-brand-stone-300 bg-white text-brand-forest text-xs font-semibold hover:bg-brand-stone-100 transition-colors duration-200 cursor-pointer shadow-sm text-center"
+                  className="flex-1 sm:flex-none min-h-[44px] py-2.5 px-4 rounded-xl border border-brand-stone-300 bg-white text-brand-forest text-xs font-semibold hover:bg-brand-stone-100 transition-all active:scale-95 duration-200 cursor-pointer shadow-sm text-center"
                 >
                   {isHy ? "Հայտ գործատուներին" : "Request Manpower"}
                 </button>

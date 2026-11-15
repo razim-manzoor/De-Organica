@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { useDrawer } from "@/context/DrawerContext";
 import { useSiteData } from "@/context/SiteDataContext";
@@ -33,23 +34,28 @@ export function TravelServicesMatrix({
   const isHy = locale === "hy";
   const items = services && services.length > 0 ? services : ctxServices.length > 0 ? ctxServices : defaultTravelServices;
 
+  // Curate to dedicated ground operations & logistics (excluding duplicate tour catalog and wholesale DMC)
+  const dedicatedLogistics = items.filter(
+    (s) => s.id === "hotels-transfers" || s.id === "visa-assistance" || s.id === "international-holidays"
+  );
+  const displayServices = dedicatedLogistics.length > 0 ? dedicatedLogistics : items.slice(0, 3);
+
   const handleWhatsAppClick = (serviceTitle: string) => {
     const msg = buildTravelWhatsAppMessage({
       serviceOrTour: serviceTitle,
       notes: isHy
         ? "Բարև Ձեզ, ցանկանում եմ ստանալ մանրամասն տեղեկատվություն այս տուրիստական ծառայության վերաբերյալ:"
-        : "Hello De Organica team, I would like to inquire about this ground service tariff and availability.",
+        : "Hello De Organica team, I would like to inquire about this ground service and availability.",
     });
     window.open(buildWhatsAppUrl(msg, siteSettings.company.whatsappNumberDigits), "_blank", "noopener,noreferrer");
   };
 
   return (
-    <section id="travel-services" className="py-20 lg:py-28 bg-white border-t border-brand-stone-200">
+    <section id="services" className="scroll-mt-20 py-20 lg:py-28 bg-white border-t border-brand-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-text mb-3">
-            <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
             <span>{isHy ? header.eyebrow_hy : header.eyebrow_en}</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
@@ -60,9 +66,9 @@ export function TravelServicesMatrix({
           </p>
         </div>
 
-        {/* 6-Service Grid */}
+        {/* 3-Pillar Ground Logistics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {items.map((service) => {
+          {displayServices.map((service) => {
             const Icon = getCmsIcon(service.icon, Compass);
             return (
             <div
@@ -71,19 +77,14 @@ export function TravelServicesMatrix({
             >
               {/* Image Container with Badge */}
               <div className="relative h-52 w-full overflow-hidden bg-brand-stone-200">
-                <img
+                <Image
                   src={service.image}
                   alt={isHy ? service.title_hy : service.title_en}
-                  className="w-full h-full object-cover hover-img-zoom"
-                  loading="lazy"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover hover-img-zoom"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/75 via-brand-forest/20 to-transparent" />
-
-                {service.badge_en && (
-                  <div className="absolute top-4 right-4 bg-brand-forest/95 backdrop-blur-sm text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-white/20 shadow-sm">
-                    {isHy ? service.badge_hy : service.badge_en}
-                  </div>
-                )}
 
                 <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white">
                   <div className="w-10 h-10 rounded-xl bg-brand-forest/95 backdrop-blur-sm border border-white/20 flex items-center justify-center text-brand-olive-onDark shadow-sm">
@@ -114,23 +115,25 @@ export function TravelServicesMatrix({
                   </div>
                 </div>
 
-                {/* Card Action Buttons */}
-                <div className="pt-4 border-t border-brand-stone-100 grid grid-cols-2 gap-2">
+                {/* Card Action Buttons: Unified Primary + Square WhatsApp Icon */}
+                <div className="pt-4 border-t border-brand-stone-100 flex items-center gap-2">
                   <button
                     type="button"
                     onClick={() => openTravelDrawer(isHy ? service.title_hy : service.title_en)}
-                    className="w-full min-h-[44px] py-2.5 px-3 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-colors text-center cursor-pointer shadow-sm"
+                    className="flex-1 min-h-[44px] py-2.5 px-3 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-all active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
                   >
-                    {isHy ? "Պատվիրել" : "Inquire Desk"}
+                    <span>{isHy ? "Պատվիրել ծառայությունը" : "Request Service"}</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-brand-olive-onDark" />
                   </button>
 
                   <button
                     type="button"
                     onClick={() => handleWhatsAppClick(service.title_en)}
-                    className="w-full min-h-[44px] py-2.5 px-3 rounded-xl border border-brand-stone-300 bg-white text-brand-ink hover:text-brand-forest hover:border-brand-olive text-xs font-medium transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
+                    className="w-11 h-11 shrink-0 rounded-xl border border-brand-stone-300 bg-white text-brand-ink hover:text-brand-forest hover:border-[#25D366] hover:bg-green-50/40 text-xs font-medium transition-all active:scale-95 flex items-center justify-center cursor-pointer shadow-sm"
+                    aria-label={isHy ? `${service.title_hy} — WhatsApp հարցում` : `Inquire about ${service.title_en} on WhatsApp`}
+                    title="WhatsApp"
                   >
-                    <MessageCircle className="w-3.5 h-3.5 text-brand-olive-text" />
-                    <span>WhatsApp</span>
+                    <MessageCircle className="w-4 h-4 text-[#25D366]" />
                   </button>
                 </div>
               </div>

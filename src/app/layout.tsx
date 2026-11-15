@@ -1,26 +1,31 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import {
-  Lora,
+  Cinzel,
   Plus_Jakarta_Sans,
   Noto_Serif_Armenian,
   Noto_Sans_Armenian,
 } from "next/font/google";
+import dynamic from "next/dynamic";
 import "./globals.css";
+import type { Locale } from "@/types/content";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { DrawerProvider } from "@/context/DrawerContext";
 import { SiteDataProvider } from "@/context/SiteDataContext";
-import { ConciergeDrawer } from "@/components/ConciergeDrawer";
+import { FloatingWhatsAppFab } from "@/components/FloatingWhatsAppFab";
+
+const ConciergeDrawer = dynamic(() => import("@/components/ConciergeDrawer"));
 import {
   getSiteSettings,
   getTours,
   getTravelServices,
 } from "@/sanity/lib/fetch";
 
-const lora = Lora({
+const cinzel = Cinzel({
   subsets: ["latin"],
   variable: "--font-serif",
   display: "swap",
-  weight: ["500", "600", "700"],
+  weight: ["500", "600", "700", "800"],
 });
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -92,11 +97,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [siteSettings, tours, travelServices] = await Promise.all([
+  const [siteSettings, tours, travelServices, cookieStore] = await Promise.all([
     getSiteSettings(),
     getTours(),
     getTravelServices(),
+    cookies(),
   ]);
+
+  const cookieLocale = cookieStore.get("deorganica_locale")?.value;
+  const initialLocale: Locale = cookieLocale === "hy" ? "hy" : "en";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -133,7 +142,6 @@ export default async function RootLayout({
         parentOrganization: {
           "@id": "https://deorganica.am/#organization",
         },
-        priceRange: "$$",
       },
       {
         "@type": "EmploymentAgency",
@@ -149,8 +157,8 @@ export default async function RootLayout({
 
   return (
     <html
-      lang="en"
-      className={`${lora.variable} ${plusJakarta.variable} ${notoSerifArmenian.variable} ${notoSansArmenian.variable}`}
+      lang={initialLocale}
+      className={`${cinzel.variable} ${plusJakarta.variable} ${notoSerifArmenian.variable} ${notoSansArmenian.variable}`}
     >
       <head>
         <script
@@ -166,10 +174,11 @@ export default async function RootLayout({
           Skip to main content
         </a>
         <SiteDataProvider value={{ siteSettings, tours, travelServices }}>
-          <LanguageProvider>
+          <LanguageProvider initialLocale={initialLocale}>
             <DrawerProvider>
               {children}
               <ConciergeDrawer />
+              <FloatingWhatsAppFab />
             </DrawerProvider>
           </LanguageProvider>
         </SiteDataProvider>

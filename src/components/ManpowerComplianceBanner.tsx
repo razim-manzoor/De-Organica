@@ -45,7 +45,7 @@ export function ManpowerComplianceBanner({
               <button
                 type="button"
                 onClick={() => openCandidateDrawer()}
-                className="min-h-[44px] px-5 py-3 rounded-xl bg-brand-olive-onDark text-brand-forest-deep text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors duration-200 shadow-md cursor-pointer flex items-center gap-2"
+                className="min-h-[44px] px-5 py-3 rounded-xl bg-brand-olive-onDark text-brand-forest-deep text-xs font-bold uppercase tracking-wider hover:bg-white transition-all active:scale-95 duration-200 shadow-md cursor-pointer flex items-center gap-2"
               >
                 <span>{isHy ? "Գրանցվել որպես Թեկնածու" : "Register as Candidate"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -54,9 +54,9 @@ export function ManpowerComplianceBanner({
               <button
                 type="button"
                 onClick={() => openEmployerDrawer()}
-                className="min-h-[44px] px-5 py-3 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
+                className="min-h-[44px] px-5 py-3 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-all active:scale-95 duration-200 cursor-pointer"
               >
-                <span>{isHy ? "Կորպորատիվ Հայտ (Գործատու)" : "Corporate Employer Desk"}</span>
+                <span>{isHy ? "Գործատուի Հայտ" : "Hire Manpower"}</span>
               </button>
             </div>
           </div>

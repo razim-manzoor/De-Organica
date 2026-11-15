@@ -70,10 +70,10 @@ export function buildTravelWhatsAppMessage(params: TravelWhatsAppParams): string
         : `*Client Name:* ${clientName}`
       : null,
     params.travelerType
-      ? `*Inquiry Category:* ${isB2B ? "B2B DMC Wholesale Contract" : "Private Leisure / Family Expedition"}`
+      ? `*Inquiry Category:* ${isB2B ? "B2B DMC Ground Partner Allotment" : "Private Leisure / Family Expedition"}`
       : null,
     params.b2bScope ? `*B2B Group Scope:* ${params.b2bScope}` : null,
-    params.budgetTier ? `*Budget / Trip Style:* ${params.budgetTier}` : null,
+    params.budgetTier ? `*Travel Style & Experience Preference:* ${params.budgetTier}` : null,
     params.email ? `*Email:* ${params.email}` : null,
     params.phone ? `*Phone/WhatsApp:* ${params.phone}` : null,
     `*Selected Tour/Service:* ${params.serviceOrTour}`,

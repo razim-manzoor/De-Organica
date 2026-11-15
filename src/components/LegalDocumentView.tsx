@@ -148,12 +148,12 @@ export function LegalDocumentView({ mode }: LegalDocumentViewProps) {
 
           <section aria-labelledby="terms-travel" className="space-y-3">
             <h2 id="terms-travel" className="font-serif text-2xl font-bold text-brand-forest">
-              {isHy ? "3. Տուրիստական առաջարկներ և արժեքներ" : "3. Travel Quotes, Bookings & Currency"}
+              {isHy ? "3. Տուրիստական երթուղիներ և ամրագրումներ" : "3. Travel Itineraries, Allotments & Ground Handling"}
             </h2>
             <p className="text-brand-ink-muted">
               {isHy
-                ? "Կայքում ներկայացված տուրիստական ծրագրերը ծառայում են որպես մեկնարկային երթուղիներ: Վերջնական արժեքը, հյուրանոցների հաստատումը և տրանսֆերների ժամանակացույցը հաստատվում են գրավոր պաշտոնական առաջարկով (invoice / booking voucher) և կախված են սեզոնային առկայությունից:"
-                : "Published itineraries on our website serve as curated benchmark programs. Final seasonal pricing, hotel allotments, airline schedules, and B2B net ground-handling rates are confirmed exclusively in official written quotation agreements issued by our Yerevan travel desk."}
+                ? "Կայքում ներկայացված տուրիստական ծրագրերը ծառայում են որպես հեղինակային ուղենիշային երթուղիներ: Երթուղու մանրամասն ժամանակացույցը, հյուրանոցների ընտրությունը, տրանսֆերները և B2B DMC գործընկերային համաձայնագրերը հաստատվում են գրավոր պաշտոնական փաստաթղթերով (booking voucher)՝ կախված սեզոնային առկայությունից:"
+                : "Published itineraries on our website serve as curated benchmark programs. Custom route schedules, hotel allotments, private chauffeur fleet assignments, and B2B ground-handling allotments are confirmed exclusively in official written booking agreements issued by our Yerevan travel desk."}
             </p>
           </section>
 

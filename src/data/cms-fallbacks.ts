@@ -35,14 +35,14 @@ export const defaultSiteSettings: SiteSettings = {
 
 export const defaultHomePageContent: HomePageContent = {
   masthead: {
-    eyebrow_en: "Yerevan, Armenia · Official Corporate Portal",
-    eyebrow_hy: "Երևան, Հայաստան · Պաշտոնական Կորպորատիվ Պորտալ",
-    headline_en: "Armenia Travel Concierge & Ethical International Manpower",
-    headline_hy: "Հայաստանի Տուրիզմ և Միջազգային Կադրերի Հավաքագրում",
+    eyebrow_en: "Bespoke Travel & Ethical Manpower",
+    eyebrow_hy: "Զբոսաշրջություն և Էթիկական Աշխատուժ",
+    headline_en: "Rooted in Armenia. Built for the World.",
+    headline_hy: "Արմատներով Հայաստանում: Բաց աշխարհի համար:",
     subtext_en:
-      "Two specialized divisions under one licensed Yerevan institution — curated Armenian hospitality & verified international workforce recruitment.",
+      "Operating from Yerevan, De Organica manages handcrafted Armenia travel, B2B ground handling, and licensed international recruitment for Armenian enterprises.",
     subtext_hy:
-      "Երկու մասնագիտացված բաժին մեկ հուսալի կազմակերպության ներքո՝ անհատական ուղևորություններ Հայաստանով և օրինական միջազգային աշխատատեղեր:",
+      "Գործելով Երևանից՝ «Դե Օրգանիկա» ՍՊԸ-ն համակարգում է հեղինակային զբոսաշրջություն, B2B տեղական սպասարկում և օրինական աշխատուժի հավաքագրում:",
   },
   travelPillar: {
     badge_en: "Division 01 · Travel & DMC",
@@ -51,15 +51,15 @@ export const defaultHomePageContent: HomePageContent = {
     locationStrip_hy: "Երևան · Սևան · Տաթև · Արենի",
     dispatchTag_en: "24/7 Dispatch",
     dispatchTag_hy: "24/7 Դեսկ",
-    title_en: "Bespoke Cultural Journeys, Visas & Executive Fleet",
-    title_hy: "Հեղինակային Տուրեր, Վիզաներ և VIP Ավտոպարկ",
+    title_en: "Travel & Tours",
+    title_hy: "Տուրիզմ և Տուրեր",
     description_en:
-      "Handcrafted cultural & Areni wine itineraries across Armenia, Zvartnots EVN chauffeur fleet, consular visa advice, and B2B DMC allotments.",
+      "Curated cultural & wine expeditions, private chauffeur fleet, and B2B ground handling across Armenia.",
     description_hy:
-      "Անհատական մշակութային և գինու տուրեր Հայաստանում, Zvartnots (EVN) օդանավակայանի տրանսֆերներ և մեծածախ DMC ծառայություններ:",
+      "Հեղինակային մշակութային երթուղիներ, VIP ավտոպարկ և B2B տեղական սպասարկում ողջ Հայաստանում:",
     features: [
       { icon: "Globe", label_en: "Inbound & Outbound Tours", label_hy: "Ներգնա և Արտագնա Տուրեր" },
-      { icon: "ShieldCheck", label_en: "B2B DMC Net Tariffs", label_hy: "B2B DMC Սակագներ" },
+      { icon: "ShieldCheck", label_en: "B2B DMC Ground Partner", label_hy: "B2B DMC Գործընկերություն" },
     ],
     image: "/images/tours/garni-temple.jpg",
     imageAlt_en: "Temple of Garni overlooking the Azat Gorge in Armenia",
@@ -70,46 +70,46 @@ export const defaultHomePageContent: HomePageContent = {
     ctaSecondary_hy: "Պատվիրել Տուր",
   },
   manpowerPillar: {
-    badge_en: "Division 02 · Global Manpower",
-    badge_hy: "Բաժին 02 · Միջազգային Կադրեր",
-    feeTag_en: "Legal Work Permits & Visas",
-    feeTag_hy: "Օրինական Աշխատանքային Վիզաներ",
+    badge_en: "International Talent",
+    badge_hy: "Միջազգային Կադրեր",
+    feeTag_en: "Direct Employer Placement",
+    feeTag_hy: "Ուղիղ Աշխատանքային Պայմանագրեր",
     slaTag_en: "15–25 Days Permit SLA",
-    slaTag_hy: "15–25 Աշխ. Օր Թույլտվություն",
-    title_en: "International Careers & Enterprise Workforce Solutions",
-    title_hy: "Միջազգային Աշխատանք և Կորպորատիվ Հավաքագրում",
+    slaTag_hy: "15–25 Օր Թույլտվության Ժամկետ",
+    title_en: "Manpower & Careers",
+    title_hy: "Աշխատանք և Կադրեր",
     description_en:
-      "Sourcing vetted hospitality, skilled trade, agricultural, and logistics talent for Armenian enterprises — 100% verified employer contracts and legal Migration Service permits.",
+      "Licensed international talent sourcing, verified employer contracts, and legal work permits for Armenian enterprises.",
     description_hy:
-      "Մասնագետների հավաքագրում հյուրընկալության, շինարարության, գյուղատնտեսության և լոգիստիկայի համար՝ 100% օրինական աշխատանքային թույլտվություններով:",
+      "Միջազգային որակյալ աշխատուժի հավաքագրում, հաստատված պայմանագրեր և ՀՀ օրինական աշխատանքի թույլտվություններ:",
     features: [
-      { icon: "ShieldCheck", label_en: "Verified Employer Contracts", label_hy: "Հաստատված աշխատանքային պայմանագրեր" },
+      { icon: "ShieldCheck", label_en: "Direct Employer Contracts", label_hy: "Ուղիղ Գործատուի Պայմանագիր" },
       { icon: "Users2", label_en: "30-Day Employer Warranty", label_hy: "30-Օրյա Գործատուի Երաշխիք" },
     ],
     image: "/images/tours/yerevan-cascade.jpg",
-    imageAlt_en: "Yerevan Cascade monument and modern skyline of Armenia's capital",
-    imageAlt_hy: "Երևանի Կասկադ համալիրը և քաղաքային բիզնես միջավայրը",
+    imageAlt_en: "Verified Hospitality and Enterprise Talent",
+    imageAlt_hy: "Որակավորված աշխատուժ և մասնագետներ",
     ctaPrimary_en: "Explore Manpower Hub",
     ctaPrimary_hy: "Կադրերի և Աշխատանքի Բաժին",
     ctaSecondary_en: "Drop Candidate CV",
     ctaSecondary_hy: "Ուղարկել Ռեզյումե",
   },
   crossroadsBanner: {
-    eyebrow_en: "Armenian & Global Corridor · Yerevan",
-    eyebrow_hy: "Միջազգային Կապերի Կենտրոն · Երևան",
+    eyebrow_en: "Yerevan Operations Desk",
+    eyebrow_hy: "Երևանի Գլխավոր Դեսկ",
     headline_en: "Connecting Armenia's Heritage & Global Workforce",
     headline_hy: "Հայաստանը՝ որպես Զբոսաշրջության և Աշխատուժի Խաչմերուկ",
     subtext_en:
-      "De Organica LLC bridges high-standard destination hospitality and transparent legal mobility — serving international travelers, diplomatic guests, and Armenian industry leaders from one Yerevan headquarters.",
+      "De Organica LLC combines high-standard destination hospitality with transparent legal recruitment — serving travelers, tour operators, and Armenian employers from our central Yerevan desk.",
     subtext_hy:
-      "«Դե Օրգանիկա» ՍՊԸ-ն ապահովում է միասնական ստանդարտ՝ ինչպես աշխարհից Հայաստան ժամանող զբոսաշրջիկների, այնպես էլ Հայաստանի ձեռնարկությունները հզորացնող մասնագետների համար:",
+      "«Դե Օրգանիկա» ՍՊԸ-ն ապահովում է միասնական ստանդարտ՝ ինչպես Հայաստան ժամանող զբոսաշրջիկների, այնպես էլ տեղական ձեռնարկությունները հզորացնող մասնագետների համար:",
     cards: [
       {
         icon: "Landmark",
-        title_en: "Yerevan Brick-and-Mortar Hub",
-        title_hy: "Երևանի Պաշտոնական Ներկայացուցչություն",
+        title_en: "Central Yerevan Office",
+        title_hy: "Երևանի Կենտրոնական Գրասենյակ",
         desc_en:
-          "Officially registered Republic of Armenia LLC operating near Republic Square with dedicated multilingual coordinators.",
+          "Licensed Armenian enterprise operating in central Yerevan with dedicated multilingual client coordinators.",
         desc_hy:
           "Գրանցված և գործող գրասենյակ Հանրապետության Հրապարակի հարևանությամբ՝ ուղիղ հեռախոսային և անհատական սպասարկմամբ:",
       },
@@ -158,7 +158,7 @@ export const defaultTravelPageContent: TravelPageContent = {
       { icon: "Car", label_en: "Private Chauffeur Fleet", label_hy: "Անհատական տրանսպորտային պարկ" },
       { icon: "Clock", label_en: "24/7 Zvartnots (EVN) Meet", label_hy: "Զվարթնոցի (EVN) 24/7 դիմավորում" },
       { icon: "ShieldCheck", label_en: "UNESCO Monastic Sanctuaries", label_hy: "ՅՈՒՆԵՍԿՕ-ի ժառանգության վայրեր" },
-      { icon: "Sparkles", label_en: "B2B DMC Wholesale Tariffs", label_hy: "B2B DMC մեծածախ սակագներ" },
+      { icon: "Sparkles", label_en: "B2B DMC Ground Partner", label_hy: "B2B DMC Գործընկերություն" },
     ],
     destinations: [
       {
@@ -199,7 +199,7 @@ export const defaultTravelPageContent: TravelPageContent = {
         altitudeM: 1000,
         season_en: "March – November",
         season_hy: "Մարտ – Նոյեմբեր",
-        image: "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=80",
+        image: "/images/tours/garni-temple.jpg",
         tag_en: "Biblical Ararat Panorama",
         tag_hy: "Արարատի Համայնապատկեր",
       },
@@ -225,9 +225,9 @@ export const defaultTravelPageContent: TravelPageContent = {
     headline_en: "Explore Armenia Day by Day",
     headline_hy: "Ծրագրեք Ձեր Շրջագայությունը Հայաստանում",
     subtext_en:
-      "Preview iconic routes, select fleet comfort (from value economy to executive), and customize curated additions for instant Yerevan dispatch.",
+      "Preview iconic routes, select fleet comfort (from executive sedans to spacious passenger vans), and customize curated additions for instant Yerevan dispatch.",
     subtext_hy:
-      "Ընտրեք երթուղու օրերը, տրանսպորտային դասը և լրացուցիչ ծառայությունները՝ անհատական գնառաջարկ ստանալու համար:",
+      "Ընտրեք երթուղու օրերը, տրանսպորտային դասը և լրացուցիչ ծառայությունները՝ անհատական երթուղի ստանալու համար:",
     statusBadge_en: "Live Yerevan Ground Dispatch",
     statusBadge_hy: "Երևանի դիսպետչերական ծառայություն",
     days: [
@@ -265,7 +265,7 @@ export const defaultTravelPageContent: TravelPageContent = {
           "Gaze at snow-capped Mount Ararat from the historic underground dungeon of Khor Virap, continuing through the crimson limestone gorge of Noravank.",
         description_hy:
           "Հիասքանչ տեսարան դեպի բիբլիական Արարատ լեռը Խոր Վիրապից, ավանդական գինու համտես Արենիում և Նորավանքի կարմիր ժայռերը:",
-        image: "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1200&q=80",
+        image: "/images/tours/garni-temple.jpg",
       },
       {
         day: 4,
@@ -282,14 +282,14 @@ export const defaultTravelPageContent: TravelPageContent = {
     ],
   },
   servicesHeader: {
-    eyebrow_en: "Local Ground Operations",
-    eyebrow_hy: "Տեղական Գետնային Սպասարկում",
-    title_en: "Complete Travel & Ground Services in Armenia",
-    title_hy: "Ամբողջական Տուրիստական Ծառայություններ Հայաստանում",
+    eyebrow_en: "Ground Logistics & Concierge",
+    eyebrow_hy: "Տեղական Լոգիստիկա և Ծառայություններ",
+    title_en: "Airport Fleet, Chauffeur Services & Consular Support",
+    title_hy: "Ավտոպարկ, Օդանավակայանի Տրանսֆեր և Վիզային Աջակցություն",
     subtitle_en:
-      "From signature overland expeditions and consular visa support to private chauffeur transfers and 24/7 Zvartnots (EVN) airport dispatch.",
+      "Seamless ground logistics across Armenia: 24/7 Zvartnots (EVN) airport reception, private Mercedes chauffeur fleet, and certified visa documentation.",
     subtitle_hy:
-      "Պատմամշակութային շրջագայություններից մինչև վիզաների աջակցություն, անհատական տրանսպորտ և Զվարթնոց (EVN) օդանավակայանի 24/7 դիմավորում:",
+      "Հուսալի տեղական սպասարկում Երևանում՝ 24/7 դիմավորում Զվարթնոց (EVN) օդանավակայանում, վարորդով ավտոպարկ և պաշտոնական վիզային աջակցություն:",
   },
   toursHeader: {
     eyebrow_en: "Signature Expeditions",
@@ -297,9 +297,9 @@ export const defaultTravelPageContent: TravelPageContent = {
     title_en: "Signature Armenia Tours & Multi-Day Journeys",
     title_hy: "Հայաստանի Հեղինակային Տուրեր և Երթուղիներ",
     subtitle_en:
-      "Customized to your travel style and budget — from clean 3-star comfort and self-paced routes to luxury wine châteaux and executive chauffeurs.",
+      "Handcrafted to your travel style and pacing — from boutique 4-star city stays to regional wine châteaux and executive chauffeurs.",
     subtitle_hy:
-      "Հարմարեցված Ձեր բյուջեին և ոճին՝ հարմարավետ 3★ հյուրանոցներից մինչև բուտիկ գինեգործարաններ և VIP տրանսպորտ:",
+      "Հարմարեցված Ձեր նախասիրություններին և ոճին՝ բուտիկ քաղաքային հյուրանոցներից մինչև գինու ռեզորթներ և VIP տրանսպորտ:",
   },
   heritageShowcase: {
     eyebrow_en: "Living Heritage & Gastronomy",
@@ -340,7 +340,7 @@ export const defaultTravelPageContent: TravelPageContent = {
           "Այցելեք աշխարհի հնագույն գինեգործարանը (Ք.ա. 4100 թ.), վայելեք տեղական Արենի Նուար և Ոսկեհատ հազվագյուտ խաղողի տեսակներից պատրաստված բացառիկ գինիները:",
         badge_en: "Ancient Terroir",
         badge_hy: "Հնագույն Տերուար",
-        image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1200&q=80",
+        image: "/images/heritage/tonir-lavash.jpg",
         icon: "Wine",
       },
       {
@@ -370,8 +370,8 @@ export const defaultTravelPageContent: TravelPageContent = {
           "Հիացեք Ազատ գետի կիրճում գտնվող բնության հրաշքով՝ 50 մետր բարձրությամբ բազալտե երգեհոնանման սյուներով, որոնք ձևավորվել են հրաբխային լավայից:",
         badge_en: "Natural Wonder",
         badge_hy: "Բնության Հրաշք",
-        image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
-        icon: "Sparkles",
+        image: "/images/tours/garni-temple.jpg",
+        icon: "Mountain",
       },
     ],
   },
@@ -381,26 +381,26 @@ export const defaultTravelPageContent: TravelPageContent = {
     headline_en: "Your Trusted DMC & Ground Partner in Armenia",
     headline_hy: "Ձեր Վստահելի DMC Գործընկերը Հայաստանում",
     subtext_en:
-      "White-label ground handling, wholesale group tariffs, modern vehicle fleet, and 4-hour SLA quotation for international travel agencies.",
+      "White-label ground handling, tailored group itineraries, modern vehicle fleet, and dedicated account managers for international travel agencies.",
     subtext_hy:
-      "Ամբողջական տեղական սպասարկում, մեծածախ սակագներ և 4-ժամյա գնառաջարկ միջազգային տուրիստական ընկերությունների համար:",
+      "Ամբողջական տեղական սպասարկում, խմբային երթուղիներ և անհատական մենեջեր միջազգային տուրիստական ընկերությունների համար:",
     ctaTitle_en: "Are you an International Travel Agency or Tour Operator?",
     ctaTitle_hy: "Ցանկանու՞մ եք համագործակցել որպես B2B Գործընկեր",
     ctaDesc_en:
-      "Register with our Yerevan DMC desk to receive contract net tariffs, seasonal hotel allotments, and dedicated account management for Armenia inbound.",
+      "Register with our Yerevan DMC desk to receive contract itineraries, seasonal hotel allotments, and dedicated account management for Armenia inbound.",
     ctaDesc_hy:
-      "Գրանցվեք որպես գործընկեր՝ ստանալու մեր մեծածախ սակագները, հյուրանոցային հատուկ պայմանները և տրանսպորտային լոգիստիկան:",
+      "Գրանցվեք որպես գործընկեր՝ ստանալու մեր գործընկերային պայմանները, հյուրանոցային ամրագրումները և տրանսպորտային լոգիստիկան:",
     ctaButton_en: "Register as B2B Partner",
     ctaButton_hy: "Գրանցվել որպես Գործընկեր",
     pillars: [
       {
         icon: "Building2",
-        title_en: "Net Wholesale DMC Tariffs",
-        title_hy: "Զուտ մեծածախ սակագներ",
+        title_en: "Contract B2B Ground Allotments",
+        title_hy: "Ուղիղ B2B Պայմանագրեր",
         desc_en:
-          "Exclusive B2B group pricing for travel agents in India, UAE, CIS, Europe, and Asia sending leisure groups to Armenia.",
+          "Exclusive B2B ground coordination for travel agents in India, UAE, CIS, Europe, and Asia sending leisure groups to Armenia.",
         desc_hy:
-          "Հատուկ գներ արտասահմանյան տուրիստական գործակալությունների համար՝ խմբային տուրերի կազմակերպման նպատակով:",
+          "Հատուկ գործընկերային պայմաններ արտասահմանյան տուրիստական գործակալությունների համար՝ խմբային տուրերի կազմակերպման նպատակով:",
       },
       {
         icon: "Bus",
@@ -421,12 +421,12 @@ export const defaultTravelPageContent: TravelPageContent = {
       },
       {
         icon: "Clock",
-        title_en: "4-Hour Quotation Guarantee",
-        title_hy: "Արագ գնառաջարկ 4 ժամում",
+        title_en: "4-Hour Direct Dispatch Response",
+        title_hy: "Օպերատիվ պատասխան 4 ժամում",
         desc_en:
-          "Direct communication with our Yerevan inbound team. Itineraries, hotel allotments, and net invoices generated within 4 hours.",
+          "Direct communication with our Yerevan inbound team. Itineraries, hotel allotments, and coordination confirmations generated within 4 hours.",
         desc_hy:
-          "Օպերատիվ կապ մեր Երևանի գրասենյակի հետ: Ծրագրի և հաշիվ-ապրանքագրի տրամադրում 4 ժամվա ընթացքում:",
+          "Օպերատիվ կապ մեր Երևանի գրասենյակի հետ: Ծրագրի և հաստատման տրամադրում 4 ժամվա ընթացքում:",
       },
     ],
   },
@@ -826,12 +826,12 @@ export const defaultTravelFaqs: FaqItem[] = [
     id: "travel-faq-custom",
     category: "travel",
     target: "both",
-    q_en: "Can tour packages be tailored for budget constraints or specific hotel preferences?",
-    q_hy: "Հնարավո՞ր է արդյոք հարմարեցնել տուրերը բյուջեին կամ ընտրել այլ հյուրանոցներ:",
+    q_en: "Can tour packages be tailored for specific pacing or hotel preferences?",
+    q_hy: "Հնարավո՞ր է արդյոք հարմարեցնել տուրերը նախասիրություններին կամ ընտրել այլ հյուրանոցներ:",
     a_en:
-      "Absolutely. We operate on a fully bespoke model. You can choose between Value Economy (clean central 3★ lodging and economy sedan), Classic Comfort (4★ boutique city stays), or Ultra-Luxury (regional wine resort villas and executive chauffeur fleet). If you have already booked your hotel, we offer tour-and-chauffeur-only packages.",
+      "Absolutely. We operate on a fully bespoke model. You can choose between Classic Comfort (clean central 3★ or 4★ boutique stays), or Regional Luxury (wine resort villas and executive chauffeur fleet). If you have already booked your hotel, we offer tour-and-chauffeur-only packages.",
     a_hy:
-      "Միանշանակ: Մեր բոլոր ծրագրերը 100% ճկուն են: Կարող եք ընտրել մատչելի 3★ հյուրանոցներ և էկոնոմ մեքենա, 4★ կոմֆորտ կամ բուտիկ գինու ռեզորթներ: Եթե արդեն ունեք ամրագրված հյուրանոց, կարող եք պատվիրել միայն տրանսպորտն ու էքսկուրսավարին:",
+      "Միանշանակ: Մեր բոլոր ծրագրերը 100% ճկուն են: Կարող եք ընտրել հարմարավետ 3★ կամ 4★ բուտիկ հյուրանոցներ և տարածաշրջանային գինու ռեզորթներ: Եթե արդեն ունեք ամրագրված հյուրանոց, կարող եք պատվիրել միայն տրանսպորտն ու էքսկուրսավարին:",
     isPublished: true,
   },
   {
@@ -841,9 +841,9 @@ export const defaultTravelFaqs: FaqItem[] = [
     q_en: "What are the cooperation terms for international travel agents and B2B DMCs?",
     q_hy: "Որո՞նք են գործակալությունների և B2B գործընկերների հետ համագործակցության պայմանները:",
     a_en:
-      "We provide white-label ground management for outbound agencies in the UAE, India, Europe, and Asia. Our B2B tariffs feature competitive net wholesale rates, dedicated Yerevan dispatch managers, branded airport reception, and credit terms for contracted partners.",
+      "We provide white-label ground management for outbound agencies in the UAE, India, Europe, and Asia. Our B2B partnerships feature dedicated Yerevan dispatch managers, verified hotel allotments, branded airport reception, and tailored itinerary coordination for contracted partners.",
     a_hy:
-      "Մենք տրամադրում ենք տեղական սպասարկում արտերկրի գործակալությունների համար՝ մրցունակ զուտ (net) մեծածախ գներով, գործընկերոջ բրենդով դիմավորմամբ և 24/7 օպերատիվ աջակցությամբ:",
+      "Մենք տրամադրում ենք տեղական սպասարկում արտերկրի գործակալությունների համար՝ գործընկերոջ բրենդով դիմավորմամբ, հյուրանոցային ամրագրումներով և 24/7 օպերատիվ աջակցությամբ:",
     isPublished: true,
   },
 ];
@@ -880,9 +880,9 @@ export const defaultManpowerFaqs: FaqItem[] = [
     q_en: "What is the 30-Day Employer Replacement Warranty for enterprise hires?",
     q_hy: "Ի՞նչ է իրենից ներկայացնում գործատուների համար գործող 30-օրյա փոխարինման երաշխիքը:",
     a_en:
-      "We stand behind the quality of our vetted talent. If a deployed candidate fails to satisfy the technical competencies or work attendance expectations outlined in the job description within their first 30 days of employment, De Organica provides an expedited replacement candidate at zero additional agency placement charge.",
+      "We stand behind the quality of our vetted talent. If a deployed candidate fails to satisfy the technical competencies or work attendance expectations outlined in the job description within their first 30 days of employment, De Organica provides an expedited replacement candidate under our recruitment warranty.",
     a_hy:
-      "Մենք երաշխավորում ենք ընտրված մասնագետների որակը: Եթե տեղավորված աշխատակիցը փորձաշրջանի առաջին 30 օրվա ընթացքում չի համապատասխանում պահանջներին, «Դե Օրգանիկա»-ն տրամադրում է նոր որակավորված թեկնածու՝ առանց որևէ հավելյալ վճարի:",
+      "Մենք երաշխավորում ենք ընտրված մասնագետների որակը: Եթե տեղավորված աշխատակիցը փորձաշրջանի առաջին 30 օրվա ընթացքում չի համապատասխանում պահանջներին, «Դե Օրգանիկա»-ն տրամադրում է նոր որակավորված թեկնածու մեր կորպորատիվ երաշխիքի շրջանակներում:",
     isPublished: true,
   },
   {
@@ -892,9 +892,9 @@ export const defaultManpowerFaqs: FaqItem[] = [
     q_en: "How are worker wages paid, and what taxes/social insurance apply in Armenia?",
     q_hy: "Ինչպե՞ս են վճարվում աշխատավարձերը և ի՞նչ հարկեր են գործում Հայաստանում:",
     a_en:
-      "All salaries are legally disbursed via official Armenian bank account transfer in Armenian Dram (AMD). Employers must provide formal pay slips showing compliant income tax and social insurance deductions, which entitle workers to legal medical coverage and workplace protections under the RA Labor Code.",
+      "All salaries are legally disbursed via direct official bank deposits. Employers must provide formal documentation showing statutory social contributions, which entitle workers to official medical coverage and workplace protections under the RA Labor Code.",
     a_hy:
-      "Բոլոր աշխատավարձերը վճարվում են բացառապես անկանխիկ՝ հայաստանյան բանկային հաշիվներին ՀՀ դրամով (AMD): Գործատուն կատարում է օրենքով սահմանված հարկային և սոցիալական վճարումները, ինչն ապահովում է բժշկական ապահովագրություն և աշխատանքային իրավունքների պաշտպանություն:",
+      "Բոլոր աշխատավարձերը վճարվում են բացառապես անկանխիկ՝ պաշտոնական բանկային փոխանցումների միջոցով: Գործատուն ապահովում է օրենքով սահմանված սոցիալական երաշխիքները, ինչը ներառում է բժշկական ապահովագրություն և աշխատանքային իրավունքների պաշտպանություն:",
     isPublished: true,
   },
   {

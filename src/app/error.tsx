@@ -16,7 +16,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-brand-canvas flex flex-col">
+    <div className="min-h-screen bg-brand-stone-50 flex flex-col">
       <header className="border-b border-brand-stone-200 bg-white/95 px-6 py-4">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <Link

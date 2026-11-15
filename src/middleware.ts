@@ -18,11 +18,12 @@ export function middleware(req: NextRequest) {
   const hostname = req.headers.get("host") || "";
 
   // Normalize host: strip port if present (e.g. travel.localhost:3000 -> travel.localhost)
-  const currentHost = hostname.split(":")[0].toLowerCase();
+  const hostParts = hostname.split(":");
+  const currentHost = hostParts[0].toLowerCase();
+  const port = hostParts[1] ? `:${hostParts[1]}` : "";
+  const isLocalhost = currentHost.includes("localhost");
 
   // Subdomain detection rules
-  // Production: travel.deorganica.am, manpower.deorganica.am, careers.deorganica.am
-  // Local testing: travel.localhost, manpower.localhost, careers.localhost
   const isTravelSubdomain =
     currentHost.startsWith("travel.deorganica.am") ||
     currentHost.startsWith("travel.localhost");
@@ -33,38 +34,43 @@ export function middleware(req: NextRequest) {
     currentHost.startsWith("manpower.localhost") ||
     currentHost.startsWith("careers.localhost");
 
-  // Keep API, Sanity Studio, contact, & shared legal routes untouched across all domains and subdomains
+  // Keep API and Sanity Studio routes untouched across all domains and subdomains
   if (
     url.pathname.startsWith("/api") ||
-    url.pathname.startsWith("/studio") ||
-    url.pathname === "/contact" ||
-    url.pathname === "/privacy" ||
-    url.pathname === "/terms"
+    url.pathname.startsWith("/studio")
   ) {
     return NextResponse.next();
   }
 
-  // 1. Travel Subdomain (travel.deorganica.am)
+  // Canonical base host for SEO consolidation and shared cookie context
+  const canonicalBase = isLocalhost
+    ? `http://localhost${port || ":3000"}`
+    : "https://deorganica.am";
+
+  // 1. Travel Subdomain -> 308 Permanent Redirect to https://deorganica.am/travel
   if (isTravelSubdomain) {
-    if (url.pathname === "/") {
-      return NextResponse.rewrite(new URL("/travel", req.url));
+    let targetPath = "/travel";
+    if (url.pathname !== "/") {
+      targetPath = url.pathname.startsWith("/travel")
+        ? url.pathname
+        : `/travel${url.pathname}`;
     }
-    // If not already prefixed with /travel, rewrite
-    if (!url.pathname.startsWith("/travel")) {
-      return NextResponse.rewrite(new URL(`/travel${url.pathname}`, req.url));
-    }
-    return NextResponse.next();
+    const targetUrl = new URL(targetPath, canonicalBase);
+    targetUrl.search = url.search;
+    return NextResponse.redirect(targetUrl, 308);
   }
 
-  // 2. Manpower Subdomain (manpower.deorganica.am or careers.deorganica.am)
+  // 2. Manpower Subdomain -> 308 Permanent Redirect to https://deorganica.am/manpower
   if (isManpowerSubdomain) {
-    if (url.pathname === "/") {
-      return NextResponse.rewrite(new URL("/manpower", req.url));
+    let targetPath = "/manpower";
+    if (url.pathname !== "/") {
+      targetPath = url.pathname.startsWith("/manpower")
+        ? url.pathname
+        : `/manpower${url.pathname}`;
     }
-    if (!url.pathname.startsWith("/manpower")) {
-      return NextResponse.rewrite(new URL(`/manpower${url.pathname}`, req.url));
-    }
-    return NextResponse.next();
+    const targetUrl = new URL(targetPath, canonicalBase);
+    targetUrl.search = url.search;
+    return NextResponse.redirect(targetUrl, 308);
   }
 
   // 3. Default root domain (deorganica.am / www.deorganica.am / localhost:3000)

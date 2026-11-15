@@ -4,8 +4,6 @@
 
 @layer base {
   :root {
-    --font-serif: "Cormorant Garamond", "Noto Serif Armenian", Georgia, serif;
-    --font-sans: "Plus Jakarta Sans", "Noto Sans Armenian", system-ui, sans-serif;
     --brand-forest: #233d20;
     --brand-olive: #668b2e;
     --brand-olive-text: #4b6820;
@@ -32,7 +30,7 @@
   }
 
   body {
-    font-family: var(--font-sans);
+    font-family: var(--font-sans), "Plus Jakarta Sans", "Noto Sans Armenian", system-ui, sans-serif;
     background-color: #fbfbf9;
     color: #1a2219;
     overflow-x: clip;
@@ -43,7 +41,7 @@
   h3,
   h4,
   .font-serif {
-    font-family: var(--font-serif);
+    font-family: var(--font-serif), "Cinzel", var(--font-armenian-serif), "Noto Serif Armenian", Georgia, serif;
     text-wrap: balance;
   }
 

@@ -12,15 +12,24 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
+export function LanguageProvider({
+  children,
+  initialLocale = "en",
+}: {
+  children: React.ReactNode;
+  initialLocale?: Locale;
+}) {
+  const [locale, setLocaleState] = useState<Locale>(initialLocale);
 
   useEffect(() => {
     try {
       const saved = localStorage.getItem("deorganica_locale") as Locale;
       if (saved === "en" || saved === "hy") {
-        setLocaleState(saved);
+        if (saved !== locale) {
+          setLocaleState(saved);
+        }
         document.documentElement.lang = saved;
+        document.cookie = `deorganica_locale=${saved}; path=/; max-age=31536000; SameSite=Lax`;
       }
     } catch {
       // localStorage may fail in private mode
@@ -36,6 +45,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.lang = newLocale;
     try {
       localStorage.setItem("deorganica_locale", newLocale);
+      document.cookie = `deorganica_locale=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
     } catch {
       // ignore
     }

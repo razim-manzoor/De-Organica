@@ -24,7 +24,6 @@ export function DmcPartnerSection({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mb-12 sm:mb-14">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-onDark mb-3">
-            <span className="inline-block w-2 h-2 rounded-full bg-brand-olive-onDark" />
             <span>{isHy ? content.eyebrow_hy : content.eyebrow_en}</span>
           </div>
 
@@ -74,7 +73,7 @@ export function DmcPartnerSection({
           <button
             type="button"
             onClick={() => openTravelDrawer("B2B Travel Partner DMC Agreement")}
-            className="min-h-[44px] self-start md:self-auto px-6 py-3 rounded-xl bg-brand-olive-onDark text-brand-forest-deep text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors duration-200 flex items-center gap-2 shadow-md flex-shrink-0 cursor-pointer"
+            className="min-h-[44px] self-start md:self-auto px-6 py-3 rounded-xl bg-brand-olive-onDark text-brand-forest-deep text-xs font-bold uppercase tracking-wider hover:bg-white transition-all active:scale-95 duration-200 flex items-center gap-2 shadow-md flex-shrink-0 cursor-pointer"
           >
             <span>{isHy ? content.ctaButton_hy : content.ctaButton_en}</span>
             <ArrowRight className="w-4 h-4" />

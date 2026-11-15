@@ -8,7 +8,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
 import { useDrawer } from "@/context/DrawerContext";
 import { useSiteData } from "@/context/SiteDataContext";
-import { Menu, X, ArrowUpRight, Sparkles } from "lucide-react";
+import { Menu, X, ArrowUpRight, Phone, MessageCircle } from "lucide-react";
 
 export function Header() {
   const pathname = usePathname();
@@ -62,7 +62,7 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav
             aria-label={isHy ? "Հիմնական նավիգացիա" : "Primary navigation"}
-            className="hidden md:flex items-center gap-1 lg:gap-2"
+            className="hidden md:flex items-center gap-1 lg:gap-1.5"
           >
             {navItems.map((item) => {
               const isActive =
@@ -75,28 +75,42 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   aria-current={isActive ? "page" : undefined}
-                  className={`min-h-[40px] px-3.5 py-2 rounded-full text-xs lg:text-sm font-semibold transition-colors duration-200 flex items-center ${
+                  className={`relative min-h-[38px] px-3.5 py-2 text-xs lg:text-sm tracking-[0.015em] transition-all duration-200 flex items-center rounded-xl ${
                     isActive
-                      ? "bg-brand-olive-subtle text-brand-forest"
-                      : "text-brand-ink-muted hover:text-brand-forest hover:bg-brand-stone-100"
+                      ? "text-brand-forest font-bold bg-brand-stone-100/80"
+                      : "text-brand-ink-muted hover:text-brand-forest hover:bg-brand-stone-100/50 font-medium"
                   }`}
                 >
-                  {isHy ? item.label_hy : item.label_en}
+                  <span>{isHy ? item.label_hy : item.label_en}</span>
+                  {isActive && (
+                    <span className="absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-brand-olive rounded-full" />
+                  )}
                 </Link>
               );
             })}
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-3 shrink-0">
+          <div className="hidden md:flex items-center gap-2.5 shrink-0">
+            {/* Direct Telephone Touchpoint (Zero-Form) */}
+            <a
+              href={`tel:${siteSettings.company.phoneYerevanDesk.replace(/\s+/g, "")}`}
+              className="min-h-[38px] px-3 py-1.5 rounded-xl border border-brand-stone-200 bg-white/80 hover:bg-white hover:border-brand-stone-300 text-xs lg:text-[13px] text-brand-forest transition-all active:scale-95 duration-200 flex items-center gap-2 shadow-2xs group"
+              title={isHy ? "Զանգահարել Երևանի դեսկ" : "Call Yerevan Desk"}
+            >
+              <span className="w-2 h-2 rounded-full bg-[#25D366] shrink-0 animate-pulse" />
+              <Phone className="w-3.5 h-3.5 text-brand-olive-text shrink-0 group-hover:scale-110 transition-transform" />
+              <span className="font-sans font-medium tabular-nums hidden lg:inline">{siteSettings.company.phoneYerevanDesk}</span>
+              <span className="font-sans text-xs lg:hidden">{isHy ? "Զանգ" : "Call"}</span>
+            </a>
+
             <LanguageSwitcher />
 
             <button
               type="button"
               onClick={handleContextInquiry}
-              className="min-h-[42px] inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-forest text-white text-xs font-semibold tracking-wide hover:bg-brand-forest-deep transition-colors duration-200 shadow-sm hover:shadow-md cursor-pointer"
+              className="min-h-[38px] inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-forest text-white text-xs lg:text-sm font-semibold tracking-wide hover:bg-brand-forest-deep transition-all active:scale-95 duration-200 shadow-sm hover:shadow-md cursor-pointer"
             >
-              <Sparkles className="w-3.5 h-3.5 text-brand-olive-onDark shrink-0" />
               <span>
                 {isManpowerRoute
                   ? isHy
@@ -106,7 +120,7 @@ export function Header() {
                   ? "Ուղիղ Հարցում"
                   : "Direct Inquiry"}
               </span>
-              <ArrowUpRight className="w-3.5 h-3.5 opacity-85" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-brand-olive-onDark opacity-90" />
             </button>
           </div>
 
@@ -119,7 +133,7 @@ export function Header() {
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav-drawer"
               aria-label={mobileMenuOpen ? (isHy ? "Փակել մենյուն" : "Close navigation menu") : (isHy ? "Բացել մենյուն" : "Open navigation menu")}
-              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl border border-brand-stone-200 bg-white text-brand-forest hover:bg-brand-stone-100 transition-colors duration-200 cursor-pointer"
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl border border-brand-stone-200 bg-white text-brand-forest hover:bg-brand-stone-100 transition-all active:scale-95 duration-200 cursor-pointer"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -161,22 +175,43 @@ export function Header() {
               );
             })}
 
-            <div className="pt-2">
+            {/* Mobile Direct 1-Tap No-Form Action Strip */}
+            <div className="grid grid-cols-2 gap-2 pt-2 pb-1">
+              <a
+                href={`tel:${siteSettings.company.phoneYerevanDesk.replace(/\s+/g, "")}`}
+                className="min-h-[44px] px-3 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-brand-forest hover:bg-brand-stone-100 text-xs font-semibold flex items-center justify-center gap-1.5 shadow-2xs"
+              >
+                <Phone className="w-4 h-4 text-brand-olive-text shrink-0" />
+                <span>{isHy ? "Զանգահարել" : "Call Desk"}</span>
+              </a>
+
+              <a
+                href={`https://wa.me/${siteSettings.company.whatsappNumberDigits}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="min-h-[44px] px-3 py-2.5 rounded-xl bg-[#25D366] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-2xs"
+              >
+                <MessageCircle className="w-4 h-4 text-white shrink-0" />
+                <span>WhatsApp</span>
+              </a>
+            </div>
+
+            <div className="pt-1">
               <button
                 type="button"
                 onClick={handleContextInquiry}
-                className="w-full min-h-[48px] px-4 py-3 rounded-xl bg-brand-forest text-white text-sm font-semibold hover:bg-brand-forest-deep transition-colors duration-200 flex items-center justify-center gap-2 shadow-sm cursor-pointer"
+                className="w-full min-h-[48px] px-4 py-3 rounded-xl bg-brand-forest text-white text-sm font-semibold hover:bg-brand-forest-deep transition-all active:scale-98 duration-200 flex items-center justify-center gap-2 shadow-sm cursor-pointer"
               >
-                <Sparkles className="w-4 h-4 text-brand-olive-onDark" />
                 <span>
                   {isManpowerRoute
                     ? isHy
                       ? "Ուղարկել Ռեզյումե (CV)"
                       : "Submit Candidate CV / Resume"
                     : isHy
-                    ? "Ուղիղ Հարցում Երևանի Դեսկին"
-                    : "Direct Inquiry · Yerevan Desk"}
+                    ? "Ուղիղ Հարցում"
+                    : "Contact Concierge"}
                 </span>
+                <ArrowUpRight className="w-4 h-4 text-brand-olive-onDark opacity-90" />
               </button>
             </div>
           </nav>

@@ -9,10 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        whatsapp: "#25D366",
         brand: {
+          canvas: "#FBFBF9",
+          alabaster: "#FBFBF9",
           forest: {
             DEFAULT: "#233D20",
             deep: "#192C17",
+            dark: "#192C17",
             light: "#2F502B",
             muted: "#3B6137",
           },
@@ -25,6 +29,7 @@ const config: Config = {
             subtle: "#EFF5E8",
           },
           stone: {
+            DEFAULT: "#F4F3EE",
             50: "#FBFBF9",
             100: "#F4F3EE",
             200: "#E8E6DF",
@@ -50,8 +55,19 @@ const config: Config = {
         },
       },
       fontFamily: {
-        serif: ["var(--font-serif)", "Noto Serif Armenian", "Georgia", "serif"],
-        sans: ["var(--font-sans)", "Noto Sans Armenian", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Cinzel", "var(--font-armenian-serif)", "Noto Serif Armenian", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "Plus Jakarta Sans", "var(--font-armenian-sans)", "Noto Sans Armenian", "system-ui", "sans-serif"],
+      },
+      scale: {
+        "95": "0.95",
+        "98": "0.98",
+        "102": "1.02",
+        "103": "1.03",
+        "105": "1.05",
+      },
+      boxShadow: {
+        "2xs": "0 1px 2px 0 rgba(0, 0, 0, 0.03)",
+        xs: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

@@ -35,7 +35,7 @@
 │     DE ORGANICA TRAVEL        │               │     DE ORGANICA MANPOWER      │
 │   Bespoke Inbound Armenia     │               │    Ethical Talent Placement   │
 ├───────────────────────────────┤               ├───────────────────────────────┤
-│ • Tailored Private Tours      │               │ • 0.00 AMD Upfront Fee Model  │
+│ • Tailored Private Tours      │               │ • Zero Upfront Direct Placement │
 │ • Areni 6,100-Yr Wine Terroir │               │ • Legal Work Permits & Visas  │
 │ • Wings of Tatev & Canyons    │               │ • Ministry Quota Management   │
 │ • UNESCO Tonir Lavash Masters │               │ • Hospitality & Construction  │

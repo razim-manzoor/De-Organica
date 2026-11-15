@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { useDrawer } from "@/context/DrawerContext";
 import type { TravelPageContent } from "@/types/content";
@@ -37,7 +38,6 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
           <div className="lg:col-span-7">
             {/* Geographic & Curated Travel Tag */}
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-text mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-olive" />
               <span>{isHy ? content.eyebrow_hy : content.eyebrow_en}</span>
             </div>
 
@@ -49,13 +49,13 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
               {isHy ? content.subtext_hy : content.subtext_en}
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 mb-8">
+            <div className="flex flex-wrap items-center gap-3 mb-4">
               <button
                 type="button"
                 onClick={() =>
                   openTravelDrawer(`Custom Tour: ${activeDest.name_en}`)
                 }
-                className="min-h-[44px] inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-forest text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-forest-deep transition-colors duration-200 shadow-sm group cursor-pointer"
+                className="min-h-[44px] inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-forest text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-forest-deep transition-all active:scale-95 duration-200 shadow-sm group cursor-pointer"
               >
                 <Compass className="w-4 h-4 text-brand-olive-onDark" />
                 <span>{isHy ? content.ctaPrimary_hy : content.ctaPrimary_en}</span>
@@ -63,11 +63,36 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
               </button>
 
               <a
-                href="#tours-matrix"
-                className="min-h-[44px] inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-brand-stone-100 text-brand-forest hover:bg-brand-stone-200 text-xs font-semibold transition-colors duration-200 shadow-sm cursor-pointer"
+                href="#tours"
+                className="min-h-[44px] inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-brand-stone-100 text-brand-forest hover:bg-brand-stone-200 text-xs font-semibold transition-all active:scale-95 duration-200 shadow-sm cursor-pointer"
               >
                 <span>{isHy ? content.ctaSecondary_hy : content.ctaSecondary_en}</span>
               </a>
+            </div>
+
+            {/* Direct Zero-Form Consultation Micro-Link */}
+            <div className="flex items-center gap-2 text-xs text-brand-ink-muted mb-8 font-sans">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] shrink-0" />
+              <span>
+                {isHy
+                  ? "Նախընտրում եք ուղիղ կա՞պ:"
+                  : "Prefer immediate consultation?"}{" "}
+                <a
+                  href="https://wa.me/37493723321"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-brand-forest hover:text-brand-forest-deep font-semibold underline underline-offset-2"
+                >
+                  {isHy ? "Գրեք WhatsApp-ով" : "Message on WhatsApp"}
+                </a>{" "}
+                {isHy ? "կամ" : "or"}{" "}
+                <a
+                  href="tel:+37493723321"
+                  className="text-brand-forest hover:text-brand-forest-deep font-semibold underline underline-offset-2"
+                >
+                  {isHy ? "զանգահարեք" : "call +374 93 723321"}
+                </a>
+              </span>
             </div>
 
             {/* Travel Specific Pillar Badges */}
@@ -92,23 +117,21 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
             <div className="rounded-3xl bg-white border border-brand-stone-200/90 p-5 shadow-xl relative overflow-hidden group">
               {/* Image Preview with Atmospheric Gradient */}
               <div className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden bg-brand-stone-200 mb-4">
-                <img
+                <Image
                   src={activeDest.image}
                   alt={isHy ? activeDest.name_hy : activeDest.name_en}
-                  className="w-full h-full object-cover hover-img-zoom"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover hover-img-zoom"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/90 via-brand-forest/20 to-transparent" />
 
-                {/* Top Badges */}
+                {/* Top Quiet Badge */}
                 <div className="absolute top-3 left-3 flex items-center gap-2">
                   <span className="px-2.5 py-1 rounded-full bg-brand-forest/90 backdrop-blur-sm text-white text-xs font-bold uppercase tracking-wider border border-white/20">
                     {isHy ? activeDest.tag_hy : activeDest.tag_en}
                   </span>
-                </div>
-
-                <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full text-brand-forest text-xs font-semibold flex items-center gap-1 shadow-sm">
-                  <Mountain className="w-3 h-3 text-brand-olive-text" />
-                  <span>{activeDest.altitudeM}m ASL</span>
                 </div>
 
                 {/* Bottom Overlay Info */}
@@ -116,6 +139,8 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
                   <div className="flex items-center gap-2 text-xs text-brand-olive-onDark mb-1">
                     <MapPin className="w-3.5 h-3.5" />
                     <span>{activeDest.distKm} {isHy ? "կմ Երևանից" : "km from Yerevan"}</span>
+                    <span>·</span>
+                    <span>{activeDest.altitudeM}m ASL</span>
                     <span>·</span>
                     <span>{isHy ? activeDest.season_hy : activeDest.season_en}</span>
                   </div>
@@ -173,7 +198,7 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
                 onClick={() =>
                   openTravelDrawer(`Route Inquiry: ${activeDest.name_en}`)
                 }
-                className="w-full min-h-[44px] py-2.5 px-4 rounded-xl bg-brand-stone-100 hover:bg-brand-forest hover:text-white text-brand-forest text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 border border-brand-stone-300 shadow-sm cursor-pointer group/cta"
+                className="w-full min-h-[44px] py-2.5 px-4 rounded-xl bg-brand-stone-100 hover:bg-brand-forest hover:text-white text-brand-forest text-xs font-bold uppercase tracking-wider transition-all active:scale-95 flex items-center justify-center gap-2 border border-brand-stone-300 shadow-sm cursor-pointer group/cta"
               >
                 <span>
                   {isHy

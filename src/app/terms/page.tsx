@@ -9,12 +9,12 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Terms of Service & Placement Policy | De Organica LLC",
   description:
-    "Official corporate terms of service, travel booking conditions, and strict Zero Upfront Candidate Fee policy for De Organica LLC.",
+    "Official corporate terms of service, travel booking conditions, and ethical candidate placement standards for De Organica LLC.",
 };
 
 export default function TermsOfServicePage() {
   return (
-    <div className="flex flex-col min-h-screen bg-brand-canvas">
+    <div className="flex flex-col min-h-screen bg-brand-stone-50">
       <Header />
       <main id="main-content" className="flex-grow pt-8">
         <LegalDocumentView mode="terms" />

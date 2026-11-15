@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
     "De Organica Manpower · International Recruitment & B2B Staffing";
   const description =
     manpowerPage.seo?.seoDescription ||
-    "Verified international talent supply and recruitment for Armenia. Zero upfront fees for candidates, pay-after-job guarantee, legal Ministry of Labor work permits, and B2B corporate staffing.";
+    "Verified international talent supply and recruitment for Armenia. Direct placement with verified employers, legal Ministry of Labor work permits, and B2B corporate staffing.";
 
   return {
     title,

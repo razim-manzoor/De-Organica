@@ -47,7 +47,6 @@ export function ManpowerEmployerSection({
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-text mb-3">
-            <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
             <span>{isHy ? content.eyebrow_hy : content.eyebrow_en}</span>
           </div>
 
@@ -123,7 +122,7 @@ export function ManpowerEmployerSection({
             <button
               type="button"
               onClick={openEmployerDrawer}
-              className="min-h-[44px] px-6 py-3.5 rounded-xl bg-brand-olive-onDark text-brand-forest-deep text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors duration-200 flex items-center justify-center gap-2 shadow-md cursor-pointer"
+              className="min-h-[44px] px-6 py-3.5 rounded-xl bg-brand-olive-onDark text-brand-forest-deep text-xs font-bold uppercase tracking-wider hover:bg-white transition-all active:scale-95 duration-200 flex items-center justify-center gap-2 shadow-md cursor-pointer"
             >
               <span>{isHy ? "Հայտնել Պահանջարկը" : "Request Manpower Quote"}</span>
               <ArrowRight className="w-4 h-4" />
@@ -132,9 +131,9 @@ export function ManpowerEmployerSection({
             <button
               type="button"
               onClick={handleWhatsAppEmployer}
-              className="min-h-[44px] px-5 py-3.5 rounded-xl border border-white/30 bg-white/10 text-white text-xs font-semibold hover:bg-white/20 transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
+              className="min-h-[44px] px-5 py-3.5 rounded-xl border border-white/30 bg-white/10 text-white text-xs font-semibold hover:bg-white/20 transition-all active:scale-95 duration-200 flex items-center justify-center gap-2 cursor-pointer"
             >
-              <MessageCircle className="w-4 h-4 text-brand-olive-onDark" />
+              <MessageCircle className="w-4 h-4 text-[#25D366]" />
               <span>WhatsApp Desk</span>
             </button>
           </div>

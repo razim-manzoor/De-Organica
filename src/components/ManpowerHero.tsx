@@ -49,11 +49,11 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
               {isHy ? content.subtext_hy : content.subtext_en}
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 mb-8">
+            <div className="flex flex-wrap items-center gap-3 mb-4">
               <button
                 type="button"
                 onClick={() => openCandidateDrawer()}
-                className="min-h-[44px] inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-forest text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-forest-deep transition-colors shadow-sm cursor-pointer group"
+                className="min-h-[44px] inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-forest text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-forest-deep transition-all active:scale-95 shadow-sm cursor-pointer group"
               >
                 <Briefcase className="w-4 h-4 text-brand-olive-onDark shrink-0" />
                 <span>{isHy ? "Թեկնածուներին · Ուղարկել CV" : "Job Seekers · Submit CV"}</span>
@@ -63,11 +63,36 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
               <button
                 type="button"
                 onClick={() => openEmployerDrawer()}
-                className="min-h-[44px] inline-flex items-center gap-2 px-5 py-3.5 rounded-xl border border-brand-stone-300 bg-white text-brand-forest text-xs font-semibold hover:bg-brand-stone-100 transition-colors shadow-sm cursor-pointer"
+                className="min-h-[44px] inline-flex items-center gap-2 px-5 py-3.5 rounded-xl border border-brand-stone-300 bg-white text-brand-forest text-xs font-semibold hover:bg-brand-stone-100 transition-all active:scale-95 shadow-sm cursor-pointer"
               >
                 <Building2 className="w-4 h-4 text-brand-olive-text shrink-0" />
                 <span>{isHy ? "Գործատուներին · Պատվիրել աշխատուժ" : "Employers · Hire Manpower"}</span>
               </button>
+            </div>
+
+            {/* Direct Zero-Form Consultation Micro-Link */}
+            <div className="flex items-center gap-2 text-xs text-brand-ink-muted mb-8 font-sans">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] shrink-0" />
+              <span>
+                {isHy
+                  ? "Նախընտրում եք ուղիղ կա՞պ:"
+                  : "Prefer direct consultation?"}{" "}
+                <a
+                  href="https://wa.me/37493723321"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-brand-forest hover:text-brand-forest-deep font-semibold underline underline-offset-2"
+                >
+                  {isHy ? "Գրեք WhatsApp-ով" : "Message on WhatsApp"}
+                </a>{" "}
+                {isHy ? "կամ" : "or"}{" "}
+                <a
+                  href="tel:+37493723321"
+                  className="text-brand-forest hover:text-brand-forest-deep font-semibold underline underline-offset-2"
+                >
+                  {isHy ? "զանգահարեք" : "call +374 93 723321"}
+                </a>
+              </span>
             </div>
 
             {/* Key Dimensional Metrics */}
@@ -85,28 +110,30 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
             </div>
           </div>
 
-          {/* Right Column: Dimensional Drawing Specification Sheet */}
+          {/* Right Column: Candidate & Employer Assurance Panel */}
           <div className="lg:col-span-5">
-            <div className="rounded-3xl bg-white border border-brand-stone-300 p-6 shadow-xl relative font-sans">
-              {/* Technical Spec Title Block */}
+            <div className="rounded-3xl bg-white border border-brand-stone-200/90 p-6 shadow-xl relative font-sans">
+              {/* Trust Header Block */}
               <div className="border-b border-brand-stone-200 pb-3 mb-4">
-                <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-brand-ink-subtle">
-                  <span>DWG NO: ARM-REC-2026</span>
-                  <span>{isHy ? "ՏԱՐԲԵՐԱԿ՝ 2.4 · ՀԱՍՏԱՏՎԱԾ" : "REV: 2.4 · STABLE"}</span>
+                <div className="flex items-center justify-between text-xs font-semibold text-brand-olive-text">
+                  <span className="flex items-center gap-1.5">
+                    <ShieldCheck className="w-3.5 h-3.5 text-brand-olive-text" />
+                    <span>{isHy ? "ՀՀ Պաշտոնական Գրանցում" : "Official RA Accreditation"}</span>
+                  </span>
+                  <span className="px-2 py-0.5 rounded-full bg-brand-stone-100 text-brand-forest border border-brand-stone-200 text-xs font-bold">
+                    {isHy ? "100% Օրինական" : "100% Verified"}
+                  </span>
                 </div>
-                <div className="flex items-center justify-between mt-1.5">
+                <div className="mt-2">
                   <h2 className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                     {activeSpecTab === "candidate"
                       ? isHy
-                        ? "Թեկնածուների Պաշտպանության Կանոնակարգ"
-                        : "Candidate Protection Protocol"
+                        ? "Թեկնածուների Պաշտպանություն և Երաշխիքներ"
+                        : "Candidate Guarantees & Protections"
                       : isHy
-                      ? "Կորպորատիվ Հավաքագրման Կանոնակարգ"
-                      : "Enterprise Placement Protocol"}
+                      ? "Կորպորատիվ Հավաքագրման Ծառայություններ"
+                      : "Enterprise Recruitment & Staffing"}
                   </h2>
-                  <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-brand-stone-100 text-brand-forest border border-brand-stone-200">
-                    {isHy ? "ՍՏՈՒԳՎԱԾ" : "AUDITED"}
-                  </span>
                 </div>
               </div>
 
@@ -138,7 +165,7 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
                 </button>
               </div>
 
-              {/* Dimensional Flow Steps */}
+              {/* Step-by-Step Flow */}
               <div className="space-y-2.5 text-xs mb-5">
                 {(activeSpecTab === "candidate" ? candidateStages : employerStages).map((item, idx) => {
                   const toneClass =
@@ -156,9 +183,8 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
                           : "bg-brand-stone-50 border-brand-stone-200/80"
                       }`}
                     >
-                      <div className="flex items-center justify-between text-xs font-bold text-brand-forest font-mono">
+                      <div className="text-xs font-bold text-brand-forest">
                         <span>{isHy ? item.stage_hy : item.stage_en}</span>
-                        <span className={toneClass}>{isHy ? item.badge_hy : item.badge_en}</span>
                       </div>
                       <p className="text-xs text-brand-ink-muted font-sans mt-1 leading-snug">
                         {isHy ? item.desc_hy : item.desc_en}
@@ -173,20 +199,20 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
                 <button
                   type="button"
                   onClick={() => openCandidateDrawer()}
-                  className="min-h-[44px] w-full py-3 px-4 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-sm cursor-pointer group/cta"
+                  className="min-h-[44px] w-full py-3 px-4 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-bold uppercase tracking-wider transition-all active:scale-95 flex items-center justify-center gap-2 shadow-sm cursor-pointer group/cta"
                 >
                   <Briefcase className="w-3.5 h-3.5 text-brand-olive-onDark" />
-                  <span>{isHy ? "Ներկայացնել Ռեզյումե (CV)" : "Submit Candidate CV / Resume"}</span>
+                  <span>{isHy ? "Ներկայացնել Ռեզյումե (CV)" : "Submit Your Profile / CV"}</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/cta:translate-x-1" />
                 </button>
               ) : (
                 <button
                   type="button"
                   onClick={() => openEmployerDrawer()}
-                  className="min-h-[44px] w-full py-3 px-4 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-sm cursor-pointer group/cta"
+                  className="min-h-[44px] w-full py-3 px-4 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-bold uppercase tracking-wider transition-all active:scale-95 flex items-center justify-center gap-2 shadow-sm cursor-pointer group/cta"
                 >
                   <Building2 className="w-3.5 h-3.5 text-brand-olive-onDark" />
-                  <span>{isHy ? "Պատվիրել Աշխատուժի Քվոտա" : "Initiate Staffing Requisition"}</span>
+                  <span>{isHy ? "Պատվիրել Աշխատուժ" : "Request Manpower / Hire Staff"}</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/cta:translate-x-1" />
                 </button>
               )}

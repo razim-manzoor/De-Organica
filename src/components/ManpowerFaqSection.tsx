@@ -137,22 +137,22 @@ export function ManpowerFaqSection({
             <button
               type="button"
               onClick={handleWhatsAppInquiry}
-              className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
+              className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-[#25D366] text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-all active:scale-95 duration-200 shadow-sm cursor-pointer"
             >
-              <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+              <MessageCircle className="w-4 h-4 text-[#25D366]" />
               <span>WhatsApp</span>
             </button>
             <button
               type="button"
               onClick={() => openCandidateDrawer()}
-              className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
+              className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-all active:scale-95 duration-200 cursor-pointer"
             >
               {isHy ? "Ուղարկել CV" : "Drop CV"}
             </button>
             <button
               type="button"
               onClick={() => openEmployerDrawer()}
-              className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-colors duration-200 cursor-pointer"
+              className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-stone-100 hover:bg-brand-stone-200 text-brand-forest text-xs font-semibold transition-all active:scale-95 duration-200 cursor-pointer"
             >
               {isHy ? "Գործատու" : "Hire Staff"}
             </button>

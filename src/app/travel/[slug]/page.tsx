@@ -61,7 +61,7 @@ export default async function TourDetailPage({
   const otherTours = allTours.filter((item) => item.slug !== tour.slug);
 
   return (
-    <div className="min-h-screen flex flex-col bg-brand-alabaster">
+    <div className="min-h-screen flex flex-col bg-brand-stone-50">
       <Header />
       <main id="main-content" className="flex-1">
         <TourDetailView tour={tour} otherTours={otherTours} />

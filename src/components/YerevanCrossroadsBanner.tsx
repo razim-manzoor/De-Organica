@@ -27,7 +27,6 @@ export function YerevanCrossroadsBanner({
           {/* Left Narrative */}
           <div className="lg:col-span-6 space-y-5">
             <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-onDark">
-              <span className="w-2 h-2 rounded-full bg-brand-olive-onDark" />
               <span>{isHy ? content.eyebrow_hy : content.eyebrow_en}</span>
             </div>
 

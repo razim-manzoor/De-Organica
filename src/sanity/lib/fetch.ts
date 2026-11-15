@@ -204,7 +204,7 @@ export async function getTours(): Promise<TourPackage[]> {
         defaultTours[index];
       return {
         ...mergeWithFallback(match || defaultTours[0], t),
-        image: t.image || match?.image || "/images/noravank.png",
+        image: t.image || match?.image || "/images/tours/garni-temple.jpg",
         highlights_en: Array.isArray(t.highlights_en) ? t.highlights_en : match?.highlights_en || [],
         highlights_hy: Array.isArray(t.highlights_hy) ? t.highlights_hy : match?.highlights_hy || [],
         inclusions_en: Array.isArray(t.inclusions_en) ? t.inclusions_en : match?.inclusions_en || [],
@@ -228,7 +228,7 @@ export async function getTourBySlug(slug: string): Promise<TourPackage | null> {
       defaultTours[0];
     return {
       ...mergeWithFallback(fallbackMatch, cmsTour),
-      image: cmsTour.image || fallbackMatch?.image || "/images/noravank.png",
+      image: cmsTour.image || fallbackMatch?.image || "/images/tours/garni-temple.jpg",
     };
   }
 
@@ -247,7 +247,7 @@ export async function getTravelServices(): Promise<TravelService[]> {
         defaultTravelServices[index];
       return {
         ...mergeWithFallback(match || defaultTravelServices[0], s),
-        image: s.image || match?.image || "/images/tatev.png",
+        image: s.image || match?.image || "/images/tours/wings-of-tatev.jpg",
         features_en: Array.isArray(s.features_en) ? s.features_en : match?.features_en || [],
         features_hy: Array.isArray(s.features_hy) ? s.features_hy : match?.features_hy || [],
       };

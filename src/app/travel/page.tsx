@@ -2,10 +2,9 @@ import React from "react";
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { TravelHero } from "@/components/TravelHero";
-import { ItineraryStageShow } from "@/components/ItineraryStageShow";
-import { TravelServicesMatrix } from "@/components/TravelServicesMatrix";
 import { FeaturedToursGrid } from "@/components/FeaturedToursGrid";
-import { TravelHeritageShowcase } from "@/components/TravelHeritageShowcase";
+import { BespokeConciergeSection } from "@/components/BespokeConciergeSection";
+import { TravelServicesMatrix } from "@/components/TravelServicesMatrix";
 import { DmcPartnerSection } from "@/components/DmcPartnerSection";
 import { TravelFaqSection } from "@/components/TravelFaqSection";
 import { ContactSection } from "@/components/ContactSection";
@@ -58,25 +57,22 @@ export default async function TravelPage() {
         {/* Dedicated Travel Division Hero */}
         <TravelHero content={travelPage.hero} />
 
-        {/* StageShow Interactive Itinerary Explorer */}
-        <ItineraryStageShow content={travelPage.itineraryStageShow} />
-
-        {/* 6-Service Ground Operations Matrix */}
-        <TravelServicesMatrix services={services} header={travelPage.servicesHeader} />
-
-        {/* Signature Inbound Tour Packages */}
+        {/* 1. Signature Inbound Tour Packages (Primary Visitor Showcase) */}
         <FeaturedToursGrid tours={tours} header={travelPage.toursHeader} />
 
-        {/* Living Heritage, Terroir & Gastronomy Showcase */}
-        <TravelHeritageShowcase content={travelPage.heritageShowcase} />
+        {/* 2. Bespoke Private Journey Planning & Concierge Craft */}
+        <BespokeConciergeSection />
 
-        {/* B2B Destination Management (DMC) Wholesale Partner Portal */}
+        {/* 3. Dedicated Ground Logistics, Fleet & Consular Services */}
+        <TravelServicesMatrix services={services} header={travelPage.servicesHeader} />
+
+        {/* 4. B2B Destination Management (DMC) Wholesale Partner Portal */}
         <DmcPartnerSection content={travelPage.dmcPartner} />
 
-        {/* Armenia Travel Advisory & FAQ */}
+        {/* 5. Armenia Travel Advisory & FAQ */}
         <TravelFaqSection faqs={faqs} header={travelPage.faqHeader} />
 
-        {/* Contact & Desk Inquiries */}
+        {/* 6. Contact & Desk Inquiries */}
         <ContactSection variant="travel" content={contactContent} />
       </main>
       <Footer />

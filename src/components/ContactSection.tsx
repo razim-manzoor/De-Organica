@@ -122,7 +122,6 @@ export function ContactSection({
           <div className="lg:col-span-5 space-y-8">
             <div>
               <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-text mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-olive" />
                 <span>{isHy ? content.eyebrow_hy : content.eyebrow_en}</span>
               </div>
               <PrimaryHeading className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
@@ -284,16 +283,16 @@ export function ContactSection({
                     <button
                       type="button"
                       onClick={() => openTravelDrawer("Bespoke Private Itinerary")}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep active:scale-95 text-white text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs"
                     >
                       {isHy ? "Հայտ" : "Inquire"}
                     </button>
                     <button
                       type="button"
                       onClick={handleTravelWhatsApp}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark active:scale-95 text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 shadow-xs cursor-pointer"
                     >
-                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <MessageCircle className="w-4 h-4 text-[#25D366]" />
                       <span>WhatsApp</span>
                     </button>
                   </div>
@@ -305,19 +304,16 @@ export function ContactSection({
                       <Building2 className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-forest">
-                        <span>{isHy ? "B2B Գործընկերություն" : "B2B Destination Management (DMC)"}</span>
-                        <span className="px-2 py-0.5 rounded bg-brand-forest/10 text-brand-forest text-xs font-semibold">
-                          NET TARIFFS
-                        </span>
+                      <div className="text-xs font-bold uppercase tracking-wider text-brand-forest">
+                        {isHy ? "B2B Գործընկերություն" : "B2B Destination Management (DMC)"}
                       </div>
                       <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Մեծածախ DMC Սպասարկում Գործակալություններին" : "Wholesale Ground Handling & Allotments"}
                       </CardHeading>
                       <p className="text-xs sm:text-sm text-brand-ink-muted mt-0.5">
                         {isHy
-                          ? "Հատուկ գներ արտերկրի տուրօպերատորների համար, սպիտակ բրենդավորմամբ դիմավորում և MICE միջոցառումներ:"
-                          : "Exclusive contract rates for overseas tour operators, white-label EVN airport reception, and group allotments."}
+                          ? "Համագործակցության հատուկ պայմաններ արտերկրի տուրօպերատորների համար, սպիտակ բրենդավորմամբ դիմավորում և MICE միջոցառումներ:"
+                          : "Exclusive partner arrangements for overseas tour operators, white-label EVN airport reception, and group allotments."}
                       </p>
                     </div>
                   </div>
@@ -326,16 +322,16 @@ export function ContactSection({
                     <button
                       type="button"
                       onClick={() => openTravelDrawer("B2B Travel Partner DMC Agreement")}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep active:scale-95 text-white text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs"
                     >
-                      {isHy ? "Պայմանագիր" : "B2B Desk"}
+                      {isHy ? "Հայտ" : "Inquire"}
                     </button>
                     <button
                       type="button"
                       onClick={handleTravelWhatsApp}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark active:scale-95 text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 shadow-xs cursor-pointer"
                     >
-                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <MessageCircle className="w-4 h-4 text-[#25D366]" />
                       <span>WhatsApp</span>
                     </button>
                   </div>
@@ -347,11 +343,8 @@ export function ContactSection({
                       <Car className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-ink-muted">
-                        <span>{isHy ? "24/7 Օդանավակայանի Լոգիստիկա" : "Zvartnots (EVN) Airport & Fleet"}</span>
-                        <span className="px-2 py-0.5 rounded bg-brand-stone-200 text-brand-forest text-xs font-semibold">
-                          24/7 LIVE
-                        </span>
+                      <div className="text-xs font-bold uppercase tracking-wider text-brand-ink-muted">
+                        {isHy ? "24/7 Օդանավակայանի Լոգիստիկա" : "Zvartnots (EVN) Airport & Fleet"}
                       </div>
                       <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Chauffeur Ավտոպարկ և EVN Տրանսֆեր" : "Executive Chauffeur Fleet & Airport Transfers"}
@@ -368,16 +361,16 @@ export function ContactSection({
                     <button
                       type="button"
                       onClick={() => openTravelDrawer("Hotels & Airport Transfers")}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep active:scale-95 text-white text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs"
                     >
                       {isHy ? "Ամրագրել" : "Book Fleet"}
                     </button>
                     <button
                       type="button"
                       onClick={handleTravelWhatsApp}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark active:scale-95 text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 shadow-xs cursor-pointer"
                     >
-                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <MessageCircle className="w-4 h-4 text-[#25D366]" />
                       <span>WhatsApp</span>
                     </button>
                   </div>
@@ -415,16 +408,16 @@ export function ContactSection({
                     <button
                       type="button"
                       onClick={() => openCandidateDrawer()}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep active:scale-95 text-white text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs"
                     >
                       {isHy ? "Ուղարկել CV" : "Drop CV"}
                     </button>
                     <button
                       type="button"
                       onClick={handleCandidateWhatsApp}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark active:scale-95 text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 shadow-xs cursor-pointer"
                     >
-                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <MessageCircle className="w-4 h-4 text-[#25D366]" />
                       <span>WhatsApp</span>
                     </button>
                   </div>
@@ -436,11 +429,8 @@ export function ContactSection({
                       <Building2 className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-ink-muted">
-                        <span>{isHy ? "Գործատուների Բաժին" : "Division II · B2B Staffing"}</span>
-                        <span className="px-2 py-0.5 rounded bg-brand-stone-200 text-brand-forest text-xs font-semibold">
-                          SHORTLIST &lt; 72H
-                        </span>
+                      <div className="text-xs font-bold uppercase tracking-wider text-brand-forest">
+                        {isHy ? "Գործատուների Բաժին" : "Corporate Staffing & Recruitment"}
                       </div>
                       <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Կորպորատիվ Գործատուների Պատվերներ" : "Corporate Employer Talent Requisitions"}
@@ -457,16 +447,16 @@ export function ContactSection({
                     <button
                       type="button"
                       onClick={() => openEmployerDrawer()}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep active:scale-95 text-white text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs"
                     >
-                      {isHy ? "Պատվիրել" : "Requisition"}
+                      {isHy ? "Պատվիրել" : "Hire Staff"}
                     </button>
                     <button
                       type="button"
                       onClick={handleEmployerWhatsApp}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark active:scale-95 text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 shadow-xs cursor-pointer"
                     >
-                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <MessageCircle className="w-4 h-4 text-[#25D366]" />
                       <span>WhatsApp</span>
                     </button>
                   </div>
@@ -478,11 +468,8 @@ export function ContactSection({
                       <ShieldCheck className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-gold-text">
-                        <span>{isHy ? "Իրավական Համապատասխանություն" : "Division III · Legal Permits"}</span>
-                        <span className="px-2 py-0.5 rounded bg-brand-gold-subtle border border-brand-gold/30 text-brand-gold-text text-xs font-semibold">
-                          RA MINISTRY
-                        </span>
+                      <div className="text-xs font-bold uppercase tracking-wider text-brand-forest">
+                        {isHy ? "Իրավական Համապատասխանություն" : "Work Permits & Legal Accreditation"}
                       </div>
                       <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Աշխատանքի Թույլտվություն և Ռելոկացիա" : "Work Permit Clearance & Relocation Care"}
@@ -499,16 +486,16 @@ export function ContactSection({
                     <button
                       type="button"
                       onClick={() => openCandidateDrawer()}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep active:scale-95 text-white text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs"
                     >
                       {isHy ? "Խորհրդատվություն" : "Advisory"}
                     </button>
                     <button
                       type="button"
                       onClick={handleCandidateWhatsApp}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark active:scale-95 text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 shadow-xs cursor-pointer"
                     >
-                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <MessageCircle className="w-4 h-4 text-[#25D366]" />
                       <span>WhatsApp</span>
                     </button>
                   </div>
@@ -525,16 +512,16 @@ export function ContactSection({
                       <Compass className="w-6 h-6 text-brand-olive-text" />
                     </div>
                     <div>
-                      <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-olive-text">
-                        <span>{isHy ? "Բաժին I · Տուրեր և Երթուղիներ" : "Division I · Travel Desk"}</span>
+                      <div className="text-xs font-bold uppercase tracking-wider text-brand-forest">
+                        {isHy ? "Տուրեր և Երթուղիներ" : "Travel & Inbound Desk"}
                       </div>
                       <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Տուրեր, Երթուղիներ և VIP Տրանսֆեր" : "Armenia Itineraries & Chauffeur Fleet"}
                       </CardHeading>
                       <p className="text-xs sm:text-sm text-brand-ink-muted mt-0.5">
                         {isHy
-                          ? "Հատուկ կազմված տուրիստական ծրագրեր, Գառնի, Սևան, Տաթև և B2B DMC մեծածախ սակագներ:"
-                          : "Custom holiday planning, Garni/Sevan/Tatev tours, or B2B DMC group tariffs."}
+                          ? "Հեղինակային տուրիստական ծրագրեր, Գառնի, Սևան, Տաթև և B2B DMC տեղական սպասարկում:"
+                          : "Custom holiday planning, Garni/Sevan/Tatev tours, or B2B DMC partnership inquiries."}
                       </p>
                     </div>
                   </div>
@@ -543,16 +530,16 @@ export function ContactSection({
                     <button
                       type="button"
                       onClick={() => openTravelDrawer("General Travel Inquiry")}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep active:scale-95 text-white text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs"
                     >
-                      {isHy ? "Հայտ" : "Form"}
+                      {isHy ? "Հայտ" : "Inquire"}
                     </button>
                     <button
                       type="button"
                       onClick={handleTravelWhatsApp}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark active:scale-95 text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 shadow-xs cursor-pointer"
                     >
-                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <MessageCircle className="w-4 h-4 text-[#25D366]" />
                       <span>WhatsApp</span>
                     </button>
                   </div>
@@ -564,11 +551,8 @@ export function ContactSection({
                       <Briefcase className="w-6 h-6 text-brand-olive-text" />
                     </div>
                     <div>
-                      <div className="inline-flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-olive-text">
-                        <span>{isHy ? "Բաժին II · Աշխատանք Փնտրողներ" : "Division II · Job Seekers"}</span>
-                        <span className="px-2 py-0.5 rounded bg-brand-olive-subtle text-brand-forest text-xs font-semibold">
-                          {isHy ? "ՈՒՂԻՂ ԴԻՄՈՒՄ" : "DIRECT INTAKE"}
-                        </span>
+                      <div className="text-xs font-bold uppercase tracking-wider text-brand-forest">
+                        {isHy ? "Աշխատանք Փնտրողներ" : "Direct Job Opportunities"}
                       </div>
                       <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Թեկնածուների Դիմումներ և Ռեզյումե" : "Candidate CV Submission & Job Advisory"}
@@ -585,16 +569,16 @@ export function ContactSection({
                     <button
                       type="button"
                       onClick={() => openCandidateDrawer()}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep active:scale-95 text-white text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs"
                     >
                       {isHy ? "Ուղարկել CV" : "Drop CV"}
                     </button>
                     <button
                       type="button"
                       onClick={handleCandidateWhatsApp}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark active:scale-95 text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 shadow-xs cursor-pointer"
                     >
-                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <MessageCircle className="w-4 h-4 text-[#25D366]" />
                       <span>WhatsApp</span>
                     </button>
                   </div>
@@ -606,11 +590,8 @@ export function ContactSection({
                       <Building2 className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="inline-flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-ink-muted">
-                        <span>{isHy ? "Բաժին III · Կորպորատիվ Հավաքագրում" : "Enterprise · B2B Staffing"}</span>
-                        <span className="px-2 py-0.5 rounded bg-brand-stone-200 text-brand-forest text-xs font-semibold">
-                          SHORTLIST &lt; 72H
-                        </span>
+                      <div className="text-xs font-bold uppercase tracking-wider text-brand-forest">
+                        {isHy ? "Կորպորատիվ Հավաքագրում" : "Enterprise Talent Solutions"}
                       </div>
                       <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
                         {isHy ? "Կորպորատիվ Գործատուների Պատվերներ" : "Corporate Employer Talent Requisitions"}
@@ -627,16 +608,16 @@ export function ContactSection({
                     <button
                       type="button"
                       onClick={() => openEmployerDrawer()}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep text-white text-xs font-semibold transition-colors duration-200 cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brand-forest hover:bg-brand-forest-deep active:scale-95 text-white text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs"
                     >
-                      {isHy ? "Պատվիրել" : "Requisition"}
+                      {isHy ? "Պատվիրել" : "Hire Staff"}
                     </button>
                     <button
                       type="button"
                       onClick={handleEmployerWhatsApp}
-                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-colors duration-200 shadow-sm cursor-pointer"
+                      className="min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white hover:bg-brand-stone-50 hover:border-brand-olive-dark active:scale-95 text-brand-forest text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 shadow-xs cursor-pointer"
                     >
-                      <MessageCircle className="w-4 h-4 text-brand-olive-text" />
+                      <MessageCircle className="w-4 h-4 text-[#25D366]" />
                       <span>WhatsApp</span>
                     </button>
                   </div>

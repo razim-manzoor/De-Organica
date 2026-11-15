@@ -58,7 +58,6 @@ export function ManpowerCandidateHub({
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-text mb-3">
-            <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
             <span>{isHy ? content.eyebrow_hy : content.eyebrow_en}</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-forest tracking-tight mb-4">
@@ -254,7 +253,7 @@ export function ManpowerCandidateHub({
                   <button
                     type="button"
                     onClick={() => openCandidateDrawer(isHy ? vacancy.title_hy : vacancy.title_en)}
-                    className="flex-1 min-h-[44px] py-2.5 px-3 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-colors duration-200 text-center cursor-pointer shadow-sm"
+                    className="flex-1 min-h-[44px] py-2.5 px-3 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-all active:scale-95 duration-200 text-center cursor-pointer shadow-sm"
                   >
                     {isHy ? "Դիմել այս հաստիքին" : "Apply for Position"}
                   </button>
@@ -262,11 +261,11 @@ export function ManpowerCandidateHub({
                   <button
                     type="button"
                     onClick={() => handleWhatsAppApply(vacancy.title_en)}
-                    className="min-h-[44px] py-2.5 px-3.5 rounded-xl border border-brand-stone-300 bg-white text-brand-forest hover:bg-brand-stone-50 hover:border-brand-olive-dark text-xs font-semibold transition-colors duration-200 flex items-center gap-1.5 cursor-pointer shadow-sm"
+                    className="w-11 h-11 shrink-0 rounded-xl border border-brand-stone-300 bg-white text-brand-ink hover:text-brand-forest hover:border-[#25D366] hover:bg-green-50/40 active:scale-95 text-xs font-medium transition-all flex items-center justify-center cursor-pointer shadow-sm"
                     aria-label={isHy ? `WhatsApp՝ ${vacancy.title_hy}` : `Inquire on WhatsApp about ${vacancy.title_en}`}
+                    title="WhatsApp"
                   >
-                    <MessageCircle className="w-4 h-4 text-brand-olive-text" />
-                    <span className="hidden sm:inline">WhatsApp</span>
+                    <MessageCircle className="w-4 h-4 text-[#25D366]" />
                   </button>
                 </div>
               </div>
@@ -294,7 +293,7 @@ export function ManpowerCandidateHub({
             <button
               type="button"
               onClick={() => openCandidateDrawer()}
-              className="min-h-[44px] px-6 py-3.5 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-colors duration-200 shadow-sm shrink-0 cursor-pointer flex items-center gap-2"
+              className="min-h-[44px] px-6 py-3.5 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-all active:scale-95 duration-200 shadow-sm shrink-0 cursor-pointer flex items-center gap-2"
             >
               <span>{isHy ? "Ներկայացնել Ռեզյումե" : "Submit Your Profile"}</span>
               <ArrowRight className="w-3.5 h-3.5" />

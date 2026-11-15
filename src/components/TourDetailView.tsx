@@ -17,7 +17,6 @@ import {
   ExternalLink,
   MapPin,
   MessageCircle,
-  Sparkles,
 } from "lucide-react";
 
 interface TourDetailViewProps {
@@ -48,11 +47,11 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
   };
 
   return (
-    <article className="bg-brand-alabaster pt-28 pb-20 md:pt-36 md:pb-28">
+    <article className="bg-brand-stone-50 pt-28 pb-20 md:pt-36 md:pb-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <Link
-            href="/travel#packages"
+            href="/travel#tours"
             className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-brand-olive-text hover:text-brand-forest transition-colors min-h-[44px]"
           >
             <ArrowLeft className="w-4 h-4" aria-hidden="true" />
@@ -65,7 +64,7 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
           <div className="lg:col-span-7 space-y-8">
             <div className="relative h-72 sm:h-96 lg:h-[460px] rounded-2xl overflow-hidden bg-brand-forest shadow-xl">
               <Image
-                src={tour.image || "/images/noravank.png"}
+                src={tour.image || "/images/tours/garni-temple.jpg"}
                 alt={title}
                 fill
                 priority
@@ -74,11 +73,11 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/80 via-brand-ink/20 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center gap-3">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-alabaster/95 text-brand-forest text-xs font-semibold">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 text-brand-forest text-xs font-semibold">
                   <Calendar className="w-3.5 h-3.5 text-brand-olive-text" aria-hidden="true" />
                   {duration}
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-forest/90 text-brand-alabaster text-xs font-medium border border-brand-alabaster/20">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-forest/90 text-white text-xs font-medium border border-white/20">
                   <MapPin className="w-3.5 h-3.5 text-brand-olive-onDark" aria-hidden="true" />
                   {location}
                 </span>
@@ -87,7 +86,6 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
 
             <div className="space-y-4">
               <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-brand-olive-text">
-                <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
                 {tagline}
               </span>
               <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-brand-forest font-semibold leading-tight">
@@ -99,7 +97,7 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
             </div>
 
             {highlights.length > 0 && (
-              <div className="bg-brand-stone/80 border border-stone-200 rounded-2xl p-6 sm:p-8 space-y-4">
+              <div className="bg-brand-stone-100/80 border border-stone-200 rounded-2xl p-6 sm:p-8 space-y-4">
                 <h2 className="font-serif text-2xl text-brand-forest font-semibold">
                   {locale === "en" ? "Curated Highlights" : "Ծրագրի Հիմնական Կանգառները"}
                 </h2>
@@ -185,17 +183,11 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
                 <span className="text-xs font-bold uppercase tracking-widest text-brand-olive-text">
                   {locale === "en" ? "Yerevan Inbound Desk" : "Երևանի Մուտքային Բաժին"}
                 </span>
-                {tour.showPrice && tour.price ? (
-                  <p className="font-serif text-2xl text-brand-forest font-semibold">
-                    {tour.price}
-                  </p>
-                ) : (
-                  <p className="font-serif text-2xl text-brand-forest font-semibold">
-                    {locale === "en"
-                      ? "Private & B2B Bespoke Quotation"
-                      : "Անհատական և B2B Գնառաջարկ"}
-                  </p>
-                )}
+                <p className="font-serif text-2xl text-brand-forest font-semibold">
+                  {locale === "en"
+                    ? "Private & B2B Custom Itinerary"
+                    : "Անհատական և B2B Հարցում"}
+                </p>
                 <p className="text-xs text-brand-ink/65">
                   {locale === "en"
                     ? "Tailored dates, group size, boutique hotel tier, and multilingual guide assignment."
@@ -226,7 +218,7 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
                 <button
                   type="button"
                   onClick={() => openTravelDrawer(tour.title_en)}
-                  className="w-full min-h-[48px] px-5 py-3 rounded-lg bg-brand-forest hover:bg-brand-forest-dark text-brand-alabaster text-sm font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full min-h-[48px] px-5 py-3 rounded-lg bg-brand-forest hover:bg-brand-forest-deep text-white text-sm font-semibold transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                 >
                   <span>
                     {locale === "en" ? "Request Custom Quote" : "Հարցնել Արժեքը"}
@@ -237,9 +229,9 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
                 <button
                   type="button"
                   onClick={handleWhatsApp}
-                  className="w-full min-h-[48px] px-5 py-3 rounded-lg bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/30 text-[#135D2E] text-sm font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full min-h-[48px] px-5 py-3 rounded-lg bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#0d5926] text-sm font-semibold transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                 >
-                  <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                  <MessageCircle className="w-4 h-4 text-[#25D366]" aria-hidden="true" />
                   <span>
                     {locale === "en"
                       ? "Inquire via WhatsApp Desk"
@@ -252,7 +244,7 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
                     href={tour.externalBookingUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full min-h-[46px] px-5 py-2.5 rounded-lg border border-stone-300 text-brand-forest hover:bg-brand-stone text-sm font-medium transition-colors flex items-center justify-center gap-2"
+                    className="w-full min-h-[46px] px-5 py-2.5 rounded-lg border border-stone-300 text-brand-forest hover:bg-brand-stone-100 text-sm font-medium transition-colors flex items-center justify-center gap-2"
                   >
                     <span>
                       {locale === "en"
@@ -315,7 +307,7 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
                 >
                   <div className="relative h-44 bg-brand-forest overflow-hidden">
                     <Image
-                      src={item.image || "/images/noravank.png"}
+                      src={item.image || "/images/tours/wings-of-tatev.jpg"}
                       alt={locale === "en" ? item.title_en : item.title_hy}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
