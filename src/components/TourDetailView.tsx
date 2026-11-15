@@ -324,7 +324,7 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
                       </h3>
                     </div>
                     <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-forest pt-2">
-                      {locale === "en" ? "Inspect Route" : "Դիտել Մանրամասները"}
+                      {locale === "en" ? "View Itinerary" : "Դիտել Մանրամասները"}
                       <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                     </span>
                   </div>

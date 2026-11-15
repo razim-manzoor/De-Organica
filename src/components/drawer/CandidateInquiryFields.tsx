@@ -210,7 +210,7 @@ export function CandidateInquiryFields({
         <span className="block text-xs font-semibold text-brand-forest mb-1.5">
           {isHy ? "Աշխատանքային փորձի տևողությունը" : "Years of Professional Experience"}
         </span>
-        <div className="grid grid-cols-4 gap-1.5 text-xs">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-xs">
           {[
             { id: "1–2 Years", label_en: "1–2 Yrs", label_hy: "1–2 Տարի" },
             { id: "3–5 Years", label_en: "3–5 Yrs", label_hy: "3–5 Տարի" },

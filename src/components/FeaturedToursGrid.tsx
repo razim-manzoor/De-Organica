@@ -52,7 +52,8 @@ export function FeaturedToursGrid({
   const standardTours = allTours.slice(1);
 
   return (
-    <section id="tours" className="scroll-mt-20 py-20 lg:py-28 bg-brand-stone-100/70 border-t border-brand-stone-200 relative">
+    <section id="tours-matrix" className="scroll-mt-20 py-20 lg:py-28 bg-brand-stone-100/70 border-t border-brand-stone-200 relative">
+      <span id="tours" className="absolute -top-20" aria-hidden="true" />
       <span id="packages" className="absolute -top-20" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}

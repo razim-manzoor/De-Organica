@@ -29,9 +29,6 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
 
   return (
     <section className="relative pt-12 pb-16 lg:pt-16 lg:pb-24 bg-brand-stone-50 overflow-hidden border-b border-brand-stone-200">
-      {/* Background Architectural Grid */}
-      <div className="absolute inset-0 opacity-[0.025] pointer-events-none bg-architectural-grid" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Editorial Travel Narrative */}

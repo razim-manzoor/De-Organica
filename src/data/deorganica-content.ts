@@ -103,7 +103,7 @@ export const deorganicaConfig = {
       ],
       badge_en: "Outbound & Regional",
       badge_hy: "Արտագնա Ուղղություններ",
-      image: "/images/tours/yerevan-cascade.jpg",
+      image: "/images/tours/wings-of-tatev.jpg",
       inquiryType: "International Holiday Packages",
     },
     {
@@ -157,7 +157,7 @@ export const deorganicaConfig = {
       ],
       badge_en: "24/7 Operations",
       badge_hy: "24/7 Գրաֆիկ",
-      image: "/images/tours/wings-of-tatev.jpg",
+      image: "/images/tours/yerevan-cascade.jpg",
       inquiryType: "Hotels & Airport Transfers",
     },
     {

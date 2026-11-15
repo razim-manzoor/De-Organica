@@ -28,9 +28,6 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
 
   return (
     <section className="relative pt-12 pb-16 lg:pt-16 lg:pb-24 bg-brand-stone-50 overflow-hidden border-b border-brand-stone-200">
-      {/* Precision Blueprint Architectural Grid */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-architectural-grid" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Institutional Legal Mobility Narrative */}
@@ -96,7 +93,7 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
             </div>
 
             {/* Key Dimensional Metrics */}
-            <div className="grid grid-cols-3 gap-3 pt-6 border-t border-brand-stone-200">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 border-t border-brand-stone-200">
               {content.metrics.map((metric, idx) => (
                 <div key={idx} className="p-3.5 rounded-2xl bg-white border border-brand-stone-200/90 shadow-sm">
                   <div className="font-mono text-lg sm:text-xl font-bold text-brand-forest">

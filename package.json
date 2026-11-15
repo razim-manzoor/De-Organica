@@ -13,7 +13,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "tsc --noEmit",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
     "test": "node scripts/audit-full-system.mjs",
     "sanity:seed": "node scripts/seed-sanity.mjs"
   },

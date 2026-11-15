@@ -51,7 +51,8 @@ export function TravelServicesMatrix({
   };
 
   return (
-    <section id="services" className="scroll-mt-20 py-20 lg:py-28 bg-white border-t border-brand-stone-200">
+    <section id="travel-services" className="scroll-mt-20 py-20 lg:py-28 bg-white border-t border-brand-stone-200 relative">
+      <span id="services" className="absolute -top-20" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">

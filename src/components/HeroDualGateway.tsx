@@ -45,7 +45,7 @@ export function HeroDualGateway({ content = defaultHomePageContent }: HeroDualGa
           <article className="group rounded-3xl bg-white border border-brand-stone-200 overflow-hidden shadow-sm hover-lift hover:shadow-2xl hover:border-brand-olive/40 flex flex-col justify-between">
             <div>
               {/* Hero Photo */}
-              <div className="relative h-64 sm:h-72 overflow-hidden bg-brand-stone-200">
+              <div className="relative h-48 sm:h-72 overflow-hidden bg-brand-stone-200">
                 <Image
                   src={travelPillar.image || "/images/tours/garni-temple.jpg"}
                   alt={isHy ? travelPillar.imageAlt_hy : travelPillar.imageAlt_en}
@@ -100,7 +100,7 @@ export function HeroDualGateway({ content = defaultHomePageContent }: HeroDualGa
           <article className="group rounded-3xl bg-brand-forest text-white border border-brand-forest-deep overflow-hidden shadow-lg hover-lift hover:shadow-2xl flex flex-col justify-between">
             <div>
               {/* Hero Photo */}
-              <div className="relative h-64 sm:h-72 overflow-hidden bg-brand-forest-deep">
+              <div className="relative h-48 sm:h-72 overflow-hidden bg-brand-forest-deep">
                 <Image
                   src={manpowerPillar.image || "/images/tours/yerevan-cascade.jpg"}
                   alt={isHy ? manpowerPillar.imageAlt_hy : manpowerPillar.imageAlt_en}

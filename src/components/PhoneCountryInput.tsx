@@ -649,7 +649,7 @@ export function PhoneCountryInput({
           value={phoneNumber}
           onChange={(e) => onPhoneNumberChange(e.target.value)}
           placeholder={placeholder}
-          className="flex-1 min-w-0 min-h-[44px] px-3.5 py-2.5 bg-transparent text-sm text-brand-ink placeholder:text-brand-ink-subtle focus:outline-none"
+          className="flex-1 min-w-0 min-h-[44px] px-3.5 py-2.5 bg-transparent text-base sm:text-sm text-brand-ink placeholder:text-brand-ink-subtle focus:outline-none"
         />
       </div>
 
@@ -670,7 +670,7 @@ export function PhoneCountryInput({
                   ? "Որոնել երկիր կամ կոդ (+91, +374)..."
                   : "Search country or code (+91, +374)..."
               }
-              className="w-full min-h-[36px] bg-transparent text-xs text-brand-ink placeholder:text-brand-ink-subtle focus:outline-none"
+              className="w-full min-h-[36px] bg-transparent text-base sm:text-xs text-brand-ink placeholder:text-brand-ink-subtle focus:outline-none"
             />
             {searchQuery && (
               <button

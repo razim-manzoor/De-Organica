@@ -69,7 +69,7 @@ export function ConciergeDrawer() {
   const [experienceLevel, setExperienceLevel] = useState("3–5 Years");
   const [primaryLanguage, setPrimaryLanguage] = useState("English Conversational");
   const [candidateStatus, setCandidateStatus] = useState("In Home Country (Ready for Visa)");
-  const [candidateConsent, setCandidateConsent] = useState(true);
+  const [candidateConsent, setCandidateConsent] = useState(false);
 
   const [companyName, setCompanyName] = useState("");
   const [contactPerson, setContactPerson] = useState("");
@@ -174,6 +174,7 @@ export function ConciergeDrawer() {
       setSubmittedSnapshot(null);
       setErrorMessage("");
       setInvalidField(null);
+      setCandidateConsent(false);
       isClosingRef.current = false;
 
       if (!dialog.open) {

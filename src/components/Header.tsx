@@ -120,7 +120,7 @@ export function Header() {
                   ? "Ուղիղ Հարցում"
                   : "Direct Inquiry"}
               </span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-brand-olive-onDark opacity-90" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-brand-gold-onDark opacity-95" />
             </button>
           </div>
 

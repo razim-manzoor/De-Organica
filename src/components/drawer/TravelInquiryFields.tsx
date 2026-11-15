@@ -408,7 +408,7 @@ export function TravelInquiryFields({
               </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-1.5">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
               {[
                 { label: "1–2", val: "2", sub: isHy ? "Սեդան" : "Sedan" },
                 { label: "3–5", val: "4", sub: isHy ? "Ընտանիք" : "Family" },

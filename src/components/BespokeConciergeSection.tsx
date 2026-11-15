@@ -96,7 +96,6 @@ export function BespokeConciergeSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-text mb-3">
-              <span className="inline-block w-2 h-2 rounded-full bg-brand-olive" />
               <span>
                 {isHy
                   ? "Անհատական Երթուղիներ · Երևանի Գլխավոր Դեսկ"
