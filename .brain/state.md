@@ -80,3 +80,8 @@
    - **Dual-Branch Push:** Updated both `origin/master` and `origin/main` in lockstep to commit `b932f5d`.
    - **Netlify Configuration:** `netlify.toml` committed with `@netlify/plugin-nextjs`, `npm run build`, and `publish = ".next"`; `@netlify/plugin-nextjs` v5 added to `devDependencies`.
    - **UI Contrast & Destination Curations:** Defaulted applicant consent checkbox to unchecked, enhanced dark CTA button icons to `brand-gold-onDark` for maximum contrast, and synchronized destination copy.
+
+9. **Founder Removal & Overview Manpower Photo Rectification (Commit `c20c537`):**
+   - **Founder Name Purge:** Completely removed all mentions of the founder name across [Footer.tsx](file:///r:/Projects/De%20Organica/src/components/Footer.tsx), [ContactSection.tsx](file:///r:/Projects/De%20Organica/src/components/ContactSection.tsx), [deorganica-content.ts](file:///r:/Projects/De%20Organica/src/data/deorganica-content.ts), [content.ts](file:///r:/Projects/De%20Organica/src/types/content.ts), [package.json](file:///r:/Projects/De%20Organica/package.json), [README.md](file:///r:/Projects/De%20Organica/README.md), and [AGENTS.md](file:///r:/Projects/De%20Organica/AGENTS.md).
+   - **Overview Manpower Photo:** Replaced the tourist attraction photo (`/images/tours/yerevan-cascade.jpg`) on the Overview home page gateway ([HeroDualGateway.tsx](file:///r:/Projects/De%20Organica/src/components/HeroDualGateway.tsx) & [cms-fallbacks.ts](file:///r:/Projects/De%20Organica/src/data/cms-fallbacks.ts)) with a dedicated, professional corporate workforce image (`/images/manpower/international-workforce.jpg`).
+   - **Push Verification:** Both `origin/master` and `origin/main` synchronized to commit `c20c537`; 32/32 automated audit tests verified clean.
