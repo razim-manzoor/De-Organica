@@ -30,7 +30,7 @@ const nextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "frame-ancestors 'self'",
+            value: "frame-ancestors 'self'; frame-src 'self'; child-src 'self';",
           },
         ],
       },

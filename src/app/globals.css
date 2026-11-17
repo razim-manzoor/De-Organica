@@ -207,3 +207,18 @@ dialog.concierge-dialog[data-closing]::backdrop {
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
+
+/* Netlify Badge & Drawer Suppressor */
+iframe[src*="netlify"],
+iframe[id*="netlify"],
+iframe[title*="Netlify"],
+[data-netlify-badge],
+#netlify-badge,
+.netlify-badge,
+div[class*="netlify-badge"],
+netlify-drawer {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
