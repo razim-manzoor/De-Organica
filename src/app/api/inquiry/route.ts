@@ -306,9 +306,17 @@ export async function POST(req: NextRequest) {
     const resendApiKey = process.env.RESEND_API_KEY;
     if (resendApiKey) {
       const resend = new Resend(resendApiKey);
+
+      // Intelligent Dual-Delivery Routing:
+      // Dispatches to the official corporate desk (info@deorganica.am)
+      // AND the client mobile Gmail backup (deorganicallc@gmail.com) for instant phone alerts.
+      const recipients = Array.from(
+        new Set([company.email, "deorganicallc@gmail.com"].filter(Boolean))
+      );
+
       const { data, error } = await resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL || `${company.name} Desk <inquiries@deorganica.am>`,
-        to: [company.email],
+        from: process.env.RESEND_FROM_EMAIL || `${company.name} Desk <inquiries@send.deorganica.am>`,
+        to: recipients,
         subject,
         html: bodyContent,
         attachments: attachments.length > 0 ? attachments : undefined,
