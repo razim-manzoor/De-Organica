@@ -17,7 +17,7 @@ export const deorganicaConfig = {
     city: "Yerevan",
     country_en: "Republic of Armenia",
     country_hy: "Հայաստանի Հանրապետություն",
-    email: "deorganicallc@gmail.com",
+    email: "info@deorganica.am",
     phoneYerevanDesk: "+374 93 723321",
     phoneInternationalWhatsApp: "+374 93 723321",
     whatsappNumberDigits: "37493723321",
