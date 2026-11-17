@@ -1,7 +1,32 @@
 # Project State: De Organica LLC (`deorganica.am`)
 
-**Updated:** 2026-11-15  
-**Status:** Full Unlazy Audit & Optimization Complete, GitHub Origin Synchronized to Netlify (100% Gates Met, 32/32 Automated Tests Clean, Both origin/master and origin/main Updated at commit b932f5d)
+**Updated:** 2026-11-17  
+**Status:** Sovereign Production Deployment Live on Netlify & Name.am (Dual-Remote Git Architecture, Zoho Mail Active, Netlify HTTPS 200 Verified, Zero Watermark/Badge Clean)
+
+## Completed Work (Latest Session: Sovereign Deployment & Infrastructure Routing)
+1. **Sovereign Dual-Remote Git Workflow:**
+   - Client GitHub repository established: `https://github.com/deorganicallc/De-Organica.git` (`client`).
+   - Personal master repository retained as safety master: `https://github.com/razim-manzoor/De-Organica.git` (`origin`).
+   - Configured dedicated token deployment and committer authorship (`De Organica <deorganicallc@gmail.com>`) ensuring 1-member Free Starter status on Netlify.
+
+2. **Next.js 15 App Router Deployment on Netlify:**
+   - Root `netlify.toml` created pinning Node.js 20 and `@netlify/plugin-nextjs` v5.
+   - Deployed under `deorganicallc` Netlify account with automatic continuous deployment from `client/master`.
+   - Visitor access set to Public, unblocking edge access restrictions.
+   - Hardened `next.config.mjs` CSP (`frame-src 'self'; child-src 'self'`) and `src/app/globals.css` suppression rules to block edge-injected third-party widgets and badges.
+
+3. **Master DNS Configuration at Name.am:**
+   - **Apex Web Traffic:** `A` record `@` -> `75.2.60.5` (Netlify Load Balancer).
+   - **Subdomain Web Traffic:** `CNAME` record `www` -> `de-organica.netlify.app`.
+   - **Zoho Mail Routing (India DC):**
+     - `MX` records `@` -> `mx.zoho.in` (10), `mx2.zoho.in` (20), `mx3.zoho.in` (50).
+     - `TXT` SPF record `@` -> `v=spf1 include:zoho.in ~all`.
+     - `TXT` DKIM record `zmail._domainkey` -> verified & propagated.
+     - `TXT` domain verification code -> validated.
+
+4. **Live Verification:**
+   - `https://deorganica.am` returning HTTP 200 with full bilingual fonts and assets.
+   - Global DNS propagation verified via live nslookup/Resolve-DnsName.
 
 ## Completed Work (Latest Session: Full Unlazy System Audit & Optimization)
 1. **Unlazy Acceptance Gates Framework (`GATES.md`):**
