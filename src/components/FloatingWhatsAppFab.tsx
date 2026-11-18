@@ -52,8 +52,8 @@ export function FloatingWhatsAppFab() {
         onClick={handleFabClick}
         aria-label={
           isHy
-            ? "Կապ հաստատել Երևանի դեսկի հետ WhatsApp-ով (+374 93 723321)"
-            : "Chat with Yerevan Desk on WhatsApp (+374 93 723321)"
+            ? "Կապ հաստատել Երևանի դեսկի հետ WhatsApp-ով (+374 55 569553)"
+            : "Chat with Yerevan Desk on WhatsApp (+374 55 569553)"
         }
         className="group relative flex items-center gap-2.5 p-3.5 sm:px-4 sm:py-3 rounded-full bg-[#25D366] text-white shadow-lg hover:shadow-2xl hover:bg-[#20bd5a] transition-all active:scale-95 duration-200 cursor-pointer border border-white/25"
       >

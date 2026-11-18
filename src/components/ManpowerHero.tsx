@@ -75,7 +75,7 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
                   ? "Նախընտրում եք ուղիղ կա՞պ:"
                   : "Prefer direct consultation?"}{" "}
                 <a
-                  href="https://wa.me/37493723321"
+                  href="https://wa.me/37455569553"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-brand-forest hover:text-brand-forest-deep font-semibold underline underline-offset-2"
@@ -84,10 +84,10 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
                 </a>{" "}
                 {isHy ? "կամ" : "or"}{" "}
                 <a
-                  href="tel:+37493723321"
+                  href="tel:+37455569553"
                   className="text-brand-forest hover:text-brand-forest-deep font-semibold underline underline-offset-2"
                 >
-                  {isHy ? "զանգահարեք" : "call +374 93 723321"}
+                  {isHy ? "զանգահարեք" : "call +374 55 569553"}
                 </a>
               </span>
             </div>
