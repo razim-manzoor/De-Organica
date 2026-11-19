@@ -164,31 +164,23 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
 
               {/* Step-by-Step Flow */}
               <div className="space-y-2.5 text-xs mb-5">
-                {(activeSpecTab === "candidate" ? candidateStages : employerStages).map((item, idx) => {
-                  const toneClass =
-                    item.badgeTone === "olive"
-                      ? "text-brand-olive-text"
-                      : item.badgeTone === "forest"
-                      ? "text-brand-forest"
-                      : "text-brand-ink-muted";
-                  return (
-                    <div
-                      key={idx}
-                      className={`p-3 rounded-xl border ${
-                        item.isHighlight
-                          ? "bg-brand-olive-subtle/75 border-brand-olive/40"
-                          : "bg-brand-stone-50 border-brand-stone-200/80"
-                      }`}
-                    >
-                      <div className="text-xs font-bold text-brand-forest">
-                        <span>{isHy ? item.stage_hy : item.stage_en}</span>
-                      </div>
-                      <p className="text-xs text-brand-ink-muted font-sans mt-1 leading-snug">
-                        {isHy ? item.desc_hy : item.desc_en}
-                      </p>
+                {(activeSpecTab === "candidate" ? candidateStages : employerStages).map((item, idx) => (
+                  <div
+                    key={idx}
+                    className={`p-3 rounded-xl border ${
+                      item.isHighlight
+                        ? "bg-brand-olive-subtle/75 border-brand-olive/40"
+                        : "bg-brand-stone-50 border-brand-stone-200/80"
+                    }`}
+                  >
+                    <div className="text-xs font-bold text-brand-forest">
+                      <span>{isHy ? item.stage_hy : item.stage_en}</span>
                     </div>
-                  );
-                })}
+                    <p className="text-xs text-brand-ink-muted font-sans mt-1 leading-snug">
+                      {isHy ? item.desc_hy : item.desc_en}
+                    </p>
+                  </div>
+                ))}
               </div>
 
               {/* Action Button */}

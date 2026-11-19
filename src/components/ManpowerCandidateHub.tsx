@@ -235,16 +235,18 @@ export function ManpowerCandidateHub({
                   </div>
 
                   {/* Benefits */}
-                  <div className="flex flex-wrap gap-1.5 pt-3 border-t border-brand-stone-100">
-                    {(isHy ? vacancy.benefits_hy : vacancy.benefits_en).map((b, i) => (
-                      <span
-                        key={i}
-                        className="inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-md bg-brand-stone-100 text-brand-forest border border-brand-stone-200"
-                      >
-                        <Check className="w-3.5 h-3.5 text-brand-olive-text" />
-                        <span>{b}</span>
-                      </span>
-                    ))}
+                  <div className="space-y-1.5 pt-3 border-t border-brand-stone-100">
+                    <span className="text-xs font-bold uppercase tracking-wider text-brand-forest block">
+                      {isHy ? "Պայմաններ և Ներառումներ" : "Placement Inclusions"}
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                      {(isHy ? vacancy.benefits_hy : vacancy.benefits_en).map((b, i) => (
+                        <div key={i} className="flex items-center gap-2 text-xs text-brand-ink/85">
+                          <Check className="w-3.5 h-3.5 text-brand-olive-text shrink-0" />
+                          <span>{b}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
 

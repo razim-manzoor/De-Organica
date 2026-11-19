@@ -17,8 +17,6 @@ import {
   MapPin,
   Check,
   MessageCircle,
-  CreditCard,
-  ExternalLink,
   Compass,
   ArrowRight,
 } from "lucide-react";
@@ -95,13 +93,9 @@ export function FeaturedToursGrid({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/90 via-brand-forest/25 to-transparent" />
 
-                {/* Badges */}
-                <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                  <div className="flex items-center gap-1.5 bg-brand-gold text-brand-forest-deep text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-                    <Compass className="w-3.5 h-3.5" />
-                    <span>{isHy ? "Գլխավոր Հեղինակային Երթուղի" : "Flagship Signature Terroir"}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 bg-brand-forest/95 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full border border-white/20">
+                {/* Badges: Minimal Single Duration Pill */}
+                <div className="absolute top-4 left-4">
+                  <div className="flex items-center gap-1.5 bg-brand-forest/90 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/20 shadow-sm">
                     <Clock className="w-3.5 h-3.5 text-brand-olive-onDark" />
                     <span>{isHy ? flagshipTour.duration_hy : flagshipTour.duration_en}</span>
                   </div>
@@ -140,18 +134,15 @@ export function FeaturedToursGrid({
 
                   {/* Inclusions */}
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-brand-forest block mb-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-brand-forest block mb-2.5">
                       {isHy ? "Փաթեթը ներառում է" : "Package Inclusions"}
                     </span>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {(isHy ? flagshipTour.inclusions_hy : flagshipTour.inclusions_en).map((inc, i) => (
-                        <span
-                          key={i}
-                          className="inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-md bg-brand-stone-100 text-brand-forest border border-brand-stone-200"
-                        >
-                          <Check className="w-3 h-3 text-brand-olive-text" />
+                        <div key={i} className="flex items-center gap-2 text-xs text-brand-ink/85">
+                          <Check className="w-3.5 h-3.5 text-brand-olive-text shrink-0" />
                           <span>{inc}</span>
-                        </span>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -161,10 +152,10 @@ export function FeaturedToursGrid({
                 <div className="pt-6 border-t border-brand-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
                     <span className="text-xs uppercase font-bold tracking-[0.12em] text-brand-olive-text block">
-                      {isHy ? "Ամրագրում և Ժամկետներ" : "Bespoke Itinerary & Inquiries"}
+                      {isHy ? "Մեկնումներ և Ժամանակացույց" : "Private Departures"}
                     </span>
                     <div className="text-xs sm:text-sm font-semibold text-brand-forest mt-0.5">
-                      {isHy ? "Հասանելի է ըստ հարցման" : "Available on Request"}
+                      {isHy ? "Անհատական ամենօրյա գրաֆիկ" : "Tailored Daily Scheduling"}
                     </div>
                   </div>
 
@@ -218,19 +209,13 @@ export function FeaturedToursGrid({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/90 via-brand-forest/30 to-transparent" />
 
-                  {/* Duration & Location Badges */}
-                  <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                    <div className="flex items-center gap-1.5 bg-brand-forest/95 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full border border-white/20">
+                  {/* Minimal Single Duration Pill */}
+                  <div className="absolute top-4 left-4">
+                    <div className="flex items-center gap-1.5 bg-brand-forest/90 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/20 shadow-sm">
                       <Clock className="w-3.5 h-3.5 text-brand-olive-onDark" />
                       <span>{isHy ? tour.duration_hy : tour.duration_en}</span>
                     </div>
                   </div>
-
-                  {tour.isFeatured && (
-                    <div className="absolute top-4 right-4 bg-brand-gold text-brand-forest-deep text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
-                      {isHy ? "Հանրաճանաչ" : "Most Popular"}
-                    </div>
-                  )}
 
                   <div className="absolute bottom-4 left-5 right-5 text-white">
                     <div className="flex items-center gap-1.5 text-xs text-brand-olive-onDark font-medium mb-1">
@@ -263,20 +248,17 @@ export function FeaturedToursGrid({
                       ))}
                     </div>
 
-                    {/* Inclusions Chips */}
+                    {/* Inclusions */}
                     <div>
-                      <span className="text-xs font-bold uppercase tracking-wider text-brand-forest block mb-2">
+                      <span className="text-xs font-bold uppercase tracking-wider text-brand-forest block mb-2.5">
                         {isHy ? "Փաթեթը ներառում է" : "Package Inclusions"}
                       </span>
-                      <div className="flex flex-wrap gap-1.5">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {(isHy ? tour.inclusions_hy : tour.inclusions_en).map((inc, i) => (
-                          <span
-                            key={i}
-                            className="inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-md bg-brand-stone-100 text-brand-forest border border-brand-stone-200"
-                          >
-                            <Check className="w-3 h-3 text-brand-olive-text" />
+                          <div key={i} className="flex items-center gap-2 text-xs text-brand-ink/85">
+                            <Check className="w-3.5 h-3.5 text-brand-olive-text shrink-0" />
                             <span>{inc}</span>
-                          </span>
+                          </div>
                         ))}
                       </div>
                     </div>
@@ -286,10 +268,10 @@ export function FeaturedToursGrid({
                   <div className="pt-6 border-t border-brand-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
                       <span className="text-xs uppercase font-bold tracking-[0.12em] text-brand-olive-text block">
-                        {isHy ? "Ամրագրում և Ժամկետներ" : "Bespoke Itinerary & Inquiries"}
+                        {isHy ? "Մեկնումներ և Ժամանակացույց" : "Private Departures"}
                       </span>
                       <div className="text-xs sm:text-sm font-semibold text-brand-forest mt-0.5">
-                        {isHy ? "Հասանելի է ըստ հարցման" : "Available on Request"}
+                        {isHy ? "Անհատական ամենօրյա գրաֆիկ" : "Tailored Daily Scheduling"}
                       </div>
                     </div>
 
@@ -300,18 +282,6 @@ export function FeaturedToursGrid({
                       >
                         {isHy ? "Տեսնել երթուղին" : "View Tour"}
                       </Link>
-                      {tour.externalBookingUrl && (
-                        <a
-                          href={tour.externalBookingUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="min-h-[44px] py-2.5 px-3.5 rounded-xl bg-brand-forest text-white text-xs font-semibold flex items-center gap-1.5 hover:bg-brand-forest-deep transition-all active:scale-95 shadow-sm"
-                        >
-                          <CreditCard className="w-3.5 h-3.5" />
-                          <span>{isHy ? "Ամրագրել" : "Book Online"}</span>
-                          <ExternalLink className="w-3 h-3 opacity-80" />
-                        </a>
-                      )}
 
                       <button
                         type="button"

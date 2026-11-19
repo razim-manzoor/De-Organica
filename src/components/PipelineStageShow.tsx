@@ -132,14 +132,19 @@ export function PipelineStageShow({
             className="lg:col-span-8 p-8 sm:p-10 flex flex-col justify-between bg-white space-y-8"
           >
             <div>
-              {/* Header Badges */}
+              {/* Clean Stage Meta */}
               <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-6 border-b border-brand-stone-100">
-                <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-olive-subtle text-brand-forest border border-brand-olive/30">
-                  {isHy ? `Փուլ ${activeStage.step}` : `Stage ${activeStage.step}`} ·{" "}
-                  {isHy ? activeStage.badge_hy : activeStage.badge_en}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-bold uppercase tracking-wider text-brand-forest">
+                    {isHy ? `Փուլ ${activeStage.step}` : `Stage ${activeStage.step}`}
+                  </span>
+                  <span className="text-xs text-brand-ink-muted">·</span>
+                  <span className="text-xs font-semibold text-brand-olive-text">
+                    {isHy ? activeStage.badge_hy : activeStage.badge_en}
+                  </span>
+                </div>
 
-                <div className="flex items-center gap-1.5 text-xs font-semibold text-brand-forest bg-brand-stone-100 px-3 py-1 rounded-full">
+                <div className="flex items-center gap-1.5 text-xs font-medium text-brand-ink-muted">
                   <Clock className="w-3.5 h-3.5 text-brand-olive-text" />
                   <span>{isHy ? activeStage.metrics_hy : activeStage.metrics_en}</span>
                 </div>
