@@ -518,18 +518,14 @@ export function ConciergeDrawer() {
                 id="concierge-drawer-title"
                 className="font-serif text-base sm:text-xl font-bold text-brand-forest"
               >
-                {activeTab === "travel"
-                  ? isHy
-                    ? "Երևանի Տուրիստական և B2B Դեսկ"
-                    : "Yerevan Travel Concierge & B2B Desk"
-                  : isHy
-                  ? "Ուղիղ կապ Երևանի գրասենյակի հետ"
-                  : "Direct Yerevan Operations Desk"}
+                {isHy
+                  ? "Դե Օրգանիկա Երևանի Գրասենյակ"
+                  : "De Organica Yerevan Desk"}
               </h2>
               <p className="text-[11px] sm:text-xs text-brand-ink-muted">
                 {isHy
-                  ? siteSettings.company.workingHours_hy
-                  : siteSettings.company.workingHours_en}
+                  ? "Տուրիզմ և DMC · Միջազգային Հավաքագրում · B2B"
+                  : "Inbound Travel · Global Staffing · B2B Desk"}
               </p>
             </div>
           </div>
@@ -580,7 +576,7 @@ export function ConciergeDrawer() {
           >
             <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-olive-text shrink-0" />
             <span className="truncate max-w-full text-[11px] sm:text-xs">
-              {isHy ? "Տուրիզմ" : "Travel & Tours"}
+              {isHy ? "Տուրիզմ և DMC" : "Travel & Tours"}
             </span>
           </button>
 
@@ -614,7 +610,7 @@ export function ConciergeDrawer() {
           >
             <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-olive-text shrink-0" />
             <span className="truncate max-w-full text-[11px] sm:text-xs">
-              {isHy ? "Թեկնածու" : "Candidate (CV)"}
+              {isHy ? "Աշխատանք (CV)" : "Careers (CV)"}
             </span>
           </button>
 
@@ -648,7 +644,7 @@ export function ConciergeDrawer() {
           >
             <Building className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-olive-text shrink-0" />
             <span className="truncate max-w-full text-[11px] sm:text-xs">
-              {isHy ? "Գործատու" : "Hire Staff"}
+              {isHy ? "Գործատու / HR" : "Enterprise Staffing"}
             </span>
           </button>
         </div>
@@ -852,10 +848,12 @@ export function ConciergeDrawer() {
                     }
                     placeholder={
                       travelerType === "b2b"
-                        ? "e.g. Rahul Sharma / Elena Popova"
+                        ? isHy
+                          ? "օրինակ՝ Գևորգ Մանուկյան"
+                          : "e.g. Elena Petrova / Marcus Vance"
                         : isHy
                         ? "օրինակ՝ Արամ Սարգսյան"
-                        : "e.g. Rahul Sharma / David Smith"
+                        : "e.g. Alexander Scott / Sarah Jenkins"
                     }
                     className={`w-full min-h-[44px] px-4 py-2.5 rounded-xl border bg-white focus:outline-none focus:ring-2 focus:ring-brand-olive focus:border-transparent text-base sm:text-sm text-brand-ink shadow-sm transition-colors duration-200 ${
                       invalidField === "fullName" ? "border-[#B43C30]" : "border-brand-stone-300"

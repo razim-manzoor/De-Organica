@@ -72,7 +72,7 @@ export function CandidateInquiryFields({
             maxLength={120}
             value={nationality}
             onChange={(e) => setNationality(e.target.value)}
-            placeholder="e.g. Indian, Filipino, Georgian"
+            placeholder={isHy ? "օրինակ՝ ՀՀ քաղաքացի, Վրաստան" : "e.g. Georgia, Armenia, International"}
             className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           />
         </div>
@@ -90,7 +90,7 @@ export function CandidateInquiryFields({
             maxLength={120}
             value={currentCountry}
             onChange={(e) => setCurrentCountry(e.target.value)}
-            placeholder="e.g. UAE / India / Armenia"
+            placeholder={isHy ? "օրինակ՝ Հայաստան, ԱՄԷ, Վրաստան" : "e.g. UAE / Armenia / Georgia / Poland"}
             className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           />
         </div>
@@ -104,7 +104,7 @@ export function CandidateInquiryFields({
             </div>
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-brand-olive-text block">
-                {isHy ? "Ընտրված Թափուր Հաստիք" : "Target Position Context"}
+                {isHy ? "Հայցվող Պաշտոն" : "Applied Position"}
               </span>
               <span className="text-sm font-serif font-bold text-brand-forest block leading-snug">
                 {targetRole}
@@ -126,7 +126,7 @@ export function CandidateInquiryFields({
               htmlFor="candidateTargetRoleInput"
               className="text-xs font-semibold text-brand-forest"
             >
-              {isHy ? "Ցանկալի պաշտոնը կամ ոլորտը *" : "Target Role / Industry Sector *"}
+              {isHy ? "Ցանկալի պաշտոնը *" : "Target Role *"}
             </label>
             {targetRole && (
               <button
@@ -274,7 +274,7 @@ export function CandidateInquiryFields({
             htmlFor="candidateLangSelect"
             className="block text-xs font-semibold text-brand-forest mb-1.5"
           >
-            {isHy ? "Հիմնական աշխատանքային լեզուն" : "Primary Working Language"}
+            {isHy ? "Հիմնական լեզուն" : "Primary Language"}
           </label>
           <select
             id="candidateLangSelect"
@@ -297,7 +297,7 @@ export function CandidateInquiryFields({
             htmlFor="candidateMobilitySelect"
             className="block text-xs font-semibold text-brand-forest mb-1.5"
           >
-            {isHy ? "Տեղափոխման կարգավիճակ" : "Mobility / Relocation Readiness"}
+            {isHy ? "Տեղափոխման պատրաստվածություն" : "Relocation Availability"}
           </label>
           <select
             id="candidateMobilitySelect"

@@ -669,8 +669,8 @@ export function PhoneCountryInput({
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={
                 isHy
-                  ? "Որոնել երկիր կամ կոդ (+91, +374)..."
-                  : "Search country or code (+91, +374)..."
+                  ? "Որոնել երկիր կամ կոդ (+374, +971, +1)..."
+                  : "Search country or code (+374, +971, +1)..."
               }
               className="w-full min-h-[36px] bg-transparent text-base sm:text-xs text-brand-ink placeholder:text-brand-ink-subtle focus:outline-none"
             />

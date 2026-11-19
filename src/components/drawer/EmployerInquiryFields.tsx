@@ -45,7 +45,7 @@ export function EmployerInquiryFields({
           htmlFor="employerCompanyNameInput"
           className="block text-xs font-semibold text-brand-forest mb-1.5"
         >
-          {isHy ? "Ընկերության անվանումը *" : "Company / Enterprise Name *"}
+          {isHy ? "Ընկերության անվանումը *" : "Company Name *"}
         </label>
         <input
           ref={companyNameRef}
@@ -93,7 +93,7 @@ export function EmployerInquiryFields({
             htmlFor="employerHeadcountInput"
             className="block text-xs font-semibold text-brand-forest mb-1.5"
           >
-            {isHy ? "Պահանջվող աշխատակիցների թիվը" : "Headcount Needed"}
+            {isHy ? "Պահանջվող աշխատակիցների թիվը" : "Required Headcount"}
           </label>
           <input
             id="employerHeadcountInput"
@@ -114,7 +114,7 @@ export function EmployerInquiryFields({
             htmlFor="employerJurisdictionSelect"
             className="block text-xs font-semibold text-brand-forest mb-1.5"
           >
-            {isHy ? "Իրավական Իրավասություն" : "Company Legal Jurisdiction"}
+            {isHy ? "Գրանցման Երկիր" : "Registration Jurisdiction"}
           </label>
           <select
             id="employerJurisdictionSelect"
@@ -133,7 +133,7 @@ export function EmployerInquiryFields({
             htmlFor="employerUrgencySelect"
             className="block text-xs font-semibold text-brand-forest mb-1.5"
           >
-            {isHy ? "Տեղակայման Ժամանակացույց" : "Deployment Timeline Urgency"}
+            {isHy ? "Աշխատանքի Սկիզբ" : "Target Start Date"}
           </label>
           <select
             id="employerUrgencySelect"
@@ -154,8 +154,8 @@ export function EmployerInquiryFields({
       <div>
         <span className="block text-xs font-semibold text-brand-forest mb-1.5">
           {isHy
-            ? "Կացարանի և Տեղավորման Քաղաքականություն"
-            : "Accommodation & Housing Policy"}
+            ? "Կացարանի Տրամադրում"
+            : "Housing Provision"}
         </span>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
           {[

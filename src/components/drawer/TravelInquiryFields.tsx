@@ -91,7 +91,7 @@ export function TravelInquiryFields({
               </div>
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-brand-olive-text block">
-                  {isHy ? "Ընտրված Ուղղություն / Ծրագիր" : "Selected Expedition Context"}
+                  {isHy ? "Ընտրված Տուր / Երթուղի" : "Selected Tour / Itinerary"}
                 </span>
                 <span className="text-sm font-serif font-bold text-brand-forest block leading-snug">
                   {selectedService}
@@ -115,7 +115,7 @@ export function TravelInquiryFields({
               >
                 {isHy
                   ? "Ընտրեք տուրը կամ ծառայությունը"
-                  : "Choose Itinerary or Ground Service"}
+                  : "Select Tour or Ground Service"}
               </label>
               {selectedService && (
                 <button
@@ -174,7 +174,7 @@ export function TravelInquiryFields({
             }`}
           >
             <Users className="w-3.5 h-3.5 text-brand-olive-text" />
-            <span>{isHy ? "Մասնավոր / Ընտանեկան" : "Private Traveler / Family"}</span>
+            <span>{isHy ? "Մասնավոր / Ընտանիք" : "Private / Leisure"}</span>
           </button>
           <button
             type="button"
@@ -187,7 +187,7 @@ export function TravelInquiryFields({
             }`}
           >
             <Building2 className="w-3.5 h-3.5 text-brand-olive-text" />
-            <span>{isHy ? "B2B Տուրօպերատոր / DMC" : "B2B Travel Agent / DMC"}</span>
+            <span>{isHy ? "B2B Տուրօպերատոր" : "B2B Partner / Agency"}</span>
           </button>
         </div>
 
@@ -231,7 +231,7 @@ export function TravelInquiryFields({
                 maxLength={120}
                 value={agencyCountry}
                 onChange={(e) => setAgencyCountry(e.target.value)}
-                placeholder={isHy ? "օրինակ՝ ԱՄԷ, Հնդկաստան, ՌԴ" : "e.g. UAE / India / Germany / USA"}
+                placeholder={isHy ? "օրինակ՝ ԱՄԷ, Գերմանիա, ՌԴ" : "e.g. UAE / Germany / France / USA"}
                 className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
               />
             </div>
@@ -315,7 +315,7 @@ export function TravelInquiryFields({
             <div className="flex items-center justify-between mb-1.5">
               <span className="text-xs font-semibold text-brand-forest flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-brand-olive-text" />
-                <span>{isHy ? "Ճամփորդության ոճը և նախընտրությունը" : "Travel Style & Experience Preference"}</span>
+                <span>{isHy ? "Ճամփորդության դասը" : "Travel Tier"}</span>
               </span>
               <span className="text-xs font-mono text-brand-olive-text font-bold">
                 {budgetTier}
@@ -488,11 +488,11 @@ export function TravelInquiryFields({
                 <span>
                   {isHy
                     ? showCustomOverrides
-                      ? "Թաքցնել հյուրանոցի և տրանսպորտի դասերը"
-                      : "+ Կարգավորել հյուրանոցի և մեքենայի դասը (ըստ ցանկության)"
+                      ? "Թաքցնել հավելյալ նախասիրությունները"
+                      : "+ Ընտրել հյուրանոցի և մեքենայի դասը (ըստ ցանկության)"
                     : showCustomOverrides
-                    ? "Hide custom lodging & vehicle class"
-                    : "+ Specify custom lodging & vehicle class (Optional)"}
+                    ? "Hide custom preferences"
+                    : "+ Choose hotel & vehicle class (Optional)"}
                 </span>
               </span>
               <ChevronDown
@@ -508,7 +508,7 @@ export function TravelInquiryFields({
                 <div>
                   <span className="text-xs font-semibold text-brand-forest mb-1.5 flex items-center gap-1.5">
                     <Wine className="w-3.5 h-3.5 text-brand-olive-text" />
-                    <span>{isHy ? "Հյուրանոցի / Տեղավորման նախասիրություն" : "Lodging & Experience Preference"}</span>
+                    <span>{isHy ? "Հյուրանոցային դաս" : "Accommodation Style"}</span>
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                     {LODGING_TIERS.map((tier) => (
@@ -540,11 +540,11 @@ export function TravelInquiryFields({
                   </div>
                 </div>
 
-                {/* Chauffeur Fleet Tier */}
+                {/* Vehicle Class */}
                 <div>
                   <span className="text-xs font-semibold text-brand-forest mb-1.5 flex items-center gap-1.5">
                     <Car className="w-3.5 h-3.5 text-brand-olive-text" />
-                    <span>{isHy ? "Տրանսպորտային դաս" : "Chauffeur Fleet Preference"}</span>
+                    <span>{isHy ? "Տրանսպորտային դաս" : "Vehicle Class"}</span>
                   </span>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-xs">
                     {FLEET_TIERS.map((f) => (
