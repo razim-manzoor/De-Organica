@@ -643,6 +643,8 @@ export function PhoneCountryInput({
           ref={inputRef}
           id={inputId}
           type="tel"
+          autoComplete="tel"
+          maxLength={30}
           required={required}
           aria-describedby={ariaDescribedBy}
           aria-invalid={ariaInvalid}

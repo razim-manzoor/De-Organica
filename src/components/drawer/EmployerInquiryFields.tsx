@@ -51,6 +51,8 @@ export function EmployerInquiryFields({
           ref={companyNameRef}
           id="employerCompanyNameInput"
           type="text"
+          autoComplete="organization"
+          maxLength={200}
           required
           aria-invalid={invalidField === "companyName"}
           value={companyName}
@@ -58,7 +60,7 @@ export function EmployerInquiryFields({
           placeholder={
             isHy ? "օրինակ՝ Արմենիա Հյուրանոցային Խումբ" : "e.g. Yerevan Construction Group LLC"
           }
-          className={`w-full min-h-[44px] px-4 py-2.5 rounded-xl border bg-white focus:outline-none focus:ring-2 focus:ring-brand-olive focus:border-transparent text-brand-ink shadow-sm transition-colors duration-200 ${
+          className={`w-full min-h-[44px] px-4 py-2.5 rounded-xl border bg-white focus:outline-none focus:ring-2 focus:ring-brand-olive focus:border-transparent text-base sm:text-sm text-brand-ink shadow-sm transition-colors duration-200 ${
             invalidField === "companyName" ? "border-[#B43C30]" : "border-brand-stone-300"
           }`}
         />
@@ -79,10 +81,11 @@ export function EmployerInquiryFields({
           <input
             id="employerIndustryInput"
             type="text"
+            maxLength={160}
             value={industrySector}
             onChange={(e) => setIndustrySector(e.target.value)}
             placeholder="e.g. Construction / Hospitality / Fleet"
-            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs sm:text-sm text-brand-ink shadow-sm"
+            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           />
         </div>
         <div>
@@ -95,10 +98,11 @@ export function EmployerInquiryFields({
           <input
             id="employerHeadcountInput"
             type="text"
+            maxLength={60}
             value={headcountRequired}
             onChange={(e) => setHeadcountRequired(e.target.value)}
             placeholder="e.g. 5–10 workers"
-            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs sm:text-sm text-brand-ink shadow-sm"
+            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           />
         </div>
       </div>
@@ -116,7 +120,7 @@ export function EmployerInquiryFields({
             id="employerJurisdictionSelect"
             value={employerJurisdiction}
             onChange={(e) => setEmployerJurisdiction(e.target.value)}
-            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
+            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           >
             <option value="Armenia (ՀՎՀՀ / TIN)">Armenia (ՀՎՀՀ Registered Enterprise)</option>
             <option value="UAE & GCC Enterprise">UAE & GCC Corporation</option>
@@ -135,7 +139,7 @@ export function EmployerInquiryFields({
             id="employerUrgencySelect"
             value={employerUrgency}
             onChange={(e) => setEmployerUrgency(e.target.value)}
-            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
+            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           >
             <option value="Immediate (< 15 Days)">
               Immediate Requisition (&lt; 15 Days)

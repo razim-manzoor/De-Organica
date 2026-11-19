@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Briefcase, Upload, FileText, Trash2 } from "lucide-react";
 import type { InvalidFieldKey } from "./drawer-constants";
 
@@ -53,6 +53,8 @@ export function CandidateInquiryFields({
   setCandidateConsent,
   consentRef,
 }: CandidateInquiryFieldsProps) {
+  const [isDragging, setIsDragging] = useState(false);
+
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -66,10 +68,12 @@ export function CandidateInquiryFields({
           <input
             id="candidateNationalityInput"
             type="text"
+            autoComplete="country-name"
+            maxLength={120}
             value={nationality}
             onChange={(e) => setNationality(e.target.value)}
             placeholder="e.g. Indian, Filipino, Georgian"
-            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs sm:text-sm text-brand-ink shadow-sm"
+            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           />
         </div>
         <div>
@@ -82,10 +86,12 @@ export function CandidateInquiryFields({
           <input
             id="candidateCountryInput"
             type="text"
+            autoComplete="country-name"
+            maxLength={120}
             value={currentCountry}
             onChange={(e) => setCurrentCountry(e.target.value)}
             placeholder="e.g. UAE / India / Armenia"
-            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs sm:text-sm text-brand-ink shadow-sm"
+            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           />
         </div>
       </div>
@@ -136,12 +142,13 @@ export function CandidateInquiryFields({
             ref={targetRoleRef}
             id="candidateTargetRoleInput"
             type="text"
+            maxLength={200}
             required
             aria-invalid={invalidField === "targetRole"}
             value={targetRole}
             onChange={(e) => setTargetRole(e.target.value)}
             placeholder="e.g. Specialty Line Cook / Heavy Machinery Operator / Driver"
-            className={`w-full min-h-[44px] px-4 py-2.5 rounded-xl border bg-white text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none ${
+            className={`w-full min-h-[44px] px-4 py-2.5 rounded-xl border bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none ${
               invalidField === "targetRole" ? "border-[#B43C30]" : "border-brand-stone-300"
             }`}
           />
@@ -159,7 +166,26 @@ export function CandidateInquiryFields({
           </label>
           <span className="text-xs text-brand-ink-subtle">Max 4 MB</span>
         </div>
-        <div className="relative border-2 border-dashed border-brand-stone-300 hover:border-brand-olive-dark rounded-xl p-4 text-center transition-colors bg-brand-stone-100/60 shadow-sm">
+        <div
+          onDragOver={(e) => {
+            e.preventDefault();
+            setIsDragging(true);
+          }}
+          onDragLeave={() => setIsDragging(false)}
+          onDrop={(e) => {
+            e.preventDefault();
+            setIsDragging(false);
+            const file = e.dataTransfer.files?.[0] ?? null;
+            if (file) handleCvFileChange(file);
+          }}
+          className={`relative border-2 border-dashed rounded-xl p-4 text-center transition-all shadow-sm ${
+            isDragging
+              ? "border-brand-forest bg-brand-olive-subtle/50 scale-[1.01]"
+              : invalidField === "cvFile"
+              ? "border-[#B43C30] bg-[#FDF2F0]"
+              : "border-brand-stone-300 hover:border-brand-olive-dark bg-brand-stone-100/60"
+          }`}
+        >
           <input
             id="cvUploadInput"
             type="file"
@@ -173,11 +199,16 @@ export function CandidateInquiryFields({
           />
           <div className="flex items-center justify-center gap-2 text-xs text-brand-ink-muted">
             {cvFile ? (
-              <div className="flex items-center gap-3 relative z-10">
+              <div className="flex items-center gap-2.5 relative z-10 min-w-0">
                 <FileText className="w-5 h-5 text-brand-olive-text shrink-0" />
-                <span className="font-semibold text-brand-forest truncate max-w-[200px]">
-                  {cvFile.name}
-                </span>
+                <div className="truncate text-left">
+                  <span className="font-semibold text-brand-forest truncate block max-w-[200px] sm:max-w-[260px]">
+                    {cvFile.name}
+                  </span>
+                  <span className="text-[11px] text-brand-ink-subtle font-mono block">
+                    {(cvFile.size / (1024 * 1024)).toFixed(2)} MB
+                  </span>
+                </div>
                 <button
                   type="button"
                   aria-label={isHy ? "Հեռացնել կցված ֆայլը" : "Remove attached resume"}
@@ -185,7 +216,7 @@ export function CandidateInquiryFields({
                     e.stopPropagation();
                     setCvFile(null);
                   }}
-                  className="min-w-[32px] min-h-[32px] flex items-center justify-center rounded-full text-brand-ink-subtle hover:text-[#B43C30] transition-colors cursor-pointer"
+                  className="min-w-[32px] min-h-[32px] flex items-center justify-center rounded-full text-brand-ink-subtle hover:text-[#B43C30] transition-colors cursor-pointer shrink-0 ml-1"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -249,7 +280,7 @@ export function CandidateInquiryFields({
             id="candidateLangSelect"
             value={primaryLanguage}
             onChange={(e) => setPrimaryLanguage(e.target.value)}
-            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
+            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           >
             <option value="English Conversational">
               English (Conversational / Fluent)
@@ -272,7 +303,7 @@ export function CandidateInquiryFields({
             id="candidateMobilitySelect"
             value={candidateStatus}
             onChange={(e) => setCandidateStatus(e.target.value)}
-            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
+            className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           >
             <option value="In Home Country (Ready for Visa)">
               In Home Country (Ready for Visa Filing)

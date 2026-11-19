@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import Link from "next/link";
 import { useDrawer } from "@/context/DrawerContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSiteData } from "@/context/SiteDataContext";
@@ -509,13 +510,13 @@ export function ConciergeDrawer() {
     >
       <div className="w-full h-full bg-brand-stone-50 flex flex-col overflow-hidden">
         {/* Top Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-brand-stone-200 bg-white shrink-0">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-5 border-b border-brand-stone-200 bg-white shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-3">
             <span className="w-2.5 h-2.5 rounded-full bg-brand-olive shrink-0" />
             <div>
               <h2
                 id="concierge-drawer-title"
-                className="font-serif text-lg sm:text-xl font-bold text-brand-forest"
+                className="font-serif text-base sm:text-xl font-bold text-brand-forest"
               >
                 {activeTab === "travel"
                   ? isHy
@@ -525,7 +526,7 @@ export function ConciergeDrawer() {
                   ? "Ուղիղ կապ Երևանի գրասենյակի հետ"
                   : "Direct Yerevan Operations Desk"}
               </h2>
-              <p className="text-xs text-brand-ink-muted">
+              <p className="text-[11px] sm:text-xs text-brand-ink-muted">
                 {isHy
                   ? siteSettings.company.workingHours_hy
                   : siteSettings.company.workingHours_en}
@@ -547,77 +548,125 @@ export function ConciergeDrawer() {
         <div
           role="tablist"
           aria-label={isHy ? "Հարցման բաժիններ" : "Inquiry desk channels"}
-          className="grid grid-cols-3 p-2 bg-brand-stone-100 border-b border-brand-stone-200 gap-1.5 text-xs font-medium shrink-0"
+          className="grid grid-cols-3 p-1.5 sm:p-2 bg-brand-stone-100 border-b border-brand-stone-200 gap-1 text-xs font-medium shrink-0"
         >
           <button
+            id="tab-travel"
             type="button"
             role="tab"
             aria-selected={activeTab === "travel"}
+            aria-controls="concierge-tabpanel"
+            tabIndex={activeTab === "travel" ? 0 : -1}
+            onKeyDown={(e) => {
+              if (e.key === "ArrowRight") {
+                e.preventDefault();
+                setActiveTab("candidate");
+              } else if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                setActiveTab("employer");
+              }
+            }}
             onClick={() => {
               setActiveTab("travel");
               setSubmittedSnapshot(null);
               setErrorMessage("");
               setInvalidField(null);
             }}
-            className={`min-h-[44px] py-2 px-2 rounded-xl transition-colors duration-200 flex flex-col sm:flex-row items-center justify-center gap-1.5 text-center cursor-pointer ${
+            className={`min-h-[42px] sm:min-h-[44px] py-1.5 sm:py-2 px-1.5 sm:px-2 rounded-xl transition-colors duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 text-center cursor-pointer ${
               activeTab === "travel"
                 ? "bg-white text-brand-forest shadow-sm font-semibold"
                 : "text-brand-ink-muted hover:text-brand-forest hover:bg-white/60"
             }`}
           >
-            <Compass className="w-4 h-4 text-brand-olive-text shrink-0" />
-            <span>{isHy ? "Տուրիզմ և DMC" : "Travel & Tours"}</span>
+            <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-olive-text shrink-0" />
+            <span className="truncate max-w-full text-[11px] sm:text-xs">
+              {isHy ? "Տուրիզմ" : "Travel & Tours"}
+            </span>
           </button>
 
           <button
+            id="tab-candidate"
             type="button"
             role="tab"
             aria-selected={activeTab === "candidate"}
+            aria-controls="concierge-tabpanel"
+            tabIndex={activeTab === "candidate" ? 0 : -1}
+            onKeyDown={(e) => {
+              if (e.key === "ArrowRight") {
+                e.preventDefault();
+                setActiveTab("employer");
+              } else if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                setActiveTab("travel");
+              }
+            }}
             onClick={() => {
               setActiveTab("candidate");
               setSubmittedSnapshot(null);
               setErrorMessage("");
               setInvalidField(null);
             }}
-            className={`min-h-[44px] py-2 px-2 rounded-xl transition-colors duration-200 flex flex-col sm:flex-row items-center justify-center gap-1.5 text-center cursor-pointer ${
+            className={`min-h-[42px] sm:min-h-[44px] py-1.5 sm:py-2 px-1.5 sm:px-2 rounded-xl transition-colors duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 text-center cursor-pointer ${
               activeTab === "candidate"
                 ? "bg-white text-brand-forest shadow-sm font-semibold"
                 : "text-brand-ink-muted hover:text-brand-forest hover:bg-white/60"
             }`}
           >
-            <Briefcase className="w-4 h-4 text-brand-olive-text shrink-0" />
-            <span>{isHy ? "Թեկնածու (CV)" : "Candidate (CV)"}</span>
+            <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-olive-text shrink-0" />
+            <span className="truncate max-w-full text-[11px] sm:text-xs">
+              {isHy ? "Թեկնածու" : "Candidate (CV)"}
+            </span>
           </button>
 
           <button
+            id="tab-employer"
             type="button"
             role="tab"
             aria-selected={activeTab === "employer"}
+            aria-controls="concierge-tabpanel"
+            tabIndex={activeTab === "employer" ? 0 : -1}
+            onKeyDown={(e) => {
+              if (e.key === "ArrowRight") {
+                e.preventDefault();
+                setActiveTab("travel");
+              } else if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                setActiveTab("candidate");
+              }
+            }}
             onClick={() => {
               setActiveTab("employer");
               setSubmittedSnapshot(null);
               setErrorMessage("");
               setInvalidField(null);
             }}
-            className={`min-h-[44px] py-2 px-2 rounded-xl transition-colors duration-200 flex flex-col sm:flex-row items-center justify-center gap-1.5 text-center cursor-pointer ${
+            className={`min-h-[42px] sm:min-h-[44px] py-1.5 sm:py-2 px-1.5 sm:px-2 rounded-xl transition-colors duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 text-center cursor-pointer ${
               activeTab === "employer"
                 ? "bg-white text-brand-forest shadow-sm font-semibold"
                 : "text-brand-ink-muted hover:text-brand-forest hover:bg-white/60"
             }`}
           >
-            <Building className="w-4 h-4 text-brand-olive-text shrink-0" />
-            <span>{isHy ? "Գործատու" : "Hire Staff"}</span>
+            <Building className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-olive-text shrink-0" />
+            <span className="truncate max-w-full text-[11px] sm:text-xs">
+              {isHy ? "Գործատու" : "Hire Staff"}
+            </span>
           </button>
         </div>
 
         {/* Scrollable Form Body */}
-        <div ref={scrollContainerRef} className="flex-1 overflow-y-auto px-6 py-6 space-y-5">
+        <div
+          id="concierge-tabpanel"
+          role="tabpanel"
+          aria-labelledby={`tab-${activeTab}`}
+          ref={scrollContainerRef}
+          className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-5 space-y-4 sm:space-y-5"
+        >
           {/* Zero-Form Direct WhatsApp Fallback Banner */}
           {!submittedSnapshot && (
-            <div className="p-3.5 rounded-2xl bg-white border border-brand-stone-200/90 shadow-2xs flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2.5 min-w-0">
-                <span className="w-8 h-8 rounded-xl bg-[#25D366]/15 flex items-center justify-center shrink-0">
-                  <MessageCircle className="w-4 h-4 text-[#25D366]" />
+            <div className="p-3 sm:p-3.5 rounded-2xl bg-white border border-brand-stone-200/90 shadow-2xs flex items-center justify-between gap-2.5 sm:gap-3">
+              <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#25D366]/15 flex items-center justify-center shrink-0">
+                  <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#25D366]" />
                 </span>
                 <p className="text-xs text-brand-ink leading-tight truncate">
                   <span className="font-semibold block text-brand-forest">
@@ -791,6 +840,8 @@ export function ConciergeDrawer() {
                     ref={personNameRef}
                     id="personNameInput"
                     type="text"
+                    autoComplete="name"
+                    maxLength={200}
                     required
                     aria-invalid={invalidField === "fullName"}
                     value={activeTab === "employer" ? contactPerson : fullName}
@@ -806,7 +857,7 @@ export function ConciergeDrawer() {
                         ? "օրինակ՝ Արամ Սարգսյան"
                         : "e.g. Rahul Sharma / David Smith"
                     }
-                    className={`w-full min-h-[44px] px-4 py-2.5 rounded-xl border bg-white focus:outline-none focus:ring-2 focus:ring-brand-olive focus:border-transparent text-brand-ink shadow-sm transition-colors duration-200 ${
+                    className={`w-full min-h-[44px] px-4 py-2.5 rounded-xl border bg-white focus:outline-none focus:ring-2 focus:ring-brand-olive focus:border-transparent text-base sm:text-sm text-brand-ink shadow-sm transition-colors duration-200 ${
                       invalidField === "fullName" ? "border-[#B43C30]" : "border-brand-stone-300"
                     }`}
                   />
@@ -822,7 +873,7 @@ export function ConciergeDrawer() {
                       {isHy ? "Հեռախոսահամար / WhatsApp *" : "WhatsApp / Mobile Number *"}
                     </label>
                     <span className="text-xs text-brand-ink-subtle">
-                      {isHy ? "կամ էլ. փոստ ստորև" : "or email below"}
+                      {isHy ? "Արագ կապի համար" : "Preferred for instant desk reply"}
                     </span>
                   </div>
                   <PhoneCountryInput
@@ -839,7 +890,7 @@ export function ConciergeDrawer() {
                   <p id="contactPhoneHint" className="text-xs text-brand-ink-subtle mt-1.5">
                     {isHy
                       ? "Մենք կուղարկենք հաստատումը WhatsApp-ով կամ SMS-ով:"
-                      : "We route inquiries directly to our Yerevan WhatsApp dispatch desk."}
+                      : "Direct desk routing for prompt confirmation via WhatsApp or phone."}
                   </p>
                 </div>
 
@@ -854,10 +905,12 @@ export function ConciergeDrawer() {
                   <input
                     id="contactEmailInput"
                     type="email"
+                    autoComplete="email"
+                    maxLength={200}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@example.com"
-                    className="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-olive focus:border-transparent text-brand-ink shadow-sm"
+                    className="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-olive focus:border-transparent text-base sm:text-sm text-brand-ink shadow-sm"
                   />
                 </div>
 
@@ -957,6 +1010,7 @@ export function ConciergeDrawer() {
                   <textarea
                     id="additionalNotesInput"
                     rows={3}
+                    maxLength={3000}
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     placeholder={
@@ -976,7 +1030,7 @@ export function ConciergeDrawer() {
                         ? "Հատուկ ցանկություններ, երեխաներ, հյուրանոց..."
                         : "Special preferences, dietary requests, celebrations..."
                     }
-                    className="w-full px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-olive focus:border-transparent text-xs sm:text-sm text-brand-ink resize-none shadow-sm"
+                    className="w-full px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-olive focus:border-transparent text-base sm:text-sm text-brand-ink resize-none shadow-sm"
                   />
                 </div>
 
@@ -1003,7 +1057,7 @@ export function ConciergeDrawer() {
 
         {/* Footer Actions + Single Live Validation Region */}
         {!submittedSnapshot && (
-          <div className="p-5 border-t border-brand-stone-200 bg-white space-y-2.5 shrink-0">
+          <div className="p-4 sm:p-5 border-t border-brand-stone-200 bg-white space-y-2.5 shrink-0">
             <div
               ref={errorSummaryRef}
               role="alert"
@@ -1050,6 +1104,34 @@ export function ConciergeDrawer() {
               <Send className="w-3.5 h-3.5" />
               <span>{isHy ? "Ուղարկել միայն էլ. փոստով" : "Send Official Inquiry by Email Only"}</span>
             </button>
+
+            <p className="text-center text-[11px] text-brand-ink-subtle pt-0.5">
+              {isHy ? (
+                <>
+                  Ուղարկելով՝ Դուք համաձայնում եք մեր{" "}
+                  <Link
+                    href="/privacy"
+                    onClick={closeTopLayer}
+                    className="underline hover:text-brand-forest transition-colors"
+                  >
+                    Գաղտնիության քաղաքականությանը
+                  </Link>
+                  :
+                </>
+              ) : (
+                <>
+                  By submitting, you agree to our{" "}
+                  <Link
+                    href="/privacy"
+                    onClick={closeTopLayer}
+                    className="underline hover:text-brand-forest transition-colors"
+                  >
+                    Privacy Policy
+                  </Link>
+                  .
+                </>
+              )}
+            </p>
           </div>
         )}
       </div>

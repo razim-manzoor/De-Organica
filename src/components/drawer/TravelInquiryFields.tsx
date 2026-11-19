@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Compass,
   Users,
@@ -7,6 +7,7 @@ import {
   Sparkles,
   Wine,
   Car,
+  ChevronDown,
 } from "lucide-react";
 import type { TourPackage, TravelService } from "@/types/content";
 import {
@@ -77,6 +78,8 @@ export function TravelInquiryFields({
   tours,
   travelServices,
 }: TravelInquiryFieldsProps) {
+  const [showCustomOverrides, setShowCustomOverrides] = useState(false);
+
   if (section === "top") {
     return (
       <>
@@ -131,7 +134,7 @@ export function TravelInquiryFields({
                 setSelectedService(e.target.value);
                 setIsChangingService(false);
               }}
-              className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs sm:text-sm font-medium text-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-olive shadow-sm"
+              className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm font-medium text-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-olive shadow-sm"
             >
               <option value="">
                 {isHy ? "Ընտրեք ցանկից կամ նշեք ստորև" : "Select from list or describe below"}
@@ -202,12 +205,14 @@ export function TravelInquiryFields({
                 ref={agencyNameRef}
                 id="agencyNameInput"
                 type="text"
+                autoComplete="organization"
+                maxLength={200}
                 required
                 aria-invalid={invalidField === "agencyName"}
                 value={agencyName}
                 onChange={(e) => setAgencyName(e.target.value)}
                 placeholder={isHy ? "օրինակ՝ Dubai Travel LLC" : "e.g. Odyssey Holidays / GCC DMC"}
-                className={`w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border bg-white text-xs sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none ${
+                className={`w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none ${
                   invalidField === "agencyName" ? "border-[#B43C30]" : "border-brand-stone-300"
                 }`}
               />
@@ -222,10 +227,12 @@ export function TravelInquiryFields({
               <input
                 id="agencyCountryInput"
                 type="text"
+                autoComplete="country-name"
+                maxLength={120}
                 value={agencyCountry}
                 onChange={(e) => setAgencyCountry(e.target.value)}
                 placeholder={isHy ? "օրինակ՝ ԱՄԷ, Հնդկաստան, ՌԴ" : "e.g. UAE / India / Germany / USA"}
-                className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
+                className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
               />
             </div>
           </div>
@@ -286,6 +293,7 @@ export function TravelInquiryFields({
             <input
               id="b2bTravelDatesInput"
               type="text"
+              maxLength={200}
               value={travelDates}
               onChange={(e) => setTravelDates(e.target.value)}
               placeholder={
@@ -293,7 +301,7 @@ export function TravelInquiryFields({
                   ? "օրինակ՝ Գարուն 2026 / Սեպտեմբեր-Հոկտեմբեր"
                   : "e.g. Spring 2026 Series / Autumn Harvest / Monthly Departures"
               }
-              className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs sm:text-sm text-brand-ink shadow-sm"
+              className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm"
             />
           </div>
         </div>
@@ -455,6 +463,7 @@ export function TravelInquiryFields({
             <input
               id="individualTravelDatesInput"
               type="text"
+              maxLength={200}
               value={travelDates}
               onChange={(e) => setTravelDates(e.target.value)}
               placeholder={
@@ -462,80 +471,112 @@ export function TravelInquiryFields({
                   ? "օրինակ՝ Հոկտեմբեր 15-22 / Աշուն 2026"
                   : "e.g. Oct 15–22 / Autumn Wine Season / Next Month"
               }
-              className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-xs sm:text-sm text-brand-ink shadow-sm"
+              className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm"
             />
           </div>
 
-          {/* Accommodation Style Preference */}
-          <div>
-            <span className="text-xs font-semibold text-brand-forest mb-1.5 flex items-center gap-1.5">
-              <Wine className="w-3.5 h-3.5 text-brand-olive-text" />
-              <span>{isHy ? "Հյուրանոցի / Տեղավորման նախասիրություն" : "Lodging & Experience Preference"}</span>
-            </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-              {LODGING_TIERS.map((tier) => (
-                <button
-                  key={tier.id}
-                  type="button"
-                  aria-pressed={accommodationTier === tier.id}
-                  onClick={() => setAccommodationTier(tier.id)}
-                  className={`p-2.5 rounded-xl border text-left transition-colors duration-200 cursor-pointer ${
-                    accommodationTier === tier.id
-                      ? "bg-brand-forest text-white border-brand-forest font-semibold shadow-sm"
-                      : "bg-white border-brand-stone-200 text-brand-ink-muted hover:border-brand-olive/50"
-                  }`}
-                >
-                  <span className="block font-bold leading-tight">
-                    {isHy ? tier.label_hy : tier.label_en}
-                  </span>
-                  <span
-                    className={`text-xs block mt-0.5 ${
-                      accommodationTier === tier.id
-                        ? "text-brand-olive-onDark"
-                        : "text-brand-ink-subtle"
-                    }`}
-                  >
-                    {isHy ? tier.sub_hy : tier.sub_en}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
+          {/* Progressive Disclosure: Custom Lodging & Fleet Preferences */}
+          <div className="pt-1">
+            <button
+              type="button"
+              onClick={() => setShowCustomOverrides((prev) => !prev)}
+              aria-expanded={showCustomOverrides}
+              className="w-full py-2 px-3 rounded-xl border border-dashed border-brand-stone-300 hover:border-brand-olive bg-brand-stone-50/80 hover:bg-white text-xs font-semibold text-brand-forest flex items-center justify-between transition-colors cursor-pointer"
+            >
+              <span className="flex items-center gap-1.5">
+                <Wine className="w-3.5 h-3.5 text-brand-olive-text" />
+                <span>
+                  {isHy
+                    ? showCustomOverrides
+                      ? "Թաքցնել հյուրանոցի և տրանսպորտի դասերը"
+                      : "+ Կարգավորել հյուրանոցի և մեքենայի դասը (ըստ ցանկության)"
+                    : showCustomOverrides
+                    ? "Hide custom lodging & vehicle class"
+                    : "+ Specify custom lodging & vehicle class (Optional)"}
+                </span>
+              </span>
+              <ChevronDown
+                className={`w-4 h-4 text-brand-ink-subtle transition-transform duration-200 ${
+                  showCustomOverrides ? "rotate-180" : ""
+                }`}
+              />
+            </button>
 
-          {/* Chauffeur Fleet Tier */}
-          <div>
-            <span className="text-xs font-semibold text-brand-forest mb-1.5 flex items-center gap-1.5">
-              <Car className="w-3.5 h-3.5 text-brand-olive-text" />
-              <span>{isHy ? "Տրանսպորտային դաս" : "Chauffeur Fleet Preference"}</span>
-            </span>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-xs">
-              {FLEET_TIERS.map((f) => (
-                <button
-                  key={f.id}
-                  type="button"
-                  aria-pressed={fleetTier === f.id}
-                  onClick={() => setFleetTier(f.id)}
-                  className={`p-2 rounded-xl border text-center transition-colors duration-200 cursor-pointer ${
-                    fleetTier === f.id
-                      ? "bg-brand-forest text-white border-brand-forest font-semibold shadow-sm"
-                      : "bg-white border-brand-stone-200 text-brand-ink-muted hover:border-brand-olive/50"
-                  }`}
-                >
-                  <span className="block font-semibold leading-tight text-xs">
-                    {isHy ? f.label_hy : f.label_en}
+            {showCustomOverrides && (
+              <div className="space-y-3.5 pt-3 mt-1.5 border-t border-brand-stone-200/80">
+                {/* Accommodation Style Preference */}
+                <div>
+                  <span className="text-xs font-semibold text-brand-forest mb-1.5 flex items-center gap-1.5">
+                    <Wine className="w-3.5 h-3.5 text-brand-olive-text" />
+                    <span>{isHy ? "Հյուրանոցի / Տեղավորման նախասիրություն" : "Lodging & Experience Preference"}</span>
                   </span>
-                  <span
-                    className={`text-xs block mt-0.5 ${
-                      fleetTier === f.id
-                        ? "text-brand-olive-onDark"
-                        : "text-brand-ink-subtle"
-                    }`}
-                  >
-                    {isHy ? f.sub_hy : f.sub_en}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    {LODGING_TIERS.map((tier) => (
+                      <button
+                        key={tier.id}
+                        type="button"
+                        aria-pressed={accommodationTier === tier.id}
+                        onClick={() => setAccommodationTier(tier.id)}
+                        className={`p-2.5 rounded-xl border text-left transition-colors duration-200 cursor-pointer ${
+                          accommodationTier === tier.id
+                            ? "bg-brand-forest text-white border-brand-forest font-semibold shadow-sm"
+                            : "bg-white border-brand-stone-200 text-brand-ink-muted hover:border-brand-olive/50"
+                        }`}
+                      >
+                        <span className="block font-bold leading-tight">
+                          {isHy ? tier.label_hy : tier.label_en}
+                        </span>
+                        <span
+                          className={`text-xs block mt-0.5 ${
+                            accommodationTier === tier.id
+                              ? "text-brand-olive-onDark"
+                              : "text-brand-ink-subtle"
+                          }`}
+                        >
+                          {isHy ? tier.sub_hy : tier.sub_en}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Chauffeur Fleet Tier */}
+                <div>
+                  <span className="text-xs font-semibold text-brand-forest mb-1.5 flex items-center gap-1.5">
+                    <Car className="w-3.5 h-3.5 text-brand-olive-text" />
+                    <span>{isHy ? "Տրանսպորտային դաս" : "Chauffeur Fleet Preference"}</span>
                   </span>
-                </button>
-              ))}
-            </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-xs">
+                    {FLEET_TIERS.map((f) => (
+                      <button
+                        key={f.id}
+                        type="button"
+                        aria-pressed={fleetTier === f.id}
+                        onClick={() => setFleetTier(f.id)}
+                        className={`p-2 rounded-xl border text-center transition-colors duration-200 cursor-pointer ${
+                          fleetTier === f.id
+                            ? "bg-brand-forest text-white border-brand-forest font-semibold shadow-sm"
+                            : "bg-white border-brand-stone-200 text-brand-ink-muted hover:border-brand-olive/50"
+                        }`}
+                      >
+                        <span className="block font-semibold leading-tight text-xs">
+                          {isHy ? f.label_hy : f.label_en}
+                        </span>
+                        <span
+                          className={`text-xs block mt-0.5 ${
+                            fleetTier === f.id
+                              ? "text-brand-olive-onDark"
+                              : "text-brand-ink-subtle"
+                          }`}
+                        >
+                          {isHy ? f.sub_hy : f.sub_en}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
