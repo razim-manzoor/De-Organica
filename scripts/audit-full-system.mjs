@@ -106,8 +106,8 @@ assert(toursBilingual, "Tour packages complete bilingual structure");
 // SUITE 3: Contact Channels & Routing Integrity
 // -----------------------------------------------------------------
 console.log("\nSuite 3: Contact Channels & Desk Phone Verification");
-const officialPhoneFormatted = "+374 93 723321";
-const officialPhoneDigits = "37493723321";
+const officialPhoneFormatted = "+374 55 569553";
+const officialPhoneDigits = "37455569553";
 
 assert(contentRaw.includes(officialPhoneFormatted), "Official formatted phone present in deorganica-content.ts");
 assert(contentRaw.includes(officialPhoneDigits), "Official phone digits present in deorganica-content.ts");
