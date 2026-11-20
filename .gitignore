@@ -6,35 +6,80 @@
 .pnp.js
 .yarn/cache
 
-# testing
+# testing & coverage
 /coverage
+/.playwright-mcp
+/test-results/
+/playwright-report/
 
-# next.js
+# next.js & production builds
 /.next/
 /out/
-
-# production
 /build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# local env files
-.env*.local
-
-# vercel
-.vercel
-
-# typescript
+/dist
 *.tsbuildinfo
 next-env.d.ts
 
-# playwright test artifacts
-/.playwright-mcp
+# environment variables & secrets
+.env
+.env*.local
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+!.env.example
 
+# cryptographic keys, certs & credentials
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+*.pkcs12
+*.keystore
+id_rsa*
+*.id_rsa
+
+# client handover deliverables, invoices & credentials
+/handover/
+/credentials/
+/secrets/
+/invoices/
+
+# gate audit & internal testing artifacts
+/.unlazy/
+
+# debug logs & crash reports
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# hosting & deployment caches
+.vercel
+.netlify
+.turbo
+
+# OS metadata & system artifacts
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE & Editor artifacts
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
