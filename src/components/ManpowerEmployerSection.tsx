@@ -30,7 +30,7 @@ export function ManpowerEmployerSection({
 
   const handleWhatsAppEmployer = () => {
     const msg = buildEmployerWhatsAppMessage({
-      industry: "Corporate Staffing & Quotas",
+      industry: isHy ? "Կորպորատիվ հավաքագրում և քվոտաներ" : "Corporate Staffing & Quotas",
       notes: isHy
         ? "Բարև Ձեզ, ցանկանում ենք քննարկել մեր ընկերության աշխատուժի և քվոտաների պահանջարկը:"
         : "Hello De Organica corporate team, we would like to discuss our enterprise manpower and staffing requirements in Armenia.",
@@ -41,7 +41,7 @@ export function ManpowerEmployerSection({
   return (
     <section
       id="manpower-employers"
-      className="py-20 lg:py-28 bg-brand-stone-100/70 border-t border-brand-stone-200"
+      className="py-16 lg:py-24 bg-brand-stone-100/70 border-t border-brand-stone-200"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -134,7 +134,7 @@ export function ManpowerEmployerSection({
               className="min-h-[44px] px-5 py-3.5 rounded-xl border border-white/30 bg-white/10 text-white text-xs font-semibold hover:bg-white/20 transition-all active:scale-95 duration-200 flex items-center justify-center gap-2 cursor-pointer"
             >
               <MessageCircle className="w-4 h-4 text-[#25D366]" />
-              <span>WhatsApp Desk</span>
+              <span>{isHy ? "WhatsApp Դեսկ" : "WhatsApp Desk"}</span>
             </button>
           </div>
         </div>

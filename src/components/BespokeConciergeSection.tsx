@@ -25,8 +25,8 @@ export function BespokeConciergeSection() {
 
   const handleWhatsAppBespoke = () => {
     const msg = buildTravelWhatsAppMessage({
-      name: "Traveler / Partner",
-      serviceOrTour: "Bespoke Armenia Journey Consultation",
+      name: isHy ? "Ճամփորդ / Գործընկեր" : "Traveler / Partner",
+      serviceOrTour: isHy ? "Անհատական Երթուղու Խորհրդատվություն" : "Bespoke Armenia Journey Consultation",
       notes: isHy
         ? "Բարև Ձեզ, ցանկանում եմ կազմել անհատական երթուղի Հայաստանում և քննարկել մանրամասները:"
         : "Hello De Organica team, I would like to design a bespoke private itinerary in Armenia and discuss custom dates and pacing.",
@@ -43,8 +43,8 @@ export function BespokeConciergeSection() {
       icon: Calendar,
       title_en: "Flexible Duration & Pacing",
       title_hy: "Ճկուն Տևողություն և Ժամանակացույց",
-      tagline_en: "3 to 14 Days · Self-Paced Routing",
-      tagline_hy: "3-ից 14 Օր · Անհատական Գրաֆիկ",
+      tagline_en: "3 to 10 Days · Self-Paced Routing",
+      tagline_hy: "3-ից 10 Օր · Անհատական Գրաֆիկ",
       desc_en:
         "Every journey is mapped to your specific calendar. Whether an intimate 3-day anniversary getaway or a 10-day overland expedition, we tailor the rhythm to your travel style.",
       desc_hy:

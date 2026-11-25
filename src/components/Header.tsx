@@ -62,7 +62,7 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav
             aria-label={isHy ? "Հիմնական նավիգացիա" : "Primary navigation"}
-            className="hidden md:flex items-center gap-1 lg:gap-1.5"
+            className="hidden md:flex items-center gap-0.5 lg:gap-1"
           >
             {navItems.map((item) => {
               const isActive =
@@ -75,7 +75,7 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   aria-current={isActive ? "page" : undefined}
-                  className={`relative min-h-[38px] px-3.5 py-2 text-xs lg:text-sm tracking-[0.015em] transition-all duration-200 flex items-center rounded-xl ${
+                  className={`relative whitespace-nowrap min-h-[38px] px-2.5 lg:px-3.5 py-2 text-xs lg:text-sm tracking-[0.015em] transition-all duration-200 flex items-center rounded-xl ${
                     isActive
                       ? "text-brand-forest font-bold bg-brand-stone-100/80"
                       : "text-brand-ink-muted hover:text-brand-forest hover:bg-brand-stone-100/50 font-medium"
@@ -83,7 +83,7 @@ export function Header() {
                 >
                   <span>{isHy ? item.label_hy : item.label_en}</span>
                   {isActive && (
-                    <span className="absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-brand-olive rounded-full" />
+                    <span className="absolute bottom-1 left-3 right-3 h-[2px] bg-brand-olive rounded-full" />
                   )}
                 </Link>
               );
@@ -91,17 +91,17 @@ export function Header() {
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-2.5 shrink-0">
+          <div className="hidden md:flex items-center gap-2 lg:gap-2.5 shrink-0">
             {/* Direct Telephone Touchpoint (Zero-Form) */}
             <a
               href={`tel:${siteSettings.company.phoneYerevanDesk.replace(/\s+/g, "")}`}
-              className="min-h-[38px] px-3 py-1.5 rounded-xl border border-brand-stone-200 bg-white/80 hover:bg-white hover:border-brand-stone-300 text-xs lg:text-[13px] text-brand-forest transition-all active:scale-95 duration-200 flex items-center gap-2 shadow-2xs group"
+              className="whitespace-nowrap min-h-[38px] px-3 py-1.5 rounded-xl border border-brand-stone-200 bg-white/80 hover:bg-white hover:border-brand-stone-300 text-xs lg:text-[13px] text-brand-forest transition-all active:scale-95 duration-200 flex items-center gap-2 shadow-2xs group"
               title={isHy ? "Զանգահարել Երևանի դեսկ" : "Call Yerevan Desk"}
             >
               <span className="w-2 h-2 rounded-full bg-[#25D366] shrink-0 animate-pulse motion-reduce:animate-none" />
-              <Phone className="w-3.5 h-3.5 text-brand-olive-text shrink-0 group-hover:scale-110 transition-transform" />
-              <span className="font-sans font-medium tabular-nums hidden lg:inline">{siteSettings.company.phoneYerevanDesk}</span>
-              <span className="font-sans text-xs lg:hidden">{isHy ? "Զանգ" : "Call"}</span>
+              <Phone className="w-3.5 h-3.5 text-brand-olive-text shrink-0 group-hover:scale-110 transition-transform motion-reduce:transform-none" />
+              <span className="font-sans font-medium tabular-nums hidden xl:inline">{siteSettings.company.phoneYerevanDesk}</span>
+              <span className="font-sans text-xs xl:hidden">{isHy ? "Զանգ" : "Call"}</span>
             </a>
 
             <LanguageSwitcher />
@@ -109,13 +109,13 @@ export function Header() {
             <button
               type="button"
               onClick={handleContextInquiry}
-              className="min-h-[38px] inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-forest text-white text-xs lg:text-sm font-semibold tracking-wide hover:bg-brand-forest-deep transition-all active:scale-95 duration-200 shadow-sm hover:shadow-md cursor-pointer"
+              className="whitespace-nowrap min-h-[38px] inline-flex items-center gap-2 px-3.5 lg:px-4 py-2 rounded-xl bg-brand-forest text-white text-xs lg:text-sm font-semibold tracking-wide hover:bg-brand-forest-deep transition-all active:scale-95 duration-200 shadow-sm hover:shadow-md cursor-pointer"
             >
               <span>
                 {isManpowerRoute
                   ? isHy
-                    ? "Ուղարկել Ռեզյումե"
-                    : "Submit Candidate CV"
+                    ? "Ուղարկել CV"
+                    : "Submit CV"
                   : isHy
                   ? "Ուղիղ Հարցում"
                   : "Direct Inquiry"}

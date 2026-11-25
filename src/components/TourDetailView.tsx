@@ -50,7 +50,7 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
   };
 
   return (
-    <article className="bg-brand-stone-50 pt-28 pb-20 md:pt-36 md:pb-28">
+    <article className="bg-brand-stone-50 pt-10 pb-16 md:pt-14 md:pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <Link
@@ -132,8 +132,8 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
                       key={idx}
                       className="flex items-start gap-4 pb-4 border-b border-stone-100 last:border-b-0 last:pb-0"
                     >
-                      <span className="w-9 h-9 rounded-xl bg-brand-olive-subtle border border-brand-olive/30 text-brand-forest font-serif text-xs font-bold flex items-center justify-center shrink-0">
-                        D{step.day ?? idx + 1}
+                      <span className="min-w-[2.5rem] h-9 px-2 rounded-xl bg-brand-olive-subtle border border-brand-olive/30 text-brand-forest font-serif text-xs font-bold flex items-center justify-center shrink-0">
+                        {locale === "hy" ? `Օր ${step.day ?? idx + 1}` : `D${step.day ?? idx + 1}`}
                       </span>
                       <div className="space-y-1">
                         <h3 className="font-serif text-base font-bold text-brand-forest">

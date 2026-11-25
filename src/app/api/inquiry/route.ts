@@ -101,13 +101,19 @@ function safeField(formData: FormData, key: string, maxLen: number = 1000): stri
 }
 
 export async function POST(req: NextRequest) {
+  let reqLocale = req.headers.get("accept-language")?.toLowerCase().startsWith("hy") ? "hy" : "en";
+  const pick = (en: string, hy: string) => (reqLocale === "hy" ? hy : en);
+
   try {
     const rate = checkRateLimit(getClientIp(req));
     if (!rate.allowed) {
       return NextResponse.json(
         {
           success: false,
-          error: "Too many inquiry requests. Please wait a few minutes or contact our WhatsApp desk directly.",
+          error: pick(
+            "Too many inquiry requests. Please wait a few minutes or contact our WhatsApp desk directly.",
+            "Չափազանց շատ հարցումներ: Խնդրում ենք սպասել մի քանի րոպե կամ գրել WhatsApp-ով:"
+          ),
         },
         {
           status: 429,
@@ -117,6 +123,7 @@ export async function POST(req: NextRequest) {
     }
 
     const formData = await req.formData();
+    reqLocale = safeField(formData, "locale", 10) || reqLocale;
 
     // Silent honeypot drop for automated spam bots
     const honeypot =
@@ -171,7 +178,13 @@ export async function POST(req: NextRequest) {
     // Server-side required-field & contact validation
     if (email && !isValidEmailFormat(email)) {
       return NextResponse.json(
-        { success: false, error: "Please provide a valid email address." },
+        {
+          success: false,
+          error: pick(
+            "Please provide a valid email address.",
+            "Խնդրում ենք մուտքագրել վավեր էլ. փոստի հասցե:"
+          ),
+        },
         { status: 400 }
       );
     }
@@ -182,46 +195,88 @@ export async function POST(req: NextRequest) {
     if (inquiryType === "travel") {
       if (travelerType === "b2b" && !agencyName) {
         return NextResponse.json(
-          { success: false, error: "Travel agency or DMC company name is required." },
+          {
+            success: false,
+            error: pick(
+              "Travel agency or DMC company name is required.",
+              "Անհրաժեշտ է նշել տուրիստական գործակալության կամ DMC ընկերության անվանումը:"
+            ),
+          },
           { status: 400 }
         );
       }
       if (!fullName) {
         return NextResponse.json(
-          { success: false, error: "Contact name is required." },
+          {
+            success: false,
+            error: pick(
+              "Contact name is required.",
+              "Անհրաժեշտ է լրացնել կոնտակտային անձի անունը:"
+            ),
+          },
           { status: 400 }
         );
       }
       if (!hasPhone && !hasEmail) {
         return NextResponse.json(
-          { success: false, error: "A valid phone number or email address is required." },
+          {
+            success: false,
+            error: pick(
+              "A valid phone number or email address is required.",
+              "Անհրաժեշտ է լրացնել վավեր հեռախոսահամար կամ էլ. փոստի հասցե:"
+            ),
+          },
           { status: 400 }
         );
       }
     } else if (inquiryType === "candidate") {
       if (!fullName || !hasPhone || !targetRole) {
         return NextResponse.json(
-          { success: false, error: "Full name, valid WhatsApp phone number, and target role are required." },
+          {
+            success: false,
+            error: pick(
+              "Full name, valid WhatsApp phone number, and target role are required.",
+              "Անհրաժեշտ է լրացնել անունը, վավեր WhatsApp համարը և թիրախային հաստիքը:"
+            ),
+          },
           { status: 400 }
         );
       }
     } else if (inquiryType === "employer") {
       if (!companyName || !(contactPerson || fullName)) {
         return NextResponse.json(
-          { success: false, error: "Company name and contact person are required." },
+          {
+            success: false,
+            error: pick(
+              "Company name and contact person are required.",
+              "Անհրաժեշտ է լրացնել ընկերության անվանումը և կոնտակտային անձին:"
+            ),
+          },
           { status: 400 }
         );
       }
       if (!hasPhone && !hasEmail) {
         return NextResponse.json(
-          { success: false, error: "A valid corporate phone number or email address is required." },
+          {
+            success: false,
+            error: pick(
+              "A valid corporate phone number or email address is required.",
+              "Անհրաժեշտ է լրացնել կորպորատիվ հեռախոսահամար կամ էլ. փոստ:"
+            ),
+          },
           { status: 400 }
         );
       }
     } else {
       if (!fullName || (!hasPhone && !hasEmail)) {
         return NextResponse.json(
-          { success: false, error: "Contact name and a valid phone number or email address are required." },
+          {
+            success: false,
+            error: pick(
+              "Contact name and a valid phone number or email address are required.",
+              "Անհրաժեշտ է լրացնել կոնտակտային անունը և վավեր հեռախոսահամար կամ էլ. փոստ:"
+            ),
+          },
           { status: 400 }
         );
       }
@@ -235,7 +290,13 @@ export async function POST(req: NextRequest) {
     if (cvFile && cvFile.size > 0) {
       if (cvFile.size > MAX_CV_BYTES) {
         return NextResponse.json(
-          { success: false, error: "Resume attachment exceeds maximum 4 MB size limit." },
+          {
+            success: false,
+            error: pick(
+              "Resume attachment exceeds maximum 4 MB size limit.",
+              "Կցված CV ֆայլը գերազանցում է 4 ՄԲ առավելագույն չափը:"
+            ),
+          },
           { status: 400 }
         );
       }
@@ -246,7 +307,13 @@ export async function POST(req: NextRequest) {
 
       if (!hasValidExt || !hasValidMime) {
         return NextResponse.json(
-          { success: false, error: "Invalid resume format. Accepted formats: PDF, DOC, DOCX." },
+          {
+            success: false,
+            error: pick(
+              "Invalid resume format. Accepted formats: PDF, DOC, DOCX.",
+              "Ֆայլի անվավեր ձևաչափ: Ընդունվում են միայն PDF, DOC կամ DOCX ֆայլեր:"
+            ),
+          },
           { status: 400 }
         );
       }
@@ -257,7 +324,10 @@ export async function POST(req: NextRequest) {
         return NextResponse.json(
           {
             success: false,
-            error: "Uploaded file signature does not match a valid PDF, DOC, or DOCX document.",
+            error: pick(
+              "Uploaded file signature does not match a valid PDF, DOC, or DOCX document.",
+              "Վերբեռնված ֆայլի բովանդակությունը չի համապատասխանում վավեր PDF, DOC կամ DOCX փաստաթղթի:"
+            ),
           },
           { status: 400 }
         );
@@ -399,7 +469,10 @@ export async function POST(req: NextRequest) {
         return NextResponse.json(
           {
             success: false,
-            error: "Email delivery failed to transmit. Please connect with our Yerevan operations desk directly via WhatsApp or phone.",
+            error: pick(
+              "Email delivery failed to transmit. Please connect with our Yerevan operations desk directly via WhatsApp or phone.",
+              "Նամակի առաքումը ձախողվեց: Խնդրում ենք կապ հաստատել Երևանի գրասենյակի հետ WhatsApp-ով կամ զանգով:"
+            ),
             details: process.env.NODE_ENV === "development" ? error.message : undefined,
           },
           { status: 502 }
@@ -412,7 +485,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: "Email delivery service is temporarily unavailable. Please connect with our Yerevan operations desk directly via WhatsApp or phone.",
+          error: pick(
+            "Email delivery service is temporarily unavailable. Please connect with our Yerevan operations desk directly via WhatsApp or phone.",
+            "Էլ. փոստով առաքման ծառայությունը ժամանակավորապես անհասանելի է: Խնդրում ենք կապվել WhatsApp-ով կամ հեռախոսով:"
+          ),
         },
         { status: 503 }
       );
@@ -427,11 +503,14 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: "Inquiry received and routed to Yerevan desk.",
+      message: pick(
+        "Inquiry received and routed to Yerevan desk.",
+        "Հարցումը ստացվել է և ուղարկվել Երևանի գրասենյակ:"
+      ),
     });
   } catch (error: unknown) {
     console.error("[Inquiry API Error]", error);
-    const msg = error instanceof Error ? error.message : "Failed to process inquiry";
+    const msg = error instanceof Error ? error.message : pick("Failed to process inquiry", "Չհաջողվեց մշակել հարցումը:");
     return NextResponse.json({ success: false, error: msg }, { status: 500 });
   }
 }

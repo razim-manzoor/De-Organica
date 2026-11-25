@@ -54,12 +54,12 @@ export function ContactSection({
     const updateTime = () => {
       try {
         const now = new Date();
-        const timeStr = now.toLocaleTimeString("en-US", {
+        const timeStr = now.toLocaleTimeString(isHy ? "hy-AM" : "en-US", {
           timeZone: "Asia/Yerevan",
           hour: "2-digit",
           minute: "2-digit",
           second: "2-digit",
-          hour12: true,
+          hour12: !isHy,
         });
         setYerevanTime(timeStr);
 
@@ -74,42 +74,46 @@ export function ContactSection({
         const isBusinessDay = weekday !== "Sun";
         setIsDeskOpen(isBusinessDay && currentHour >= 9 && currentHour < 18);
       } catch {
-        setYerevanTime("GMT+4 (Armenia)");
+        setYerevanTime(isHy ? "GMT+4 (Հայաստան)" : "GMT+4 (Armenia)");
       }
     };
 
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [isHy]);
 
   const handleTravelWhatsApp = () => {
     const msg = buildTravelWhatsAppMessage({
-      name: "Traveler / Agency Partner",
-      serviceOrTour: "Yerevan Desk Travel Inquiry",
-      notes: "Hello De Organica team, I am reaching out to discuss an upcoming trip or DMC collaboration in Armenia.",
+      name: isHy ? "Ճամփորդ / Գործակալություն" : "Traveler / Agency Partner",
+      serviceOrTour: isHy ? "Երևանի Դեսկի Տուրիստական Հարցում" : "Yerevan Desk Travel Inquiry",
+      notes: isHy
+        ? "Բարև Ձեզ, գրում եմ Հայաստանում առաջիկա տուրի կամ B2B համագործակցության հարցով:"
+        : "Hello De Organica team, I am reaching out to discuss an upcoming trip or DMC collaboration in Armenia.",
     });
     window.open(buildWhatsAppUrl(msg, company.whatsappNumberDigits), "_blank", "noopener,noreferrer");
   };
 
   const handleCandidateWhatsApp = () => {
     const msg = buildCandidateWhatsAppMessage({
-      name: "Job Applicant",
-      role: "International Placement",
-      notes:
-        "Hello De Organica HR, I would like to inquire about overseas job opportunities and official work permit placement.",
+      name: isHy ? "Աշխատանքի Դիմորդ" : "Job Applicant",
+      role: isHy ? "Միջազգային Տեղավորում" : "International Placement",
+      notes: isHy
+        ? "Բարև Ձեզ, ցանկանում եմ տեղեկանալ արտերկրից աշխատանքի և օրինական թույլտվության մասին:"
+        : "Hello De Organica HR, I would like to inquire about overseas job opportunities and official work permit placement.",
     });
     window.open(buildWhatsAppUrl(msg, company.whatsappNumberDigits), "_blank", "noopener,noreferrer");
   };
 
   const handleEmployerWhatsApp = () => {
     const msg = buildEmployerWhatsAppMessage({
-      companyName: "Enterprise Client",
-      contactPerson: "Hiring Manager",
-      industry: "Skilled / Hospitality / Logistics Manpower",
+      companyName: isHy ? "Կորպորատիվ Գործատու" : "Enterprise Client",
+      contactPerson: isHy ? "Կադրերի Բաժին" : "Hiring Manager",
+      industry: isHy ? "Աշխատուժի Հավաքագրում" : "Skilled / Hospitality / Logistics Manpower",
       headcount: "1-10",
-      notes:
-        "Hello De Organica corporate team, we would like to initiate a talent requisition for our Armenian operations.",
+      notes: isHy
+        ? "Բարև Ձեզ, ցանկանում ենք քննարկել մեր ընկերության կադրերի պահանջարկը Հայաստանում:"
+        : "Hello De Organica corporate team, we would like to initiate a talent requisition for our Armenian operations.",
     });
     window.open(buildWhatsAppUrl(msg, company.whatsappNumberDigits), "_blank", "noopener,noreferrer");
   };
@@ -120,9 +124,9 @@ export function ContactSection({
       className="py-20 lg:py-28 bg-gradient-to-b from-brand-stone-100/60 to-white border-t border-brand-stone-200"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
           {/* Left Column: Yerevan Diplomatic & Commercial Desk Information */}
-          <div className="lg:col-span-5 space-y-8">
+          <div className="lg:col-span-5 flex flex-col justify-between gap-8">
             <div>
               <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-text mb-4">
                 <span>{isHy ? content.eyebrow_hy : content.eyebrow_en}</span>
@@ -136,7 +140,7 @@ export function ContactSection({
             </div>
 
             {/* Live Yerevan Desk Status Card */}
-            <div className="p-6 sm:p-7 rounded-3xl bg-white border border-brand-stone-200/90 shadow-md space-y-5">
+            <div className="p-6 sm:p-7 rounded-3xl bg-white border border-brand-stone-200/90 shadow-md flex-1 flex flex-col justify-between space-y-5">
               <div className="flex items-center justify-between gap-2 pb-4 border-b border-brand-stone-100">
                 <div className="flex items-center gap-2.5">
                   <span
@@ -160,7 +164,7 @@ export function ContactSection({
                     {yerevanTime || "--:--:--"}
                   </span>
                   <span className="text-xs text-brand-ink-subtle font-sans uppercase tracking-wider">
-                    YEREVAN (GMT+4)
+                    {isHy ? "ԵՐԵՎԱՆ (GMT+4)" : "YEREVAN (GMT+4)"}
                   </span>
                 </div>
               </div>
@@ -170,7 +174,7 @@ export function ContactSection({
                   <MapPin className="w-4 h-4 text-brand-olive-text shrink-0 mt-1" />
                   <div>
                     <span className="font-semibold text-brand-forest block text-sm">
-                      {company.legalName}
+                      {isHy ? "«Դե Օրգանիկա» ՍՊԸ" : company.legalName}
                     </span>
                     <span className="text-brand-ink-muted">
                       {isHy
@@ -346,7 +350,7 @@ export function ContactSection({
                         {isHy ? "24/7 Օդանավակայանի Լոգիստիկա" : "Zvartnots (EVN) Airport & Fleet"}
                       </div>
                       <CardHeading className="font-serif text-lg sm:text-xl font-bold text-brand-forest">
-                        {isHy ? "Chauffeur Ավտոպարկ և EVN Տրանսֆեր" : "Executive Chauffeur Fleet & Airport Transfers"}
+                        {isHy ? "Անհատական Վարորդով Ավտոպարկ և EVN Տրանսֆեր" : "Executive Chauffeur Fleet & Airport Transfers"}
                       </CardHeading>
                       <p className="text-xs sm:text-sm text-brand-ink-muted mt-0.5">
                         {isHy

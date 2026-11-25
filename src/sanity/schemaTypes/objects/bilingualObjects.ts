@@ -11,7 +11,6 @@ const ICON_LIST = [
   { title: "Plane", value: "Plane" },
   { title: "File Check", value: "FileCheck" },
   { title: "Car", value: "Car" },
-  { title: "Sparkles", value: "Sparkles" },
   { title: "Building 2", value: "Building2" },
   { title: "Users 2", value: "Users2" },
   { title: "Landmark", value: "Landmark" },
@@ -229,7 +228,8 @@ export const manpowerTrustMetricType = defineType({
   title: "Compliance Metric",
   type: "object",
   fields: [
-    defineField({ name: "figure", title: "Headline Figure", type: "string" }),
+    defineField({ name: "figure", title: "Headline Figure (EN)", type: "string" }),
+    defineField({ name: "figure_hy", title: "Headline Figure (HY)", type: "string" }),
     defineField({ name: "label_en", title: "Label (EN)", type: "string" }),
     defineField({ name: "label_hy", title: "Label (HY)", type: "string" }),
     defineField({ name: "detail_en", title: "Detail (EN)", type: "text", rows: 2 }),

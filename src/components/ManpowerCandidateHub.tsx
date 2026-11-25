@@ -96,7 +96,7 @@ export function ManpowerCandidateHub({
           </div>
 
           {/* 4 Trust Pillars */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-6 border-b border-brand-olive/15">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
             {content.trustPillars.map((p, i) => (
               <div key={i} className="space-y-1.5">
                 <div className="flex items-center gap-2 text-xs font-bold text-brand-forest">
@@ -108,38 +108,6 @@ export function ManpowerCandidateHub({
                 </p>
               </div>
             ))}
-          </div>
-
-          {/* Compact 4-Step Relocation Milestone Ribbon */}
-          <div className="pt-6">
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-olive-text">
-                {isHy ? "Թեկնածուի Թափանցիկ Ճանապարհը" : "Candidate Legal Relocation Flow"}
-              </span>
-              <span className="text-xs text-brand-ink-muted font-medium">
-                {isHy ? "Պաշտոնական Պետական Գործընթաց" : "Official State-Approved Pipeline"}
-              </span>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-              {content.mobilitySteps.map((step) => (
-                <div
-                  key={step.step}
-                  className="p-3.5 rounded-xl bg-white/90 border border-brand-olive/25 flex items-start gap-3 shadow-sm"
-                >
-                  <span className="font-serif font-bold text-base text-brand-olive-text shrink-0">
-                    {step.step}
-                  </span>
-                  <div>
-                    <h4 className="text-xs font-bold text-brand-forest leading-tight">
-                      {isHy ? step.title_hy : step.title_en}
-                    </h4>
-                    <p className="text-xs text-brand-ink-muted leading-snug mt-0.5">
-                      {isHy ? step.desc_hy : step.desc_en}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
 
@@ -191,17 +159,36 @@ export function ManpowerCandidateHub({
           </div>
 
           {/* Vacancies Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredVacancies.map((vacancy) => (
-              <div
-                key={vacancy.id}
-                className="group rounded-3xl bg-white border border-brand-stone-200/90 p-7 sm:p-8 flex flex-col justify-between hover-lift hover:border-brand-olive/50 hover:shadow-xl space-y-5 shadow-sm"
+          {filteredVacancies.length === 0 ? (
+            <div className="rounded-3xl bg-brand-stone-50 border border-brand-stone-200 p-10 text-center space-y-3">
+              <p className="font-serif text-xl font-bold text-brand-forest">
+                {isHy ? "Այս ոլորտում ընթացիկ թափուր հաստիքներ դեռ չկան" : "No Open Mandates in This Sector Yet"}
+              </p>
+              <p className="text-sm text-brand-ink-muted max-w-lg mx-auto">
+                {isHy
+                  ? "Կարող եք ընտրել բոլոր ոլորտները կամ ուղարկել Ձեր ռեզյումեն ընդհանուր բազա:"
+                  : "Browse all active sectors or drop your CV into our general Yerevan talent pool for priority matching."}
+              </p>
+              <button
+                type="button"
+                onClick={() => setSelectedSector("all")}
+                className="min-h-[44px] px-5 py-2.5 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-colors cursor-pointer"
               >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-stone-100 text-brand-forest border border-brand-stone-200">
-                      {isHy ? vacancy.sector_hy : vacancy.sector_en}
-                    </span>
+                {isHy ? "Տեսնել բոլոր հաստիքները" : "Show All Sectors"}
+              </button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {filteredVacancies.map((vacancy) => (
+                <div
+                  key={vacancy.id}
+                  className="group rounded-3xl bg-white border border-brand-stone-200/90 p-7 sm:p-8 flex flex-col justify-between hover-lift hover:border-brand-olive/50 hover:shadow-xl space-y-5 shadow-sm"
+                >
+                  <div>
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                      <span className="text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-stone-100 text-brand-forest border border-brand-stone-200 leading-tight">
+                        {isHy ? vacancy.sector_hy : vacancy.sector_en}
+                      </span>
                     <div className="flex items-center gap-1.5 text-xs text-brand-ink-muted">
                       <Clock className="w-3.5 h-3.5 text-brand-olive-text" />
                       <span>{isHy ? vacancy.type_hy : vacancy.type_en}</span>
@@ -271,8 +258,9 @@ export function ManpowerCandidateHub({
                   </button>
                 </div>
               </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           {/* Talent Pool Catch-All Banner */}
           <div className="mt-8 p-7 sm:p-8 rounded-3xl bg-brand-stone-100/90 border border-brand-stone-200 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">

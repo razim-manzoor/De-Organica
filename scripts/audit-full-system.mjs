@@ -128,6 +128,9 @@ console.log("\nSuite 4: Anti-Slop & Aesthetic Taste Verification");
 const headerContent = fs.readFileSync(path.join(srcDir, "components", "Header.tsx"), "utf8");
 const footerContent = fs.readFileSync(path.join(srcDir, "components", "Footer.tsx"), "utf8");
 const contactContent = fs.readFileSync(path.join(srcDir, "components", "ContactSection.tsx"), "utf8");
+const travelHeroContent = fs.readFileSync(path.join(srcDir, "components", "TravelHero.tsx"), "utf8");
+const notFoundContent = fs.readFileSync(path.join(srcDir, "app", "not-found.tsx"), "utf8");
+const travelFieldsContent = fs.readFileSync(path.join(srcDir, "components", "drawer", "TravelInquiryFields.tsx"), "utf8");
 
 function checkNoSparkles(dir) {
   const matches = [];
@@ -148,8 +151,11 @@ assert(sparklesMatches.length === 0, "No AI Sparkles icon across src/components"
 assert(
   !headerContent.includes("font-mono") &&
     !footerContent.includes("font-mono") &&
-    !contactContent.includes("font-mono"),
-  "No developer font-mono in Header.tsx, Footer.tsx, or ContactSection.tsx"
+    !contactContent.includes("font-mono") &&
+    !travelHeroContent.includes("font-mono") &&
+    !notFoundContent.includes("font-mono") &&
+    !travelFieldsContent.includes("font-mono"),
+  "No developer font-mono in Header, Footer, ContactSection, TravelHero, not-found, or TravelInquiryFields"
 );
 assert(!headerContent.includes("rounded-full bg-brand-olive-subtle"), "No awkward oval pill around active nav links in Header.tsx");
 

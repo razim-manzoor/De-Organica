@@ -145,6 +145,39 @@ test("WhatsApp builders encode target digits and structured B2B/Candidate/Employ
   assert.match(employerMsg, /Company Name:\* Yerevan Grand Hotel/);
   assert.match(employerMsg, /Industry Sector:\* Hospitality/);
   assert.match(employerMsg, /Personnel Required:\* 8/);
+
+  const hyTravelMsg = buildTravelWhatsAppMessage({
+    travelerType: "b2c",
+    serviceOrTour: "Կլասիկ Հայաստան",
+    dates: "2026-10-01",
+    guests: "4",
+    name: "Անի",
+    phone: "+37455123456",
+    locale: "hy",
+  });
+  assert.match(hyTravelMsg, /«ԴԵ ՕՐԳԱՆԻԿԱ» ՏՈՒՐԻԶՄ — ՀԱՐՑՈՒՄ ԵՐԵՎԱՆԻ ԴԵՍԿԻՆ/);
+  assert.match(hyTravelMsg, /Անուն:\* Անի/);
+
+  const hyCandidateMsg = buildCandidateWhatsAppMessage({
+    role: "Խոհարար",
+    name: "Արամ Սարգսյան",
+    nationality: "Հայաստան",
+    currentLocation: "Երևան",
+    phone: "+37477112233",
+    locale: "hy",
+  });
+  assert.match(hyCandidateMsg, /«ԴԵ ՕՐԳԱՆԻԿԱ» ԱՇԽԱՏԱՆՔ — ԹԵԿՆԱԾՈՒԻ ԴԻՄՈՒՄ/);
+
+  const hyEmployerMsg = buildEmployerWhatsAppMessage({
+    companyName: "Yerevan Grand Hotel",
+    contactPerson: "Սոնա",
+    jurisdiction: "Հայաստանի Հանրապետություն",
+    industry: "Հյուրընկալություն",
+    headcount: "8",
+    phone: "+37410112233",
+    locale: "hy",
+  });
+  assert.match(hyEmployerMsg, /«ԴԵ ՕՐԳԱՆԻԿԱ» ԿԱԴՐԵՐ — B2B ԳՈՐԾԱՏՈՒԻ ՀԱՅՏ/);
 });
 
 // ---------------------------------------------------------------------------
@@ -228,6 +261,15 @@ test("Inquiry API validates inputs, checks CV magic bytes, guards missing prod k
       "198.51.100.11"
     );
     assert.equal(missingRes.status, 400);
+
+    // A2. Armenian locale returns localized 400 error message
+    const missingHyRes = await postForm(
+      { inquiryType: "travel", fullName: "Անի", phone: "12", locale: "hy" },
+      "198.51.100.17"
+    );
+    assert.equal(missingHyRes.status, 400);
+    const missingHyBody = await missingHyRes.json();
+    assert.match(missingHyBody.error, /Անհրաժեշտ է/);
 
     // B. Invalid email format -> 400
     const badEmailRes = await postForm(

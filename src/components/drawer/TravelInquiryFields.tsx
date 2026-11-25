@@ -79,6 +79,22 @@ export function TravelInquiryFields({
 }: TravelInquiryFieldsProps) {
   const [showCustomOverrides, setShowCustomOverrides] = useState(false);
 
+  const PRESET_HY_LABELS: Record<string, string> = {
+    "Armenia Custom Itinerary": "Հայաստանի Անհատական Երթուղի",
+    "Bespoke Private Itinerary": "Անհատական Երթուղու Ծրագիր",
+    "B2B Travel Partner DMC Agreement": "B2B DMC Գործընկերության Համաձայնագիր",
+    "General Travel Inquiry": "Ընդհանուր Տուրիստական Հարցում",
+    "Hotels & Airport Transfers": "Հյուրանոցներ և Զվարթնոց (EVN) Տրանսֆեր",
+  };
+  const matchedTour = tours.find((t) => t.title_en === selectedService || t.title_hy === selectedService);
+  const matchedService = travelServices.find((s) => s.title_en === selectedService || s.title_hy === selectedService);
+  const displayServiceTitle = isHy
+    ? matchedTour?.title_hy ||
+      matchedService?.title_hy ||
+      PRESET_HY_LABELS[selectedService] ||
+      selectedService
+    : matchedTour?.title_en || matchedService?.title_en || selectedService;
+
   if (section === "top") {
     return (
       <>
@@ -93,7 +109,7 @@ export function TravelInquiryFields({
                   {isHy ? "Ընտրված Տուր / Երթուղի" : "Selected Tour / Itinerary"}
                 </span>
                 <span className="text-sm font-serif font-bold text-brand-forest block leading-snug">
-                  {selectedService}
+                  {displayServiceTitle}
                 </span>
               </div>
             </div>
@@ -141,7 +157,7 @@ export function TravelInquiryFields({
               <optgroup label={isHy ? "Հեղինակային Երթուղիներ" : "Signature Tour Packages"}>
                 {tours.map((t) => (
                   <option key={t.id} value={t.title_en}>
-                    {isHy ? t.title_hy : t.title_en} ({t.duration_en})
+                    {isHy ? t.title_hy : t.title_en} ({isHy ? t.duration_hy : t.duration_en})
                   </option>
                 ))}
               </optgroup>
@@ -316,8 +332,14 @@ export function TravelInquiryFields({
                 <Compass className="w-3.5 h-3.5 text-brand-olive-text" />
                 <span>{isHy ? "Ճամփորդության դասը" : "Travel Tier"}</span>
               </span>
-              <span className="text-xs font-mono text-brand-olive-text font-bold">
-                {budgetTier}
+              <span className="text-xs font-sans text-brand-olive-text font-bold">
+                {isHy
+                  ? budgetTier === "Essential Comfort"
+                    ? "Կոմֆորտ"
+                    : budgetTier === "Classic Comfort"
+                    ? "Կոմֆորտ (4★)"
+                    : "Բուտիկ և VIP"
+                  : budgetTier}
               </span>
             </div>
 
@@ -337,7 +359,7 @@ export function TravelInquiryFields({
                   label_en: "Classic Comfort",
                   label_hy: "Կոմֆորտ (4★)",
                   sub_en: "4★ Hotels, Chauffeur",
-                  sub_hy: "4★, շոֆեր",
+                  sub_hy: "4★, վարորդ",
                   lodging: "4-Star City Comfort",
                   fleet: "Executive Sedan",
                 },
@@ -401,9 +423,9 @@ export function TravelInquiryFields({
                   max="150"
                   value={guestsCount}
                   onChange={(e) => setGuestsCount(e.target.value)}
-                  className="w-16 px-2 py-1 rounded-lg border border-brand-stone-300 bg-white text-xs font-bold font-mono text-center text-brand-forest focus:ring-1 focus:ring-brand-olive"
+                  className="w-16 px-2 py-1 rounded-lg border border-brand-stone-300 bg-white text-xs font-bold font-sans tabular-nums text-center text-brand-forest focus:ring-1 focus:ring-brand-olive"
                 />
-                <span className="text-xs font-mono text-brand-olive-text font-bold">
+                <span className="text-xs font-sans text-brand-olive-text font-bold">
                   {parseInt(guestsCount, 10) === 1
                     ? isHy
                       ? "հյուր"

@@ -37,7 +37,11 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
               <span>{isHy ? content.eyebrow_hy : content.eyebrow_en}</span>
             </div>
 
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-forest leading-[1.12] mb-5">
+            <h1
+              className={`font-serif font-bold tracking-tight text-brand-forest leading-[1.12] mb-5 ${
+                isHy ? "text-3xl sm:text-4xl lg:text-[3.25rem]" : "text-3xl sm:text-5xl lg:text-6xl"
+              }`}
+            >
               {isHy ? content.headline_hy : content.headline_en}
             </h1>
 
@@ -48,14 +52,12 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
             <div className="flex flex-wrap items-center gap-3 mb-4">
               <button
                 type="button"
-                onClick={() =>
-                  openTravelDrawer(`Custom Tour: ${activeDest.name_en}`)
-                }
+                onClick={() => openTravelDrawer("Bespoke Private Itinerary")}
                 className="min-h-[44px] inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-forest text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-forest-deep transition-all active:scale-95 duration-200 shadow-sm group cursor-pointer"
               >
                 <Compass className="w-4 h-4 text-brand-olive-onDark" />
                 <span>{isHy ? content.ctaPrimary_hy : content.ctaPrimary_en}</span>
-                <ArrowRight className="w-4 h-4 text-brand-olive-onDark transition-transform duration-200 group-hover:translate-x-0.5" />
+                <ArrowRight className="w-4 h-4 text-brand-olive-onDark transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transform-none" />
               </button>
 
               <a
@@ -92,7 +94,7 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
             </div>
 
             {/* Travel Specific Pillar Badges */}
-            <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-brand-stone-200">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-3 sm:gap-4 pt-6 border-t border-brand-stone-200">
               {content.badges.map((badge) => {
                 const Icon = getCmsIcon(badge.icon, ShieldCheck);
                 return (
@@ -132,8 +134,8 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
 
                 {/* Bottom Overlay Info */}
                 <div className="absolute bottom-3 left-3 right-3 text-white">
-                  <div className="flex items-center gap-2 text-xs text-brand-olive-onDark mb-1">
-                    <MapPin className="w-3.5 h-3.5" />
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-brand-olive-onDark mb-1">
+                    <MapPin className="w-3.5 h-3.5 shrink-0" />
                     <span>{activeDest.distKm} {isHy ? "կմ Երևանից" : "km from Yerevan"}</span>
                     <span>·</span>
                     <span>{activeDest.altitudeM}{isHy ? " մ բարձր." : "m ASL"}</span>
@@ -143,7 +145,7 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
                   <h2 className="font-serif text-xl sm:text-2xl font-bold leading-tight">
                     {isHy ? activeDest.name_hy : activeDest.name_en}
                   </h2>
-                  <p className="text-xs text-stone-200 mt-1 line-clamp-1">
+                  <p className="text-xs text-stone-200 mt-1 leading-snug">
                     {isHy ? activeDest.subtitle_hy : activeDest.subtitle_en}
                   </p>
                 </div>
@@ -153,7 +155,7 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
               <div className="space-y-1.5 mb-4">
                 <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-brand-ink-muted px-1">
                   <span>{isHy ? "Ընտրեք ուղղությունը" : "Featured Destinations"}</span>
-                  <span className="font-mono text-brand-olive-text font-semibold">
+                  <span className="font-sans tabular-nums text-brand-olive-text font-semibold">
                     {activeDestIdx + 1} / {destinations.length}
                   </span>
                 </div>
@@ -171,11 +173,11 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
                           : "bg-brand-stone-50 text-brand-forest hover:bg-brand-stone-100 border-brand-stone-200"
                       }`}
                     >
-                      <div className="truncate">
+                      <div className="leading-snug">
                         {isHy ? dest.name_hy : dest.name_en}
                       </div>
                       <div
-                        className={`text-xs truncate mt-0.5 ${
+                        className={`text-xs mt-0.5 tabular-nums ${
                           activeDestIdx === idx
                             ? "text-brand-olive-onDark"
                             : "text-brand-ink-muted"
@@ -191,17 +193,15 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
               {/* Fast Booking Dispatch */}
               <button
                 type="button"
-                onClick={() =>
-                  openTravelDrawer(`Route Inquiry: ${activeDest.name_en}`)
-                }
+                onClick={() => openTravelDrawer("Bespoke Private Itinerary")}
                 className="w-full min-h-[44px] py-2.5 px-4 rounded-xl bg-brand-stone-100 hover:bg-brand-forest hover:text-white text-brand-forest text-xs font-bold uppercase tracking-wider transition-all active:scale-95 flex items-center justify-center gap-2 border border-brand-stone-300 shadow-sm cursor-pointer group/cta"
               >
                 <span>
                   {isHy
-                    ? `Պատվիրել ${activeDest.name_hy}`
+                    ? `Պատվիրել՝ ${activeDest.name_hy}`
                     : `Inquire ${activeDest.name_en} Expedition`}
                 </span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/cta:translate-x-1" />
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/cta:translate-x-1 motion-reduce:transform-none" />
               </button>
             </div>
           </div>

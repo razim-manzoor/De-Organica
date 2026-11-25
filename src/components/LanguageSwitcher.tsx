@@ -19,7 +19,7 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
         className
       )}
       role="group"
-      aria-label="Language toggle"
+      aria-label={locale === "hy" ? "Լեզվի ընտրություն" : "Language selector"}
     >
       <Globe className="w-3.5 h-3.5 text-brand-olive-text ml-2 mr-1 hidden sm:block shrink-0" aria-hidden="true" />
       <button
@@ -27,7 +27,7 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
         onClick={() => setLocale("en")}
         aria-pressed={locale === "en"}
         className={cn(
-          "min-h-[30px] min-w-[34px] px-2.5 py-1 text-[11px] font-semibold rounded-lg transition-all duration-200 cursor-pointer",
+          "min-h-[30px] min-w-[34px] px-2.5 py-1 text-xs font-semibold rounded-lg transition-all duration-200 cursor-pointer",
           locale === "en"
             ? "bg-white text-brand-forest shadow-xs font-bold"
             : "text-brand-ink-muted hover:text-brand-forest"
@@ -40,7 +40,7 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
         onClick={() => setLocale("hy")}
         aria-pressed={locale === "hy"}
         className={cn(
-          "min-h-[30px] min-w-[38px] px-2.5 py-1 text-[11px] font-semibold rounded-lg transition-all duration-200 cursor-pointer",
+          "min-h-[30px] min-w-[38px] px-2.5 py-1 text-xs font-semibold rounded-lg transition-all duration-200 cursor-pointer",
           locale === "hy"
             ? "bg-white text-brand-forest shadow-xs font-bold"
             : "text-brand-ink-muted hover:text-brand-forest"

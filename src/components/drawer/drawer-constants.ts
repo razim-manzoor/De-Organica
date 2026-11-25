@@ -50,7 +50,7 @@ export const FLEET_TIERS = [
   {
     id: "Executive Sedan",
     label_en: "Executive Sedan",
-    label_hy: "Executive Sedan",
+    label_hy: "Բիզնես Սեդան",
     sub_en: "Business · 1–3 guests",
     sub_hy: "Բիզնես · 1–3 հյուր",
   },
@@ -99,6 +99,7 @@ export type InvalidFieldKey =
   | "companyName"
   | "fullName"
   | "phoneNumber"
+  | "email"
   | "targetRole"
   | "cvFile"
   | "consent"

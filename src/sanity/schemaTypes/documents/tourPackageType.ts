@@ -9,7 +9,7 @@ export const tourPackageType = defineType({
     { name: "english", title: "English" },
     { name: "armenian", title: "Հայերեն (Armenian)" },
     { name: "media", title: "Photos & Itinerary" },
-    { name: "booking", title: "Pricing & Links" },
+    { name: "booking", title: "Partner Links" },
     { name: "seo", title: "SEO & Social Share" },
   ],
   fields: [

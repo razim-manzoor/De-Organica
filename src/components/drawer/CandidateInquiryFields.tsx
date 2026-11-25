@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Briefcase, Upload, FileText, Trash2 } from "lucide-react";
 import type { InvalidFieldKey } from "./drawer-constants";
 
@@ -54,6 +54,7 @@ export function CandidateInquiryFields({
   consentRef,
 }: CandidateInquiryFieldsProps) {
   const [isDragging, setIsDragging] = useState(false);
+  const cvInputRef = useRef<HTMLInputElement | null>(null);
 
   return (
     <>
@@ -72,7 +73,7 @@ export function CandidateInquiryFields({
             maxLength={120}
             value={nationality}
             onChange={(e) => setNationality(e.target.value)}
-            placeholder={isHy ? "օրինակ՝ ՀՀ քաղաքացի, Վրաստան" : "e.g. Georgia, Armenia, International"}
+            placeholder={isHy ? "օր.՝ Հայաստան, Վրաստան" : "e.g. Georgia, India, Egypt"}
             className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           />
         </div>
@@ -90,7 +91,7 @@ export function CandidateInquiryFields({
             maxLength={120}
             value={currentCountry}
             onChange={(e) => setCurrentCountry(e.target.value)}
-            placeholder={isHy ? "օրինակ՝ Հայաստան, ԱՄԷ, Վրաստան" : "e.g. UAE / Armenia / Georgia / Poland"}
+            placeholder={isHy ? "օր.՝ Հայաստան, ԱՄԷ" : "e.g. UAE, Armenia, Georgia"}
             className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           />
         </div>
@@ -191,6 +192,7 @@ export function CandidateInquiryFields({
           }`}
         >
           <input
+            ref={cvInputRef}
             id="cvUploadInput"
             type="file"
             accept=".pdf,.doc,.docx"
@@ -209,8 +211,8 @@ export function CandidateInquiryFields({
                   <span className="font-semibold text-brand-forest truncate block max-w-[200px] sm:max-w-[260px]">
                     {cvFile.name}
                   </span>
-                  <span className="text-[11px] text-brand-ink-subtle font-sans tabular-nums block">
-                    {(cvFile.size / (1024 * 1024)).toFixed(2)} MB
+                  <span className="text-xs text-brand-ink-subtle font-sans tabular-nums block">
+                    {(cvFile.size / (1024 * 1024)).toFixed(2)} {isHy ? "ՄԲ" : "MB"}
                   </span>
                 </div>
                 <button
@@ -219,6 +221,9 @@ export function CandidateInquiryFields({
                   onClick={(e) => {
                     e.stopPropagation();
                     setCvFile(null);
+                    if (cvInputRef.current) {
+                      cvInputRef.current.value = "";
+                    }
                   }}
                   className="min-w-[32px] min-h-[32px] flex items-center justify-center rounded-full text-brand-ink-subtle hover:text-[#B43C30] transition-colors cursor-pointer shrink-0 ml-1"
                 >
@@ -247,10 +252,10 @@ export function CandidateInquiryFields({
         </span>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-xs">
           {[
+            { id: "Entry Level", label_en: "Entry", label_hy: "Սկսնակ" },
             { id: "1–2 Years", label_en: "1–2 Yrs", label_hy: "1–2 Տարի" },
             { id: "3–5 Years", label_en: "3–5 Yrs", label_hy: "3–5 Տարի" },
             { id: "5+ Years", label_en: "5+ Yrs", label_hy: "5+ Տարի" },
-            { id: "Entry Level", label_en: "Entry", label_hy: "Սկսնակ" },
           ].map((exp) => (
             <button
               key={exp.id}
@@ -351,8 +356,8 @@ export function CandidateInquiryFields({
           <div className="text-xs">
             <span className="font-bold text-brand-forest block">
               {isHy
-                ? "Օրինական Աշխատանքի Տեղավորման և Վիզայի Պայմանների Համաձայնություն"
-                : "Verified Placement & Work Permit Terms Consent"}
+                ? "Օրինական Աշխատանքի Տեղավորման և Վիզայի Պայմանների Համաձայնություն *"
+                : "Verified Placement & Work Permit Terms Consent *"}
             </span>
             <span className="text-brand-ink-muted leading-relaxed block mt-0.5">
               {isHy

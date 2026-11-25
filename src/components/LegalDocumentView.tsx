@@ -60,7 +60,7 @@ export function LegalDocumentView({ mode }: LegalDocumentViewProps) {
 
         <p className="mt-4 text-sm text-brand-ink-muted leading-relaxed">
           {isHy
-            ? `Կիրառելի է՝ ${company.legalName} (${company.address_hy}) · Թարմացվել է՝ Նոյեմբեր 2026`
+            ? `Կիրառելի է՝ «Դե Օրգանիկա» ՍՊԸ (${company.address_hy}) · Թարմացվել է՝ Նոյեմբեր 2026`
             : `Effective Entity: ${company.legalName} (${company.address_en}) · Last Updated: November 2026`}
         </p>
       </header>
@@ -73,7 +73,7 @@ export function LegalDocumentView({ mode }: LegalDocumentViewProps) {
             </h2>
             <p className="text-brand-ink-muted">
               {isHy
-                ? `Այս կայքի («deorganica.am» և հարակից ենթադոմենների) միջոցով ներկայացված տվյալների մշակման պատասխանատուն «Դե Օրգանիկա» ՍՊԸ-ն է (${company.address_hy}), Հայաստանի Հանրապետություն:`
+                ? `Այս կայքի («deorganica.am» և հարակից ենթադոմենների) միջոցով ներկայացված տվյալների մշակման պատասխանատուն «Դե Օրգանիկա» ՍՊԸ-ն է (${company.address_hy}):`
                 : `Personal information submitted through ${company.legalName} web portals is controlled by ${company.legalName}, registered in the Republic of Armenia (${company.address_en}).`}
             </p>
           </section>
@@ -130,14 +130,14 @@ export function LegalDocumentView({ mode }: LegalDocumentViewProps) {
             </h2>
             <p className="text-brand-ink-muted">
               {isHy
-                ? `${company.legalName}-ն իրականացնում է երկու հիմնական ուղղություն՝ Հայաստանում և արտերկրում տուրիստական ու DMC ծառայություններ, ինչպես նաև միջազգային օրինական աշխատանքի տեղավորում և կորպորատիվ կադրային ապահովում:`
+                ? `«Դե Օրգանիկա» ՍՊԸ-ն իրականացնում է երկու հիմնական ուղղություն՝ Հայաստանում և արտերկրում տուրիստական ու DMC ծառայություններ, ինչպես նաև միջազգային օրինական աշխատանքի տեղավորում և կորպորատիվ կադրային ապահովում:`
                 : `${company.legalName} operates two integrated corporate divisions registered in Yerevan, Republic of Armenia: Division 01 (Inbound Armenia Tours, Outbound Holidays, Visa Desk, & B2B DMC Operations) and Division 02 (Ethical International Manpower & Enterprise Work Permit Facilitation).`}
             </p>
           </section>
 
           <section aria-labelledby="terms-placement" className="space-y-3">
             <h2 id="terms-placement" className="font-serif text-2xl font-bold text-brand-forest">
-              {isHy ? "2. Միջազգային հավաքագրման և վիզաների քաղաքականություն (Manpower)" : "2. Ethical Recruitment & Work Permit Policy (Manpower)"}
+              {isHy ? "2. Միջազգային հավաքագրման և վիզաների քաղաքականություն" : "2. Ethical Recruitment & Work Permit Policy (Manpower)"}
             </h2>
             <p className="text-brand-ink-muted">
               {isHy
@@ -176,7 +176,7 @@ export function LegalDocumentView({ mode }: LegalDocumentViewProps) {
             {isHy ? "Իրավական կամ գրասենյակային հարցումներ" : "Compliance & Legal Correspondence"}
           </p>
           <p className="text-sm text-brand-ink-muted">
-            {company.legalName} ·{" "}
+            {isHy ? "«Դե Օրգանիկա» ՍՊԸ" : company.legalName} ·{" "}
             <a
               href={`mailto:${company.email}`}
               className="font-sans font-medium text-brand-forest underline underline-offset-2 hover:text-brand-olive-text"

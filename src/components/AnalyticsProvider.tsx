@@ -107,7 +107,7 @@ export function AnalyticsProvider() {
                     <button
                       type="button"
                       onClick={() => handleConsentChoice("granted")}
-                      className="px-3.5 py-2 min-h-[36px] rounded-lg bg-[#668B2E] text-white font-semibold hover:bg-[#577726] transition-colors cursor-pointer"
+                      className="px-3.5 py-2 min-h-[36px] rounded-lg bg-[#4B6820] text-white font-semibold hover:bg-[#3B5218] transition-colors cursor-pointer"
                     >
                       {isHy ? "Թույլատրել" : "Accept Analytics"}
                     </button>

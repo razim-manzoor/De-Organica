@@ -55,8 +55,7 @@ export function TravelServicesMatrix({
   };
 
   return (
-    <section id="travel-services" className="scroll-mt-20 py-20 lg:py-28 bg-white border-t border-brand-stone-200 relative">
-      <span id="services" className="absolute -top-20" aria-hidden="true" />
+    <section id="services" className="scroll-mt-20 py-16 lg:py-24 bg-white border-t border-brand-stone-200 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
@@ -124,7 +123,7 @@ export function TravelServicesMatrix({
                 <div className="pt-4 border-t border-brand-stone-100 flex items-center gap-2">
                   <button
                     type="button"
-                    onClick={() => openTravelDrawer(isHy ? service.title_hy : service.title_en)}
+                    onClick={() => openTravelDrawer(service.title_en)}
                     className="flex-1 min-h-[44px] py-2.5 px-3 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep transition-all active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
                   >
                     <span>{isHy ? "Պատվիրել ծառայությունը" : "Request Service"}</span>

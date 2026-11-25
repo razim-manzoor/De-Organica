@@ -75,9 +75,9 @@ export function ConciergeDrawer() {
   const [companyName, setCompanyName] = useState("");
   const [contactPerson, setContactPerson] = useState("");
   const [employerJurisdiction, setEmployerJurisdiction] = useState("Armenia (ՀՎՀՀ / TIN)");
-  const [industrySector, setIndustrySector] = useState("Hospitality & Restaurants");
-  const [headcountRequired, setHeadcountRequired] = useState("1–5");
-  const [employerUrgency, setEmployerUrgency] = useState("Immediate (< 15 Days)");
+  const [industrySector, setIndustrySector] = useState("");
+  const [headcountRequired, setHeadcountRequired] = useState("");
+  const [employerUrgency, setEmployerUrgency] = useState("Urgent (15–25 Business Days Permit SLA)");
   const [employerHousing, setEmployerHousing] = useState("Employer Housing Included");
   const [notes, setNotes] = useState("");
   const [cvFile, setCvFile] = useState<File | null>(null);
@@ -92,6 +92,7 @@ export function ConciergeDrawer() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const errorSummaryRef = useRef<HTMLDivElement>(null);
+  const successHeadingRef = useRef<HTMLHeadingElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const tabTravelRef = useRef<HTMLButtonElement>(null);
   const tabCandidateRef = useRef<HTMLButtonElement>(null);
@@ -103,6 +104,7 @@ export function ConciergeDrawer() {
   const companyNameRef = useRef<HTMLInputElement>(null);
   const personNameRef = useRef<HTMLInputElement>(null);
   const phoneInputRef = useRef<HTMLInputElement>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
   const targetRoleRef = useRef<HTMLInputElement>(null);
   const consentRef = useRef<HTMLInputElement>(null);
 
@@ -227,7 +229,8 @@ export function ConciergeDrawer() {
 
   const buildCurrentWhatsAppUrl = (
     fullPhoneStr: string,
-    attachedFileName?: string
+    attachedFileName?: string,
+    minimalShortcut: boolean = false
   ): string => {
     let msg = "";
     if (activeTab === "travel") {
@@ -236,42 +239,56 @@ export function ConciergeDrawer() {
         travelerType,
         agencyName: travelerType === "b2b" ? agencyName : undefined,
         agencyCountry: travelerType === "b2b" ? agencyCountry : undefined,
-        b2bScope: travelerType === "b2b" ? b2bScope : undefined,
-        serviceOrTour: selectedService || "Travel & Tours Inquiry",
-        budgetTier: travelerType === "individual" ? budgetTier : undefined,
+        b2bScope: travelerType === "b2b" && !minimalShortcut ? b2bScope : undefined,
+        serviceOrTour:
+          selectedService || (isHy ? "Տուրիստական և DMC Հարցում" : "Travel & Tours Inquiry"),
+        budgetTier: travelerType === "individual" && !minimalShortcut ? budgetTier : undefined,
         dates: travelDates,
-        guests: travelerType === "individual" ? guestsCount : undefined,
-        accommodation: travelerType === "individual" ? accommodationTier : undefined,
-        fleet: travelerType === "individual" ? fleetTier : undefined,
+        guests: travelerType === "individual" && !minimalShortcut ? guestsCount : undefined,
+        accommodation:
+          travelerType === "individual" && !minimalShortcut ? accommodationTier : undefined,
+        fleet: travelerType === "individual" && !minimalShortcut ? fleetTier : undefined,
         phone: fullPhoneStr,
         email,
         notes,
+        locale,
       });
     } else if (activeTab === "candidate") {
+      const attachmentNote = attachedFileName
+        ? isHy
+          ? ` (Կցված CV՝ ${attachedFileName})`
+          : ` (CV Attached: ${attachedFileName})`
+        : "";
       msg = buildCandidateWhatsAppMessage({
         name: fullName,
         nationality,
         currentLocation: currentCountry,
-        role: targetRole,
-        experience: experienceLevel,
-        languages: primaryLanguage,
-        status: candidateStatus,
+        role:
+          targetRole ||
+          (isHy ? "Միջազգային աշխատանքի տեղավորում" : "International Manpower Placement"),
+        experience: minimalShortcut ? undefined : experienceLevel,
+        languages: minimalShortcut ? undefined : primaryLanguage,
+        status: minimalShortcut ? undefined : candidateStatus,
         phone: fullPhoneStr,
         email,
-        notes: notes + (attachedFileName ? ` (CV Attached: ${attachedFileName})` : ""),
+        notes: `${notes}${attachmentNote}`.trim(),
+        locale,
       });
     } else {
       msg = buildEmployerWhatsAppMessage({
         companyName,
         contactPerson,
-        jurisdiction: employerJurisdiction,
+        jurisdiction: minimalShortcut ? undefined : employerJurisdiction,
         email,
         phone: fullPhoneStr,
-        industry: industrySector,
+        industry:
+          industrySector ||
+          (isHy ? "Աշխատուժի հավաքագրում" : "Corporate Staffing Inquiry"),
         headcount: headcountRequired,
-        urgency: employerUrgency,
-        housing: employerHousing,
+        urgency: minimalShortcut ? undefined : employerUrgency,
+        housing: minimalShortcut ? undefined : employerHousing,
         notes,
+        locale,
       });
     }
     return buildWhatsAppUrl(msg, siteSettings.company.whatsappNumberDigits);
@@ -294,6 +311,7 @@ export function ConciergeDrawer() {
   };
 
   const fullPhone = phoneNumber ? `${dialCode} ${phoneNumber.trim()}` : "";
+  const combinedPhoneDigits = fullPhone.replace(/[^0-9]/g, "");
 
   const handleSubmit = async (openWhatsAppChat: boolean = true) => {
     setErrorMessage("");
@@ -340,7 +358,7 @@ export function ConciergeDrawer() {
         );
         return;
       }
-      if (phoneNumber.trim() && phoneNumber.replace(/[^0-9]/g, "").length < 5) {
+      if (phoneNumber.trim() && combinedPhoneDigits.length < 6) {
         raiseValidationError(
           isHy
             ? "Խնդրում ենք նշել վավեր հեռախոսահամար"
@@ -359,7 +377,7 @@ export function ConciergeDrawer() {
         );
         return;
       }
-      if (!phoneNumber.trim() || phoneNumber.replace(/[^0-9]/g, "").length < 5) {
+      if (!phoneNumber.trim() || combinedPhoneDigits.length < 6) {
         raiseValidationError(
           isHy
             ? "Խնդրում ենք նշել վավեր WhatsApp հեռախոսահամար"
@@ -416,7 +434,7 @@ export function ConciergeDrawer() {
         );
         return;
       }
-      if (phoneNumber.trim() && phoneNumber.replace(/[^0-9]/g, "").length < 5) {
+      if (phoneNumber.trim() && combinedPhoneDigits.length < 6) {
         raiseValidationError(
           isHy
             ? "Խնդրում ենք նշել վավեր հեռախոսահամար"
@@ -431,7 +449,8 @@ export function ConciergeDrawer() {
     if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
       raiseValidationError(
         isHy ? "Խնդրում ենք նշել վավեր էլ. փոստի հասցե" : "Please provide a valid email address",
-        null
+        "email",
+        emailInputRef
       );
       return;
     }
@@ -524,6 +543,9 @@ export function ConciergeDrawer() {
       setSubmittedSnapshot({ waUrl });
       setNotes("");
       setCvFile(null);
+      requestAnimationFrame(() => {
+        successHeadingRef.current?.focus();
+      });
 
       if (openWhatsAppChat) {
         if (waWindow && !waWindow.closed) {
@@ -538,7 +560,11 @@ export function ConciergeDrawer() {
         waWindow.close();
       }
       const msg =
-        err instanceof Error ? err.message : "An unexpected error occurred.";
+        err instanceof Error
+          ? err.message
+          : isHy
+          ? "Տեղի ունեցավ անսպասելի սխալ: Խնդրում ենք փորձել կրկին:"
+          : "An unexpected error occurred.";
       setErrorMessage(msg);
       requestAnimationFrame(() => {
         errorSummaryRef.current?.focus();
@@ -741,7 +767,15 @@ export function ConciergeDrawer() {
           </button>
         </div>
 
-        {/* Scrollable Form Body */}
+        {/* Scrollable Form Body + Submit Footer */}
+        <form
+          noValidate
+          onSubmit={(e) => {
+            e.preventDefault();
+            void handleSubmit(true);
+          }}
+          className="flex-1 min-h-0 flex flex-col"
+        >
         <div
           id="concierge-tabpanel"
           role="tabpanel"
@@ -756,18 +790,18 @@ export function ConciergeDrawer() {
                 <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#25D366]/15 flex items-center justify-center shrink-0">
                   <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#15803D]" />
                 </span>
-                <p className="text-xs text-brand-ink leading-tight truncate">
+                <p className="text-xs text-brand-ink leading-tight min-w-0">
                   <span className="font-semibold block text-brand-forest">
                     {isHy ? "Չե՞ք ցանկանում լրացնել ձևաթուղթը" : "Prefer not to fill this form?"}
                   </span>
-                  <span className="text-brand-ink-muted text-xs">
+                  <span className="text-brand-ink-muted text-xs block">
                     {isHy ? "Գրեք մեզ անմիջապես WhatsApp-ով" : "Message our Yerevan desk directly"}
                   </span>
                 </p>
               </div>
 
               <a
-                href={buildCurrentWhatsAppUrl(fullPhone)}
+                href={buildCurrentWhatsAppUrl(fullPhone, undefined, true)}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeTopLayer}
@@ -782,7 +816,11 @@ export function ConciergeDrawer() {
           {submittedSnapshot ? (
             <div className="p-8 rounded-2xl bg-brand-olive-subtle/60 border border-brand-olive/40 text-center space-y-4 my-auto shadow-sm">
               <CheckCircle2 className="w-14 h-14 text-brand-olive-text mx-auto" />
-              <h3 className="font-serif text-2xl font-bold text-brand-forest">
+              <h3
+                ref={successHeadingRef}
+                tabIndex={-1}
+                className="font-serif text-2xl font-bold text-brand-forest focus:outline-none"
+              >
                 {isHy ? "Ձեր հարցումը հաջողությամբ ուղարկված է" : "Inquiry Dispatched Successfully"}
               </h3>
               <p className="text-sm text-brand-ink-muted max-w-md mx-auto leading-relaxed">
@@ -939,7 +977,7 @@ export function ConciergeDrawer() {
                         : setFullName(e.target.value)
                     }
                     placeholder={
-                      travelerType === "b2b"
+                      activeTab === "travel" && travelerType === "b2b"
                         ? isHy
                           ? "օրինակ՝ Գևորգ Մանուկյան"
                           : "e.g. Elena Petrova / Marcus Vance"
@@ -955,12 +993,18 @@ export function ConciergeDrawer() {
 
                 {/* International Phone with Accessible SVG Flag Picker */}
                 <div>
-                  <div className="flex items-center justify-between mb-1.5">
+                  <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5 mb-1.5">
                     <label
                       htmlFor="contactPhoneInput"
                       className="text-xs font-semibold text-brand-forest"
                     >
-                      {isHy ? "Հեռախոսահամար / WhatsApp *" : "WhatsApp / Mobile Number *"}
+                      {activeTab === "candidate"
+                        ? isHy
+                          ? "Հեռախոսահամար / WhatsApp *"
+                          : "WhatsApp / Mobile Number *"
+                        : isHy
+                        ? "Հեռախոսահամար / WhatsApp"
+                        : "WhatsApp / Mobile Number"}
                     </label>
                     <span className="text-xs text-brand-ink-subtle">
                       {isHy ? "Արագ կապի համար" : "Preferred for instant desk reply"}
@@ -993,14 +1037,18 @@ export function ConciergeDrawer() {
                     {isHy ? "Էլ. Փոստի հասցե" : "Email Address"}
                   </label>
                   <input
+                    ref={emailInputRef}
                     id="contactEmailInput"
                     type="email"
                     autoComplete="email"
                     maxLength={200}
+                    aria-invalid={invalidField === "email"}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@example.com"
-                    className="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-brand-stone-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-olive focus:border-transparent text-base sm:text-sm text-brand-ink shadow-sm"
+                    className={`w-full min-h-[44px] px-4 py-2.5 rounded-xl border bg-white focus:outline-none focus:ring-2 focus:ring-brand-olive focus:border-transparent text-base sm:text-sm text-brand-ink shadow-sm transition-colors duration-200 ${
+                      invalidField === "email" ? "border-[#B43C30]" : "border-brand-stone-300"
+                    }`}
                   />
                 </div>
 
@@ -1195,7 +1243,7 @@ export function ConciergeDrawer() {
               <span>{isHy ? "Ուղարկել միայն էլ. փոստով" : "Send Official Inquiry by Email Only"}</span>
             </button>
 
-            <p className="text-center text-[11px] text-brand-ink-subtle pt-0.5">
+            <p className="text-center text-xs text-brand-ink-subtle pt-0.5">
               {isHy ? (
                 <>
                   Ուղարկելով՝ Դուք համաձայնում եք մեր{" "}
@@ -1224,6 +1272,7 @@ export function ConciergeDrawer() {
             </p>
           </div>
         )}
+        </form>
       </div>
     </dialog>
   );

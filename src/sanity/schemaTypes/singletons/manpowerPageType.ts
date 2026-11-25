@@ -34,7 +34,8 @@ export const manpowerPageType = defineType({
             {
               type: "object",
               fields: [
-                defineField({ name: "figure", title: "Figure", type: "string" }),
+                defineField({ name: "figure", title: "Figure (EN)", type: "string" }),
+                defineField({ name: "figure_hy", title: "Figure (HY)", type: "string" }),
                 defineField({ name: "label_en", title: "Label (EN)", type: "string" }),
                 defineField({ name: "label_hy", title: "Label (HY)", type: "string" }),
               ],
@@ -77,7 +78,13 @@ export const manpowerPageType = defineType({
         defineField({ name: "charterDesc_en", title: "Charter Description (EN)", type: "text", rows: 3 }),
         defineField({ name: "charterDesc_hy", title: "Charter Description (HY)", type: "text", rows: 3 }),
         defineField({ name: "trustPillars", title: "Trust Pillars", type: "array", of: [{ type: "manpowerTrustPillar" }] }),
-        defineField({ name: "mobilitySteps", title: "Mobility Roadmap Steps", type: "array", of: [{ type: "manpowerMobilityStep" }] }),
+        defineField({
+          name: "mobilitySteps",
+          title: "Mobility Roadmap Steps (Legacy Hidden)",
+          type: "array",
+          of: [{ type: "manpowerMobilityStep" }],
+          hidden: true,
+        }),
         defineField({
           name: "sectors",
           title: "Fallback Sector Filter Pills",

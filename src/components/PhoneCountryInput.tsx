@@ -514,7 +514,7 @@ export const COUNTRIES: CountryInfo[] = [
   {
     code: "GLOBAL",
     name_en: "Other / Custom",
-    name_hy: "Այլ երկիր (Custom)",
+    name_hy: "Այլ երկիր",
     dialCode: "+",
     flagSvg: (
       <div className="w-5 h-3.5 rounded-sm bg-brand-stone-100 flex items-center justify-center shrink-0 border border-stone-300">

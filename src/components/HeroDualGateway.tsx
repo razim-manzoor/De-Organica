@@ -29,7 +29,11 @@ export function HeroDualGateway({ content = defaultHomePageContent }: HeroDualGa
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-text mb-3">
               <span>{isHy ? masthead.eyebrow_hy : masthead.eyebrow_en}</span>
             </div>
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-[3.25rem] font-bold text-brand-forest leading-[1.1] tracking-tight">
+            <h1
+              className={`font-serif font-bold text-brand-forest leading-[1.12] tracking-tight ${
+                isHy ? "text-3xl sm:text-4xl lg:text-[2.75rem]" : "text-3xl sm:text-5xl lg:text-[3.25rem]"
+              }`}
+            >
               {isHy ? masthead.headline_hy : masthead.headline_en}
             </h1>
           </div>

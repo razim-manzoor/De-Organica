@@ -38,7 +38,11 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
               <span>{isHy ? content.eyebrow_hy : content.eyebrow_en}</span>
             </div>
 
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-forest leading-[1.12] mb-5">
+            <h1
+              className={`font-serif font-bold tracking-tight text-brand-forest leading-[1.12] mb-5 ${
+                isHy ? "text-3xl sm:text-4xl lg:text-[3rem]" : "text-3xl sm:text-5xl lg:text-6xl"
+              }`}
+            >
               {isHy ? content.headline_hy : content.headline_en}
             </h1>
 
@@ -54,7 +58,7 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
               >
                 <Briefcase className="w-4 h-4 text-brand-olive-onDark shrink-0" />
                 <span>{isHy ? "Թեկնածուներին · Ուղարկել CV" : "Job Seekers · Submit CV"}</span>
-                <ArrowRight className="w-4 h-4 text-brand-olive-onDark transition-transform duration-200 group-hover:translate-x-0.5" />
+                <ArrowRight className="w-4 h-4 text-brand-olive-onDark transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transform-none" />
               </button>
 
               <button
@@ -97,7 +101,7 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
               {content.metrics.map((metric, idx) => (
                 <div key={idx} className="p-3.5 rounded-2xl bg-white border border-brand-stone-200/90 shadow-sm">
                   <div className="font-serif text-lg sm:text-xl font-bold text-brand-forest tabular-nums">
-                    {metric.figure}
+                    {isHy && metric.figure_hy ? metric.figure_hy : metric.figure}
                   </div>
                   <div className="text-xs text-brand-ink-muted uppercase tracking-wider mt-0.5 font-semibold">
                     {isHy ? metric.label_hy : metric.label_en}

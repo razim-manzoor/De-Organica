@@ -8,7 +8,6 @@ export const jobVacancyType = defineType({
     { name: "basics", title: "Basics & Sector", default: true },
     { name: "english", title: "English" },
     { name: "armenian", title: "Հայերեն (Armenian)" },
-    { name: "compensation", title: "Salary & Portal Link" },
   ],
   fields: [
     defineField({ name: "orderRank", title: "Display Order", type: "number", initialValue: 10, group: "basics" }),
@@ -85,9 +84,9 @@ export const jobVacancyType = defineType({
     defineField({ name: "benefits_hy", title: "Benefits (HY)", type: "array", of: [{ type: "string" }], group: "armenian" }),
 
     // Compensation & Links Tab
-    defineField({ name: "salary", title: "Optional Compensation Range (Hidden)", type: "string", group: "compensation", hidden: true }),
-    defineField({ name: "showSalary", title: "Show Compensation Range (Hidden)", type: "boolean", initialValue: false, group: "compensation", hidden: true }),
-    defineField({ name: "externalRecruitmentUrl", title: "External Recruitment Portal URL (Hidden)", type: "url", group: "compensation", hidden: true }),
+    defineField({ name: "salary", title: "Optional Compensation Range (Hidden)", type: "string", group: "basics", hidden: true }),
+    defineField({ name: "showSalary", title: "Show Compensation Range (Hidden)", type: "boolean", initialValue: false, group: "basics", hidden: true }),
+    defineField({ name: "externalRecruitmentUrl", title: "External Recruitment Portal URL (Hidden)", type: "url", group: "basics", hidden: true }),
   ],
   orderings: [
     {

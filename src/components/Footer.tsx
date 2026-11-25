@@ -18,11 +18,15 @@ export function Footer() {
 
   return (
     <footer className="bg-brand-forest text-white border-t border-brand-forest-deep mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-18">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-24 lg:pt-18 lg:pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-white/15">
           {/* Column 1: Institutional Crest */}
           <div className="lg:col-span-4 space-y-5">
-            <Link href="/" className="inline-block rounded-lg">
+            <Link
+              href="/"
+              aria-label={isHy ? "Դե Օրգանիկա — Գլխավոր էջ" : "De Organica LLC — Home"}
+              className="inline-block rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            >
               <Logo variant="horizontal" inverted />
             </Link>
 
@@ -74,10 +78,10 @@ export function Footer() {
                 <button
                   type="button"
                   onClick={() => openTravelDrawer("General Travel Inquiry")}
-                  className="hover:text-white text-brand-olive-onDark font-semibold inline-flex items-center gap-1 py-0.5 cursor-pointer"
+                  className="hover:text-white text-brand-olive-onDark font-semibold text-left inline-flex items-center gap-1 py-0.5 cursor-pointer"
                 >
                   <span>{isHy ? "Հարցում Տուրի Համար" : "Plan Custom Trip"}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
+                  <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
                 </button>
               </li>
             </ul>
@@ -114,20 +118,20 @@ export function Footer() {
                 <button
                   type="button"
                   onClick={() => openCandidateDrawer()}
-                  className="hover:text-white text-brand-olive-onDark font-semibold inline-flex items-center gap-1 py-0.5 cursor-pointer"
+                  className="hover:text-white text-brand-olive-onDark font-semibold text-left inline-flex items-center gap-1 py-0.5 cursor-pointer"
                 >
                   <span>{isHy ? "Ուղարկել CV / Ռեզյումե" : "Submit CV / Resume"}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
+                  <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
                 </button>
               </li>
               <li>
                 <button
                   type="button"
                   onClick={openEmployerDrawer}
-                  className="hover:text-white transition-colors inline-flex items-center gap-1 py-0.5 cursor-pointer"
+                  className="hover:text-white text-brand-olive-onDark font-semibold text-left transition-colors inline-flex items-center gap-1 py-0.5 cursor-pointer"
                 >
                   <span>{isHy ? "Պատվիրել Աշխատուժ" : "Hire International Staff"}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
+                  <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
                 </button>
               </li>
             </ul>

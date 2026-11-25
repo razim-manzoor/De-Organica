@@ -70,7 +70,7 @@ export function ManpowerComplianceBanner({
               >
                 <div className="flex items-baseline justify-between gap-2 mb-1">
                   <span className="font-serif text-xl sm:text-2xl font-bold text-brand-olive-onDark tabular-nums">
-                    {m.figure}
+                    {isHy && m.figure_hy ? m.figure_hy : m.figure}
                   </span>
                   <span className="text-xs font-semibold uppercase tracking-wider text-brand-stone-200">
                     {isHy ? m.label_hy : m.label_en}

@@ -49,9 +49,7 @@ export function FeaturedToursGrid({
   const standardTours = allTours.slice(1);
 
   return (
-    <section id="tours-matrix" className="scroll-mt-20 py-20 lg:py-28 bg-brand-stone-100/70 border-t border-brand-stone-200 relative">
-      <span id="tours" className="absolute -top-20" aria-hidden="true" />
-      <span id="packages" className="absolute -top-20" aria-hidden="true" />
+    <section id="tours" className="scroll-mt-20 py-16 lg:py-24 bg-brand-stone-100/70 border-t border-brand-stone-200 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
@@ -158,18 +156,18 @@ export function FeaturedToursGrid({
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     <Link
                       href={`/travel/${flagshipTour.slug}`}
-                      className="min-h-[44px] py-2.5 px-4 rounded-xl border border-brand-stone-300 bg-white text-brand-forest hover:bg-brand-stone-100 text-xs font-semibold transition-all active:scale-95 flex items-center gap-1.5"
+                      className="whitespace-nowrap min-h-[44px] py-2.5 px-4 rounded-xl border border-brand-stone-300 bg-white text-brand-forest hover:bg-brand-stone-100 text-xs font-semibold transition-all active:scale-95 flex items-center gap-1.5"
                     >
                       <span>{isHy ? "Տեսնել երթուղին" : "View Itinerary"}</span>
                     </Link>
 
                     <button
                       type="button"
-                      onClick={() => openTravelDrawer(isHy ? flagshipTour.title_hy : flagshipTour.title_en)}
-                      className="min-h-[44px] py-2.5 px-5 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep active:scale-95 transition-all cursor-pointer shadow-sm flex items-center gap-1.5"
+                      onClick={() => openTravelDrawer(flagshipTour.title_en)}
+                      className="whitespace-nowrap min-h-[44px] py-2.5 px-4 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep active:scale-95 transition-all cursor-pointer shadow-sm flex items-center gap-1.5"
                     >
                       <span>{isHy ? "Պատվիրել տուրը" : "Request Itinerary"}</span>
                       <ArrowRight className="w-3.5 h-3.5 text-brand-olive-onDark" />
@@ -274,18 +272,18 @@ export function FeaturedToursGrid({
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <Link
                         href={`/travel/${tour.slug}`}
-                        className="min-h-[44px] py-2.5 px-3.5 rounded-xl border border-brand-stone-300 bg-white text-brand-forest hover:bg-brand-stone-100 text-xs font-semibold transition-all active:scale-95 flex items-center"
+                        className="whitespace-nowrap min-h-[44px] py-2.5 px-3.5 rounded-xl border border-brand-stone-300 bg-white text-brand-forest hover:bg-brand-stone-100 text-xs font-semibold transition-all active:scale-95 flex items-center"
                       >
-                        {isHy ? "Տեսնել երթուղին" : "View Tour"}
+                        {isHy ? "Տեսնել երթուղին" : "View Itinerary"}
                       </Link>
 
                       <button
                         type="button"
-                        onClick={() => openTravelDrawer(isHy ? tour.title_hy : tour.title_en)}
-                        className="min-h-[44px] py-2.5 px-4 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep active:scale-95 transition-all cursor-pointer shadow-sm flex items-center gap-1.5"
+                        onClick={() => openTravelDrawer(tour.title_en)}
+                        className="whitespace-nowrap min-h-[44px] py-2.5 px-4 rounded-xl bg-brand-forest text-white text-xs font-semibold hover:bg-brand-forest-deep active:scale-95 transition-all cursor-pointer shadow-sm flex items-center gap-1.5"
                       >
                         <span>{isHy ? "Պատվիրել" : "Inquire"}</span>
                         <ArrowRight className="w-3.5 h-3.5 text-brand-olive-onDark" />

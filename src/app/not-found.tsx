@@ -18,8 +18,8 @@ export default function NotFound() {
         id="main-content"
         className="flex-grow flex items-center justify-center px-6 py-24 sm:py-32"
       >
-        <div className="max-w-2xl w-full text-center space-y-6">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand-olive-text font-semibold">
+        <div className="max-w-3xl w-full text-center space-y-6">
+          <p className="font-sans text-xs uppercase tracking-[0.2em] text-brand-olive-text font-semibold tabular-nums">
             404 · {isHy ? "Էջը չի գտնվել" : "Page Not Found"}
           </p>
 
@@ -31,11 +31,11 @@ export default function NotFound() {
 
           <p className="text-base sm:text-lg text-brand-ink-muted max-w-xl mx-auto leading-relaxed">
             {isHy
-              ? "Հնարավոր է հղումը փոխվել է կամ արխիվացվել է։ Օգտվեք ստորև ներկայացված ուղիղ հղումներից՝ De Organica LLC ծառայություններին անցնելու համար։"
+              ? "Հնարավոր է հղումը փոխվել է կամ արխիվացվել է։ Օգտվեք ստորև ներկայացված ուղիղ հղումներից՝ «Դե Օրգանիկա» ՍՊԸ ծառայություններին անցնելու համար։"
               : "The link may have moved or been archived. Use the direct routes below to reach our Yerevan travel desk or manpower portal."}
           </p>
 
-          <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
+          <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-3xl mx-auto">
             <Link
               href="/"
               className="min-h-[44px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-brand-forest text-white text-sm font-semibold hover:bg-brand-forest-deep transition-colors shadow-sm"

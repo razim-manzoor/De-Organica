@@ -29,11 +29,12 @@ export function FloatingWhatsAppFab() {
   const handleFabClick = () => {
     trackAnalyticsEvent("whatsapp_click", { source: "floating_fab", locale });
     const msg = buildTravelWhatsAppMessage({
-      name: "Traveler / Partner",
-      serviceOrTour: "Direct Yerevan Desk Inquiry",
+      name: isHy ? "Ճամփորդ / Գործընկեր" : "Traveler / Partner",
+      serviceOrTour: isHy ? "Երևանի Դեսկի Հարցում" : "Direct Yerevan Desk Inquiry",
       notes: isHy
         ? "Բարև Ձեզ, գրում եմ deorganica.am կայքից: Ցանկանում եմ ստանալ խորհրդատվություն:"
         : "Hello De Organica team, I am reaching out from your website and would like direct consultation.",
+      locale,
     });
     window.open(
       buildWhatsAppUrl(msg, siteSettings.company.whatsappNumberDigits),

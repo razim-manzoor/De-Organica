@@ -365,6 +365,7 @@ export interface PipelineStage {
 
 export interface ManpowerTrustMetric {
   figure: string;
+  figure_hy?: string;
   label_en: string;
   label_hy: string;
   detail_en: string;
@@ -400,7 +401,7 @@ export interface ManpowerPageContent {
     headline_hy: string;
     subtext_en: string;
     subtext_hy: string;
-    metrics: { figure: string; label_en: string; label_hy: string }[];
+    metrics: { figure: string; figure_hy?: string; label_en: string; label_hy: string }[];
     candidateStages: HeroStageItem[];
     employerStages: HeroStageItem[];
   };

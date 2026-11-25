@@ -143,7 +143,7 @@ export const defaultHomePageContent: HomePageContent = {
 export const defaultTravelPageContent: TravelPageContent = {
   hero: {
     eyebrow_en: "Armenia Inbound DMC · Yerevan",
-    eyebrow_hy: "Հայաստանի Inbound DMC · Երևան",
+    eyebrow_hy: "Հայաստանի Մուտքային DMC · Երևան",
     headline_en: "Private Tours & Bespoke Journeys in Armenia",
     headline_hy: "Անհատական Տուրեր և Բացառիկ Ճամփորդություններ Հայաստանում",
     subtext_en:
@@ -183,8 +183,8 @@ export const defaultTravelPageContent: TravelPageContent = {
         subtitle_hy: "Թեղենիս լեռան լեռնադահուկային ուղիներ, ճոպանուղի և Սևանա լիճ",
         distKm: 58,
         altitudeM: 1900,
-        season_en: "Year-round",
-        season_hy: "Ողջ տարին",
+        season_en: "Winter Ski & Summer",
+        season_hy: "Ձմեռ (Դեկտ–Մարտ) և Ամառ",
         image: "/images/tours/tsaghkadzor-ski.jpg",
         tag_en: "Alpine Resort",
         tag_hy: "Լեռնային Հանգստավայր",
@@ -282,14 +282,14 @@ export const defaultTravelPageContent: TravelPageContent = {
     ],
   },
   servicesHeader: {
-    eyebrow_en: "Ground Logistics & Concierge",
-    eyebrow_hy: "Տեղական Լոգիստիկա և Ծառայություններ",
-    title_en: "Airport Fleet, Chauffeur Services & Consular Support",
-    title_hy: "Ավտոպարկ, Օդանավակայանի Տրանսֆեր և Վիզային Աջակցություն",
+    eyebrow_en: "Holidays, Fleet & Consular Desk",
+    eyebrow_hy: "Տուրեր, Ավտոպարկ և Վիզաներ",
+    title_en: "Outbound Holidays, Chauffeur Fleet & Visa Desk",
+    title_hy: "Արտագնա Տուրեր, Ավտոպարկ և Վիզային Աջակցություն",
     subtitle_en:
-      "Seamless ground logistics across Armenia: 24/7 Zvartnots (EVN) airport reception, private Mercedes chauffeur fleet, and certified visa documentation.",
+      "End-to-end travel logistics from Yerevan: curated holiday packages abroad, 24/7 Zvartnots (EVN) airport reception, private Mercedes fleet, and consular eVisa documentation.",
     subtitle_hy:
-      "Հուսալի տեղական սպասարկում Երևանում՝ 24/7 դիմավորում Զվարթնոց (EVN) օդանավակայանում, վարորդով ավտոպարկ և պաշտոնական վիզային աջակցություն:",
+      "Հուսալի սպասարկում Երևանից՝ արտագնա հանգիստ, 24/7 դիմավորում Զվարթնոց (EVN) օդանավակայանում, վարորդով ավտոպարկ և պաշտոնական վիզային աջակցություն:",
   },
   toursHeader: {
     eyebrow_en: "Signature Expeditions",
@@ -456,9 +456,24 @@ export const defaultManpowerPageContent: ManpowerPageContent = {
     subtext_hy:
       "Որակավորված մասնագետների հավաքագրում Հայաստանի գործատուների համար՝ ՀՀ աշխատանքի օրինական թույլտվություններով և պետական գրանցմամբ:",
     metrics: [
-      { figure: "100% Legal", label_en: "Work Permit Compliance", label_hy: "Օրինական Թույլտվություն" },
-      { figure: "15–25 Days", label_en: "Ministry Permit SLA", label_hy: "ՀՀ Թույլտվության Ժամկետ" },
-      { figure: "SLA < 72H", label_en: "Corporate Shortlist", label_hy: "Թեկնածուների Ցանկ" },
+      {
+        figure: "100% Legal",
+        figure_hy: "100% Օրինական",
+        label_en: "Work Permit Compliance",
+        label_hy: "Օրինական Թույլտվություն",
+      },
+      {
+        figure: "15–25 Days",
+        figure_hy: "15–25 Աշխ. Օր",
+        label_en: "Ministry Permit SLA",
+        label_hy: "ՀՀ Թույլտվության Ժամկետ",
+      },
+      {
+        figure: "< 72 Hours",
+        figure_hy: "< 72 Ժամում",
+        label_en: "Corporate Shortlist",
+        label_hy: "Թեկնածուների Ցանկ",
+      },
     ],
     candidateStages: [
       {
@@ -604,8 +619,8 @@ export const defaultManpowerPageContent: ManpowerPageContent = {
           "Ուղիղ գնահատում գործատուի պատասխանատուների կողմից",
           "Փաստաթղթերի, դատվածության և բժշկական ամբողջական ստուգում",
         ],
-        metrics_en: "3–7 Days Matching",
-        metrics_hy: "3–7 Օր Ընտրություն",
+        metrics_en: "Within 72 Hours",
+        metrics_hy: "Մինչև 72 Ժամում",
       },
       {
         id: "stage-3",
@@ -692,20 +707,23 @@ export const defaultManpowerPageContent: ManpowerPageContent = {
     trustMetrics: [
       {
         figure: "100% Legal",
+        figure_hy: "100% Օրինական",
         label_en: "Government Work Permits",
         label_hy: "Պետական Թույլտվություն",
         detail_en: "Direct coordination with RA Unified Migration Service and Ministry of Labor.",
         detail_hy: "Ուղիղ համագործակցություն ՀՀ միգրացիոն ծառայության և նախարարության հետ:",
       },
       {
-        figure: "100% Legal",
-        label_en: "RA Ministry Compliance",
-        label_hy: "ՀՀ Պետական Գրանցում",
-        detail_en: "Official electronic work permits & unified migration residence cards.",
-        detail_hy: "Պաշտոնական աշխատանքային թույլտվություն և կացության քարտ:",
+        figure: "15–25 Days",
+        figure_hy: "15–25 Աշխ. Օր",
+        label_en: "Electronic Residence Filing",
+        label_hy: "ՀՀ Կացության Քարտ",
+        detail_en: "Official workpermit.am filings and unified migration residence cards.",
+        detail_hy: "Պաշտոնական էլեկտրոնային աշխատանքային թույլտվություն և կացության քարտ:",
       },
       {
         figure: "30-Day SLA",
+        figure_hy: "30-Օրյա Երաշխիք",
         label_en: "Replacement Warranty",
         label_hy: "Փոխարինման Երաշխիք",
         detail_en: "Guaranteed talent replacement warranty for corporate enterprises.",
@@ -793,7 +811,7 @@ export const defaultTravelFaqs: FaqItem[] = [
     q_en: "Do international visitors need an entry visa for the Republic of Armenia?",
     q_hy: "Արդյո՞ք արտերկրի զբոսաշրջիկներին անհրաժեշտ է վիզա Հայաստան մուտք գործելու համար:",
     a_en:
-      "Citizens of the European Union, United States, UAE, Qatar, Georgia, and Russia enjoy 180-day visa-free entry. For Indian, Philippine, and other nationalities requiring an entry visa, De Organica provides certified eVisa invitation file processing and consular assistance with rapid 3–5 day issuance.",
+      "Citizens of the European Union, United States, UAE, Qatar, Georgia, and Russia enjoy 180-day visa-free entry. For Indian, Filipino, and other nationalities requiring an entry visa, De Organica provides certified eVisa invitation file processing and consular assistance with rapid 3–5 day issuance.",
     a_hy:
       "Եվրոպական Միության, ԱՄՆ-ի, ԱՄԷ-ի, Ռուսաստանի և Վրաստանի քաղաքացիների համար գործում է 180-օրյա առանց վիզայի ռեժիմ: Մյուս երկրների քաղաքացիների համար մեր թիմն ապահովում է ՀՀ էլեկտրոնային վիզայի (eVisa) պաշտոնական հրավերներ և աջակցություն:",
     isPublished: true,

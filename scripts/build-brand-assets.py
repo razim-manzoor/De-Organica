@@ -141,16 +141,16 @@ def build_logos():
     mark_w = int(round(mark.width * mark_scale))
     mark_h_img = mark.resize((mark_w, target_h), Image.Resampling.LANCZOS)
 
-    # Wordmark occupies ~82% height so "De Organica" + "LLC" both read crisply
-    word_h = int(round(target_h * 0.80))
+    # Wordmark occupies ~87% height so "De Organica" + "LLC" complement the taller DO crest crisply
+    word_h = int(round(target_h * 0.87))
     word_scale = word_h / wordmark.height
     word_w = int(round(wordmark.width * word_scale))
     word_h_img = wordmark.resize((word_w, word_h), Image.Resampling.LANCZOS)
 
-    gap = 26
+    gap = 22
     horiz = Image.new("RGBA", (mark_w + gap + word_w, target_h), (0, 0, 0, 0))
     horiz.paste(mark_h_img, (0, 0), mark_h_img)
-    horiz.paste(word_h_img, (mark_w + gap, (target_h - word_h) // 2 + 2), word_h_img)
+    horiz.paste(word_h_img, (mark_w + gap, (target_h - word_h) // 2 + 1), word_h_img)
     horiz.save(IMAGES_DIR / "de-organica-horizontal.png", "PNG", optimize=True)
 
     horiz_white = make_dark_bg_variant(horiz)

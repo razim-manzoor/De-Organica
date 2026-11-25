@@ -151,8 +151,8 @@ export function EmployerInquiryFields({
             onChange={(e) => setEmployerUrgency(e.target.value)}
             className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           >
-            <option value="Immediate (< 15 Days)">
-              {isHy ? "Անհապաղ (< 15 օր)" : "Immediate Requisition (< 15 Days)"}
+            <option value="Urgent (15–25 Business Days Permit SLA)">
+              {isHy ? "Շտապ (15–25 աշխ. օր թույլտվություն)" : "Urgent (Within 15–25 Business Days SLA)"}
             </option>
             <option value="Standard (30 Days)">
               {isHy ? "Ստանդարտ խմբաքանակ (30 օր)" : "Standard Batch (30 Days)"}
