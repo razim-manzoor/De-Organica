@@ -1,7 +1,18 @@
+import { timingSafeEqual } from "node:crypto";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
 import { revalidateSecret } from "@/sanity/env";
+
+function constantTimeMatch(a: string | null, b: string): boolean {
+  if (!a) return false;
+  const bufA = Buffer.from(a);
+  const bufB = Buffer.from(b);
+  if (bufA.length !== bufB.length) return false;
+  return timingSafeEqual(bufA, bufB);
+}
+
+const SLUG_RE = /^[a-z0-9-]+$/i;
 
 const KNOWN_TAGS = new Set([
   "siteSettings",
@@ -37,7 +48,7 @@ export async function POST(req: NextRequest) {
         }
         documentType = body?._type;
         slugCurrent = body?.slug?.current;
-      } else if (headerSecret === revalidateSecret) {
+      } else if (constantTimeMatch(headerSecret, revalidateSecret)) {
         const body = (await req.json().catch(() => ({}))) as {
           _type?: string;
           slug?: { current?: string };
@@ -62,7 +73,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    if (documentType === "tourPackage" && slugCurrent) {
+    if (documentType === "tourPackage" && slugCurrent && SLUG_RE.test(slugCurrent)) {
       revalidateTag(`tourPackage:${slugCurrent}`);
       revalidatePath(`/travel/${slugCurrent}`);
     }
