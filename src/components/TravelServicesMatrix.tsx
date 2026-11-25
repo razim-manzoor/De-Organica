@@ -12,6 +12,7 @@ import {
 } from "@/data/cms-fallbacks";
 import { buildWhatsAppUrl, buildTravelWhatsAppMessage } from "@/lib/whatsapp";
 import { getCmsIcon } from "@/components/icons";
+import { sanityCdnLoader } from "@/lib/image-loader";
 import {
   Compass,
   CheckCircle2,
@@ -82,10 +83,11 @@ export function TravelServicesMatrix({
               {/* Image Container with Badge */}
               <div className="relative h-52 w-full overflow-hidden bg-brand-stone-200">
                 <Image
+                  loader={sanityCdnLoader}
                   src={service.image}
                   alt={isHy ? service.title_hy : service.title_en}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 94vw, (max-width: 1200px) 48vw, 400px"
                   className="object-cover hover-img-zoom"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/75 via-brand-forest/20 to-transparent" />

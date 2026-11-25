@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import TourDetailView from "@/components/TourDetailView";
 import { getTourBySlug, getTours } from "@/sanity/lib/fetch";
 
-export const revalidate = 60;
+export const revalidate = 900;
 
 export async function generateStaticParams() {
   const tours = await getTours();

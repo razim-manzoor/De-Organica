@@ -29,9 +29,9 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
   return (
     <section className="relative pt-12 pb-16 lg:pt-16 lg:pb-24 bg-brand-stone-50 overflow-hidden border-b border-brand-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
           {/* Left Column: Institutional Legal Mobility Narrative */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 lg:pt-2">
             {/* Regulatory Compliance Accents */}
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-text mb-4">
               <ShieldCheck className="w-4 h-4 text-brand-olive-text shrink-0" />

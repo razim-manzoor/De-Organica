@@ -153,7 +153,7 @@ export function PipelineStageShow({
             id={`pipeline-panel-${activeStage.id}`}
             role="tabpanel"
             aria-labelledby={`pipeline-tab-${activeStage.id}`}
-            className="lg:col-span-8 p-8 sm:p-10 flex flex-col justify-between bg-white space-y-8"
+            className="lg:col-span-8 lg:min-h-[430px] p-8 sm:p-10 flex flex-col justify-between bg-white space-y-8"
           >
             <div>
               {/* Clean Stage Meta */}

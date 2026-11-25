@@ -12,6 +12,7 @@ import {
   defaultTravelPageContent,
 } from "@/data/cms-fallbacks";
 import { buildWhatsAppUrl, buildTravelWhatsAppMessage } from "@/lib/whatsapp";
+import { sanityCdnLoader } from "@/lib/image-loader";
 import {
   Clock,
   MapPin,
@@ -82,10 +83,11 @@ export function FeaturedToursGrid({
               {/* Media Half */}
               <div className="lg:col-span-6 relative min-h-[300px] sm:min-h-[360px] lg:min-h-[440px] overflow-hidden bg-brand-stone-200">
                 <Image
+                  loader={sanityCdnLoader}
                   src={flagshipTour.image}
                   alt={isHy ? flagshipTour.title_hy : flagshipTour.title_en}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(max-width: 1024px) 94vw, 600px"
                   className="object-cover hover-img-zoom"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/90 via-brand-forest/25 to-transparent" />
@@ -198,10 +200,11 @@ export function FeaturedToursGrid({
                 {/* Image & Header Overlay */}
                 <div className="relative h-64 w-full overflow-hidden bg-brand-stone-200">
                   <Image
+                    loader={sanityCdnLoader}
                     src={tour.image}
                     alt={isHy ? tour.title_hy : tour.title_en}
                     fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 94vw, 600px"
                     className="object-cover hover-img-zoom"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/90 via-brand-forest/30 to-transparent" />

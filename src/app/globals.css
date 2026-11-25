@@ -26,7 +26,6 @@
     scroll-padding-top: 6rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size-adjust: from-font;
   }
 
   body {
@@ -37,12 +36,16 @@
   }
 
   h1,
+  h2 {
+    text-wrap: balance;
+  }
+
+  h1,
   h2,
   h3,
   h4,
   .font-serif {
     font-family: var(--font-serif), "Cinzel", var(--font-armenian-serif), "Noto Serif Armenian", Georgia, serif;
-    text-wrap: balance;
   }
 
   /* High-contrast accessible focus ring with forced-colors preservation */

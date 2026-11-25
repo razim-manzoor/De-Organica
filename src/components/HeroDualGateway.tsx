@@ -8,6 +8,7 @@ import { useDrawer } from "@/context/DrawerContext";
 import type { HomePageContent } from "@/types/content";
 import { defaultHomePageContent } from "@/data/cms-fallbacks";
 import { getCmsIcon } from "@/components/icons";
+import { sanityCdnLoader } from "@/lib/image-loader";
 import { ArrowRight, Globe, ShieldCheck } from "lucide-react";
 
 interface HeroDualGatewayProps {
@@ -51,11 +52,13 @@ export function HeroDualGateway({ content = defaultHomePageContent }: HeroDualGa
               {/* Hero Photo */}
               <div className="relative h-48 sm:h-72 overflow-hidden bg-brand-stone-200">
                 <Image
+                  loader={sanityCdnLoader}
                   src={travelPillar.image || "/images/tours/garni-temple.jpg"}
                   alt={isHy ? travelPillar.imageAlt_hy : travelPillar.imageAlt_en}
                   fill
                   priority
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  fetchPriority="high"
+                  sizes="(max-width: 1024px) 94vw, 600px"
                   className="object-cover hover-img-zoom"
                 />
               </div>
@@ -106,11 +109,12 @@ export function HeroDualGateway({ content = defaultHomePageContent }: HeroDualGa
               {/* Hero Photo */}
               <div className="relative h-48 sm:h-72 overflow-hidden bg-brand-forest-deep">
                 <Image
+                  loader={sanityCdnLoader}
                   src={manpowerPillar.image || "/images/manpower/international-workforce.jpg"}
                   alt={isHy ? manpowerPillar.imageAlt_hy : manpowerPillar.imageAlt_en}
                   fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  loading="eager"
+                  sizes="(max-width: 1024px) 94vw, 600px"
                   className="object-cover hover-img-zoom"
                 />
               </div>

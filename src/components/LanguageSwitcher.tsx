@@ -10,7 +10,8 @@ interface LanguageSwitcherProps {
 }
 
 export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
-  const { locale, setLocale } = useLanguage();
+  const { locale, pendingLocale, setLocale } = useLanguage();
+  const activeLocale = pendingLocale ?? locale;
 
   return (
     <div
@@ -19,16 +20,16 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
         className
       )}
       role="group"
-      aria-label={locale === "hy" ? "Լեզվի ընտրություն" : "Language selector"}
+      aria-label={activeLocale === "hy" ? "Լեզվի ընտրություն" : "Language selector"}
     >
       <Globe className="w-3.5 h-3.5 text-brand-olive-text ml-2 mr-1 hidden sm:block shrink-0" aria-hidden="true" />
       <button
         type="button"
         onClick={() => setLocale("en")}
-        aria-pressed={locale === "en"}
+        aria-pressed={activeLocale === "en"}
         className={cn(
-          "min-h-[30px] min-w-[34px] px-2.5 py-1 text-xs font-semibold rounded-lg transition-all duration-200 cursor-pointer",
-          locale === "en"
+          "min-h-[30px] min-w-[34px] px-2.5 py-1 text-xs font-semibold rounded-lg transition-colors duration-150 cursor-pointer",
+          activeLocale === "en"
             ? "bg-white text-brand-forest shadow-xs font-bold"
             : "text-brand-ink-muted hover:text-brand-forest"
         )}
@@ -38,10 +39,10 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
       <button
         type="button"
         onClick={() => setLocale("hy")}
-        aria-pressed={locale === "hy"}
+        aria-pressed={activeLocale === "hy"}
         className={cn(
-          "min-h-[30px] min-w-[38px] px-2.5 py-1 text-xs font-semibold rounded-lg transition-all duration-200 cursor-pointer",
-          locale === "hy"
+          "min-h-[30px] min-w-[38px] px-2.5 py-1 text-xs font-semibold rounded-lg transition-colors duration-150 cursor-pointer",
+          activeLocale === "hy"
             ? "bg-white text-brand-forest shadow-xs font-bold"
             : "text-brand-ink-muted hover:text-brand-forest"
         )}

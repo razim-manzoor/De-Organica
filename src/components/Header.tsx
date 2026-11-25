@@ -47,7 +47,7 @@ export function Header() {
   }, [mobileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-brand-stone-200/90 shadow-sm transition-colors duration-200">
+    <header className="sticky top-0 z-40 w-full bg-white/98 border-b border-brand-stone-200/90 shadow-sm transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
           {/* Brand Crest */}
@@ -55,7 +55,7 @@ export function Header() {
             href="/"
             className="shrink-0 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-forest"
           >
-            <Logo variant="horizontal" />
+            <Logo variant="horizontal" priority />
             <span className="sr-only">{isHy ? " — Գլխավոր էջ" : " — Home"}</span>
           </Link>
 

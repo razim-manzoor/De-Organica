@@ -181,6 +181,29 @@ test("WhatsApp builders encode target digits and structured B2B/Candidate/Employ
 });
 
 // ---------------------------------------------------------------------------
+// 1b. Sanity CDN Image Loader Tests
+// ---------------------------------------------------------------------------
+test("sanityCdnLoader serves Sanity CDN URLs directly with responsive params and falls back for local assets", () => {
+  const { sanityCdnLoader } = loadTsModule("src/lib/image-loader.ts");
+
+  assert.equal(
+    sanityCdnLoader({
+      src: "https://cdn.sanity.io/images/9gdgawyf/production/abc-1280x834.jpg",
+      width: 640,
+      quality: 80,
+    }),
+    "https://cdn.sanity.io/images/9gdgawyf/production/abc-1280x834.jpg?w=640&q=80&auto=format&fit=max"
+  );
+  assert.equal(
+    sanityCdnLoader({
+      src: "/images/tours/garni-temple.jpg",
+      width: 750,
+    }),
+    "/_next/image?url=%2Fimages%2Ftours%2Fgarni-temple.jpg&w=750&q=75"
+  );
+});
+
+// ---------------------------------------------------------------------------
 // 2. Middleware Redirect & Canonicalization Tests
 // ---------------------------------------------------------------------------
 test("Middleware enforces 308 canonical redirects for www, travel, manpower, and careers subdomains", () => {

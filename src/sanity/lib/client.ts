@@ -11,7 +11,7 @@ export function getSanityClient(): SanityClient | null {
       projectId,
       dataset,
       apiVersion,
-      useCdn: false,
+      useCdn: process.env.NODE_ENV === "production",
       perspective: "published",
     });
   }

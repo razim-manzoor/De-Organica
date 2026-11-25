@@ -7,6 +7,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useDrawer } from "@/context/DrawerContext";
 import { useSiteData } from "@/context/SiteDataContext";
 import { buildTravelWhatsAppMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
+import { sanityCdnLoader } from "@/lib/image-loader";
 import type { TourPackage } from "@/types/content";
 import {
   ArrowLeft,
@@ -67,12 +68,14 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
           <div className="lg:col-span-7 space-y-8">
             <div className="relative h-72 sm:h-96 lg:h-[460px] rounded-2xl overflow-hidden bg-brand-forest shadow-xl">
               <Image
+                loader={sanityCdnLoader}
                 src={tour.image || "/images/tours/garni-temple.jpg"}
                 alt={title}
                 fill
                 priority
+                fetchPriority="high"
                 className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 60vw"
+                sizes="(max-width: 1024px) 94vw, 720px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/80 via-brand-ink/20 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center gap-3">
@@ -163,6 +166,7 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
                         className="relative h-56 rounded-2xl overflow-hidden bg-brand-stone-100 border border-stone-200 shadow-sm"
                       >
                         <Image
+                          loader={sanityCdnLoader}
                           src={photo.url}
                           alt={
                             (locale === "en" ? photo.alt_en : photo.alt_hy) ||
@@ -170,7 +174,7 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
                           }
                           fill
                           className="object-cover"
-                          sizes="(max-width: 768px) 100vw, 40vw"
+                          sizes="(max-width: 768px) 94vw, 360px"
                         />
                       </div>
                     ))}
@@ -310,11 +314,12 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
                 >
                   <div className="relative h-44 bg-brand-forest overflow-hidden">
                     <Image
+                      loader={sanityCdnLoader}
                       src={item.image || "/images/tours/wings-of-tatev.jpg"}
                       alt={locale === "en" ? item.title_en : item.title_hy}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      sizes="(max-width: 768px) 94vw, 33vw"
                     />
                   </div>
                   <div className="p-5 space-y-2 flex-1 flex flex-col justify-between">

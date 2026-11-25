@@ -16,7 +16,7 @@ export function Logo({
   variant = "horizontal",
   inverted = false,
   className,
-  priority = true,
+  priority = false,
 }: LogoProps) {
   const { locale } = useLanguage();
   const isHy = locale === "hy";
@@ -29,6 +29,7 @@ export function Logo({
           alt={isHy ? "«Դե Օրգանիկա» ՍՊԸ խորհրդանիշ" : "De Organica LLC Crest"}
           width={385}
           height={300}
+          unoptimized
           priority={priority}
           className="h-10 w-auto object-contain transition-transform duration-300 hover:scale-105 motion-reduce:transform-none"
         />
@@ -47,6 +48,7 @@ export function Logo({
           alt={isHy ? "«Դե Օրգանիկա» ՍՊԸ" : "De Organica LLC"}
           width={588}
           height={462}
+          unoptimized
           priority={priority}
           className="h-20 sm:h-24 w-auto object-contain transition-transform duration-300 hover:scale-103 motion-reduce:transform-none"
         />
@@ -65,6 +67,7 @@ export function Logo({
         alt={isHy ? "«Դե Օրգանիկա» ՍՊԸ · Տուրիզմ և Աշխատուժ" : "De Organica LLC · Travel & Manpower"}
         width={604}
         height={128}
+        unoptimized
         priority={priority}
         className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 hover:scale-103 motion-reduce:transform-none"
       />

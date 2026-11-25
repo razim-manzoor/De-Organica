@@ -16,7 +16,7 @@ import {
   getManpowerPageContent,
 } from "@/sanity/lib/fetch";
 
-export const revalidate = 60;
+export const revalidate = 900;
 
 export async function generateMetadata(): Promise<Metadata> {
   const manpowerPage = await getManpowerPageContent();

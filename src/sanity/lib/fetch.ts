@@ -122,7 +122,7 @@ export async function sanityFetch<T>({
   try {
     return await client.fetch<T>(query, params, {
       next: {
-        revalidate: isDraft ? 0 : 60,
+        revalidate: isDraft ? 0 : 900,
         tags,
       },
     });

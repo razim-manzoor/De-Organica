@@ -1,10 +1,11 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useTransition } from "react";
 import type { Locale } from "@/types/content";
 
 interface LanguageContextType {
   locale: Locale;
+  pendingLocale: Locale | null;
   setLocale: (locale: Locale) => void;
   toggleLocale: () => void;
   isArmenian: boolean;
@@ -20,6 +21,8 @@ export function LanguageProvider({
   initialLocale?: Locale;
 }) {
   const [locale, setLocaleState] = useState<Locale>(initialLocale);
+  const [pendingLocale, setPendingLocale] = useState<Locale | null>(null);
+  const [, startTransition] = useTransition();
 
   useEffect(() => {
     try {
@@ -43,7 +46,8 @@ export function LanguageProvider({
   }, [locale]);
 
   const setLocale = (newLocale: Locale) => {
-    setLocaleState(newLocale);
+    if (newLocale === locale) return;
+    setPendingLocale(newLocale);
     document.documentElement.lang = newLocale;
     try {
       localStorage.setItem("deorganica_locale", newLocale);
@@ -51,6 +55,10 @@ export function LanguageProvider({
     } catch {
       // ignore
     }
+    startTransition(() => {
+      setLocaleState(newLocale);
+      setPendingLocale(null);
+    });
   };
 
   const toggleLocale = () => {
@@ -61,6 +69,7 @@ export function LanguageProvider({
     <LanguageContext.Provider
       value={{
         locale,
+        pendingLocale,
         setLocale,
         toggleLocale,
         isArmenian: locale === "hy",

@@ -4,7 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { LegalDocumentView } from "@/components/LegalDocumentView";
 
-export const revalidate = 60;
+export const revalidate = 900;
 
 export const metadata: Metadata = {
   title: "Terms of Service & Placement Policy | De Organica LLC",

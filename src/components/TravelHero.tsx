@@ -7,6 +7,7 @@ import { useDrawer } from "@/context/DrawerContext";
 import type { TravelPageContent } from "@/types/content";
 import { defaultTravelPageContent } from "@/data/cms-fallbacks";
 import { getCmsIcon } from "@/components/icons";
+import { sanityCdnLoader } from "@/lib/image-loader";
 import {
   Compass,
   MapPin,
@@ -29,9 +30,9 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
   return (
     <section className="relative pt-12 pb-16 lg:pt-16 lg:pb-24 bg-brand-stone-50 overflow-hidden border-b border-brand-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
           {/* Left Column: Editorial Travel Narrative */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 lg:pt-2">
             {/* Geographic & Curated Travel Tag */}
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-brand-olive-text mb-4">
               <span>{isHy ? content.eyebrow_hy : content.eyebrow_en}</span>
@@ -116,11 +117,13 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
               {/* Image Preview with Atmospheric Gradient */}
               <div className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden bg-brand-stone-200 mb-4">
                 <Image
+                  loader={sanityCdnLoader}
                   src={activeDest.image}
                   alt={isHy ? activeDest.name_hy : activeDest.name_en}
                   fill
                   priority
-                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  fetchPriority="high"
+                  sizes="(max-width: 1024px) 94vw, 500px"
                   className="object-cover hover-img-zoom"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/90 via-brand-forest/20 to-transparent" />
