@@ -84,7 +84,11 @@ export function EmployerInquiryFields({
             maxLength={160}
             value={industrySector}
             onChange={(e) => setIndustrySector(e.target.value)}
-            placeholder="e.g. Construction / Hospitality / Fleet"
+            placeholder={
+              isHy
+                ? "օրինակ՝ Շինարարություն / Հյուրընկալություն / Լոգիստիկա"
+                : "e.g. Construction / Hospitality / Fleet"
+            }
             className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           />
         </div>
@@ -101,7 +105,7 @@ export function EmployerInquiryFields({
             maxLength={60}
             value={headcountRequired}
             onChange={(e) => setHeadcountRequired(e.target.value)}
-            placeholder="e.g. 5–10 workers"
+            placeholder={isHy ? "օրինակ՝ 5–10 աշխատակից" : "e.g. 5–10 workers"}
             className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           />
         </div>
@@ -122,9 +126,15 @@ export function EmployerInquiryFields({
             onChange={(e) => setEmployerJurisdiction(e.target.value)}
             className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           >
-            <option value="Armenia (ՀՎՀՀ / TIN)">Armenia (ՀՎՀՀ Registered Enterprise)</option>
-            <option value="UAE & GCC Enterprise">UAE & GCC Corporation</option>
-            <option value="Europe / International">Europe / International Business</option>
+            <option value="Armenia (ՀՎՀՀ / TIN)">
+              {isHy ? "Հայաստան (ՀՎՀՀ գրանցված ընկերություն)" : "Armenia (ՀՎՀՀ Registered Enterprise)"}
+            </option>
+            <option value="UAE & GCC Enterprise">
+              {isHy ? "ԱՄԷ և Ծոցի երկրների ընկերություն" : "UAE & GCC Corporation"}
+            </option>
+            <option value="Europe / International">
+              {isHy ? "Եվրոպա / Միջազգային ընկերություն" : "Europe / International Business"}
+            </option>
           </select>
         </div>
 
@@ -142,10 +152,14 @@ export function EmployerInquiryFields({
             className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           >
             <option value="Immediate (< 15 Days)">
-              Immediate Requisition (&lt; 15 Days)
+              {isHy ? "Անհապաղ (< 15 օր)" : "Immediate Requisition (< 15 Days)"}
             </option>
-            <option value="Standard (30 Days)">Standard Batch (30 Days)</option>
-            <option value="Project Base (60+ Days)">Project Expansion (60+ Days)</option>
+            <option value="Standard (30 Days)">
+              {isHy ? "Ստանդարտ խմբաքանակ (30 օր)" : "Standard Batch (30 Days)"}
+            </option>
+            <option value="Project Base (60+ Days)">
+              {isHy ? "Նախագծային ընդլայնում (60+ օր)" : "Project Expansion (60+ Days)"}
+            </option>
           </select>
         </div>
       </div>

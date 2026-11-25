@@ -230,6 +230,7 @@ export const TOURS_QUERY = defineQuery(`
     paymentLinkUrl,
     isFeatured,
     "isPublished": coalesce(isPublished, true),
+    "updatedAt": _updatedAt,
     seo{
       seoTitle,
       seoDescription,
@@ -269,6 +270,7 @@ export const TOUR_BY_SLUG_QUERY = defineQuery(`
     paymentLinkUrl,
     isFeatured,
     "isPublished": coalesce(isPublished, true),
+    "updatedAt": _updatedAt,
     seo{
       seoTitle,
       seoDescription,

@@ -73,6 +73,12 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(targetUrl, 308);
   }
 
-  // 3. Default root domain (deorganica.am / www.deorganica.am / localhost:3000)
+  // 3. Canonicalize www.deorganica.am -> https://deorganica.am (308 Permanent)
+  if (currentHost === "www.deorganica.am") {
+    const targetUrl = new URL(`${url.pathname}${url.search}`, "https://deorganica.am");
+    return NextResponse.redirect(targetUrl, 308);
+  }
+
+  // 4. Default root domain (deorganica.am / localhost:3000)
   return NextResponse.next();
 }

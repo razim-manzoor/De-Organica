@@ -63,13 +63,16 @@ export function ContactSection({
         });
         setYerevanTime(timeStr);
 
-        const hourFormatter = new Intl.DateTimeFormat("en-US", {
+        const parts = new Intl.DateTimeFormat("en-US", {
           timeZone: "Asia/Yerevan",
+          weekday: "short",
           hour: "numeric",
           hour12: false,
-        });
-        const currentHour = parseInt(hourFormatter.format(now), 10);
-        setIsDeskOpen(currentHour >= 9 && currentHour < 19);
+        }).formatToParts(now);
+        const weekday = parts.find((p) => p.type === "weekday")?.value || "Mon";
+        const currentHour = parseInt(parts.find((p) => p.type === "hour")?.value || "12", 10);
+        const isBusinessDay = weekday !== "Sun";
+        setIsDeskOpen(isBusinessDay && currentHour >= 9 && currentHour < 18);
       } catch {
         setYerevanTime("GMT+4 (Armenia)");
       }
@@ -153,10 +156,10 @@ export function ContactSection({
                 </div>
 
                 <div className="text-right">
-                  <span className="font-mono text-xs font-bold text-brand-forest block">
-                    {yerevanTime || "12:00:00 PM"}
+                  <span className="font-sans tabular-nums text-xs font-bold text-brand-forest block">
+                    {yerevanTime || "--:--:--"}
                   </span>
-                  <span className="text-xs text-brand-ink-subtle font-mono uppercase">
+                  <span className="text-xs text-brand-ink-subtle font-sans uppercase tracking-wider">
                     YEREVAN (GMT+4)
                   </span>
                 </div>
@@ -174,7 +177,7 @@ export function ContactSection({
                         ? company.address_hy
                         : company.address_en}
                     </span>
-                    <span className="text-xs font-mono text-brand-olive-text block mt-0.5">
+                    <span className="text-xs font-sans tabular-nums text-brand-olive-text block mt-0.5">
                       {content.coordinates}
                     </span>
                   </div>
@@ -188,7 +191,7 @@ export function ContactSection({
                     </span>
                     <a
                       href={`tel:${company.phoneYerevanDesk.replace(/\s+/g, "")}`}
-                      className="text-brand-forest hover:text-brand-olive-text transition-colors underline underline-offset-2 font-mono text-xs sm:text-sm inline-block py-0.5"
+                      className="text-brand-forest hover:text-brand-olive-text transition-colors underline underline-offset-2 font-sans tabular-nums font-medium text-xs sm:text-sm inline-block py-0.5"
                     >
                       {company.phoneYerevanDesk}
                     </a>
@@ -203,7 +206,7 @@ export function ContactSection({
                     </span>
                     <a
                       href={`mailto:${company.email}`}
-                      className="text-brand-forest hover:text-brand-olive-text transition-colors underline underline-offset-2 font-mono text-xs sm:text-sm inline-block py-0.5"
+                      className="text-brand-forest hover:text-brand-olive-text transition-colors underline underline-offset-2 font-sans font-medium text-xs sm:text-sm inline-block py-0.5"
                     >
                       {company.email}
                     </a>
@@ -629,7 +632,7 @@ export function ContactSection({
                   {isHy ? "Պաշտոնական կորպորատիվ հարցումներ: " : "Official Corporate Inquiries: "}
                   <a
                     href={`mailto:${company.email}`}
-                    className="font-mono text-brand-forest underline underline-offset-2"
+                    className="font-sans font-semibold text-brand-forest underline underline-offset-2"
                   >
                     {company.email}
                   </a>

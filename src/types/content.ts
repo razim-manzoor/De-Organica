@@ -61,6 +61,7 @@ export interface TourPackage {
   paymentLinkUrl?: string;
   isFeatured?: boolean;
   isPublished?: boolean;
+  updatedAt?: string;
   seo?: PageSeoMeta;
 }
 

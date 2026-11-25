@@ -25,7 +25,9 @@ console.log("=================================================\n");
 // -----------------------------------------------------------------
 console.log("Suite 1: Zero-Cost / Zero-Price Compliance Audit");
 const bannedPatterns = [
-  /\b(price|pricing|cost|costs|fee|fees|tariff|tariffs)\b/i,
+  /\b(price|pricing|cost|costs|fee|fees|tariff|tariffs|quote|quotes|quoted)\b/i,
+  /(?:^|[^ա-ֆԱ-Ֆ])արժեք/i,
+  /(?:^|[^ա-ֆԱ-Ֆ])ծախս/i,
   /\bAMD\b/i,
   /֏/,
   /\$\s*\d/, // Dollar currency, not JS template literals ${...}
@@ -124,8 +126,31 @@ assert(layoutContent.includes("<ConciergeDrawer />"), "ConciergeDrawer mounted g
 // -----------------------------------------------------------------
 console.log("\nSuite 4: Anti-Slop & Aesthetic Taste Verification");
 const headerContent = fs.readFileSync(path.join(srcDir, "components", "Header.tsx"), "utf8");
-assert(!headerContent.includes("<Sparkles"), "No AI Sparkles icon in Header.tsx");
-assert(!headerContent.includes("font-mono"), "No developer font-mono on phone numbers in Header.tsx");
+const footerContent = fs.readFileSync(path.join(srcDir, "components", "Footer.tsx"), "utf8");
+const contactContent = fs.readFileSync(path.join(srcDir, "components", "ContactSection.tsx"), "utf8");
+
+function checkNoSparkles(dir) {
+  const matches = [];
+  for (const file of fs.readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = path.join(dir, file.name);
+    if (file.isDirectory()) {
+      matches.push(...checkNoSparkles(fullPath));
+    } else if (file.name.endsWith(".tsx")) {
+      const code = fs.readFileSync(fullPath, "utf8");
+      if (/<Sparkles\b/.test(code)) matches.push(file.name);
+    }
+  }
+  return matches;
+}
+
+const sparklesMatches = checkNoSparkles(path.join(srcDir, "components"));
+assert(sparklesMatches.length === 0, "No AI Sparkles icon across src/components", sparklesMatches.join(", "));
+assert(
+  !headerContent.includes("font-mono") &&
+    !footerContent.includes("font-mono") &&
+    !contactContent.includes("font-mono"),
+  "No developer font-mono in Header.tsx, Footer.tsx, or ContactSection.tsx"
+);
 assert(!headerContent.includes("rounded-full bg-brand-olive-subtle"), "No awkward oval pill around active nav links in Header.tsx");
 
 const travelPageContent = fs.readFileSync(path.join(srcDir, "app", "travel", "page.tsx"), "utf8");

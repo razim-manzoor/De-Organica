@@ -5,6 +5,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useSiteData } from "@/context/SiteDataContext";
 import { useDrawer } from "@/context/DrawerContext";
 import { buildWhatsAppUrl, buildTravelWhatsAppMessage } from "@/lib/whatsapp";
+import { trackAnalyticsEvent } from "@/lib/analytics";
 import { MessageCircle } from "lucide-react";
 
 export function FloatingWhatsAppFab() {
@@ -26,6 +27,7 @@ export function FloatingWhatsAppFab() {
   }
 
   const handleFabClick = () => {
+    trackAnalyticsEvent("whatsapp_click", { source: "floating_fab", locale });
     const msg = buildTravelWhatsAppMessage({
       name: "Traveler / Partner",
       serviceOrTour: "Direct Yerevan Desk Inquiry",
@@ -55,12 +57,12 @@ export function FloatingWhatsAppFab() {
             ? "Կապ հաստատել Երևանի դեսկի հետ WhatsApp-ով (+374 55 569553)"
             : "Chat with Yerevan Desk on WhatsApp (+374 55 569553)"
         }
-        className="group relative flex items-center gap-2.5 p-3.5 sm:px-4 sm:py-3 rounded-full bg-[#25D366] text-white shadow-lg hover:shadow-2xl hover:bg-[#20bd5a] transition-all active:scale-95 duration-200 cursor-pointer border border-white/25"
+        className="group relative flex items-center gap-2.5 p-3.5 sm:px-4 sm:py-3 rounded-full bg-[#15803D] text-white shadow-lg hover:shadow-2xl hover:bg-[#166534] transition-all active:scale-95 duration-200 cursor-pointer border border-white/25"
       >
         {/* Pulsing Live Operational Indicator */}
         <span className="relative flex h-3 w-3 shrink-0">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-white" />
+          <span className="animate-ping motion-reduce:animate-none absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-85" />
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-[#25D366]" />
         </span>
 
         {/* WhatsApp Icon */}

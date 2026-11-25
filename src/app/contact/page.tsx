@@ -17,15 +17,25 @@ export async function generateMetadata(): Promise<Metadata> {
     contactPage.seo?.seoDescription ||
     "Direct contact channels for De Organica LLC in Yerevan, Republic of Armenia. WhatsApp desk, corporate email, and prompt consultation for travel and manpower inquiries.";
 
+  const ogImage = contactPage.seo?.ogImage || "/images/og-deorganica.jpg";
+
   return {
     title,
     description,
+    alternates: {
+      canonical: "/contact",
+    },
     openGraph: {
       title,
       description,
-      ...(contactPage.seo?.ogImage
-        ? { images: [{ url: contactPage.seo.ogImage }] }
-        : {}),
+      url: "https://deorganica.am/contact",
+      images: [{ url: ogImage, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
     },
   };
 }
@@ -33,8 +43,21 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ContactPage() {
   const contactPage = await getContactPageContent();
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://deorganica.am/" },
+      { "@type": "ListItem", position: 2, name: "Contact Desk", item: "https://deorganica.am/contact" },
+    ],
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Header />
       <main id="main-content" className="flex-grow pt-8">
         <ContactSection headingLevel="h1" content={contactPage} />

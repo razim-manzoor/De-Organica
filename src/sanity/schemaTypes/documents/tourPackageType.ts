@@ -85,8 +85,8 @@ export const tourPackageType = defineType({
     }),
 
     // Pricing & External Booking Tab
-    defineField({ name: "price", title: "Optional Display Price (e.g. $450 / person)", type: "string", group: "booking" }),
-    defineField({ name: "showPrice", title: "Show Price Badge", type: "boolean", initialValue: false, group: "booking" }),
+    defineField({ name: "price", title: "Optional Display Price (Hidden)", type: "string", group: "booking", hidden: true }),
+    defineField({ name: "showPrice", title: "Show Price Badge (Hidden)", type: "boolean", initialValue: false, group: "booking", hidden: true }),
     defineField({ name: "externalBookingUrl", title: "External Booking URL (Optional)", type: "url", group: "booking" }),
     defineField({ name: "paymentLinkUrl", title: "Payment Link URL (Optional)", type: "url", group: "booking" }),
 

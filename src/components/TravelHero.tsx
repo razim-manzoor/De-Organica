@@ -11,7 +11,6 @@ import {
   Compass,
   MapPin,
   ArrowRight,
-  Mountain,
   ShieldCheck,
 } from "lucide-react";
 
@@ -137,7 +136,7 @@ export function TravelHero({ content = defaultTravelPageContent.hero }: TravelHe
                     <MapPin className="w-3.5 h-3.5" />
                     <span>{activeDest.distKm} {isHy ? "կմ Երևանից" : "km from Yerevan"}</span>
                     <span>·</span>
-                    <span>{activeDest.altitudeM}m ASL</span>
+                    <span>{activeDest.altitudeM}{isHy ? " մ բարձր." : "m ASL"}</span>
                     <span>·</span>
                     <span>{isHy ? activeDest.season_hy : activeDest.season_en}</span>
                   </div>

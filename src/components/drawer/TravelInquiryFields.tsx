@@ -4,7 +4,6 @@ import {
   Users,
   Building2,
   Calendar,
-  Sparkles,
   Wine,
   Car,
   ChevronDown,
@@ -314,7 +313,7 @@ export function TravelInquiryFields({
           <div>
             <div className="flex items-center justify-between mb-1.5">
               <span className="text-xs font-semibold text-brand-forest flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-brand-olive-text" />
+                <Compass className="w-3.5 h-3.5 text-brand-olive-text" />
                 <span>{isHy ? "Ճամփորդության դասը" : "Travel Tier"}</span>
               </span>
               <span className="text-xs font-mono text-brand-olive-text font-bold">

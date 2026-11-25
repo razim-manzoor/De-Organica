@@ -23,11 +23,13 @@ export function LanguageProvider({
 
   useEffect(() => {
     try {
-      const saved = localStorage.getItem("deorganica_locale") as Locale;
+      const savedStorage = localStorage.getItem("deorganica_locale");
+      const cookieMatch = document.cookie.match(/(?:^|;\s*)deorganica_locale=(en|hy)(?:;|$)/);
+      const saved = (savedStorage === "en" || savedStorage === "hy"
+        ? savedStorage
+        : cookieMatch?.[1]) as Locale | undefined;
       if (saved === "en" || saved === "hy") {
-        if (saved !== locale) {
-          setLocaleState(saved);
-        }
+        setLocaleState(saved);
         document.documentElement.lang = saved;
         document.cookie = `deorganica_locale=${saved}; path=/; max-age=31536000; SameSite=Lax`;
       }

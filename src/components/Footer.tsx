@@ -14,7 +14,7 @@ export function Footer() {
   const { siteSettings } = useSiteData();
   const company = siteSettings.company;
   const isHy = locale === "hy";
-  const currentYear = 2026;
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-brand-forest text-white border-t border-brand-forest-deep mt-auto">
@@ -150,7 +150,7 @@ export function Footer() {
                 <Phone className="w-4 h-4 text-brand-olive-onDark shrink-0 mt-1" />
                 <a
                   href={`tel:${company.phoneYerevanDesk.replace(/\s+/g, "")}`}
-                  className="font-mono hover:text-white underline underline-offset-2 transition-colors"
+                  className="font-sans tabular-nums hover:text-white underline underline-offset-2 transition-colors"
                 >
                   {company.phoneYerevanDesk}
                 </a>
@@ -160,7 +160,7 @@ export function Footer() {
                 <Mail className="w-4 h-4 text-brand-olive-onDark shrink-0 mt-1" />
                 <a
                   href={`mailto:${company.email}`}
-                  className="font-mono hover:text-white underline underline-offset-2 transition-colors break-all"
+                  className="font-sans hover:text-white underline underline-offset-2 transition-colors break-all"
                 >
                   {company.email}
                 </a>

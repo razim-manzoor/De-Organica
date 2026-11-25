@@ -20,11 +20,21 @@ const RATE_LIMIT_MAX_REQUESTS = 10;
 const ipRequestLog = new Map<string, number[]>();
 
 function getClientIp(req: NextRequest): string {
+  const netlifyIp = req.headers.get("x-nf-client-connection-ip")?.trim();
+  if (netlifyIp) return netlifyIp;
   const forwarded = req.headers.get("x-forwarded-for");
   if (forwarded) {
     return forwarded.split(",")[0].trim() || "unknown";
   }
   return req.headers.get("x-real-ip")?.trim() || "unknown";
+}
+
+function isValidEmailFormat(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function hasValidPhoneDigits(phone: string): boolean {
+  return phone.replace(/[^0-9]/g, "").length >= 6;
 }
 
 function checkRateLimit(ip: string): { allowed: boolean; retryAfterSec: number } {
@@ -119,7 +129,10 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const inquiryType = safeField(formData, "inquiryType", 40) || "general";
+    const rawType = safeField(formData, "inquiryType", 40) || "general";
+    const inquiryType = ["travel", "candidate", "employer", "general"].includes(rawType)
+      ? rawType
+      : "general";
     const fullName = safeField(formData, "fullName", 200);
     const email = safeField(formData, "email", 200);
     const phone = safeField(formData, "phone", 60);
@@ -154,6 +167,65 @@ export async function POST(req: NextRequest) {
     const headcountRequired = safeField(formData, "headcountRequired", 60);
     const employerUrgency = safeField(formData, "employerUrgency", 80);
     const employerHousing = safeField(formData, "employerHousing", 120);
+
+    // Server-side required-field & contact validation
+    if (email && !isValidEmailFormat(email)) {
+      return NextResponse.json(
+        { success: false, error: "Please provide a valid email address." },
+        { status: 400 }
+      );
+    }
+
+    const hasPhone = hasValidPhoneDigits(phone);
+    const hasEmail = Boolean(email);
+
+    if (inquiryType === "travel") {
+      if (travelerType === "b2b" && !agencyName) {
+        return NextResponse.json(
+          { success: false, error: "Travel agency or DMC company name is required." },
+          { status: 400 }
+        );
+      }
+      if (!fullName) {
+        return NextResponse.json(
+          { success: false, error: "Contact name is required." },
+          { status: 400 }
+        );
+      }
+      if (!hasPhone && !hasEmail) {
+        return NextResponse.json(
+          { success: false, error: "A valid phone number or email address is required." },
+          { status: 400 }
+        );
+      }
+    } else if (inquiryType === "candidate") {
+      if (!fullName || !hasPhone || !targetRole) {
+        return NextResponse.json(
+          { success: false, error: "Full name, valid WhatsApp phone number, and target role are required." },
+          { status: 400 }
+        );
+      }
+    } else if (inquiryType === "employer") {
+      if (!companyName || !(contactPerson || fullName)) {
+        return NextResponse.json(
+          { success: false, error: "Company name and contact person are required." },
+          { status: 400 }
+        );
+      }
+      if (!hasPhone && !hasEmail) {
+        return NextResponse.json(
+          { success: false, error: "A valid corporate phone number or email address is required." },
+          { status: 400 }
+        );
+      }
+    } else {
+      if (!fullName || (!hasPhone && !hasEmail)) {
+        return NextResponse.json(
+          { success: false, error: "Contact name and a valid phone number or email address are required." },
+          { status: 400 }
+        );
+      }
+    }
 
     // Server-side CV Attachment Validation
     const cvEntry = formData.get("cvFile");
@@ -335,8 +407,17 @@ export async function POST(req: NextRequest) {
       }
 
       console.log("[Resend Delivery Succeeded]", { id: data?.id, subject });
+    } else if (process.env.NODE_ENV === "production") {
+      console.error("[Inquiry API Misconfiguration] RESEND_API_KEY is not set in production.");
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Email delivery service is temporarily unavailable. Please connect with our Yerevan operations desk directly via WhatsApp or phone.",
+        },
+        { status: 503 }
+      );
     } else {
-      console.log("[De Organica Inquiry Received]", {
+      console.log("[De Organica Inquiry Received (Dev Mode - No RESEND_API_KEY)]", {
         subject,
         inquiryType,
         locale,

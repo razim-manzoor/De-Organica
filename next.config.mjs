@@ -29,8 +29,12 @@ const nextConfig = {
             value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
           },
           {
+            key: "Cross-Origin-Opener-Policy",
+            value: "same-origin-allow-popups",
+          },
+          {
             key: "Content-Security-Policy",
-            value: "frame-ancestors 'self'; frame-src 'self'; child-src 'self';",
+            value: "object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; frame-src 'self'; child-src 'self'; upgrade-insecure-requests;",
           },
         ],
       },
@@ -42,10 +46,6 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "cdn.sanity.io",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
       },
     ],
   },

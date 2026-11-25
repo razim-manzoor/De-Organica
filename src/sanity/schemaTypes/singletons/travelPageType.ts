@@ -36,9 +36,10 @@ export const travelPageType = defineType({
     }),
     defineField({
       name: "itineraryStageShow",
-      title: "Interactive 7-Day Route Explorer",
+      title: "Interactive Route Explorer (Legacy / Hidden)",
       type: "object",
       group: "itinerary",
+      hidden: true,
       fields: [
         defineField({ name: "eyebrow_en", title: "Eyebrow (EN)", type: "string" }),
         defineField({ name: "eyebrow_hy", title: "Eyebrow (HY)", type: "string" }),
@@ -55,9 +56,10 @@ export const travelPageType = defineType({
     defineField({ name: "toursHeader", title: "Featured Tours Grid Header", type: "sectionHeader", group: "sections" }),
     defineField({
       name: "heritageShowcase",
-      title: "Heritage Showcase",
+      title: "Heritage Showcase (Legacy / Hidden)",
       type: "object",
       group: "heritage",
+      hidden: true,
       fields: [
         defineField({ name: "eyebrow_en", title: "Eyebrow (EN)", type: "string" }),
         defineField({ name: "eyebrow_hy", title: "Eyebrow (HY)", type: "string" }),

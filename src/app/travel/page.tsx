@@ -28,15 +28,25 @@ export async function generateMetadata(): Promise<Metadata> {
     travelPage.seo?.seoDescription ||
     "Curated cultural tours across Armenia (Garni, Geghard, Sevan, Dilijan, Tatev), international holiday escapes, consular visa guidance, and B2B DMC partner services in Yerevan.";
 
+  const ogImage = travelPage.seo?.ogImage || "/images/og-deorganica.jpg";
+
   return {
     title,
     description,
+    alternates: {
+      canonical: "/travel",
+    },
     openGraph: {
       title,
       description,
-      ...(travelPage.seo?.ogImage
-        ? { images: [{ url: travelPage.seo.ogImage }] }
-        : {}),
+      url: "https://deorganica.am/travel",
+      images: [{ url: ogImage, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
     },
   };
 }
@@ -50,8 +60,36 @@ export default async function TravelPage() {
     getContactPageContent(),
   ]);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://deorganica.am/" },
+          { "@type": "ListItem", position: 2, name: "Travel & Tours", item: "https://deorganica.am/travel" },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.q_en,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.a_en,
+          },
+        })),
+      },
+    ],
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main id="main-content" className="flex-grow">
         {/* Dedicated Travel Division Hero */}

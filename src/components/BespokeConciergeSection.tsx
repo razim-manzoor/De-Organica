@@ -13,7 +13,6 @@ import {
   Plane,
   ArrowRight,
   MessageCircle,
-  Phone,
   Clock,
   ShieldCheck,
 } from "lucide-react";
@@ -196,9 +195,9 @@ export function BespokeConciergeSection() {
             <button
               type="button"
               onClick={handleWhatsAppBespoke}
-              className="w-full sm:w-auto min-h-[44px] px-5 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-semibold transition-all active:scale-95 shadow-sm cursor-pointer flex items-center justify-center gap-2"
+              className="w-full sm:w-auto min-h-[44px] px-5 py-3.5 rounded-xl bg-[#15803D] hover:bg-[#166534] text-white text-xs font-semibold transition-all active:scale-95 shadow-sm cursor-pointer flex items-center justify-center gap-2"
             >
-              <MessageCircle className="w-4 h-4 text-white" />
+              <MessageCircle className="w-4 h-4 text-[#25D366]" />
               <span>{isHy ? "WhatsApp Խորհրդատվություն" : "Chat on WhatsApp"}</span>
             </button>
           </div>

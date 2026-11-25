@@ -69,7 +69,7 @@ export function ManpowerComplianceBanner({
                 className="p-5 rounded-2xl bg-white/5 border border-white/15 backdrop-blur-sm hover:bg-white/10 transition-colors duration-200"
               >
                 <div className="flex items-baseline justify-between gap-2 mb-1">
-                  <span className="font-mono text-xl sm:text-2xl font-bold text-brand-olive-onDark">
+                  <span className="font-serif text-xl sm:text-2xl font-bold text-brand-olive-onDark tabular-nums">
                     {m.figure}
                   </span>
                   <span className="text-xs font-semibold uppercase tracking-wider text-brand-stone-200">

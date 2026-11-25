@@ -34,10 +34,14 @@ export function TravelServicesMatrix({
   const isHy = locale === "hy";
   const items = services && services.length > 0 ? services : ctxServices.length > 0 ? ctxServices : defaultTravelServices;
 
-  // Curate to dedicated ground operations & logistics (excluding duplicate tour catalog and wholesale DMC)
-  const dedicatedLogistics = items.filter(
-    (s) => s.id === "hotels-transfers" || s.id === "visa-assistance" || s.id === "international-holidays"
-  );
+  // Exclude services covered by dedicated full-page sections (Tours Grid, Bespoke Concierge, DMC Partner)
+  // so any newly added ground service in Sanity CMS automatically renders here.
+  const dedicatedSectionIds = new Set([
+    "cultural-nature-tours",
+    "customized-private-trips",
+    "b2b-dmc-services",
+  ]);
+  const dedicatedLogistics = items.filter((s) => !dedicatedSectionIds.has(s.id));
   const displayServices = dedicatedLogistics.length > 0 ? dedicatedLogistics : items.slice(0, 3);
 
   const handleWhatsAppClick = (serviceTitle: string) => {
@@ -129,7 +133,7 @@ export function TravelServicesMatrix({
 
                   <button
                     type="button"
-                    onClick={() => handleWhatsAppClick(service.title_en)}
+                    onClick={() => handleWhatsAppClick(isHy ? service.title_hy : service.title_en)}
                     className="w-11 h-11 shrink-0 rounded-xl border border-brand-stone-300 bg-white text-brand-ink hover:text-brand-forest hover:border-[#25D366] hover:bg-green-50/40 text-xs font-medium transition-all active:scale-95 flex items-center justify-center cursor-pointer shadow-sm"
                     aria-label={isHy ? `${service.title_hy} — WhatsApp հարցում` : `Inquire about ${service.title_en} on WhatsApp`}
                     title="WhatsApp"

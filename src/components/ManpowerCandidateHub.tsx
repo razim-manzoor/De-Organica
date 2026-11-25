@@ -262,7 +262,7 @@ export function ManpowerCandidateHub({
 
                   <button
                     type="button"
-                    onClick={() => handleWhatsAppApply(vacancy.title_en)}
+                    onClick={() => handleWhatsAppApply(isHy ? vacancy.title_hy : vacancy.title_en)}
                     className="w-11 h-11 shrink-0 rounded-xl border border-brand-stone-300 bg-white text-brand-ink hover:text-brand-forest hover:border-[#25D366] hover:bg-green-50/40 active:scale-95 text-xs font-medium transition-all flex items-center justify-center cursor-pointer shadow-sm"
                     aria-label={isHy ? `WhatsApp՝ ${vacancy.title_hy}` : `Inquire on WhatsApp about ${vacancy.title_en}`}
                     title="WhatsApp"

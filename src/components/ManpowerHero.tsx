@@ -96,7 +96,7 @@ export function ManpowerHero({ content = defaultManpowerPageContent.hero }: Manp
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 border-t border-brand-stone-200">
               {content.metrics.map((metric, idx) => (
                 <div key={idx} className="p-3.5 rounded-2xl bg-white border border-brand-stone-200/90 shadow-sm">
-                  <div className="font-mono text-lg sm:text-xl font-bold text-brand-forest">
+                  <div className="font-serif text-lg sm:text-xl font-bold text-brand-forest tabular-nums">
                     {metric.figure}
                   </div>
                   <div className="text-xs text-brand-ink-muted uppercase tracking-wider mt-0.5 font-semibold">

@@ -14,20 +14,26 @@ export async function generateMetadata(): Promise<Metadata> {
   const homeContent = await getHomePageContent();
   const title = homeContent.seo?.seoTitle;
   const description = homeContent.seo?.seoDescription;
-  const ogImage = homeContent.seo?.ogImage;
+  const ogImage = homeContent.seo?.ogImage || "/images/og-deorganica.jpg";
 
   return {
     ...(title ? { title } : {}),
     ...(description ? { description } : {}),
-    ...(title || description || ogImage
-      ? {
-          openGraph: {
-            ...(title ? { title } : {}),
-            ...(description ? { description } : {}),
-            ...(ogImage ? { images: [{ url: ogImage }] } : {}),
-          },
-        }
-      : {}),
+    alternates: {
+      canonical: "/",
+    },
+    openGraph: {
+      ...(title ? { title } : {}),
+      ...(description ? { description } : {}),
+      url: "https://deorganica.am/",
+      images: [{ url: ogImage }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      ...(title ? { title } : {}),
+      ...(description ? { description } : {}),
+      images: [ogImage],
+    },
   };
 }
 

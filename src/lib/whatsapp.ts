@@ -47,7 +47,8 @@ export interface EmployerWhatsAppParams {
  * Encodes text into a valid WhatsApp URL targeting the official De Organica number
  */
 export function buildWhatsAppUrl(message: string, targetDigits?: string): string {
-  const number = targetDigits || deorganicaConfig.company.whatsappNumberDigits;
+  const rawNumber = targetDigits || deorganicaConfig.company.whatsappNumberDigits;
+  const number = rawNumber.replace(/[^0-9]/g, "") || deorganicaConfig.company.whatsappNumberDigits;
   const encoded = encodeURIComponent(message.trim());
   return `https://wa.me/${number}?text=${encoded}`;
 }

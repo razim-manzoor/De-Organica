@@ -22,20 +22,30 @@ export async function generateMetadata(): Promise<Metadata> {
   const manpowerPage = await getManpowerPageContent();
   const title =
     manpowerPage.seo?.seoTitle ||
-    "De Organica Manpower · International Recruitment & B2B Staffing";
+    "De Organica Manpower · Armenia Recruitment & Enterprise Staffing";
   const description =
     manpowerPage.seo?.seoDescription ||
     "Verified international talent supply and recruitment for Armenia. Direct placement with verified employers, legal Ministry of Labor work permits, and B2B corporate staffing.";
 
+  const ogImage = manpowerPage.seo?.ogImage || "/images/og-deorganica.jpg";
+
   return {
     title,
     description,
+    alternates: {
+      canonical: "/manpower",
+    },
     openGraph: {
       title,
       description,
-      ...(manpowerPage.seo?.ogImage
-        ? { images: [{ url: manpowerPage.seo.ogImage }] }
-        : {}),
+      url: "https://deorganica.am/manpower",
+      images: [{ url: ogImage, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
     },
   };
 }
@@ -48,8 +58,36 @@ export default async function ManpowerPage() {
     getContactPageContent(),
   ]);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://deorganica.am/" },
+          { "@type": "ListItem", position: 2, name: "Manpower & Careers", item: "https://deorganica.am/manpower" },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.q_en,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.a_en,
+          },
+        })),
+      },
+    ],
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main id="main-content" className="flex-grow">
         {/* Dedicated Manpower & Careers Hero */}

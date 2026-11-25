@@ -51,8 +51,8 @@
 ### A. Full Armenian & English Bilingual Engine
 - Zero machine-translated gibberish: All copy is hand-crafted in English (`en`) and Armenian (`hy` — Հայերեն).
 - Native typography bindings via Google Fonts:
-  - **Headings & Serif:** `Noto Serif Armenian` + `Playfair Display`
-  - **Body & Interface:** `Noto Sans Armenian` + `Inter`
+  - **Headings & Serif:** `Noto Serif Armenian` + `Cinzel`
+  - **Body & Interface:** `Noto Sans Armenian` + `Plus Jakarta Sans`
 - Client-side language switcher context with persistence and seamless bidirectional layout support.
 
 ### B. Sanity CMS & Zero-Dependency Fallback Engine

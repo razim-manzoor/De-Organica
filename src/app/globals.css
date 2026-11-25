@@ -222,3 +222,23 @@ netlify-drawer {
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
+/* Clean Print Stylesheet for Tour Itineraries & Legal Documents */
+@media print {
+  header,
+  footer,
+  dialog.concierge-dialog,
+  aside[aria-label*="WhatsApp"] {
+    display: none !important;
+  }
+
+  body,
+  main {
+    background: #ffffff !important;
+    color: #1a2219 !important;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}

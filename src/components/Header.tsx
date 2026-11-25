@@ -98,7 +98,7 @@ export function Header() {
               className="min-h-[38px] px-3 py-1.5 rounded-xl border border-brand-stone-200 bg-white/80 hover:bg-white hover:border-brand-stone-300 text-xs lg:text-[13px] text-brand-forest transition-all active:scale-95 duration-200 flex items-center gap-2 shadow-2xs group"
               title={isHy ? "Զանգահարել Երևանի դեսկ" : "Call Yerevan Desk"}
             >
-              <span className="w-2 h-2 rounded-full bg-[#25D366] shrink-0 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-[#25D366] shrink-0 animate-pulse motion-reduce:animate-none" />
               <Phone className="w-3.5 h-3.5 text-brand-olive-text shrink-0 group-hover:scale-110 transition-transform" />
               <span className="font-sans font-medium tabular-nums hidden lg:inline">{siteSettings.company.phoneYerevanDesk}</span>
               <span className="font-sans text-xs lg:hidden">{isHy ? "Զանգ" : "Call"}</span>
@@ -189,9 +189,9 @@ export function Header() {
                 href={`https://wa.me/${siteSettings.company.whatsappNumberDigits}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="min-h-[44px] px-3 py-2.5 rounded-xl bg-[#25D366] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-2xs"
+                className="min-h-[44px] px-3 py-2.5 rounded-xl bg-[#15803D] hover:bg-[#166534] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-2xs transition-colors"
               >
-                <MessageCircle className="w-4 h-4 text-white shrink-0" />
+                <MessageCircle className="w-4 h-4 text-[#25D366] shrink-0" />
                 <span>WhatsApp</span>
               </a>
             </div>

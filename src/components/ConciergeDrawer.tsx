@@ -11,6 +11,7 @@ import {
   buildEmployerWhatsAppMessage,
   buildWhatsAppUrl,
 } from "@/lib/whatsapp";
+import { trackAnalyticsEvent } from "@/lib/analytics";
 import {
   X,
   Send,
@@ -19,7 +20,6 @@ import {
   AlertCircle,
   Loader2,
   Building,
-  Building2,
   Briefcase,
   Compass,
   ShieldCheck,
@@ -93,6 +93,9 @@ export function ConciergeDrawer() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const errorSummaryRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const tabTravelRef = useRef<HTMLButtonElement>(null);
+  const tabCandidateRef = useRef<HTMLButtonElement>(null);
+  const tabEmployerRef = useRef<HTMLButtonElement>(null);
   const isClosingRef = useRef(false);
 
   // Field Refs for validation focus management
@@ -337,6 +340,16 @@ export function ConciergeDrawer() {
         );
         return;
       }
+      if (phoneNumber.trim() && phoneNumber.replace(/[^0-9]/g, "").length < 5) {
+        raiseValidationError(
+          isHy
+            ? "Խնդրում ենք նշել վավեր հեռախոսահամար"
+            : "Please provide a valid WhatsApp / phone number",
+          "phoneNumber",
+          phoneInputRef
+        );
+        return;
+      }
     } else if (activeTab === "candidate") {
       if (!fullName.trim()) {
         raiseValidationError(
@@ -346,11 +359,11 @@ export function ConciergeDrawer() {
         );
         return;
       }
-      if (!phoneNumber.trim()) {
+      if (!phoneNumber.trim() || phoneNumber.replace(/[^0-9]/g, "").length < 5) {
         raiseValidationError(
           isHy
-            ? "Խնդրում ենք նշել WhatsApp հեռախոսահամար"
-            : "Please provide your WhatsApp number",
+            ? "Խնդրում ենք նշել վավեր WhatsApp հեռախոսահամար"
+            : "Please provide a valid WhatsApp number",
           "phoneNumber",
           phoneInputRef
         );
@@ -403,9 +416,42 @@ export function ConciergeDrawer() {
         );
         return;
       }
+      if (phoneNumber.trim() && phoneNumber.replace(/[^0-9]/g, "").length < 5) {
+        raiseValidationError(
+          isHy
+            ? "Խնդրում ենք նշել վավեր հեռախոսահամար"
+            : "Please provide a valid corporate phone number",
+          "phoneNumber",
+          phoneInputRef
+        );
+        return;
+      }
+    }
+
+    if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      raiseValidationError(
+        isHy ? "Խնդրում ենք նշել վավեր էլ. փոստի հասցե" : "Please provide a valid email address",
+        null
+      );
+      return;
     }
 
     setIsSubmitting(true);
+
+    // Open blank tab synchronously inside user gesture so iOS Safari / mobile browsers do not block WhatsApp launch after async fetch
+    let waWindow: Window | null = null;
+    if (openWhatsAppChat) {
+      waWindow = window.open("", "_blank");
+      if (waWindow) {
+        try {
+          waWindow.document.title = isHy
+            ? "Միացում Դե Օրգանիկա WhatsApp դեսկին..."
+            : "Connecting to De Organica WhatsApp Desk...";
+        } catch {
+          // ignore
+        }
+      }
+    }
 
     try {
       const formData = new FormData();
@@ -470,14 +516,27 @@ export function ConciergeDrawer() {
       }
 
       const waUrl = buildCurrentWhatsAppUrl(fullPhone, cvFile?.name);
+      trackAnalyticsEvent("generate_lead", {
+        inquiry_type: activeTab,
+        locale,
+        open_whatsapp: openWhatsAppChat,
+      });
       setSubmittedSnapshot({ waUrl });
       setNotes("");
       setCvFile(null);
 
       if (openWhatsAppChat) {
-        window.open(waUrl, "_blank", "noopener,noreferrer");
+        if (waWindow && !waWindow.closed) {
+          waWindow.opener = null;
+          waWindow.location.href = waUrl;
+        } else {
+          window.open(waUrl, "_blank", "noopener,noreferrer");
+        }
       }
     } catch (err: unknown) {
+      if (waWindow && !waWindow.closed) {
+        waWindow.close();
+      }
       const msg =
         err instanceof Error ? err.message : "An unexpected error occurred.";
       setErrorMessage(msg);
@@ -495,12 +554,24 @@ export function ConciergeDrawer() {
       aria-labelledby="concierge-drawer-title"
       onCancel={(e) => {
         e.preventDefault();
+        if (document.querySelector('[data-country-listbox="open"]')) {
+          return;
+        }
         closeTopLayer();
       }}
       onClick={(e) => {
-        if (e.target === dialogRef.current) {
-          closeTopLayer();
+        const dialog = dialogRef.current;
+        if (!dialog || e.target !== dialog) return;
+        if (!("closedBy" in HTMLDialogElement.prototype)) {
+          const rect = dialog.getBoundingClientRect();
+          const insideDialog =
+            rect.top <= e.clientY &&
+            e.clientY <= rect.top + rect.height &&
+            rect.left <= e.clientX &&
+            e.clientX <= rect.left + rect.width;
+          if (insideDialog) return;
         }
+        closeTopLayer();
       }}
       onClose={() => {
         if (state.isOpen) closeDrawer();
@@ -547,6 +618,7 @@ export function ConciergeDrawer() {
           className="grid grid-cols-3 p-1.5 sm:p-2 bg-brand-stone-100 border-b border-brand-stone-200 gap-1 text-xs font-medium shrink-0"
         >
           <button
+            ref={tabTravelRef}
             id="tab-travel"
             type="button"
             role="tab"
@@ -557,9 +629,15 @@ export function ConciergeDrawer() {
               if (e.key === "ArrowRight") {
                 e.preventDefault();
                 setActiveTab("candidate");
-              } else if (e.key === "ArrowLeft") {
+                tabCandidateRef.current?.focus();
+              } else if (e.key === "ArrowLeft" || e.key === "End") {
                 e.preventDefault();
                 setActiveTab("employer");
+                tabEmployerRef.current?.focus();
+              } else if (e.key === "Home") {
+                e.preventDefault();
+                setActiveTab("travel");
+                tabTravelRef.current?.focus();
               }
             }}
             onClick={() => {
@@ -581,6 +659,7 @@ export function ConciergeDrawer() {
           </button>
 
           <button
+            ref={tabCandidateRef}
             id="tab-candidate"
             type="button"
             role="tab"
@@ -591,9 +670,15 @@ export function ConciergeDrawer() {
               if (e.key === "ArrowRight") {
                 e.preventDefault();
                 setActiveTab("employer");
-              } else if (e.key === "ArrowLeft") {
+                tabEmployerRef.current?.focus();
+              } else if (e.key === "ArrowLeft" || e.key === "Home") {
                 e.preventDefault();
                 setActiveTab("travel");
+                tabTravelRef.current?.focus();
+              } else if (e.key === "End") {
+                e.preventDefault();
+                setActiveTab("employer");
+                tabEmployerRef.current?.focus();
               }
             }}
             onClick={() => {
@@ -615,6 +700,7 @@ export function ConciergeDrawer() {
           </button>
 
           <button
+            ref={tabEmployerRef}
             id="tab-employer"
             type="button"
             role="tab"
@@ -622,12 +708,18 @@ export function ConciergeDrawer() {
             aria-controls="concierge-tabpanel"
             tabIndex={activeTab === "employer" ? 0 : -1}
             onKeyDown={(e) => {
-              if (e.key === "ArrowRight") {
+              if (e.key === "ArrowRight" || e.key === "Home") {
                 e.preventDefault();
                 setActiveTab("travel");
+                tabTravelRef.current?.focus();
               } else if (e.key === "ArrowLeft") {
                 e.preventDefault();
                 setActiveTab("candidate");
+                tabCandidateRef.current?.focus();
+              } else if (e.key === "End") {
+                e.preventDefault();
+                setActiveTab("employer");
+                tabEmployerRef.current?.focus();
               }
             }}
             onClick={() => {
@@ -662,7 +754,7 @@ export function ConciergeDrawer() {
             <div className="p-3 sm:p-3.5 rounded-2xl bg-white border border-brand-stone-200/90 shadow-2xs flex items-center justify-between gap-2.5 sm:gap-3">
               <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
                 <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#25D366]/15 flex items-center justify-center shrink-0">
-                  <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#25D366]" />
+                  <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#15803D]" />
                 </span>
                 <p className="text-xs text-brand-ink leading-tight truncate">
                   <span className="font-semibold block text-brand-forest">
@@ -679,7 +771,7 @@ export function ConciergeDrawer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeTopLayer}
-                className="shrink-0 min-h-[38px] px-3.5 py-1.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-semibold transition-all active:scale-95 duration-200 flex items-center gap-1.5 shadow-2xs"
+                className="shrink-0 min-h-[38px] px-3.5 py-1.5 rounded-xl bg-[#15803D] hover:bg-[#166534] text-white text-xs font-semibold transition-all active:scale-95 duration-200 flex items-center gap-1.5 shadow-2xs"
               >
                 <span>WhatsApp</span>
                 <ArrowRight className="w-3.5 h-3.5" />

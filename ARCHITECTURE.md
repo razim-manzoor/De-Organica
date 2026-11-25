@@ -13,10 +13,10 @@ The system prioritizes **uncompromising visual elegance, zero buzzword inflation
 
 | Layer | Technology | Rationale |
 | :--- | :--- | :--- |
-| **Framework** | Next.js 15.5+ (App Router) | High-performance React Server Components, automatic static site generation (SSG) for all 11 routes, and edge-ready API routes. |
+| **Framework** | Next.js 15+ (App Router) | High-performance React Server Components, static/ISR generation, and edge-ready API routes. |
 | **Language** | Strict TypeScript (ES2022) | 100% type-safe data schema for tours, vacancies, services, and form submissions. |
-| **Styling** | Tailwind CSS v4 + PostCSS | Zero-runtime CSS with custom architectural color palette (`brand-forest`, `brand-olive`, `brand-stone`, `brand-ink`). |
-| **Typography** | Google Fonts (`next/font/google`) | Native font bindings for `Noto Serif Armenian`, `Noto Sans Armenian`, `Playfair Display`, and `Inter` with zero layout shift (CLS = 0). |
+| **Styling** | Tailwind CSS v3 + PostCSS | Zero-runtime CSS with custom architectural color palette (`brand-forest`, `brand-olive`, `brand-stone`, `brand-ink`). |
+| **Typography** | Google Fonts (`next/font/google`) | Native font bindings for `Noto Serif Armenian`, `Noto Sans Armenian`, `Cinzel`, and `Plus Jakarta Sans` with zero layout shift (CLS = 0). |
 | **Email Dispatch** | Resend API | Serverless multipart email handling with buffered PDF/Word CV attachments. |
 | **Instant Dispatch** | WhatsApp Deep Linking | Direct URL scheme builder routing inquiries with pre-filled structured Armenian/English text to the Yerevan desk. |
 | **Icons** | Lucide React | Tree-shaken, pixel-crisp SVG icon set. |
@@ -117,13 +117,13 @@ RootLayout (src/app/layout.tsx)
 ## 5. Bilingual Font Loading Strategy
 
 To ensure zero layout shift and flawless rendering of the Armenian alphabet:
-1. `Noto Serif Armenian` and `Noto Sans Armenian` are instantiated in `src/app/layout.tsx` via `next/font/google` with subsets `["armenian", "latin"]` and configured with CSS variable bindings (`--font-noto-serif-armenian`, `--font-noto-sans-armenian`).
-2. Tailwind maps `font-serif` to `var(--font-noto-serif-armenian), var(--font-playfair), Georgia, serif` and `font-sans` to `var(--font-noto-sans-armenian), var(--font-inter), sans-serif`.
-3. The root layout dynamically updates `lang={locale}` based on client state, guaranteeing semantic accessibility for screen readers.
+1. `Noto Serif Armenian`, `Noto Sans Armenian`, `Cinzel`, and `Plus Jakarta Sans` are instantiated in `src/app/layout.tsx` via `next/font/google` and configured with CSS variable bindings (`--font-serif`, `--font-sans`, `--font-armenian-serif`, `--font-armenian-sans`).
+2. Tailwind maps `font-serif` and `font-sans` to those CSS variables in `tailwind.config.ts`.
+3. The root layout updates `lang={locale}` via `LanguageContext`, guaranteeing semantic accessibility for screen readers.
 
 ---
 
 ## 6. Security & Production Checklist
 - **No Client-Side Secrets:** Resend API keys are strictly server-side (`RESEND_API_KEY`).
-- **File Upload Safeguards:** `api/inquiry` limits candidate CV attachments to 5 MB with strict MIME validation (PDF, DOC, DOCX).
+- **File Upload Safeguards:** `api/inquiry` limits candidate CV attachments to 4 MB with strict MIME and magic-byte validation (PDF, DOC, DOCX).
 - **Zero External Stock Vulnerabilities:** Cultural photography is permanently hosted inside `public/images/` to eliminate broken external CDN URLs.

@@ -673,9 +673,9 @@ export const defaultManpowerPageContent: ManpowerPageContent = {
     charterTitle_en: "Ethical Recruitment & Labor Standards Charter",
     charterTitle_hy: "Էթիկական Հավաքագրման և Աշխատանքային Ստանդարտների Քարտիա",
     charterDesc_en:
-      "De Organica LLC operates on a strict candidate-first model. We adhere to transparent placement procedures and formal work permit authorizations issued under Republic of Armenia labor laws.",
+      "De Organica LLC operates on a strict candidate-first model with zero upfront candidate charges. We adhere to transparent, employer-sponsored placement procedures and formal work permit authorizations issued under Republic of Armenia labor laws.",
     charterDesc_hy:
-      "«Դե Օրգանիկա»-ն առաջնորդվում է թեկնածուների պաշտպանության միջազգային սկզբունքներով: Գործընթացն իրականացվում է թափանցիկ ընթացակարգերով և ՀՀ աշխատանքային օրենսդրությանը համապատասխան:",
+      "«Դե Օրգանիկա»-ն առաջնորդվում է թեկնածուների պաշտպանության միջազգային սկզբունքներով՝ առանց թեկնածուներից գանձվող նախնական վճարների: Գործընթացն իրականացվում է թափանցիկ ընթացակարգերով և ՀՀ աշխատանքային օրենսդրությանը համապատասխան:",
     trustPillars: deorganicaConfig.manpower.trustPillars,
     mobilitySteps: deorganicaConfig.manpower.mobilitySteps,
     sectors: deorganicaConfig.manpower.sectors,
@@ -868,9 +868,9 @@ export const defaultManpowerFaqs: FaqItem[] = [
     q_en: "How long does the legal work permit and residence card process take in Armenia?",
     q_hy: "Որքա՞ն ժամանակ է պահանջվում ՀՀ աշխատանքի թույլտվության և կացության քարտի ձևակերպման համար:",
     a_en:
-      "The legal immigration process is handled via the Unified Migration Service under the Ministry of Internal Affairs and the Ministry of Labor and Social Affairs of the Republic of Armenia. Standard processing timelines range from 20 to 35 business days from dossier submission to permit issuance.",
+      "The legal immigration process is handled via the Unified Migration Service under the Ministry of Internal Affairs and the Ministry of Labor and Social Affairs of the Republic of Armenia. Standard processing timelines range from 15 to 25 business days from dossier submission to permit issuance.",
     a_hy:
-      "Իրավական գործընթացն իրականացվում է ՀՀ միգրացիոն ծառայության և Աշխատանքի և սոցիալական հարցերի նախարարության միջոցով: Փաստաթղթերի ներկայացումից մինչև աշխատանքի թույլտվության և կացության քարտի տրամադրումը տևում է միջինում 20-ից 35 աշխատանքային օր:",
+      "Իրավական գործընթացն իրականացվում է ՀՀ միգրացիոն ծառայության և Աշխատանքի և սոցիալական հարցերի նախարարության միջոցով: Փաստաթղթերի ներկայացումից մինչև աշխատանքի թույլտվության և կացության քարտի տրամադրումը տևում է միջինում 15-ից 25 աշխատանքային օր:",
     isPublished: true,
   },
   {

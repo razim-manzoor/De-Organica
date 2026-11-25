@@ -11,7 +11,7 @@ export function cn(...inputs: ClassValue[]) {
  * Returns the localized field (`field_hy`), and automatically falls back to `field_en`
  * if the Armenian translation is missing, empty, or not yet provided.
  */
-export function tField<T extends Record<string, any>>(
+export function tField<T extends Record<string, unknown>>(
   item: T,
   field: string,
   locale: Locale
@@ -19,13 +19,14 @@ export function tField<T extends Record<string, any>>(
   if (!item) return "";
   const localizedKey = `${field}_${locale}`;
   const fallbackKey = `${field}_en`;
-  return item[localizedKey] || item[fallbackKey] || "";
+  const val = item[localizedKey] ?? item[fallbackKey];
+  return typeof val === "string" ? val : "";
 }
 
 /**
  * Array translation helper for string lists
  */
-export function tArray<T extends Record<string, any>>(
+export function tArray<T extends Record<string, unknown>>(
   item: T,
   field: string,
   locale: Locale
@@ -33,5 +34,6 @@ export function tArray<T extends Record<string, any>>(
   if (!item) return [];
   const localizedKey = `${field}_${locale}`;
   const fallbackKey = `${field}_en`;
-  return item[localizedKey] || item[fallbackKey] || [];
+  const val = item[localizedKey] ?? item[fallbackKey];
+  return Array.isArray(val) ? (val as string[]) : [];
 }

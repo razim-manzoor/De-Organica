@@ -147,7 +147,11 @@ export function CandidateInquiryFields({
             aria-invalid={invalidField === "targetRole"}
             value={targetRole}
             onChange={(e) => setTargetRole(e.target.value)}
-            placeholder="e.g. Specialty Line Cook / Heavy Machinery Operator / Driver"
+            placeholder={
+              isHy
+                ? "օրինակ՝ Խոհարար / Ծանր տեխնիկայի օպերատոր / Վարորդ"
+                : "e.g. Specialty Line Cook / Heavy Machinery Operator / Driver"
+            }
             className={`w-full min-h-[44px] px-4 py-2.5 rounded-xl border bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none ${
               invalidField === "targetRole" ? "border-[#B43C30]" : "border-brand-stone-300"
             }`}
@@ -164,7 +168,7 @@ export function CandidateInquiryFields({
           >
             {isHy ? "Կցել Ռեզյումե (CV / Resume)" : "Attach CV / Resume (PDF / DOCX)"}
           </label>
-          <span className="text-xs text-brand-ink-subtle">Max 4 MB</span>
+          <span className="text-xs text-brand-ink-subtle">{isHy ? "Առավելագույնը 4 ՄԲ" : "Max 4 MB"}</span>
         </div>
         <div
           onDragOver={(e) => {
@@ -205,7 +209,7 @@ export function CandidateInquiryFields({
                   <span className="font-semibold text-brand-forest truncate block max-w-[200px] sm:max-w-[260px]">
                     {cvFile.name}
                   </span>
-                  <span className="text-[11px] text-brand-ink-subtle font-mono block">
+                  <span className="text-[11px] text-brand-ink-subtle font-sans tabular-nums block">
                     {(cvFile.size / (1024 * 1024)).toFixed(2)} MB
                   </span>
                 </div>
@@ -225,10 +229,10 @@ export function CandidateInquiryFields({
               <div className="flex flex-col items-center gap-1.5 py-1">
                 <Upload className="w-5 h-5 text-brand-stone-600" />
                 <span className="font-medium text-brand-forest">
-                  {isHy ? "Սեղմեք ֆայլ ընտրելու համար" : "Click or drag resume file here"}
+                  {isHy ? "Սեղմեք կամ տեղափոխեք ֆայլն այստեղ" : "Click or drag resume file here"}
                 </span>
                 <span className="text-xs text-brand-ink-subtle">
-                  Supports PDF, DOC, DOCX
+                  {isHy ? "Ձևաչափեր՝ PDF, DOC, DOCX" : "Supports PDF, DOC, DOCX"}
                 </span>
               </div>
             )}
@@ -283,12 +287,20 @@ export function CandidateInquiryFields({
             className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           >
             <option value="English Conversational">
-              English (Conversational / Fluent)
+              {isHy ? "Անգլերեն (Խոսակցական / Ազատ)" : "English (Conversational / Fluent)"}
             </option>
-            <option value="Russian Fluent">Russian (Ռուսերեն - Fluent)</option>
-            <option value="Basic Armenian">Armenian (Հայերեն - Basic/Learning)</option>
-            <option value="Arabic">Arabic (العربية)</option>
-            <option value="Hindi / Urdu">Hindi / Urdu</option>
+            <option value="Russian Fluent">
+              {isHy ? "Ռուսերեն (Ազատ)" : "Russian (Ռուսերեն - Fluent)"}
+            </option>
+            <option value="Basic Armenian">
+              {isHy ? "Հայերեն (Հիմնական / Սովորող)" : "Armenian (Հայերեն - Basic/Learning)"}
+            </option>
+            <option value="Arabic">
+              {isHy ? "Արաբերեն (العربية)" : "Arabic (العربية)"}
+            </option>
+            <option value="Hindi / Urdu">
+              {isHy ? "Հինդի / Ուրդու" : "Hindi / Urdu"}
+            </option>
           </select>
         </div>
 
@@ -306,11 +318,13 @@ export function CandidateInquiryFields({
             className="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border border-brand-stone-300 bg-white text-base sm:text-sm text-brand-ink shadow-sm focus:ring-2 focus:ring-brand-olive focus:border-transparent focus:outline-none"
           >
             <option value="In Home Country (Ready for Visa)">
-              In Home Country (Ready for Visa Filing)
+              {isHy ? "Հայրենի երկրում (Պատրաստ վիզայի)" : "In Home Country (Ready for Visa Filing)"}
             </option>
-            <option value="Currently in Armenia">Currently in Armenia (Active Stay)</option>
+            <option value="Currently in Armenia">
+              {isHy ? "Արդեն գտնվում եմ Հայաստանում" : "Currently in Armenia (Active Stay)"}
+            </option>
             <option value="Working in UAE / Gulf">
-              Working in UAE / GCC (Ready to Relocate)
+              {isHy ? "ԱՄԷ / Ծոցի երկրներում (Պատրաստ տեղափոխվել)" : "Working in UAE / GCC (Ready to Relocate)"}
             </option>
           </select>
         </div>

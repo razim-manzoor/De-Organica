@@ -20,8 +20,27 @@ export function PipelineStageShow({
   const stages = content.stages;
 
   const [activeStageId, setActiveStageId] = useState<string>(stages[1]?.id || stages[0]?.id || "stage-2");
+  const tabRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
   const activeStage =
     stages.find((s) => s.id === activeStageId) || stages[1] || stages[0];
+
+  const handleStageKeyDown = (e: React.KeyboardEvent, idx: number) => {
+    let nextIdx: number | null = null;
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+      nextIdx = (idx + 1) % stages.length;
+    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+      nextIdx = (idx - 1 + stages.length) % stages.length;
+    } else if (e.key === "Home") {
+      nextIdx = 0;
+    } else if (e.key === "End") {
+      nextIdx = stages.length - 1;
+    }
+    if (nextIdx !== null && stages[nextIdx]) {
+      e.preventDefault();
+      setActiveStageId(stages[nextIdx].id);
+      tabRefs.current[nextIdx]?.focus();
+    }
+  };
 
   return (
     <section className="py-20 lg:py-28 bg-brand-stone-50 border-t border-brand-stone-200 overflow-hidden">
@@ -72,16 +91,21 @@ export function PipelineStageShow({
               {isHy ? "Ընտրեք աշխատանքային փուլը" : "Select Pipeline Stage"}
             </span>
 
-            {stages.map((s) => {
+            {stages.map((s, idx) => {
               const isSelected = s.id === activeStageId;
               return (
                 <button
                   key={s.id}
+                  ref={(el) => {
+                    tabRefs.current[idx] = el;
+                  }}
                   id={`pipeline-tab-${s.id}`}
                   role="tab"
                   aria-selected={isSelected}
                   aria-controls={`pipeline-panel-${s.id}`}
+                  tabIndex={isSelected ? 0 : -1}
                   type="button"
+                  onKeyDown={(e) => handleStageKeyDown(e, idx)}
                   onClick={() => setActiveStageId(s.id)}
                   className={`w-full min-h-[60px] text-left p-4 rounded-2xl transition-colors duration-200 cursor-pointer flex items-center justify-between gap-2 ${
                     isSelected

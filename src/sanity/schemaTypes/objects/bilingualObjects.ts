@@ -302,7 +302,7 @@ export const companyInfoType = defineType({
     defineField({ name: "legalName", title: "Legal Entity Name", type: "string" }),
     defineField({ name: "tagline_en", title: "Tagline (EN)", type: "string" }),
     defineField({ name: "tagline_hy", title: "Tagline (HY)", type: "string" }),
-    defineField({ name: "ceo", title: "Founder / CEO", type: "string" }),
+    defineField({ name: "ceo", title: "Founder / CEO", type: "string", hidden: true }),
     defineField({ name: "address_en", title: "Office Address (EN)", type: "string" }),
     defineField({ name: "address_hy", title: "Office Address (HY)", type: "string" }),
     defineField({ name: "city", title: "City", type: "string" }),

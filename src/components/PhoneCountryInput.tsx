@@ -553,17 +553,21 @@ export function PhoneCountryInput({
 }: PhoneCountryInputProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedIsoCode, setSelectedIsoCode] = useState<string>("AM");
+  const [highlightedIdx, setHighlightedIdx] = useState<number>(0);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const optionRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  // Find currently selected country
+  // Find currently selected country (preferring exact ISO code when dial codes overlap, e.g. US/CA +1, RU/KZ +7)
   const selectedCountry = useMemo(() => {
     return (
+      COUNTRIES.find((c) => c.code === selectedIsoCode && c.dialCode === dialCode) ||
       COUNTRIES.find((c) => c.dialCode === dialCode && c.code !== "GLOBAL") ||
       COUNTRIES[0]
     );
-  }, [dialCode]);
+  }, [dialCode, selectedIsoCode]);
 
   // Filter countries by search query
   const filteredCountries = useMemo(() => {
@@ -597,6 +601,7 @@ export function PhoneCountryInput({
   }, [isOpen]);
 
   const handleSelectCountry = (country: CountryInfo) => {
+    setSelectedIsoCode(country.code);
     onDialCodeChange(country.dialCode);
     setIsOpen(false);
     setSearchQuery("");
@@ -604,11 +609,40 @@ export function PhoneCountryInput({
   };
 
   const handlePickerKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Escape" && isOpen) {
+    if (!isOpen) return;
+    if (e.key === "Escape") {
       e.preventDefault();
       e.stopPropagation();
       setIsOpen(false);
       triggerRef.current?.focus();
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      const next = filteredCountries.length > 0 ? (highlightedIdx + 1) % filteredCountries.length : 0;
+      setHighlightedIdx(next);
+      optionRefs.current[next]?.scrollIntoView({ block: "nearest" });
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      const prev =
+        filteredCountries.length > 0
+          ? (highlightedIdx - 1 + filteredCountries.length) % filteredCountries.length
+          : 0;
+      setHighlightedIdx(prev);
+      optionRefs.current[prev]?.scrollIntoView({ block: "nearest" });
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      setHighlightedIdx(0);
+      optionRefs.current[0]?.scrollIntoView({ block: "nearest" });
+    } else if (e.key === "End" && filteredCountries.length > 0) {
+      e.preventDefault();
+      const last = filteredCountries.length - 1;
+      setHighlightedIdx(last);
+      optionRefs.current[last]?.scrollIntoView({ block: "nearest" });
+    } else if (e.key === "Enter" && document.activeElement === searchInputRef.current) {
+      const target = filteredCountries[highlightedIdx];
+      if (target) {
+        e.preventDefault();
+        handleSelectCountry(target);
+      }
     }
   };
 
@@ -623,14 +657,17 @@ export function PhoneCountryInput({
         <button
           ref={triggerRef}
           type="button"
-          onClick={() => setIsOpen((prev) => !prev)}
+          onClick={() => {
+            setHighlightedIdx(0);
+            setIsOpen((prev) => !prev);
+          }}
           aria-expanded={isOpen}
           aria-haspopup="listbox"
           aria-label={isHy ? `Երկրի կոդ (${selectedCountry.name_hy}, ${dialCode})` : `Country dial code (${selectedCountry.name_en}, ${dialCode})`}
           className="min-h-[44px] inline-flex items-center gap-2 px-3.5 py-2.5 bg-brand-stone-50 hover:bg-brand-stone-100 border-r border-brand-stone-200 text-xs font-semibold text-brand-ink transition-colors shrink-0 cursor-pointer select-none"
         >
           {selectedCountry.flagSvg}
-          <span className="font-mono text-brand-ink">{dialCode}</span>
+          <span className="font-sans tabular-nums text-brand-ink">{dialCode}</span>
           <ChevronDown
             className={`w-3.5 h-3.5 text-brand-ink-subtle transition-transform duration-200 ${
               isOpen ? "rotate-180" : ""
@@ -657,7 +694,10 @@ export function PhoneCountryInput({
 
       {/* Searchable Country Picker Dropdown */}
       {isOpen && (
-        <div className="absolute top-full left-0 mt-1.5 w-[min(22rem,calc(100vw-3rem))] max-h-72 bg-white rounded-2xl border border-brand-stone-200 shadow-2xl z-50 flex flex-col overflow-hidden">
+        <div
+          data-country-listbox="open"
+          className="absolute top-full left-0 mt-1.5 w-[min(22rem,calc(100vw-3rem))] max-h-72 bg-white rounded-2xl border border-brand-stone-200 shadow-2xl z-50 flex flex-col overflow-hidden"
+        >
           {/* Search Header */}
           <div className="p-2.5 border-b border-brand-stone-100 bg-brand-stone-50 flex items-center gap-2">
             <Search className="w-4 h-4 text-brand-ink-subtle shrink-0 ml-1" />
@@ -665,8 +705,16 @@ export function PhoneCountryInput({
               ref={searchInputRef}
               type="text"
               aria-label={isHy ? "Որոնել երկիր կամ կոդ" : "Search country or dial code"}
+              aria-activedescendant={
+                filteredCountries[highlightedIdx]
+                  ? `country-opt-${filteredCountries[highlightedIdx].code}`
+                  : undefined
+              }
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setHighlightedIdx(0);
+              }}
               placeholder={
                 isHy
                   ? "Որոնել երկիր կամ կոդ (+374, +971, +1)..."
@@ -677,10 +725,13 @@ export function PhoneCountryInput({
             {searchQuery && (
               <button
                 type="button"
-                onClick={() => setSearchQuery("")}
+                onClick={() => {
+                  setSearchQuery("");
+                  setHighlightedIdx(0);
+                }}
                 className="text-xs text-brand-ink-muted hover:text-brand-forest px-2 py-1 rounded bg-brand-stone-200 cursor-pointer"
               >
-                Clear
+                {isHy ? "Մաքրել" : "Clear"}
               </button>
             )}
           </div>
@@ -696,17 +747,27 @@ export function PhoneCountryInput({
                 {isHy ? "Երկիրը չի գտնվել" : "No matching countries found"}
               </div>
             ) : (
-              filteredCountries.map((c) => {
-                const isSelected = c.dialCode === dialCode;
+              filteredCountries.map((c, idx) => {
+                const isSelected = c.code === selectedCountry.code && c.dialCode === dialCode;
+                const isHighlighted = idx === highlightedIdx;
                 return (
                   <button
                     key={`${c.code}-${c.dialCode}`}
+                    id={`country-opt-${c.code}`}
+                    ref={(el) => {
+                      optionRefs.current[idx] = el;
+                    }}
                     type="button"
                     role="option"
                     aria-selected={isSelected}
+                    onMouseEnter={() => setHighlightedIdx(idx)}
                     onClick={() => handleSelectCountry(c)}
                     className={`w-full min-h-[40px] px-3.5 py-2.5 flex items-center justify-between text-left hover:bg-brand-stone-50 transition-colors cursor-pointer ${
-                      isSelected ? "bg-brand-olive-subtle/50 font-semibold" : ""
+                      isSelected
+                        ? "bg-brand-olive-subtle/50 font-semibold"
+                        : isHighlighted
+                        ? "bg-brand-stone-100"
+                        : ""
                     }`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
@@ -717,7 +778,7 @@ export function PhoneCountryInput({
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0 ml-2">
-                      <span className="font-mono text-xs text-brand-ink-muted font-medium">
+                      <span className="font-sans tabular-nums text-xs text-brand-ink-muted font-medium">
                         {c.dialCode}
                       </span>
                       {isSelected && (

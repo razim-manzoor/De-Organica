@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import {
   Cinzel,
   Plus_Jakarta_Sans,
@@ -13,6 +12,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { DrawerProvider } from "@/context/DrawerContext";
 import { SiteDataProvider } from "@/context/SiteDataContext";
 import { FloatingWhatsAppFab } from "@/components/FloatingWhatsAppFab";
+import { AnalyticsProvider } from "@/components/AnalyticsProvider";
 
 const ConciergeDrawer = dynamic(() => import("@/components/ConciergeDrawer"));
 import {
@@ -74,6 +74,13 @@ export async function generateMetadata(): Promise<Metadata> {
       "Yerevan Hotel Transfers",
     ],
     authors: [{ name: settings.company.legalName, url: "https://deorganica.am" }],
+    alternates: {
+      canonical: "/",
+      languages: {
+        en: "https://deorganica.am/",
+        "x-default": "https://deorganica.am/",
+      },
+    },
     openGraph: {
       title,
       description,
@@ -81,13 +88,26 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: settings.company.legalName,
       locale: "en_US",
       type: "website",
+      images: [
+        {
+          url: "/images/og-deorganica.jpg",
+          width: 1200,
+          height: 630,
+          alt: "De Organica LLC · Armenia Travel & International Manpower",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/images/og-deorganica.jpg"],
     },
     icons: {
       icon: [
         { url: "/icon.svg", type: "image/svg+xml" },
         { url: "/favicon.ico" },
       ],
-      apple: "/icon.svg",
     },
   };
 }
@@ -97,15 +117,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [siteSettings, tours, travelServices, cookieStore] = await Promise.all([
+  const [siteSettings, tours, travelServices] = await Promise.all([
     getSiteSettings(),
     getTours(),
     getTravelServices(),
-    cookies(),
   ]);
 
-  const cookieLocale = cookieStore.get("deorganica_locale")?.value;
-  const initialLocale: Locale = cookieLocale === "hy" ? "hy" : "en";
+  const initialLocale: Locale = "en";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -139,6 +157,8 @@ export default async function RootLayout({
         "@id": "https://deorganica.am/#travel-agency",
         name: "De Organica Travel & Tours",
         url: "https://deorganica.am/travel",
+        telephone: siteSettings.company.phoneYerevanDesk,
+        areaServed: "AM",
         parentOrganization: {
           "@id": "https://deorganica.am/#organization",
         },
@@ -148,6 +168,8 @@ export default async function RootLayout({
         "@id": "https://deorganica.am/#manpower-agency",
         name: "De Organica Manpower",
         url: "https://deorganica.am/manpower",
+        telephone: siteSettings.company.phoneYerevanDesk,
+        areaServed: "AM",
         parentOrganization: {
           "@id": "https://deorganica.am/#organization",
         },
@@ -179,6 +201,7 @@ export default async function RootLayout({
               {children}
               <ConciergeDrawer />
               <FloatingWhatsAppFab />
+              <AnalyticsProvider />
             </DrawerProvider>
           </LanguageProvider>
         </SiteDataProvider>

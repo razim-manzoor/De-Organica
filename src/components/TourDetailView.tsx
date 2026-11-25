@@ -39,8 +39,11 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
 
   const handleWhatsApp = () => {
     const message = buildTravelWhatsAppMessage({
-      serviceOrTour: tour.title_en,
-      notes: `Tour Detail Page Inquiry (${tour.duration_en})`,
+      serviceOrTour: title,
+      notes:
+        locale === "hy"
+          ? `Տուրի էջից հարցում (${duration})`
+          : `Tour Detail Page Inquiry (${tour.duration_en})`,
     });
     const url = buildWhatsAppUrl(message, siteSettings.company.whatsappNumberDigits);
     window.open(url, "_blank", "noopener,noreferrer");
@@ -221,7 +224,7 @@ export default function TourDetailView({ tour, otherTours }: TourDetailViewProps
                   className="w-full min-h-[48px] px-5 py-3 rounded-lg bg-brand-forest hover:bg-brand-forest-deep text-white text-sm font-semibold transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                 >
                   <span>
-                    {locale === "en" ? "Request Custom Quote" : "Հարցնել Արժեքը"}
+                    {locale === "en" ? "Request Custom Itinerary" : "Պատվիրել Անհատական Երթուղի"}
                   </span>
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </button>

@@ -113,7 +113,7 @@ export function ManpowerEmployerSection({
             </h3>
             <p className="text-sm text-brand-stone-200 leading-relaxed">
               {isHy
-                ? "Կապվեք մեր կորպորատիվ գրասենյակի հետ: Մենք կտրամադրենք թեկնածուների նախնական ցանկ, ծախսերի հաշվարկ և աշխատանքի թույլտվության ժամանակացույց:"
+                ? "Կապվեք մեր կորպորատիվ գրասենյակի հետ: Մենք կտրամադրենք թեկնածուների նախնական ցանկ, գործընթացի մանրամասն պլան և աշխատանքի թույլտվության ժամանակացույց:"
                 : "Connect directly with our Yerevan corporate desk. We will analyze your headcount requirements, timeline, and deliver a tailored manpower deployment proposal."}
             </p>
           </div>
@@ -124,7 +124,7 @@ export function ManpowerEmployerSection({
               onClick={openEmployerDrawer}
               className="min-h-[44px] px-6 py-3.5 rounded-xl bg-brand-olive-onDark text-brand-forest-deep text-xs font-bold uppercase tracking-wider hover:bg-white transition-all active:scale-95 duration-200 flex items-center justify-center gap-2 shadow-md cursor-pointer"
             >
-              <span>{isHy ? "Հայտնել Պահանջարկը" : "Request Manpower Quote"}</span>
+              <span>{isHy ? "Հայտնել Պահանջարկը" : "Request Staffing Proposal"}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 

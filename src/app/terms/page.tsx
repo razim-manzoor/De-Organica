@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Terms of Service & Placement Policy | De Organica LLC",
   description:
     "Official corporate terms of service, travel booking conditions, and ethical candidate placement standards for De Organica LLC.",
+  alternates: {
+    canonical: "/terms",
+  },
 };
 
 export default function TermsOfServicePage() {

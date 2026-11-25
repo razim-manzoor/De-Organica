@@ -21,8 +21,8 @@ export function Logo({
         <Image
           src="/images/de-organica-mark.png"
           alt="De Organica LLC Crest"
-          width={78}
-          height={40}
+          width={385}
+          height={300}
           priority={priority}
           className="h-10 w-auto object-contain transition-transform duration-300 hover:scale-105"
         />
@@ -30,18 +30,17 @@ export function Logo({
     );
   }
 
-  const logoSrc = inverted
-    ? "/images/de-organica-logo-white.png"
-    : "/images/de-organica-logo.png";
-
   if (variant === "lockup" || variant === "official") {
+    const stackedSrc = inverted
+      ? "/images/de-organica-logo-white.png"
+      : "/images/de-organica-logo.png";
     return (
       <div className={cn("inline-flex flex-col items-center select-none", className)}>
         <Image
-          src={logoSrc}
+          src={stackedSrc}
           alt="De Organica LLC"
-          width={220}
-          height={120}
+          width={588}
+          height={462}
           priority={priority}
           className="h-20 sm:h-24 w-auto object-contain transition-transform duration-300 hover:scale-103"
         />
@@ -49,16 +48,19 @@ export function Logo({
     );
   }
 
-  // Default: horizontal lockup
+  // Default: true horizontal lockup for header & footer legibility
+  const horizontalSrc = inverted
+    ? "/images/de-organica-horizontal-white.png"
+    : "/images/de-organica-horizontal.png";
   return (
     <div className={cn("inline-flex items-center select-none", className)}>
       <Image
-        src={logoSrc}
+        src={horizontalSrc}
         alt="De Organica LLC · Travel & Manpower"
-        width={180}
-        height={90}
+        width={574}
+        height={128}
         priority={priority}
-        className="h-12 sm:h-14 w-auto object-contain transition-transform duration-300 hover:scale-105"
+        className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 hover:scale-103"
       />
     </div>
   );

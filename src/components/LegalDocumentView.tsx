@@ -96,7 +96,7 @@ export function LegalDocumentView({ mode }: LegalDocumentViewProps) {
             <p className="text-brand-ink-muted">
               {isHy
                 ? "Տվյալները կիրառվում են բացառապես Ձեր տուրիստական ամրագրումների, վիզային խորհրդատվության կամ օրինական աշխատանքի տեղավորման նպատակով: Մենք երբեք չենք վաճառում անձնական տվյալներ: Հավաստիացված գործատուների, հյուրանոցների կամ ավիաընկերությունների հետ տվյալները կիսվում են միայն Ձեր կոնկրետ հարցման կատարման շրջանակներում:"
-                : "Submitted details are used solely to prepare travel itineraries, deliver B2B ground-handling quotes, evaluate candidate eligibility for vetted employers, or administer Republic of Armenia work permit filings. We do not sell personal data. Documents are shared strictly with accredited partner employers, hotels, transport providers, or migration authorities necessary to fulfill your request."}
+                : "Submitted details are used solely to prepare travel itineraries, deliver B2B ground-handling proposals, evaluate candidate eligibility for vetted employers, or administer Republic of Armenia work permit filings. We do not sell personal data. Documents are shared strictly with accredited partner employers, hotels, transport providers, or migration authorities necessary to fulfill your request."}
             </p>
           </section>
 
@@ -106,8 +106,8 @@ export function LegalDocumentView({ mode }: LegalDocumentViewProps) {
             </h2>
             <p className="text-brand-ink-muted">
               {isHy
-                ? "Կայքը չի օգտագործում գովազդային հետագծման թխուկներ. տեղային պահոցում պահվում է միայն Ձեր ընտրած լեզուն (EN/HY): Էլեկտրոնային հայտերը փոխանցվում են պաշտպանված HTTPS ուղիներով մեր պաշտոնական գրասենյակային էլ. փոստին և պահպանվում են միայն ծառայության մատուցման և օրենքով սահմանված ժամկետում:"
-                : "This website avoids intrusive third-party advertising trackers; only functional language preference (EN/HY) is stored in your browser. Form payloads and CV attachments are transmitted over encrypted TLS (HTTPS) connections to our Yerevan operations desk and retained only as long as required to fulfill active travel, recruitment, or statutory compliance obligations."}
+                ? "Կայքը չի օգտագործում գովազդային հետագծման թխուկներ. պահվում է Ձեր ընտրած լեզուն (EN/HY)՝ `deorganica_locale` ֆունկցիոնալ տվյալի միջոցով, իսկ կամավոր վերլուծական չափումները ակտիվանում են միայն Ձեր համաձայնությամբ (`deorganica_analytics_consent`)։ Էլեկտրոնային հայտերն ու CV ֆայլերը փոխանցվում են պաշտպանված HTTPS ուղիներով մեր գրասենյակային էլ. փոստին և պահպանվում են առավելագույնը 12 ամիս՝ ծառայության մատուցման և օրենքով սահմանված ժամկետներում, եթե ավելի վաղ հեռացում չի պահանջվել:"
+                : "This website avoids third-party advertising trackers. Essential functional storage (deorganica_locale) remembers your EN/HY language choice, and optional aggregated analytics (if enabled) respects explicit consent via deorganica_analytics_consent. Form payloads and CV attachments are transmitted over encrypted TLS (HTTPS) connections to our Yerevan operations desk and retained for up to 12 months (or shorter if erasure is requested) to fulfill active travel, recruitment, or statutory compliance obligations."}
             </p>
           </section>
 
@@ -141,8 +141,8 @@ export function LegalDocumentView({ mode }: LegalDocumentViewProps) {
             </h2>
             <p className="text-brand-ink-muted">
               {isHy
-                ? "Աշխատանքի տեղավորման բաժինն առաջնորդվում է բացառապես Հայաստանի Հանրապետության միգրացիոն և աշխատանքային օրենսդրությամբ: Թեկնածուների տեղակայումը, պայմանագրերի կնքումը և փաստաթղթավորումն իրականացվում են հավաստագրված գործատուների պաշտոնական աշխատանքի հրավերի և օրինական աշխատանքի թույլտվության հիման վրա:"
-                : "Our international manpower division operates strictly under Republic of Armenia labor migration standards. Candidate placement, employment contracts, and document processing proceed strictly upon verified written job offer issuance and formal government work permit authorization."}
+                ? "Աշխատանքի տեղավորման բաժինն առաջնորդվում է բացառապես Հայաստանի Հանրապետության միգրացիոն և աշխատանքային օրենսդրությամբ: Թեկնածուների ընտրությունը և դիմումների ընդունումը իրականացվում են առանց նախնական վճարների, իսկ տեղակայումը, պայմանագրերի կնքումը և փաստաթղթավորումը կատարվում են հավաստագրված գործատուների պաշտոնական աշխատանքի հրավերի և օրինական աշխատանքի թույլտվության հիման վրա:"
+                : "Our international manpower division operates strictly under Republic of Armenia labor migration standards with zero upfront charges to job applicants. Candidate placement, employment contracts, and document processing proceed strictly upon verified written job offer issuance and formal government work permit authorization."}
             </p>
           </section>
 
@@ -179,7 +179,7 @@ export function LegalDocumentView({ mode }: LegalDocumentViewProps) {
             {company.legalName} ·{" "}
             <a
               href={`mailto:${company.email}`}
-              className="font-mono text-brand-forest underline underline-offset-2 hover:text-brand-olive-text"
+              className="font-sans font-medium text-brand-forest underline underline-offset-2 hover:text-brand-olive-text"
             >
               {company.email}
             </a>

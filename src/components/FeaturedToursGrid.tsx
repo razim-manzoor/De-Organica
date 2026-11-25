@@ -17,7 +17,6 @@ import {
   MapPin,
   Check,
   MessageCircle,
-  Compass,
   ArrowRight,
 } from "lucide-react";
 
@@ -178,7 +177,7 @@ export function FeaturedToursGrid({
 
                     <button
                       type="button"
-                      onClick={() => handleWhatsAppBooking(flagshipTour.title_en)}
+                      onClick={() => handleWhatsAppBooking(isHy ? flagshipTour.title_hy : flagshipTour.title_en)}
                       className="w-11 h-11 shrink-0 rounded-xl border border-brand-stone-300 bg-white text-brand-ink hover:text-brand-forest hover:border-[#25D366] hover:bg-green-50/40 active:scale-95 text-xs font-medium transition-all flex items-center justify-center cursor-pointer shadow-sm"
                       aria-label={isHy ? `${flagshipTour.title_hy} — WhatsApp հարցում` : `Check availability for ${flagshipTour.title_en} on WhatsApp`}
                       title="WhatsApp"
@@ -294,7 +293,7 @@ export function FeaturedToursGrid({
 
                       <button
                         type="button"
-                        onClick={() => handleWhatsAppBooking(tour.title_en)}
+                        onClick={() => handleWhatsAppBooking(isHy ? tour.title_hy : tour.title_en)}
                         className="w-11 h-11 shrink-0 rounded-xl border border-brand-stone-300 bg-white text-brand-ink hover:text-brand-forest hover:border-[#25D366] hover:bg-green-50/40 active:scale-95 text-xs font-medium transition-all flex items-center justify-center cursor-pointer shadow-sm"
                         aria-label={isHy ? `${tour.title_hy} — WhatsApp հարցում` : `Check availability for ${tour.title_en} on WhatsApp`}
                         title="WhatsApp"

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Privacy & Candidate Data Policy | De Organica LLC",
   description:
     "How De Organica LLC (Yerevan, Republic of Armenia) protects client travel details, candidate CV submissions, and personal data.",
+  alternates: {
+    canonical: "/privacy",
+  },
 };
 
 export default function PrivacyPolicyPage() {
