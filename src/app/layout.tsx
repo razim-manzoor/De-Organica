@@ -105,9 +105,13 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     icons: {
       icon: [
+        { url: "/images/icon-192.png", sizes: "192x192", type: "image/png" },
+        { url: "/images/icon-512.png", sizes: "512x512", type: "image/png" },
         { url: "/icon.svg", type: "image/svg+xml" },
-        { url: "/favicon.ico" },
+        { url: "/favicon.ico", sizes: "48x48 32x32 16x16" },
       ],
+      shortcut: "/favicon.ico",
+      apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
     },
   };
 }
@@ -128,6 +132,16 @@ export default async function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://deorganica.am/#website",
+        url: "https://deorganica.am",
+        name: "De Organica LLC",
+        alternateName: ["De Organica", "deorganica.am"],
+        publisher: {
+          "@id": "https://deorganica.am/#organization",
+        },
+      },
       {
         "@type": "Organization",
         "@id": "https://deorganica.am/#organization",
