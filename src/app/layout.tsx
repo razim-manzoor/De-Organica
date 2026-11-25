@@ -197,6 +197,7 @@ export default async function RootLayout({
       className={`${cinzel.variable} ${plusJakarta.variable} ${notoSerifArmenian.variable} ${notoSansArmenian.variable}`}
     >
       <head>
+        <meta name="color-scheme" content="light only" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

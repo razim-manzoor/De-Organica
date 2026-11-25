@@ -47,22 +47,22 @@ export function Header() {
   }, [mobileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/98 border-b border-brand-stone-200/90 shadow-sm transition-colors duration-200">
+    <header className="sticky top-0 z-40 w-full bg-white border-b border-brand-stone-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
-          {/* Brand Crest */}
+        <div className="flex items-center justify-between h-16 lg:h-[72px] gap-3">
+          {/* Brand Crest + Crisp Web Wordmark */}
           <Link
             href="/"
-            className="shrink-0 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-forest"
+            className="group shrink-0 inline-flex items-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-forest"
           >
             <Logo variant="horizontal" priority />
             <span className="sr-only">{isHy ? " — Գլխավոր էջ" : " — Home"}</span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation (1024px+ to eliminate tablet overflow) */}
           <nav
             aria-label={isHy ? "Հիմնական նավիգացիա" : "Primary navigation"}
-            className="hidden md:flex items-center gap-0.5 lg:gap-1"
+            className="hidden lg:flex items-center gap-0.5 xl:gap-1"
           >
             {navItems.map((item) => {
               const isActive =
@@ -75,15 +75,15 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   aria-current={isActive ? "page" : undefined}
-                  className={`relative whitespace-nowrap min-h-[38px] px-2.5 lg:px-3.5 py-2 text-xs lg:text-sm tracking-[0.015em] transition-all duration-200 flex items-center rounded-xl ${
+                  className={`relative whitespace-nowrap min-h-[38px] px-2.5 xl:px-3.5 py-2 text-[13px] xl:text-sm tracking-[0.01em] transition-colors duration-150 flex items-center rounded-lg ${
                     isActive
-                      ? "text-brand-forest font-bold bg-brand-stone-100/80"
-                      : "text-brand-ink-muted hover:text-brand-forest hover:bg-brand-stone-100/50 font-medium"
+                      ? "text-brand-forest font-bold bg-brand-stone-100"
+                      : "text-brand-ink-muted hover:text-brand-forest hover:bg-brand-stone-100/60 font-medium"
                   }`}
                 >
                   <span>{isHy ? item.label_hy : item.label_en}</span>
                   {isActive && (
-                    <span className="absolute bottom-1 left-3 right-3 h-[2px] bg-brand-olive rounded-full" />
+                    <span className="absolute bottom-1 left-2.5 right-2.5 h-[2px] bg-brand-olive rounded-full" />
                   )}
                 </Link>
               );
@@ -91,17 +91,26 @@ export function Header() {
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-2 lg:gap-2.5 shrink-0">
-            {/* Direct Telephone Touchpoint (Zero-Form) */}
+          <div className="hidden lg:flex items-center gap-2 xl:gap-2.5 shrink-0">
+            {/* Direct Telephone Touchpoint (compact icon at lg, full number at xl+) */}
             <a
               href={`tel:${siteSettings.company.phoneYerevanDesk.replace(/\s+/g, "")}`}
-              className="whitespace-nowrap min-h-[38px] px-3 py-1.5 rounded-xl border border-brand-stone-200 bg-white/80 hover:bg-white hover:border-brand-stone-300 text-xs lg:text-[13px] text-brand-forest transition-all active:scale-95 duration-200 flex items-center gap-2 shadow-2xs group"
-              title={isHy ? "Զանգահարել Երևանի դեսկ" : "Call Yerevan Desk"}
+              aria-label={
+                isHy
+                  ? `Զանգահարել Երևանի դեսկ (${siteSettings.company.phoneYerevanDesk})`
+                  : `Call Yerevan Desk (${siteSettings.company.phoneYerevanDesk})`
+              }
+              className="whitespace-nowrap min-h-[38px] min-w-[38px] px-2.5 xl:px-3 py-1.5 rounded-xl border border-brand-stone-200 bg-white hover:bg-brand-stone-50 hover:border-brand-stone-300 text-xs xl:text-[13px] text-brand-forest transition-colors duration-150 flex items-center justify-center gap-2 group"
+              title={
+                isHy
+                  ? `Զանգահարել Երևանի դեսկ · ${siteSettings.company.phoneYerevanDesk}`
+                  : `Call Yerevan Desk · ${siteSettings.company.phoneYerevanDesk}`
+              }
             >
-              <span className="w-2 h-2 rounded-full bg-[#25D366] shrink-0 animate-pulse motion-reduce:animate-none" />
-              <Phone className="w-3.5 h-3.5 text-brand-olive-text shrink-0 group-hover:scale-110 transition-transform motion-reduce:transform-none" />
-              <span className="font-sans font-medium tabular-nums hidden xl:inline">{siteSettings.company.phoneYerevanDesk}</span>
-              <span className="font-sans text-xs xl:hidden">{isHy ? "Զանգ" : "Call"}</span>
+              <Phone className="w-3.5 h-3.5 text-brand-olive-text shrink-0" />
+              <span className="font-sans font-medium tabular-nums hidden xl:inline">
+                {siteSettings.company.phoneYerevanDesk}
+              </span>
             </a>
 
             <LanguageSwitcher />
@@ -109,7 +118,7 @@ export function Header() {
             <button
               type="button"
               onClick={handleContextInquiry}
-              className="whitespace-nowrap min-h-[38px] inline-flex items-center gap-2 px-3.5 lg:px-4 py-2 rounded-xl bg-brand-forest text-white text-xs lg:text-sm font-semibold tracking-wide hover:bg-brand-forest-deep transition-all active:scale-95 duration-200 shadow-sm hover:shadow-md cursor-pointer"
+              className="whitespace-nowrap min-h-[38px] inline-flex items-center gap-1.5 px-3 xl:px-4 py-2 rounded-xl bg-brand-forest border border-brand-forest text-white text-xs xl:text-sm font-semibold tracking-wide hover:bg-brand-forest-deep transition-colors duration-150 shadow-sm cursor-pointer"
             >
               <span>
                 {isManpowerRoute
@@ -120,12 +129,12 @@ export function Header() {
                   ? "Ուղիղ Հարցում"
                   : "Direct Inquiry"}
               </span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-brand-gold-onDark opacity-95" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-brand-gold-onDark opacity-95 shrink-0" />
             </button>
           </div>
 
-          {/* Mobile Controls */}
-          <div className="flex md:hidden items-center gap-2">
+          {/* Mobile & Tablet Controls (< 1024px) */}
+          <div className="flex lg:hidden items-center gap-2 shrink-0">
             <LanguageSwitcher />
             <button
               type="button"
@@ -133,7 +142,7 @@ export function Header() {
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav-drawer"
               aria-label={mobileMenuOpen ? (isHy ? "Փակել մենյուն" : "Close navigation menu") : (isHy ? "Բացել մենյուն" : "Open navigation menu")}
-              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl border border-brand-stone-200 bg-white text-brand-forest hover:bg-brand-stone-100 transition-all active:scale-95 duration-200 cursor-pointer"
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl border border-brand-stone-200 bg-white text-brand-forest hover:bg-brand-stone-100 transition-colors duration-150 cursor-pointer"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -141,11 +150,11 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Dropdown Navigation Drawer */}
+      {/* Mobile & Tablet Dropdown Navigation Drawer (< 1024px) */}
       {mobileMenuOpen && (
         <div
           id="mobile-nav-drawer"
-          className="md:hidden border-t border-brand-stone-200 bg-brand-stone-50 shadow-xl"
+          className="lg:hidden border-t border-brand-stone-200 bg-brand-stone-50 shadow-xl"
         >
           <nav
             aria-label={isHy ? "Բջջային նավիգացիա" : "Mobile navigation"}

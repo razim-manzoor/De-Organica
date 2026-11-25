@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    color-scheme: light only;
     --brand-forest: #233d20;
     --brand-olive: #668b2e;
     --brand-olive-text: #4b6820;
@@ -57,6 +58,25 @@
   @media (forced-colors: active) {
     :focus-visible {
       outline: 2px solid ButtonText;
+    }
+
+    header,
+    footer,
+    dialog.concierge-dialog {
+      border-color: CanvasText;
+    }
+
+    button,
+    a[class*="bg-brand-forest"],
+    a[class*="border"] {
+      border: 1px solid ButtonText;
+    }
+
+    [aria-current="page"],
+    [aria-pressed="true"],
+    [aria-selected="true"] {
+      outline: 2px solid Highlight;
+      outline-offset: 1px;
     }
   }
 

@@ -22,7 +22,7 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
       role="group"
       aria-label={activeLocale === "hy" ? "Լեզվի ընտրություն" : "Language selector"}
     >
-      <Globe className="w-3.5 h-3.5 text-brand-olive-text ml-2 mr-1 hidden sm:block shrink-0" aria-hidden="true" />
+      <Globe className="w-3.5 h-3.5 text-brand-olive-text ml-2 mr-1 hidden xl:block shrink-0" aria-hidden="true" />
       <button
         type="button"
         onClick={() => setLocale("en")}

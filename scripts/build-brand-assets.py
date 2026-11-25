@@ -40,6 +40,30 @@ def extract_clean_rgba(src_path: Path) -> Image.Image:
     return Image.fromarray(rgba, "RGBA")
 
 
+def purify_brand_inks(img: Image.Image) -> Image.Image:
+    """
+    Smooths subtle JPEG compression speckling inside deeply opaque foreground
+    pixels while preserving 100% of anti-aliased border curves.
+    """
+    arr = np.array(img, dtype=np.float32)
+    r, g, b, a = arr[:, :, 0], arr[:, :, 1], arr[:, :, 2], arr[:, :, 3]
+    opaque = a > 235.0
+    olive_score = (
+        np.clip((g - 86.0) / 24.0, 0.0, 1.0)
+        * np.clip(((g - b) - 25.0) / 30.0, 0.0, 1.0)
+    )
+    # Target brand greens (#233D20 and #668B2E) blended smoothly inside opaque core
+    target_r = 35.0 * (1.0 - olive_score) + 102.0 * olive_score
+    target_g = 61.0 * (1.0 - olive_score) + 139.0 * olive_score
+    target_b = 32.0 * (1.0 - olive_score) + 46.0 * olive_score
+
+    blend = np.where(opaque, 0.85, 0.0)
+    arr[:, :, 0] = r * (1.0 - blend) + target_r * blend
+    arr[:, :, 1] = g * (1.0 - blend) + target_g * blend
+    arr[:, :, 2] = b * (1.0 - blend) + target_b * blend
+    return Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8), "RGBA")
+
+
 def crop_tight(img: Image.Image, pad: int = 8) -> Image.Image:
     bbox = img.getbbox()
     if not bbox:
@@ -127,10 +151,11 @@ def build_logos():
 
     split_y = max(gaps)[1] + max(gaps)[0] // 2 if gaps else int(h * 0.58)
 
-    mark = crop_tight(stacked.crop((0, 0, stacked.width, split_y)), pad=6)
+    mark = purify_brand_inks(crop_tight(stacked.crop((0, 0, stacked.width, split_y)), pad=6))
     mark.save(IMAGES_DIR / "de-organica-mark.png", "PNG", optimize=True)
     mark_white = make_dark_bg_variant(mark)
-    print(f"Saved tight mark: {mark.size}")
+    mark_white.save(IMAGES_DIR / "de-organica-mark-white.png", "PNG", optimize=True)
+    print(f"Saved tight marks (dark & light): {mark.size}")
 
     wordmark = crop_tight(stacked.crop((0, split_y, stacked.width, stacked.height)), pad=6)
     print(f"Extracted wordmark: {wordmark.size}")
